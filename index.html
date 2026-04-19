@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Garnalternativer — Find det perfekte garn</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <div class="logo">
+        <span class="logo-icon">🧶</span>
+        <span class="logo-text">Garnalternativer</span>
+      </div>
+      <nav>
+        <a href="#" class="nav-link active">Opskrifter</a>
+        <a href="#" class="nav-link">Garnbibliotek</a>
+        <a href="#" class="nav-link">Om projektet</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="hero">
+      <div class="container">
+        <h1>Find det perfekte garnalternativ</h1>
+        <p>Har du en opskrift, men vil gerne strikke med et andet garn? Find alternativer baseret på strikkefasthed, pind, pris og materialer.</p>
+        <div class="search-bar">
+          <input type="text" id="searchInput" placeholder="Søg efter opskrift eller garn..." autocomplete="off" />
+          <button onclick="handleSearch()">Søg</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pattern Grid -->
+    <section class="section" id="patternSection">
+      <div class="container">
+        <h2 class="section-title">Populære opskrifter</h2>
+        <div class="pattern-grid" id="patternGrid"></div>
+      </div>
+    </section>
+
+    <!-- Pattern Detail (hidden initially) -->
+    <section class="section" id="detailSection" style="display:none;">
+      <div class="container">
+        <button class="back-btn" onclick="showPatternList()">← Tilbage til opskrifter</button>
+        <div id="detailContent"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p>Garnalternativer &copy; 2026 — Hjælper strikkere med at finde de bedste garnalternativer</p>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
