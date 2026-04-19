@@ -212,36 +212,60 @@ function renderAlternatives() {
       ? `<span class="price-diff pricier">▲ ${priceDiff} kr. dyrere</span>`
       : `<span class="price-diff">Samme pris</span>`;
 
-    const gaugePct  = gaugeMatchPct(originalYarn.gauge_10cm, yarn.gauge_10cm);
+    const gaugePct = gaugeMatchPct(originalYarn.gauge_10cm, yarn.gauge_10cm);
     const needlePct = needleMatchPct(originalYarn.needle_mm, yarn.needle_mm);
-    const fiberPct  = fiberMatchPct(originalYarn.fiber, yarn.fiber);
-
     const badges = buildBadges(originalYarn, yarn);
 
     return `
       <div class="alt-card${isFirst ? ' best-match' : ''}">
         <div>
           <div class="alt-card-name">${yarn.name}</div>
-          <div class="alt-card-brand">${yarn.brand} · ${yarn.weight} · ${yarn.fiber}</div>
+          <div class="alt-card-brand">${yarn.brand} · ${yarn.weight}</div>
 
-          <div class="match-bars">
-            ${matchBar('Strikkefasthed', gaugePct)}
-            ${matchBar('Pind', needlePct)}
-            ${matchBar('Materiale', fiberPct)}
-          </div>
+          <table class="compare-table">
+            <thead>
+              <tr>
+                <th></th>
+                <th>Original</th>
+                <th>Dette garn</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="compare-label">Strikkefasthed</td>
+                <td class="compare-orig">${originalYarn.gauge_10cm} m/10 cm</td>
+                <td class="compare-alt ${gaugePct >= 90 ? 'match-exact' : gaugePct >= 60 ? 'match-close' : 'match-diff'}">${yarn.gauge_10cm} m/10 cm</td>
+                <td class="compare-icon">${gaugePct >= 90 ? '✓' : gaugePct >= 60 ? '~' : '✗'}</td>
+              </tr>
+              <tr>
+                <td class="compare-label">Pind</td>
+                <td class="compare-orig">${originalYarn.needle_mm} mm</td>
+                <td class="compare-alt ${needlePct >= 90 ? 'match-exact' : needlePct >= 60 ? 'match-close' : 'match-diff'}">${yarn.needle_mm} mm</td>
+                <td class="compare-icon">${needlePct >= 90 ? '✓' : needlePct >= 60 ? '~' : '✗'}</td>
+              </tr>
+              <tr>
+                <td class="compare-label">Materiale</td>
+                <td class="compare-orig">${originalYarn.fiber}</td>
+                <td class="compare-alt" colspan="2">${yarn.fiber}</td>
+              </tr>
+              <tr>
+                <td class="compare-label">Meter/100g</td>
+                <td class="compare-orig">${originalYarn.meters_per_100g} m</td>
+                <td class="compare-alt" colspan="2">${yarn.meters_per_100g} m</td>
+              </tr>
+            </tbody>
+          </table>
 
           <div class="alt-badges">${badges}</div>
         </div>
         <div>
           <div class="match-score">${yarn.matchScore}%</div>
-          <div class="match-score-label">match</div>
+          <div class="match-score-label">samlet match</div>
           <div style="margin-top:16px;">
             <div class="price-value">${yarn.price_dkk} kr.</div>
             <span class="price-unit">pr. nøgle (100g)</span>
             ${priceDiffText}
-          </div>
-          <div style="margin-top:12px;font-family:Arial,sans-serif;font-size:0.8rem;color:#6b6460;">
-            Pind ${yarn.needle_mm} mm · ${yarn.meters_per_100g} m/100g
           </div>
         </div>
       </div>
@@ -294,18 +318,6 @@ function fiberMatchPct(origFiber, candFiber) {
 }
 
 // ─── UI Helpers ───────────────────────────────────────────────────
-function matchBar(label, pct) {
-  const cls = pct >= 80 ? 'high' : pct >= 50 ? 'mid' : 'low';
-  return `
-    <div class="match-bar-row">
-      <span class="match-bar-label">${label}</span>
-      <div class="match-bar-track">
-        <div class="match-bar-fill ${cls}" style="width:${pct}%"></div>
-      </div>
-      <span style="width:34px;text-align:right;">${pct}%</span>
-    </div>
-  `;
-}
 
 function buildBadges(original, yarn) {
   const badges = [];
