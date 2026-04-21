@@ -3,61 +3,111 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Find det perfekte garnalternativ til din strikeopskrift. Budget, midrange og premium alternativer med strikkefasthed og prissammenligning." />
   <title>Garnalternativer — Find det perfekte garn</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
+  <!-- ── Header ─────────────────────────────────────────────── -->
   <header class="site-header">
     <div class="container">
-      <div class="logo">
+      <a href="#" class="logo" onclick="showPatternList(); return false;">
         <span class="logo-icon">🧶</span>
         <span class="logo-text">Garnalternativer</span>
-      </div>
-      <nav>
-        <a href="#" class="nav-link active">Opskrifter</a>
-        <a href="#" class="nav-link">Garnbibliotek</a>
-        <a href="#" class="nav-link">Om projektet</a>
+      </a>
+      <nav class="site-nav" aria-label="Primær navigation">
+        <a href="#" onclick="showPatternList(); return false;">Opskrifter</a>
+        <a href="#om">Om projektet</a>
       </nav>
     </div>
   </header>
 
   <main>
-    <!-- Hero -->
-    <section class="hero">
-      <div class="container">
-        <h1>Find det perfekte garnalternativ</h1>
-        <p>Har du en opskrift, men vil gerne strikke med et andet garn? Find alternativer baseret på strikkefasthed, pind, pris og materialer.</p>
-        <div class="search-bar">
-          <input type="text" id="searchInput" placeholder="Søg efter opskrift eller garn..." autocomplete="off" />
-          <button onclick="handleSearch()">Søg</button>
+
+    <!-- ── Pattern list view ──────────────────────────────── -->
+    <div id="patternSection">
+
+      <!-- Hero -->
+      <section class="hero">
+        <div class="container">
+          <div class="hero-inner">
+            <p class="hero-eyebrow">Garnalternativer.dk</p>
+            <h1>Find det perfekte<br>garnalternativ</h1>
+            <p>Vælg en opskrift og se kuraterede alternativer i tre prisniveauer — fra budget til premium. Alle alternativer matcher strikkefasthed og garnvægt.</p>
+            <div class="search-wrap" role="search">
+              <span class="search-icon" aria-hidden="true">⌕</span>
+              <input
+                type="search"
+                id="searchInput"
+                placeholder="Søg opskrift, designer eller garntype…"
+                autocomplete="off"
+                aria-label="Søg i opskrifter"
+              />
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Pattern Grid -->
-    <section class="section" id="patternSection">
-      <div class="container">
-        <h2 class="section-title">Populære opskrifter</h2>
-        <div class="pattern-grid" id="patternGrid"></div>
-      </div>
-    </section>
+      <!-- Pattern grid -->
+      <section class="section" aria-labelledby="patterns-heading">
+        <div class="container">
+          <div class="section-head">
+            <h2 class="section-title" id="patterns-heading">Opskrifter</h2>
+            <span class="section-count" id="patternCount"></span>
+          </div>
+          <div class="pattern-grid" id="patternGrid" role="list"></div>
+        </div>
+      </section>
 
-    <!-- Pattern Detail (hidden initially) -->
-    <section class="section" id="detailSection" style="display:none;">
-      <div class="container">
-        <button class="back-btn" onclick="showPatternList()">← Tilbage til opskrifter</button>
-        <div id="detailContent"></div>
-      </div>
-    </section>
+      <!-- About -->
+      <section class="section" id="om" style="background: var(--bg-warm); border-top: 1px solid var(--border);">
+        <div class="container" style="max-width: 640px;">
+          <h2 class="section-title" style="margin-bottom: 1.2rem;">Om projektet</h2>
+          <p style="font-size:0.95rem; color:var(--ink-2); line-height:1.8; margin-bottom:1rem;">
+            Garnalternativer hjælper strikkere med at finde alternativer til opskrifternes originale garn.
+            Alternativerne er organiseret i tre niveauer: <strong>budget</strong>, <strong>godt alternativ</strong> og <strong>premium opgradering</strong>.
+          </p>
+          <p style="font-size:0.95rem; color:var(--ink-2); line-height:1.8; margin-bottom:1rem;">
+            Alle alternativer er inden for samme garnvægt og med maksimalt ±2 maskers afvigelse i strikkefasthed
+            — de grundlæggende kriterier for en sikker garnsubstitution. Husk altid at strikke en prøvelap.
+          </p>
+          <p style="font-size:0.82rem; color:var(--ink-4); line-height:1.7;">
+            Priser er vejledende og kan variere. Garnspecifikationer er baseret på producenternes officielle data.
+          </p>
+        </div>
+      </section>
+
+    </div><!-- /patternSection -->
+
+    <!-- ── Detail view ────────────────────────────────────── -->
+    <div id="detailSection" style="display:none;">
+      <section class="section">
+        <div class="container">
+          <div id="detailContent"></div>
+        </div>
+      </section>
+    </div>
+
   </main>
 
+  <!-- ── Footer ─────────────────────────────────────────── -->
   <footer class="site-footer">
     <div class="container">
-      <p>Garnalternativer &copy; 2026 — Hjælper strikkere med at finde de bedste garnalternativer</p>
+      <div class="footer-logo">🧶 Garnalternativer</div>
+      <p class="footer-sub">Hjælper strikkere med at finde de bedste garnalternativer siden 2026</p>
     </div>
   </footer>
 
   <script src="data.js"></script>
   <script src="app.js"></script>
+  <script>
+    // Show pattern count
+    document.addEventListener('DOMContentLoaded', () => {
+      const el = document.getElementById('patternCount');
+      if (el) el.textContent = PATTERNS.length + ' opskrifter';
+    });
+  </script>
+
 </body>
 </html>

@@ -1,19 +1,18 @@
 // ─── State ────────────────────────────────────────────────────────
 let currentPattern = null;
-let activeFilters = { sortBy: 'match', fiber: 'alle', maxPrice: 9999, onlyEco: false, onlyVegan: false };
 
-// ─── Init ─────────────────────────────────────────────────────────
+// ─── Boot ─────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
   renderPatternGrid(PATTERNS);
-
-  document.getElementById('searchInput').addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') handleSearch();
+  document.getElementById('searchInput').addEventListener('input', handleSearch);
+  document.getElementById('searchInput').addEventListener('keydown', e => {
+    if (e.key === 'Escape') { e.target.value = ''; renderPatternGrid(PATTERNS); }
   });
 });
 
 // ─── Search ──────────────────────────────────────────────────────
-function handleSearch() {
-  const q = document.getElementById('searchInput').value.trim().toLowerCase();
+function handleSearch(e) {
+  const q = e.target.value.trim().toLowerCase();
   if (!q) { renderPatternGrid(PATTERNS); return; }
   const results = PATTERNS.filter(p =>
     p.name.toLowerCase().includes(q) ||
@@ -26,327 +25,342 @@ function handleSearch() {
 
 // ─── Pattern Grid ─────────────────────────────────────────────────
 function renderPatternGrid(patterns) {
-  const grid = document.getElementById('patternGrid');
   document.getElementById('patternSection').style.display = '';
   document.getElementById('detailSection').style.display = 'none';
 
+  const countEl = document.getElementById('patternCount');
+  if (countEl) countEl.textContent = patterns.length + ' opskrifter';
+
+  const grid = document.getElementById('patternGrid');
+
   if (patterns.length === 0) {
-    grid.innerHTML = `<div class="no-results">Ingen opskrifter fundet. Prøv et andet søgeord.</div>`;
+    grid.innerHTML = `<p class="no-results">Ingen opskrifter fundet. Prøv et andet søgeord.</p>`;
     return;
   }
 
   grid.innerHTML = patterns.map(p => {
-    const yarn = YARNS.find(y => y.id === p.yarn_id);
+    const yarn = findYarn(p.originalYarn_id);
+    const w = WEIGHTS[yarn.weight];
+    const tierCount = Object.values(p.tiers).flat().length;
     return `
-      <div class="pattern-card" onclick="showPatternDetail('${p.id}')">
-        <div class="pattern-card-img">${p.emoji}</div>
+      <article class="pattern-card" onclick="showDetail('${p.id}')" role="button" tabindex="0"
+               onkeydown="if(event.key==='Enter')showDetail('${p.id}')">
+        <div class="pattern-card-emoji">${p.emoji}</div>
         <div class="pattern-card-body">
-          <div class="pattern-card-title">${p.name}</div>
-          <div class="pattern-card-meta">${p.type} · ${p.designer} · ${p.difficulty}</div>
-          <div class="tags">
-            <span class="tag tag-weight">${yarn.weight}</span>
-            <span class="tag tag-needle">Pind ${yarn.needle_mm} mm</span>
-            <span class="tag tag-fiber">${shortFiber(yarn.fiber)}</span>
+          <div class="pattern-card-type">${p.type} · ${p.designer}</div>
+          <h3 class="pattern-card-name">${p.name}</h3>
+          <div class="pattern-card-yarn">Originalt garn: <strong>${yarn.name}</strong> — ${yarn.brand}</div>
+          <div class="pattern-card-pills">
+            <span class="pill pill-weight">${w.label}</span>
+            <span class="pill pill-gauge">${yarn.gauge.stitches} m/10 cm</span>
+            <span class="pill pill-needle">Pind ${yarn.gauge.needle_mm} mm</span>
+          </div>
+          <div class="pattern-card-footer">
+            <span class="alt-count">${tierCount} alternativer i 3 prisniveauer</span>
+            <span class="card-arrow">→</span>
           </div>
         </div>
-      </div>
+      </article>
     `;
   }).join('');
 }
 
 // ─── Pattern Detail ───────────────────────────────────────────────
-function showPatternDetail(patternId) {
+function showDetail(patternId) {
   currentPattern = PATTERNS.find(p => p.id === patternId);
-  const yarn = YARNS.find(y => y.id === currentPattern.yarn_id);
-
-  activeFilters = { sortBy: 'match', fiber: 'alle', maxPrice: 9999, onlyEco: false, onlyVegan: false };
+  const origYarn = findYarn(currentPattern.originalYarn_id);
+  const secYarn  = currentPattern.secondaryYarn_id ? findYarn(currentPattern.secondaryYarn_id) : null;
 
   document.getElementById('patternSection').style.display = 'none';
   document.getElementById('detailSection').style.display = '';
-
-  const altYarns = currentPattern.alternatives.map(id => YARNS.find(y => y.id === id)).filter(Boolean);
-  const fiberOptions = [...new Set(altYarns.map(y => y.fiber))];
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 
   document.getElementById('detailContent').innerHTML = `
-    <!-- Pattern header -->
-    <div class="detail-header">
-      <div class="detail-img">${currentPattern.emoji}</div>
-      <div class="detail-info">
-        <h1>${currentPattern.name}</h1>
-        <div class="designer">${currentPattern.type} · ${currentPattern.designer} · ${currentPattern.difficulty}</div>
-        <p style="font-family:Arial,sans-serif;font-size:0.95rem;color:#6b6460;margin-bottom:20px;">${currentPattern.description}</p>
-
-        <div class="yarn-box">
-          <h3>Originalt garn</h3>
-          <div class="yarn-name">${yarn.name}</div>
-          <div class="yarn-specs">
-            <span class="spec">🧵 <strong>${yarn.fiber}</strong></span>
-            <span class="spec">📐 <strong>${yarn.gauge_10cm} m/10 cm</strong></span>
-            <span class="spec">🪡 <strong>Pind ${yarn.needle_mm} mm</strong></span>
-            <span class="spec">📏 <strong>${yarn.meters_per_100g} m/100g</strong></span>
-            <span class="spec">💰 <strong>${yarn.price_dkk} kr.</strong></span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Filters -->
-    <div class="filter-bar">
-      <div class="filter-group">
-        <label>Sorter efter</label>
-        <select onchange="updateFilter('sortBy', this.value)">
-          <option value="match">Bedste match</option>
-          <option value="price_asc">Billigst først</option>
-          <option value="price_desc">Dyrest først</option>
-          <option value="gauge">Strikkefasthed</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label>Materiale</label>
-        <select onchange="updateFilter('fiber', this.value)">
-          <option value="alle">Alle materialer</option>
-          <option value="uld">Indeholder uld</option>
-          <option value="alpaka">Indeholder alpaka</option>
-          <option value="bomuld">Indeholder bomuld</option>
-          <option value="merino">Indeholder merino</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label>Maks. pris (kr.)</label>
-        <select onchange="updateFilter('maxPrice', parseInt(this.value))">
-          <option value="9999">Alle priser</option>
-          <option value="60">Op til 60 kr.</option>
-          <option value="100">Op til 100 kr.</option>
-          <option value="150">Op til 150 kr.</option>
-        </select>
-      </div>
-      <div class="filter-group">
-        <label>Særlige</label>
-        <select onchange="updateSpecial(this.value)">
-          <option value="none">Ingen filter</option>
-          <option value="eco">Kun øko</option>
-          <option value="vegan">Kun vegansk</option>
-        </select>
-      </div>
-      <button class="filter-reset" onclick="resetFilters()">Nulstil filtre</button>
-    </div>
-
-    <!-- Alternatives list -->
-    <h2 class="alternatives-title">
-      Garnalternativer
-      <span class="alt-count" id="altCount"></span>
-    </h2>
-    <div class="alternatives-list" id="alternativesList"></div>
+    ${renderPatternHeader(currentPattern, origYarn, secYarn)}
+    ${renderTierSections(currentPattern, origYarn)}
   `;
-
-  renderAlternatives();
 }
 
 function showPatternList() {
-  currentPattern = null;
   document.getElementById('patternSection').style.display = '';
   document.getElementById('detailSection').style.display = 'none';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// ─── Filter Logic ────────────────────────────────────────────────
-function updateFilter(key, value) {
-  activeFilters[key] = value;
-  renderAlternatives();
-}
+// ─── Pattern Header ───────────────────────────────────────────────
+function renderPatternHeader(pattern, origYarn, secYarn) {
+  const w = WEIGHTS[origYarn.weight];
+  const fiberStr = origYarn.fiber.map(f => `${f.pct}% ${f.name}`).join(', ');
+  const costEst  = estimateCost(origYarn, pattern.totalMeters_M);
 
-function updateSpecial(value) {
-  activeFilters.onlyEco = value === 'eco';
-  activeFilters.onlyVegan = value === 'vegan';
-  renderAlternatives();
-}
-
-function resetFilters() {
-  activeFilters = { sortBy: 'match', fiber: 'alle', maxPrice: 9999, onlyEco: false, onlyVegan: false };
-  // reset selects
-  document.querySelectorAll('.filter-bar select').forEach(s => s.selectedIndex = 0);
-  renderAlternatives();
-}
-
-// ─── Alternatives Rendering ───────────────────────────────────────
-function renderAlternatives() {
-  const originalYarn = YARNS.find(y => y.id === currentPattern.yarn_id);
-  let alts = currentPattern.alternatives
-    .map(id => YARNS.find(y => y.id === id))
-    .filter(Boolean);
-
-  // Filter
-  if (activeFilters.fiber !== 'alle') {
-    alts = alts.filter(y => y.fiber.toLowerCase().includes(activeFilters.fiber));
-  }
-  if (activeFilters.maxPrice < 9999) {
-    alts = alts.filter(y => y.price_dkk <= activeFilters.maxPrice);
-  }
-  if (activeFilters.onlyEco) alts = alts.filter(y => y.eco);
-  if (activeFilters.onlyVegan) alts = alts.filter(y => y.vegan);
-
-  // Score
-  alts = alts.map(y => ({ ...y, matchScore: computeMatch(originalYarn, y) }));
-
-  // Sort
-  switch (activeFilters.sortBy) {
-    case 'price_asc':  alts.sort((a, b) => a.price_dkk - b.price_dkk); break;
-    case 'price_desc': alts.sort((a, b) => b.price_dkk - a.price_dkk); break;
-    case 'gauge':      alts.sort((a, b) => Math.abs(a.gauge_10cm - originalYarn.gauge_10cm) - Math.abs(b.gauge_10cm - originalYarn.gauge_10cm)); break;
-    default:           alts.sort((a, b) => b.matchScore - a.matchScore);
-  }
-
-  document.getElementById('altCount').textContent = `(${alts.length} alternativer)`;
-
-  if (alts.length === 0) {
-    document.getElementById('alternativesList').innerHTML =
-      `<div class="no-results">Ingen alternativer matcher dine filtre. Prøv at nulstille filtrene.</div>`;
-    return;
-  }
-
-  document.getElementById('alternativesList').innerHTML = alts.map((yarn, i) => {
-    const isFirst = i === 0 && activeFilters.sortBy === 'match';
-    const priceDiff = yarn.price_dkk - originalYarn.price_dkk;
-    const priceDiffText = priceDiff < 0
-      ? `<span class="price-diff cheaper">▼ ${Math.abs(priceDiff)} kr. billigere</span>`
-      : priceDiff > 0
-      ? `<span class="price-diff pricier">▲ ${priceDiff} kr. dyrere</span>`
-      : `<span class="price-diff">Samme pris</span>`;
-
-    const gaugePct = gaugeMatchPct(originalYarn.gauge_10cm, yarn.gauge_10cm);
-    const needlePct = needleMatchPct(originalYarn.needle_mm, yarn.needle_mm);
-    const badges = buildBadges(originalYarn, yarn);
-
-    return `
-      <div class="alt-card${isFirst ? ' best-match' : ''}">
-        <div>
-          <div class="alt-card-name">${yarn.name}</div>
-          <div class="alt-card-brand">${yarn.brand} · ${yarn.weight}</div>
-
-          <table class="compare-table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Original</th>
-                <th>Dette garn</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="compare-label">Strikkefasthed</td>
-                <td class="compare-orig">${originalYarn.gauge_10cm} m/10 cm</td>
-                <td class="compare-alt ${gaugePct >= 90 ? 'match-exact' : gaugePct >= 60 ? 'match-close' : 'match-diff'}">${yarn.gauge_10cm} m/10 cm</td>
-                <td class="compare-icon">${gaugePct >= 90 ? '✓' : gaugePct >= 60 ? '~' : '✗'}</td>
-              </tr>
-              <tr>
-                <td class="compare-label">Pind</td>
-                <td class="compare-orig">${originalYarn.needle_mm} mm</td>
-                <td class="compare-alt ${needlePct >= 90 ? 'match-exact' : needlePct >= 60 ? 'match-close' : 'match-diff'}">${yarn.needle_mm} mm</td>
-                <td class="compare-icon">${needlePct >= 90 ? '✓' : needlePct >= 60 ? '~' : '✗'}</td>
-              </tr>
-              <tr>
-                <td class="compare-label">Materiale</td>
-                <td class="compare-orig">${originalYarn.fiber}</td>
-                <td class="compare-alt" colspan="2">${yarn.fiber}</td>
-              </tr>
-              <tr>
-                <td class="compare-label">Meter/100g</td>
-                <td class="compare-orig">${originalYarn.meters_per_100g} m</td>
-                <td class="compare-alt" colspan="2">${yarn.meters_per_100g} m</td>
-              </tr>
-            </tbody>
-          </table>
-
-          <div class="alt-badges">${badges}</div>
+  let secondaryBox = '';
+  if (secYarn) {
+    const sf = secYarn.fiber.map(f => `${f.pct}% ${f.name}`).join(', ');
+    secondaryBox = `
+      <div class="yarn-spec-box secondary">
+        <div class="yarn-spec-label">Sekundært garn (holdes dobbelt)</div>
+        <div class="yarn-spec-name">${secYarn.name} <span class="yarn-brand">— ${secYarn.brand}</span></div>
+        <div class="yarn-spec-row">
+          <span>${sf}</span>
+          <span>${secYarn.gauge.stitches} m/10 cm · Pind ${secYarn.gauge.needle_mm} mm</span>
+          <span>${secYarn.meters_per_50g} m/50g</span>
+          <span class="price-tag">${secYarn.price_dkk_50g} kr./50g</span>
         </div>
-        <div>
-          <div class="match-score">${yarn.matchScore}%</div>
-          <div class="match-score-label">samlet match</div>
-          <div style="margin-top:16px;">
-            <div class="price-value">${yarn.price_dkk} kr.</div>
-            <span class="price-unit">pr. nøgle (100g)</span>
-            ${priceDiffText}
+      </div>`;
+  }
+
+  return `
+    <button class="back-btn" onclick="showPatternList()">← Alle opskrifter</button>
+
+    <div class="detail-header">
+      <div class="detail-emoji">${pattern.emoji}</div>
+      <div class="detail-meta">
+        <div class="detail-type">${pattern.type} · ${pattern.designer} · ${pattern.difficulty}</div>
+        <h1 class="detail-title">${pattern.name}</h1>
+        <p class="detail-desc">${pattern.description}</p>
+
+        <div class="yarn-spec-box">
+          <div class="yarn-spec-label">Originalt garn</div>
+          <div class="yarn-spec-name">${origYarn.name} <span class="yarn-brand">— ${origYarn.brand}</span></div>
+          <div class="yarn-spec-row">
+            <span>${fiberStr}</span>
+            <span><strong>${origYarn.gauge.stitches} masker/10 cm</strong> · Pind ${origYarn.gauge.needle_mm} mm</span>
+            <span>${origYarn.meters_per_50g} m/50g</span>
+            <span class="price-tag">${origYarn.price_dkk_50g} kr./50g</span>
+          </div>
+          <div class="yarn-spec-cost">
+            Estimeret projektkost (str. M, ~${pattern.totalMeters_M} m):
+            <strong>${costEst.skeins} nøgler à ${origYarn.price_dkk_50g} kr. = ca. ${costEst.total} kr.</strong>
           </div>
         </div>
+        ${secondaryBox}
       </div>
-    `;
+    </div>
+
+    <div class="tier-intro">
+      <p>Herunder finder du alternativer til <em>${origYarn.name}</em> i tre prisniveauer.
+      Alle alternativer er indenfor samme garnvægt og max ±2 maskers afvigelse i strikkefasthed.</p>
+    </div>
+  `;
+}
+
+// ─── Tier Sections ────────────────────────────────────────────────
+function renderTierSections(pattern, origYarn) {
+  return ['budget', 'mid', 'premium'].map(tierId => {
+    const tier = TIERS[tierId];
+    const yarnIds = pattern.tiers[tierId] || [];
+    const yarns = yarnIds.map(findYarn).filter(Boolean);
+
+    if (yarns.length === 0) {
+      return `
+        <section class="tier-section">
+          <div class="tier-heading">
+            <span class="tier-emoji">${tier.emoji}</span>
+            <div>
+              <div class="tier-label" style="color:${tier.color}">${tier.label}</div>
+              <div class="tier-sublabel">${tier.sublabel}</div>
+            </div>
+          </div>
+          <p class="tier-empty">Ingen kuraterede alternativer i dette niveau endnu.</p>
+        </section>`;
+    }
+
+    const cards = yarns.map(yarn => renderYarnCard(yarn, origYarn, pattern, tierId)).join('');
+
+    return `
+      <section class="tier-section">
+        <div class="tier-heading">
+          <span class="tier-emoji">${tier.emoji}</span>
+          <div>
+            <div class="tier-label" style="color:${tier.color}">${tier.label}</div>
+            <div class="tier-sublabel">${tier.sublabel}</div>
+          </div>
+        </div>
+        <div class="yarn-cards">${cards}</div>
+      </section>`;
   }).join('');
 }
 
-// ─── Match Scoring ────────────────────────────────────────────────
-function computeMatch(original, candidate) {
-  const g = gaugeMatchPct(original.gauge_10cm, candidate.gauge_10cm);
-  const n = needleMatchPct(original.needle_mm, candidate.needle_mm);
-  const f = fiberMatchPct(original.fiber, candidate.fiber);
-  // Weighted: gauge 50%, needle 25%, fiber 25%
-  return Math.round(g * 0.50 + n * 0.25 + f * 0.25);
+// ─── Yarn Card ────────────────────────────────────────────────────
+function renderYarnCard(yarn, origYarn, pattern, tierId) {
+  const costEst   = estimateCost(yarn, pattern.totalMeters_M);
+  const gaugeDiff = yarn.gauge.stitches - origYarn.gauge.stitches;
+  const gaugeStatus = gaugeLabel(gaugeDiff);
+  const needleDiff  = yarn.gauge.needle_mm - origYarn.gauge.needle_mm;
+  const needleStatus = needleLabel(needleDiff);
+  const fiberStr  = yarn.fiber.map(f => `${f.pct}% ${f.name}`).join(', ');
+  const origFiber = origYarn.fiber.map(f => `${f.pct}% ${f.name}`).join(', ');
+  const priceDiff = yarn.price_dkk_50g - origYarn.price_dkk_50g;
+  const badges    = buildBadges(yarn, origYarn);
+  const why       = buildWhy(yarn, origYarn, tierId, gaugeDiff);
+
+  return `
+    <div class="yarn-card">
+      <div class="yarn-card-top">
+        <div>
+          <div class="yarn-card-name">${yarn.name}</div>
+          <div class="yarn-card-brand">${yarn.brand} · ${WEIGHTS[yarn.weight].label}</div>
+          ${badges ? `<div class="yarn-card-badges">${badges}</div>` : ''}
+        </div>
+        <div class="yarn-card-price">
+          <div class="price-main">${yarn.price_dkk_50g} kr.</div>
+          <div class="price-unit">pr. 50g</div>
+          ${priceDiff !== 0 ? `<div class="price-diff ${priceDiff < 0 ? 'cheaper' : 'pricier'}">${priceDiff < 0 ? '▼' : '▲'} ${Math.abs(priceDiff)} kr.</div>` : '<div class="price-diff same">Samme pris</div>'}
+        </div>
+      </div>
+
+      <table class="spec-table">
+        <tbody>
+          <tr>
+            <td class="spec-label">Strikkefasthed</td>
+            <td class="spec-orig">${origYarn.gauge.stitches} m/10 cm</td>
+            <td class="spec-arrow">→</td>
+            <td class="spec-new ${gaugeStatus.cls}">${yarn.gauge.stitches} m/10 cm</td>
+            <td class="spec-verdict ${gaugeStatus.cls}">${gaugeStatus.icon} ${gaugeStatus.text}</td>
+          </tr>
+          <tr>
+            <td class="spec-label">Pind</td>
+            <td class="spec-orig">${origYarn.gauge.needle_mm} mm</td>
+            <td class="spec-arrow">→</td>
+            <td class="spec-new ${needleStatus.cls}">${yarn.gauge.needle_mm} mm</td>
+            <td class="spec-verdict ${needleStatus.cls}">${needleStatus.icon} ${needleStatus.text}</td>
+          </tr>
+          <tr>
+            <td class="spec-label">Fiber</td>
+            <td class="spec-orig" colspan="2">${origFiber}</td>
+            <td class="spec-new" colspan="2">${fiberStr}</td>
+          </tr>
+          <tr>
+            <td class="spec-label">Meter/50g</td>
+            <td class="spec-orig" colspan="2">${origYarn.meters_per_50g} m</td>
+            <td class="spec-new" colspan="2">${yarn.meters_per_50g} m</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="cost-estimate">
+        <span class="cost-label">Estimeret projektkost (str. M, ~${pattern.totalMeters_M} m)</span>
+        <span class="cost-value">${costEst.skeins} nøgler × ${yarn.price_dkk_50g} kr. = <strong>${costEst.total} kr.</strong></span>
+      </div>
+
+      <div class="why-box">
+        <span class="why-label">Derfor virker det</span>
+        <span class="why-text">${why}</span>
+      </div>
+
+      <a class="buy-btn" href="${yarn.buyUrl}" target="_blank" rel="noopener">
+        Køb ${yarn.name} →
+      </a>
+    </div>
+  `;
 }
 
-function gaugeMatchPct(orig, cand) {
-  const diff = Math.abs(orig - cand);
-  if (diff === 0) return 100;
-  if (diff <= 1)  return 90;
-  if (diff <= 2)  return 75;
-  if (diff <= 3)  return 55;
-  if (diff <= 5)  return 30;
-  return 10;
+// ─── Gauge Logic ──────────────────────────────────────────────────
+function gaugeLabel(diff) {
+  if (diff === 0)           return { cls: 'exact',  icon: '✓', text: 'Præcist match' };
+  if (Math.abs(diff) <= 1) return { cls: 'close',  icon: '≈', text: `${diff > 0 ? '+' : ''}${diff} maske — tæt match` };
+  if (Math.abs(diff) <= 2) return { cls: 'close',  icon: '≈', text: `${diff > 0 ? '+' : ''}${diff} masker — acceptabelt` };
+  return { cls: 'diff', icon: '!', text: `${diff > 0 ? '+' : ''}${diff} masker — prøvestrik anbefales` };
 }
 
-function needleMatchPct(orig, cand) {
-  const diff = Math.abs(orig - cand);
-  if (diff === 0)   return 100;
-  if (diff <= 0.5)  return 90;
-  if (diff <= 1.0)  return 70;
-  if (diff <= 2.0)  return 45;
-  return 15;
+function needleLabel(diff) {
+  if (diff === 0)            return { cls: 'exact', icon: '✓', text: 'Samme pind' };
+  if (Math.abs(diff) <= 0.5) return { cls: 'close', icon: '≈', text: `${diff > 0 ? '+' : ''}${diff} mm` };
+  return { cls: 'diff',  icon: '!', text: `${diff > 0 ? 'større' : 'mindre'} pind (${Math.abs(diff)} mm forskel)` };
 }
 
-function fiberMatchPct(origFiber, candFiber) {
-  const o = origFiber.toLowerCase();
-  const c = candFiber.toLowerCase();
-  if (o === c) return 100;
-
-  const keywords = ['uld', 'merino', 'alpaka', 'bomuld', 'silke', 'bambus', 'yak', 'mohair', 'linned'];
-  const sharedKeywords = keywords.filter(k => o.includes(k) && c.includes(k));
-  if (sharedKeywords.length > 0) return 70 + sharedKeywords.length * 10;
-
-  const isOrigNatural = keywords.some(k => o.includes(k));
-  const isCandNatural = keywords.some(k => c.includes(k));
-  if (isOrigNatural && isCandNatural) return 50;
-
-  return 20;
+// ─── Cost Estimation ──────────────────────────────────────────────
+function estimateCost(yarn, totalMeters) {
+  const skeins = Math.ceil(totalMeters / yarn.meters_per_50g);
+  const total  = skeins * yarn.price_dkk_50g;
+  return { skeins, total };
 }
 
-// ─── UI Helpers ───────────────────────────────────────────────────
+// ─── "Derfor virker det" text ────────────────────────────────────
+function buildWhy(yarn, origYarn, tierId, gaugeDiff) {
+  const parts = [];
 
-function buildBadges(original, yarn) {
-  const badges = [];
-  const priceDiff = yarn.price_dkk - original.price_dkk;
-
-  if (priceDiff < -20) badges.push(`<span class="badge badge-cheaper">💰 Billigere</span>`);
-  else if (priceDiff > 20) badges.push(`<span class="badge badge-pricier">💎 Mere eksklusiv</span>`);
-
-  if (yarn.eco)   badges.push(`<span class="badge badge-eco">🌿 Øko</span>`);
-  if (yarn.vegan) badges.push(`<span class="badge badge-vegan">🐑 Vegansk</span>`);
-
-  const softWords = ['merino', 'alpaka', 'yak', 'mohair', 'bambus'];
-  if (softWords.some(w => yarn.fiber.toLowerCase().includes(w))) {
-    badges.push(`<span class="badge badge-soft">✨ Ekstra blød</span>`);
+  // Gauge
+  if (gaugeDiff === 0) {
+    parts.push('Identisk strikkefasthed — du behøver ikke justere dit strikketøj.');
+  } else if (Math.abs(gaugeDiff) <= 2) {
+    parts.push(`Strikkefastheden afviger kun ${Math.abs(gaugeDiff)} maske${Math.abs(gaugeDiff) > 1 ? 'r' : ''}/10 cm — en lille justerring af pindestørrelse løser det normalt.`);
+  } else {
+    parts.push('Husk prøvestrik — strikkefastheden afviger, og du skal muligvis justere pindevalget.');
   }
 
-  if (yarn.gauge_10cm !== original.gauge_10cm) {
-    const faster = yarn.gauge_10cm < original.gauge_10cm;
-    badges.push(`<span class="badge badge-fiber">${faster ? '⚡ Hurtigere strik' : '🔍 Finere strik'}</span>`);
+  // Fiber comparison
+  const origFibers = origYarn.fiber.map(f => f.name.toLowerCase());
+  const newFibers  = yarn.fiber.map(f => f.name.toLowerCase());
+  const shared = origFibers.filter(f => newFibers.some(nf => nf.includes(f) || f.includes(nf)));
+
+  if (shared.length === origFibers.length && shared.length === newFibers.length) {
+    parts.push('Identisk fiberindhold — du får samme egenskaber som originalen.');
+  } else {
+    // Specific fiber swaps
+    const hasAlpaka   = newFibers.some(f => f.includes('alpaka'));
+    const hasMerino   = newFibers.some(f => f.includes('merino'));
+    const hasMohair   = newFibers.some(f => f.includes('mohair'));
+    const hasBomuld   = newFibers.some(f => f.includes('bomuld'));
+    const hasYak      = newFibers.some(f => f.includes('yak'));
+    const origMohair  = origFibers.some(f => f.includes('mohair'));
+    const origAlpaka  = origFibers.some(f => f.includes('alpaka'));
+
+    if (hasMerino && !origFibers.some(f => f.includes('merino'))) {
+      parts.push('Merino giver mere elasticitet end originalens fiber — ribber og strukturmønstre vil sidde skarpere.');
+    }
+    if (hasAlpaka && !origAlpaka) {
+      parts.push('Alpaka giver ekstra blødhed og drape, men lav elasticitet — undgå tætte ribber.');
+    }
+    if (hasMohair && !origMohair) {
+      parts.push('Mohair-fibre skaber en karakteristisk halo-effekt der løfter garnets visuelle udtryk.');
+    }
+    if (hasBomuld) {
+      parts.push('Bomuld har ingen elasticitet — perfekt til sommerstrik, men undgå ribber og farvespil.');
+    }
+    if (hasYak) {
+      parts.push('Yak-fiber er ekstraordinært blødt og varmt — en sjælden luksus der overgår selv cashmere i blødhed.');
+    }
   }
 
-  return badges.join('');
+  // Price
+  const priceDiff = yarn.price_dkk_50g - origYarn.price_dkk_50g;
+  const costEst   = estimateCost(yarn, 1500); // rough baseline
+  if (tierId === 'budget' && priceDiff < -20) {
+    parts.push(`Du sparer ca. ${Math.abs(priceDiff)} kr. pr. nøgle vs. originalen.`);
+  } else if (tierId === 'premium' && priceDiff > 20) {
+    parts.push(`Den højere pris afspejler fiber-kvaliteten og produktionsforhold.`);
+  }
+
+  // Special props
+  if (yarn.eco)          parts.push('🌿 GOTS-certificeret økologisk produktion.');
+  if (yarn.mulesing_free && !origYarn.mulesing_free) parts.push('Mulesing-fri produktion.');
+  if (yarn.care === 'Maskinvask 40°C' && origYarn.care !== 'Maskinvask 40°C') {
+    parts.push('Tåler maskinen — praktisk fordel i hverdagen.');
+  }
+
+  return parts.join(' ');
 }
 
-function shortFiber(fiber) {
-  if (fiber.includes('%')) {
-    // Return first material
-    const match = fiber.match(/\d+%\s*([A-Za-zÆæØøÅå]+)/);
-    return match ? match[1] : fiber;
+// ─── Badges ───────────────────────────────────────────────────────
+function buildBadges(yarn, origYarn) {
+  const b = [];
+  if (yarn.eco)          b.push(`<span class="badge badge-eco">🌿 Øko</span>`);
+  if (yarn.vegan)        b.push(`<span class="badge badge-vegan">🐾 Vegansk</span>`);
+  if (yarn.mulesing_free) b.push(`<span class="badge badge-mf">✓ Mulesing-fri</span>`);
+  if (yarn.care === 'Maskinvask 40°C') b.push(`<span class="badge badge-wash">💧 Maskinvask</span>`);
+  const hasAlpaka = yarn.fiber.some(f => f.name.toLowerCase().includes('alpaka'));
+  const hasMohair = yarn.fiber.some(f => f.name.toLowerCase().includes('mohair'));
+  if (hasAlpaka && !origYarn.fiber.some(f => f.name.toLowerCase().includes('alpaka'))) {
+    b.push(`<span class="badge badge-fiber">Alpaka</span>`);
   }
-  return fiber;
+  if (hasMohair && !origYarn.fiber.some(f => f.name.toLowerCase().includes('mohair'))) {
+    b.push(`<span class="badge badge-fiber">Mohair halo</span>`);
+  }
+  return b.join('');
+}
+
+// ─── Helpers ──────────────────────────────────────────────────────
+function findYarn(id) {
+  return YARNS.find(y => y.id === id);
 }
