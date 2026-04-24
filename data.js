@@ -330,12 +330,12 @@ const YARNS = [
     description: 'Dansk designet øko-bomuld. GOTS-certificeret og vegansk. Frisk og åndbart — perfekt til sommerstrik. Bemærk: ingen elasticitet, så ikke egnet til stramt ribmønster.',
   },
 
-  // ── CaMaRose (Luxury) ─────────────────────────────────────────────
+  // ── Anita's World / AKW (Luxury) ──────────────────────────────────
   {
-    id: 'camarose-yak',
+    id: 'akw-yak',
     name: 'Økologisk Yak',
-    brand: 'CaMaRose',
-    origin: 'Mongoliet / Danmark (design)',
+    brand: 'Anita\'s World (AKW)',
+    origin: 'Mongoliet',
     tier: 'premium',
     weight: 'DK',
     gauge: { stitches: 22, needle_mm: 4.0 },
@@ -345,8 +345,8 @@ const YARNS = [
     care: 'Håndvask 30°C',
     eco: true, vegan: false, mulesing_free: true,
     properties: { softness: 5, warmth: 5, elasticity: 3, drape: 4 },
-    buyUrl: 'https://camarose.dk/',
-    description: 'Det ultimative luksus-DK garn. Yak-fibre er ekstremt bløde og varme, bambus giver glans og drape. GOTS-certificeret og mulesing-fri.',
+    buyUrl: 'https://www.anitasworld.dk/',
+    description: 'Luksus-DK garn med yak-fibre, bambus og økologisk uld. Ekstremt blødt, varmt og elegant. GOTS-certificeret og mulesing-fri.',
   },
 
   // ── Isager (Mid) ──────────────────────────────────────────────────
@@ -423,25 +423,6 @@ const YARNS = [
     properties: { softness: 5, warmth: 5, elasticity: 3, drape: 4 },
     buyUrl: 'https://www.sandnes-garn.com/alpakka-ull',
     description: 'Klassisk norsk alpaka-uld i worsted vægt. Ekstremt blødt og varmt. Idéalt til sjals og accessories.',
-  },
-
-  // ── De Rerum Natura Gilliatt (Mid) ─────────────────────────────────
-  {
-    id: 'drn-gilliatt',
-    name: 'De Rerum Natura Gilliatt',
-    brand: 'De Rerum Natura',
-    origin: 'Frankrig (100% spundet)',
-    tier: 'mid',
-    weight: 'worsted',
-    gauge: { stitches: 18, needle_mm: 4.5 },
-    fiber: [{ name: 'Merino Uld', pct: 100 }],
-    meters_per_50g: 125,
-    price_dkk_50g: 95,
-    care: 'Håndvask 30°C',
-    eco: true, vegan: false, mulesing_free: false,
-    properties: { softness: 4, warmth: 4, elasticity: 3, drape: 4 },
-    buyUrl: 'https://www.dererumnatura.fr/en/yarns/14-gilliatt.html',
-    description: 'Økologisk merino-uld fra Frankrig. Woolen spun for luftig struktur. Perfekt til klassiske sweatre og jackets.',
   },
 
   // ── Casual Fashion Queen Sturdy Sock (Budget) ──────────────────────
