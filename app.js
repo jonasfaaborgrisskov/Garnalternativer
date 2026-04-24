@@ -146,7 +146,7 @@ function renderPatternHeader(pattern, origYarn, secYarn) {
 
 // ─── Tier Sections ────────────────────────────────────────────────
 function renderTierSections(pattern, origYarn) {
-  return ['budget', 'mid', 'premium'].map(tierId => {
+  return ['mid', 'budget', 'premium'].map(tierId => {
     const tier = TIERS[tierId];
     const yarnIds = pattern.tiers[tierId] || [];
     const yarns = yarnIds.map(findYarn).filter(Boolean);

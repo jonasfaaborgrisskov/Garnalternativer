@@ -1,8 +1,8 @@
 // ─── Tier Definitions ─────────────────────────────────────────────
 const TIERS = {
-  budget:  { id: 'budget',  emoji: '💰', label: 'Budget-valg',         sublabel: 'Markant billigere — gode resultater',         color: '#4a5e3a' },
-  mid:     { id: 'mid',     emoji: '✂️', label: 'Godt alternativ',      sublabel: 'Lignende kvalitet, anden pris eller fiber',    color: '#3a4e6e' },
-  premium: { id: 'premium', emoji: '🏆', label: 'Premium opgradering',  sublabel: 'Mere eksklusivt end originalen',               color: '#7a5c2e' },
+  budget:  { id: 'budget',  emoji: '✂️', label: 'Billigere alternativ', sublabel: 'Markant billigere — gode resultater',         color: '#3a4e6e' },
+  mid:     { id: 'mid',     emoji: '💰', label: 'Godt alternativ',      sublabel: 'Lignende kvalitet, anden pris eller fiber',    color: '#4a5e3a' },
+  premium: { id: 'premium', emoji: '🏆', label: 'Opgradering',         sublabel: 'Mere eksklusivt end originalen',               color: '#7a5c2e' },
 };
 
 // ─── Yarn Weight Categories ────────────────────────────────────────
@@ -350,9 +350,9 @@ const PATTERNS = [
     totalMeters_M: 600,        // ~3 × 25g nøgler Tynn Silk Mohair (samlet mohair-forbrug)
     tags: ['tørklæde', 'scarf', 'lace', 'mohair', 'holdt dobbelt', 'begynder', 'petiteknit'],
     tiers: {
-      budget:  ['drops-kid-silk'],
-      mid:     ['bc-garn-tarta'],
-      premium: ['isager-silk-mohair'],
+      mid:     ['bc-garn-tarta'],           // Godt alternativ — lignende pris/kvalitet (95 DKK vs 90 original)
+      budget:  ['drops-kid-silk'],          // Billigere alternativ — markant billigere (50 DKK, men gauge +3)
+      premium: ['isager-silk-mohair'],      // Opgradering — luksus upgrade (130 DKK, eksakt gauge 22)
     },
   },
 ];
