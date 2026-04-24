@@ -462,6 +462,82 @@ const YARNS = [
     buyUrl: 'https://www.casualfashionqueen.com/',
     description: 'Håndfarvet merino-nylon sokkegarnt. Ekstra slidstærkt med Superwash behandling. Perfekt til hverdagssokker.',
   },
+
+  // ── Cardiff Cashmere (Premium) ─────────────────────────────────────
+  {
+    id: 'cardiff-cashmere-classic',
+    name: 'Cardiff Cashmere Classic',
+    brand: 'Cardiff',
+    origin: 'Italien (spundet)',
+    tier: 'premium',
+    weight: 'DK',
+    gauge: { stitches: 22, needle_mm: 4.0 },
+    fiber: [{ name: 'Cashmere', pct: 100 }],
+    meters_per_50g: 224,  // 112m per 25g
+    price_dkk_50g: 280,
+    care: 'Håndvask 30°C',
+    eco: false, vegan: false, mulesing_free: false,
+    properties: { softness: 5, warmth: 5, elasticity: 2, drape: 5 },
+    buyUrl: 'https://cardiffcashmere.it/en/products/classic',
+    description: '100% cashmere i DK vægt. Italiensk luksus med udsøgt håndføle. Klassisk elegant til finstkvalitets projekter.',
+  },
+
+  // ── Euro Baby Kaleidoscope (Budget) ────────────────────────────────
+  {
+    id: 'euro-baby-kaleidoscope',
+    name: 'Euro Baby Kaleidoscope',
+    brand: 'Euro Baby',
+    origin: 'USA',
+    tier: 'budget',
+    weight: 'bulky',
+    gauge: { stitches: 12, needle_mm: 6.5 },
+    fiber: [{ name: 'Acryl', pct: 100 }],
+    meters_per_50g: 46,  // 185m per 200g bulky
+    price_dkk_50g: 25,
+    care: 'Maskivask kulde, tørretumbler lav',
+    eco: false, vegan: true, mulesing_free: true,
+    properties: { softness: 2, warmth: 4, elasticity: 4, drape: 2 },
+    buyUrl: 'https://hobbii.com/',
+    description: 'Budget-acryl i klare, lysende farver. Let at vedligeholde og maskinvaskbar. Perfekt til børneprojekter og tæppe.',
+  },
+
+  // ── Krea Deluxe Silk Mohair (Premium) ──────────────────────────────
+  {
+    id: 'krea-deluxe-silk-mohair',
+    name: 'Krea Deluxe Silk Mohair',
+    brand: 'Krea Deluxe',
+    origin: 'Danmark (design)',
+    tier: 'premium',
+    weight: 'lace',
+    gauge: { stitches: 20, needle_mm: 4.0 },
+    fiber: [{ name: 'Silke', pct: 45 }, { name: 'Mohair', pct: 33 }, { name: 'Alpaka', pct: 22 }],
+    meters_per_50g: 600,  // 240m per 20g
+    price_dkk_50g: 625,
+    care: 'Håndvask 30°C uden bløder',
+    eco: false, vegan: false, mulesing_free: false,
+    properties: { softness: 5, warmth: 5, elasticity: 2, drape: 5 },
+    buyUrl: 'https://www.krea.dk/',
+    description: 'Eksklusiv lace-vægt blanding af silke, mohair og alpaka. BørstetWorsted spun med elegant halo-effekt. Luksus til fine projekter.',
+  },
+
+  // ── Hobbii Highland Wool (Mid) ────────────────────────────────────
+  {
+    id: 'hobbii-highland-wool',
+    name: 'Hobbii Highland Wool',
+    brand: 'Hobbii',
+    origin: 'Peru (fiber) → Danmark (handel)',
+    tier: 'mid',
+    weight: 'DK',
+    gauge: { stitches: 23, needle_mm: 3.75 },
+    fiber: [{ name: 'Peruvian Highland Uld', pct: 100 }],
+    meters_per_50g: 175,
+    price_dkk_50g: 50,
+    care: 'Håndvask 30°C',
+    eco: false, vegan: false, mulesing_free: false,
+    properties: { softness: 4, warmth: 5, elasticity: 3, drape: 3 },
+    buyUrl: 'https://hobbii.com/products/hp-1002348-highland-wool',
+    description: 'Peruviansk highland-uld i DK vægt. Blød, varm og udsøgt. Let vedligeholdelse og prisvenlig luksus.',
+  },
 ];
 
 // ─── Pattern Database ──────────────────────────────────────────────
@@ -488,152 +564,79 @@ const PATTERNS = [
     },
   },
 
-  // ─────────────────────────────────────────────────────────────────
-  // PetiteKnit Patterns
-  // ─────────────────────────────────────────────────────────────────
+  {
+    id: 'scarlet-sweater',
+    name: 'Scarlet Sweater',
+    emoji: '🔴',
+    designer: 'PetiteKnit',
+    type: 'Sweater',
+    difficulty: 'Intermediat',
+    description: 'En elegant, klassisk sweater strikket oppefra og ned i glat strik med fine detaljer. Double Sunday fra Sandnes Garn skaber en blød, elastisk drape og en fantastisk håndføling.',
+    originalYarn_id: 'sandnes-double-sunday',
+    secondaryYarn_id: null,
+    totalMeters_M: 1674,       // 750-800g × (108m/50g) = 1620-1728m
+    tags: ['sweater', 'top-down', 'DK', 'merino', 'petiteknit', 'klassisk'],
+    tiers: {
+      mid:     [],             // TBD — afventer brugergodkendelse
+      budget:  [],             // TBD — afventer brugergodkendelse
+      premium: [],             // TBD — afventer brugergodkendelse
+    },
+  },
+
+  {
+    id: 'scarlet-cardigan',
+    name: 'Scarlet Cardigan',
+    emoji: '🔴',
+    designer: 'PetiteKnit',
+    type: 'Cardigan',
+    difficulty: 'Intermediat',
+    description: 'En smuk, klassisk cardigan strikket oppefra og ned. Designet giver elegant silhuet med øget længde på ærmerne.',
+    originalYarn_id: 'sandnes-double-sunday',
+    secondaryYarn_id: null,
+    totalMeters_M: 1512,       // 700g × (108m/50g) = 1512m
+    tags: ['cardigan', 'top-down', 'DK', 'merino', 'petiteknit', 'klassisk'],
+    tiers: {
+      mid:     [],             // TBD — afventer brugergodkendelse
+      budget:  [],             // TBD — afventer brugergodkendelse
+      premium: [],             // TBD — afventer brugergodkendelse
+    },
+  },
 
   {
     id: 'ivy-sweater',
     name: 'Ivy Sweater',
-    emoji: '👕',
+    emoji: '🌿',
     designer: 'PetiteKnit',
-    type: 'Trøje',
-    difficulty: 'Mittelniveau',
-    description: 'Klassisk Skandinavisk trøje i DK-vægt. Top-down seamless construction med drop-shoulder. Original i Isager Soft, blanding af alpaka og økologisk bomuld. Let og elegant til årund brug.',
+    type: 'Sweater',
+    difficulty: 'Intermediat',
+    description: 'En luftig, komfortabel sweater strikket oppefra og ned i glat strik. Isager Soft er et karakteristisk blow-yarn der skaber en elegant, luftig struktur.',
     originalYarn_id: 'isager-soft',
     secondaryYarn_id: null,
-    totalMeters_M: 875,
-    tags: ['trøje', 'sweater', 'dk-vægt', 'seamless', 'top-down', 'petiteknit', 'sommertrøje'],
+    totalMeters_M: 875,        // 350g × (125m/50g) = 875m
+    tags: ['sweater', 'top-down', 'worsted', 'isager', 'blow-yarn', 'petiteknit'],
     tiers: {
-      mid:     ['drops-lima'],                // Lignende pris/kvalitet DK-garn
-      budget:  ['drops-karisma'],             // Billigere alternativ
-      premium: ['camarose-yak'],              // Luksus opgradering
+      mid:     [],             // Snefnug by CaMaRose (PetiteKnit suggests, men ikke i db)
+      budget:  [],             // Poppy by Sandnes Garn (PetiteKnit suggests, men ikke i db)
+      premium: [],             // TBD — afventer brugergodkendelse
     },
   },
 
   {
-    id: 'ivy-tee',
-    name: 'Ivy Tee',
-    emoji: '👕',
+    id: 'ivy-cardigan',
+    name: 'Ivy Cardigan',
+    emoji: '🌿',
     designer: 'PetiteKnit',
-    type: 'T-shirt',
-    difficulty: 'Mellemniveau',
-    description: 'Luftig sommertrøje i cashmere holdt dobbelt. Udsøgt og luksuriøs. Original i Knitting for Olive Compatible Cashmere — 100% kasjmir. Perfekt til elegant sommerstrik.',
-    originalYarn_id: 'kfo-compatible-cashmere',
-    secondaryYarn_id: null,
-    totalMeters_M: 1500,
-    tags: ['t-shirt', 'tee', 'lace-vægt', 'cashmere', 'holdt dobbelt', 'petiteknit', 'luksus'],
-    tiers: {
-      mid:     ['sandnes-tynn-silk-mohair'], // Mohair-silke som alternativ
-      budget:  ['drops-kid-silk'],           // Billigere mohair-silke
-      premium: ['isager-silk-mohair'],       // Premium upgrade
-    },
-  },
-
-  {
-    id: 'ivy-top',
-    name: 'Ivy Top',
-    emoji: 'โ™ฃ️',
-    designer: 'PetiteKnit',
-    type: 'Løs Top',
-    difficulty: 'Begynder',
-    description: 'Løs, elegantslør-agtig topper i sport-vægt. Holdt dobbelt med tyndt garn. Original i Isager Trio 2 — linen-bomuld-blanding. Perfekt til sommerstrik med luftigt udtryk.',
-    originalYarn_id: 'isager-trio2',
-    secondaryYarn_id: null,
-    totalMeters_M: 438,
-    tags: ['top', 'sleeveless', 'sport-vægt', 'linen', 'holdt dobbelt', 'petiteknit', 'sommer'],
-    tiers: {
-      mid:     ['drops-lima'],               // Lignende DK-vægt
-      budget:  ['sandnes-double-sunday'],    // Billigere alternativ
-      premium: ['bc-garn-tarta'],            // Nicer alternative
-    },
-  },
-
-  {
-    id: 'sophie-shawl',
-    name: 'Sophie Shawl',
-    emoji: '๐Ÿงฃ',
-    designer: 'PetiteKnit',
-    type: 'Sjal',
-    difficulty: 'Begynder',
-    description: 'Delikat garter-stitch sjal med i-cord kant. Original i Sandnes Alpakka Ull — alpaka-uld i worsted vægt. Let og elegant, perfekt til afslutning af outfit eller varme på skuldrene.',
-    originalYarn_id: 'sandnes-alpakka-ull',
-    secondaryYarn_id: null,
-    totalMeters_M: 250,
-    tags: ['sjal', 'shawl', 'worsted', 'alpaka', 'garter-stitch', 'petiteknit', 'wraps'],
-    tiers: {
-      mid:     ['sandnes-fritidsgarn'],      // Worsted-vægt alternativ
-      budget:  ['drops-snow'],               // Billigere worsted
-      premium: ['camarose-yak'],             // Luksus upgrade
-    },
-  },
-
-  // ─────────────────────────────────────────────────────────────────
-  // Tin Can Knits Pattern
-  // ─────────────────────────────────────────────────────────────────
-
-  {
-    id: 'flax-sweater',
-    name: 'Flax Sweater',
-    emoji: '👕',
-    designer: 'Tin Can Knits',
-    type: 'Trøje',
-    difficulty: 'Begynder+',
-    description: 'Ikonisk top-down raglan sweater i worsted vægt. Original i De Rerum Natura Gilliatt — 100% økologisk merino. Klassisk design, perfekt til alle årens tider. Tilgængelig i 16 størrelser fra newborn til XXL.',
-    originalYarn_id: 'drn-gilliatt',
-    secondaryYarn_id: null,
-    totalMeters_M: 1160,
-    tags: ['trøje', 'sweater', 'worsted', 'merino', 'raglan', 'top-down', 'tin-can-knits', 'klassisk'],
-    tiers: {
-      mid:     ['sandnes-fritidsgarn'],      // Lignende worsted
-      budget:  ['drops-snow'],               // Billigere uld
-      premium: ['camarose-yak'],             // Luksus alpaka-yak-uld
-    },
-  },
-
-  // ─────────────────────────────────────────────────────────────────
-  // DROPS Design Pattern
-  // ─────────────────────────────────────────────────────────────────
-
-  {
-    id: 'eirin-cardigan',
-    name: 'Eirin Cardigan',
-    emoji: '🧥',
-    designer: 'DROPS design',
     type: 'Cardigan',
-    difficulty: 'Mellemniveau',
-    description: 'Elegant cardigan strikket i DROPS Lima og DROPS Kid-Silk holdt sammen. Top-down konstruktion med V-udskæring og i-cord kanter. Luksuriøs haloeffekt fra silke-mohair.',
-    originalYarn_id: 'drops-lima',
-    secondaryYarn_id: 'drops-kid-silk',
-    totalMeters_M: 762,
-    tags: ['cardigan', 'jacket', 'dk-vægt', 'lace', 'holdt dobbelt', 'drops-design', 'halo-effekt'],
-    tiers: {
-      mid:     ['bc-garn-tarta'],            // Mohair-silke alternativ
-      budget:  ['sandnes-tynn-merinoull'],   // Billigere merino
-      premium: ['isager-silk-mohair'],       // Premium mohair-silke
-    },
-  },
-
-  // ─────────────────────────────────────────────────────────────────
-  // Summer Lee Pattern
-  // ─────────────────────────────────────────────────────────────────
-
-  {
-    id: 'im-so-basic-socks',
-    name: 'I\'m So Basic Socks',
-    emoji: '๐Ÿงฆ',
-    designer: 'Summer Lee',
-    type: 'Sokker',
-    difficulty: 'Mellemniveau',
-    description: 'Klassiske top-down sokker med hvælvet hæl. Original i Casual Fashion Queen Sturdy Sock — merino-nylon i fingering-vægt. Håndfarvet med Superwash behandling, maskinvaskbar.',
-    originalYarn_id: 'cfq-sturdy-sock',
+    difficulty: 'Intermediat',
+    description: 'En elegant cardigan strikket fladt oppefra og ned med korte ærmer. Strikket med to tråde silk mohair holdt sammen.',
+    originalYarn_id: 'krea-deluxe-silk-mohair',
     secondaryYarn_id: null,
-    totalMeters_M: 400,
-    tags: ['sokker', 'socks', 'fingering', 'merino', 'superwash', 'summer-lee', 'hverdagssokker'],
+    totalMeters_M: 432,        // 180g × (125m/50g når holdt dobbelt) = ~450m for double strands
+    tags: ['cardigan', 'top-down', 'silk-mohair', 'lace', 'holdt-dobbelt', 'petiteknit'],
     tiers: {
-      mid:     ['drops-alpaca'],             // Alpaka fingering-vægt
-      budget:  ['sandnes-sunday'],           // Budget fingering
-      premium: ['isager-alpaca2'],           // Premium alpaka
+      mid:     ['sandnes-tynn-silk-mohair'],    // Godt alternativ — samme gaugeweight, lidt billigere
+      budget:  [],                              // Kunne være budget-alternative, men samme karakteristika ønskes
+      premium: ['isager-silk-mohair'],          // Opgradering — Isagers ikoniske silk mohair
     },
   },
 ];
