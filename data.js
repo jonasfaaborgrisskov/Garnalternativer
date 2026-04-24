@@ -1,8 +1,26 @@
 // ─── Tier Definitions ─────────────────────────────────────────────
 const TIERS = {
-  budget:  { id: 'budget',  emoji: '✂️', label: 'Billigere alternativ', sublabel: 'Markant billigere — gode resultater',         color: '#3a4e6e' },
-  mid:     { id: 'mid',     emoji: '💰', label: 'Godt alternativ',      sublabel: 'Lignende kvalitet, anden pris eller fiber',    color: '#4a5e3a' },
-  premium: { id: 'premium', emoji: '🏆', label: 'Opgradering',         sublabel: 'Mere eksklusivt end originalen',               color: '#7a5c2e' },
+  mid: {
+    id: 'mid',
+    emoji: '💰',
+    label: 'Godt alternativ',
+    sublabel: 'Lignende kvalitet, anden pris eller fiber',
+    color: '#4a5e3a',
+  },
+  budget: {
+    id: 'budget',
+    emoji: '✂️',
+    label: 'Billigere alternativ',
+    sublabel: 'Markant billigere — gode resultater',
+    color: '#3a4e6e',
+  },
+  premium: {
+    id: 'premium',
+    emoji: '🏆',
+    label: 'Opgradering',
+    sublabel: 'Mere eksklusivt end originalen',
+    color: '#7a5c2e',
+  },
 };
 
 // ─── Yarn Weight Categories ────────────────────────────────────────
