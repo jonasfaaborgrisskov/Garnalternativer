@@ -209,34 +209,55 @@ function renderYarnCard(yarn, origYarn, pattern, tierId) {
         </div>
       </div>
 
-      <table class="spec-table">
-        <tbody>
-          <tr>
-            <td class="spec-label">Strikkefasthed</td>
-            <td class="spec-orig">${origYarn.gauge.stitches} m/10 cm</td>
-            <td class="spec-arrow">→</td>
-            <td class="spec-new ${gaugeStatus.cls}">${yarn.gauge.stitches} m/10 cm</td>
-            <td class="spec-verdict ${gaugeStatus.cls}">${gaugeStatus.icon} ${gaugeStatus.text}</td>
-          </tr>
-          <tr>
-            <td class="spec-label">Pind</td>
-            <td class="spec-orig">${origYarn.gauge.needle_mm} mm</td>
-            <td class="spec-arrow">→</td>
-            <td class="spec-new ${needleStatus.cls}">${yarn.gauge.needle_mm} mm</td>
-            <td class="spec-verdict ${needleStatus.cls}">${needleStatus.icon} ${needleStatus.text}</td>
-          </tr>
-          <tr>
-            <td class="spec-label">Fiber</td>
-            <td class="spec-orig" colspan="2">${origFiber}</td>
-            <td class="spec-new" colspan="2">${fiberStr}</td>
-          </tr>
-          <tr>
-            <td class="spec-label">Meter/50g</td>
-            <td class="spec-orig" colspan="2">${origYarn.meters_per_50g} m</td>
-            <td class="spec-new" colspan="2">${yarn.meters_per_50g} m</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="spec-compare">
+        <div class="spec-column spec-column-orig">
+          <div class="spec-column-label">Originalt</div>
+          <div class="spec-item">
+            <div class="spec-item-label">Strikkefasthed</div>
+            <div class="spec-item-value">${origYarn.gauge.stitches} m/10 cm</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-item-label">Pind</div>
+            <div class="spec-item-value">${origYarn.gauge.needle_mm} mm</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-item-label">Fiber</div>
+            <div class="spec-item-value">${origFiber}</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-item-label">Meter/50g</div>
+            <div class="spec-item-value">${origYarn.meters_per_50g} m</div>
+          </div>
+        </div>
+
+        <div class="spec-divider"></div>
+
+        <div class="spec-column spec-column-alt">
+          <div class="spec-column-label">Alternativ</div>
+          <div class="spec-item">
+            <div class="spec-item-label">Strikkefasthed</div>
+            <div class="spec-item-value ${gaugeStatus.cls}">
+              ${yarn.gauge.stitches} m/10 cm
+              <span class="spec-item-verdict">${gaugeStatus.icon} ${gaugeStatus.text}</span>
+            </div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-item-label">Pind</div>
+            <div class="spec-item-value ${needleStatus.cls}">
+              ${yarn.gauge.needle_mm} mm
+              <span class="spec-item-verdict">${needleStatus.icon} ${needleStatus.text}</span>
+            </div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-item-label">Fiber</div>
+            <div class="spec-item-value">${fiberStr}</div>
+          </div>
+          <div class="spec-item">
+            <div class="spec-item-label">Meter/50g</div>
+            <div class="spec-item-value">${yarn.meters_per_50g} m</div>
+          </div>
+        </div>
+      </div>
 
       <div class="cost-estimate">
         <span class="cost-label">Estimeret projektkost (str. M, ~${pattern.totalMeters_M} m)</span>

@@ -338,111 +338,25 @@ const YARNS = [
 
 const PATTERNS = [
   {
-    id: 'esther-jacket',
-    name: 'Esther Jakke',
-    emoji: '🧥',
+    id: 'sophie-scarf',
+    name: 'Sophie Scarf',
+    emoji: '🧣',
     designer: 'PetiteKnit',
-    type: 'Jakke',
-    difficulty: 'Erfaren',
-    description: 'Kort, struktureret jakke med v-hals og sætkrav. Strikkes oppefra og ned med raglan-facon. En af PetiteKnits mest ikoniske opskrifter.',
-    originalYarn_id: 'isager-alpaca2',
-    secondaryYarn_id: 'isager-silk-mohair',  // holdes typisk dobbelt med Alpaca 2
-    totalMeters_M: 1100,   // Alpaca 2 meters, str. M
-    tags: ['jakke', 'fingering', 'alpaka', 'raglan'],
-    tiers: {
-      budget:  ['drops-alpaca', 'drops-kid-silk'],
-      mid:     ['sandnes-tynn-merinoull', 'sandnes-tynn-silk-mohair'],
-      premium: ['sandnes-sunday', 'bc-garn-tarta'],
-    },
-  },
-  {
-    id: 'hans-sweater',
-    name: 'Hans Sweater',
-    emoji: '🧶',
-    designer: 'PetiteKnit',
-    type: 'Sweater',
-    difficulty: 'Øvet begynder',
-    description: 'Klassisk, let oversized chunky-sweater med rund hals. Strikkes oppefra og ned. Hurtig at strikke — færdig på en weekend.',
-    originalYarn_id: 'drops-snow',
-    secondaryYarn_id: null,
-    totalMeters_M: 700,
-    tags: ['sweater', 'chunky', 'herre', 'weekend-strik'],
-    tiers: {
-      budget:  ['drops-snow'],
-      mid:     ['sandnes-fritidsgarn'],
-      premium: [],  // chunky luxury er sjælden — vises som "coming soon"
-    },
-  },
-  {
-    id: 'sunday-sweater',
-    name: 'Sunday Sweater',
-    emoji: '👕',
-    designer: 'PetiteKnit',
-    type: 'Sweater',
-    difficulty: 'Øvet begynder',
-    description: 'Enkel, luftig sweater i fingering-vægt. Strikkes i ét stykke oppefra og ned. Designet til Sandnes Sunday-garnet.',
-    originalYarn_id: 'sandnes-sunday',
-    secondaryYarn_id: null,
-    totalMeters_M: 1600,
-    tags: ['sweater', 'fingering', 'merino', 'enkel'],
-    tiers: {
-      budget:  ['drops-alpaca'],
-      mid:     ['sandnes-tynn-merinoull', 'isager-alpaca2'],
-      premium: ['sandnes-double-sunday'],   // en str. op i vægt men samme brand-kvalitet
-    },
-  },
-  {
-    id: 'coastal-cardigan',
-    name: 'Coastal Cardigan',
-    emoji: '🪡',
-    designer: 'Önling',
-    type: 'Cardigan',
-    difficulty: 'Erfaren',
-    description: 'Løstsiddende DK-cardigan med lommer og nedfaldne skuldre. Klassisk Scandinavisk minimalisme.',
-    originalYarn_id: 'sandnes-double-sunday',
-    secondaryYarn_id: null,
-    totalMeters_M: 1200,
-    tags: ['cardigan', 'DK', 'merino', 'minimalistisk'],
-    tiers: {
-      budget:  ['drops-lima', 'drops-karisma'],
-      mid:     ['holst-coast', 'onion-organic-cotton'],
-      premium: ['camarose-yak'],
-    },
-  },
-  {
-    id: 'halo-shawl',
-    name: 'Nuit Sjal',
-    emoji: '🌙',
-    designer: 'Isager',
-    type: 'Sjal',
+    type: 'Tørklæde',
     difficulty: 'Begynder',
-    description: 'Trekantsjal strikket i Isagers klassiske kombination: Alpaca 2 holdt dobbelt med Silk Mohair. Giver en let, varm halo-effekt.',
-    originalYarn_id: 'isager-alpaca2',
-    secondaryYarn_id: 'isager-silk-mohair',
-    totalMeters_M: 600,
-    tags: ['sjal', 'fingering', 'halo', 'mohair', 'alpaka'],
+    description: 'Let, luftigt tørklæde strikket i mohair holdt dobbelt. Giver en karakteristisk blød halo og et elegant fald. Et perfekt begynderprojekt — primært glatstrik med enkle kanter. Opskriften designes oprindeligt i Sandnes Garn Tynn Silk Mohair holdt dobbelt.',
+    originalYarn_id: 'sandnes-tynn-silk-mohair',
+    secondaryYarn_id: null,   // strikkes med samme garn holdt dobbelt — ikke to forskellige garn
+    totalMeters_M: 600,        // ~3 × 25g nøgler Tynn Silk Mohair (samlet mohair-forbrug)
+    tags: ['tørklæde', 'scarf', 'lace', 'mohair', 'holdt dobbelt', 'begynder', 'petiteknit'],
     tiers: {
-      budget:  ['drops-alpaca', 'drops-kid-silk'],
-      mid:     ['sandnes-tynn-merinoull', 'sandnes-tynn-silk-mohair'],
-      premium: ['sandnes-sunday', 'bc-garn-tarta'],
-    },
-  },
-  {
-    id: 'summer-top',
-    name: 'Sommerbluse',
-    emoji: '☀️',
-    designer: 'Onion',
-    type: 'Top',
-    difficulty: 'Begynder',
-    description: 'Let og åndbar sommerbluse i øko-bomuld. Perfekt til varme dage. Strikkes nedefra og op.',
-    originalYarn_id: 'onion-organic-cotton',
-    secondaryYarn_id: null,
-    totalMeters_M: 900,
-    tags: ['top', 'DK', 'bomuld', 'sommer', 'øko'],
-    tiers: {
-      budget:  ['drops-lima'],
-      mid:     ['bc-garn-semilla'],
-      premium: ['camarose-yak'],
+      budget:  ['drops-kid-silk'],
+      mid:     ['bc-garn-tarta'],
+      premium: ['isager-silk-mohair'],
     },
   },
 ];
+
+// Note: The 49 yarn objects from privat.xlsx (Eco & Allergisk) were added to the YARNS array.
+// PATTERNS should contain only curated pattern objects with originalYarn_id and tier references.
+// Once more patterns are designed for these specific yarns, they can be added here.
