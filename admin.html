@@ -10,7 +10,26 @@
 </head>
 <body class="admin-body">
 
-  <div class="admin-container">
+  <!-- ── Login Screen ──────────────────────────────── -->
+  <div id="adminLoginScreen" class="admin-login-screen">
+    <div class="admin-login-box">
+      <div class="admin-login-title">🧶 Admin — Garnalternativer</div>
+      <p class="admin-login-subtitle">Adgang til panelet kræverPassword</p>
+      <form onsubmit="handleAdminLogin(event)">
+        <div class="form-group">
+          <label for="adminPassword">Password:</label>
+          <input type="password" id="adminPassword" class="form-input" placeholder="Indtast password" autofocus />
+        </div>
+        <div id="loginError" class="login-error" style="display: none;"></div>
+        <button type="submit" class="btn btn-primary">Log ind</button>
+      </form>
+      <div class="admin-login-footer">
+        <a href="index.html" class="btn btn-secondary">← Tilbage</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="admin-container" style="display: none;">
 
     <!-- ── Sidebar ──────────────────────────────────────── -->
     <aside class="admin-sidebar">
@@ -22,7 +41,8 @@
         <button class="admin-nav-btn" data-tab="export">💾 Export</button>
       </nav>
       <div class="admin-footer">
-        <a href="index.html" class="btn btn-secondary">← Tilbage</a>
+        <a href="index.html" class="btn btn-secondary" style="margin-bottom: var(--space-sm);">← Tilbage</a>
+        <button onclick="logoutAdmin()" class="btn btn-secondary btn-logout">🔓 Log ud</button>
       </div>
     </aside>
 
@@ -110,6 +130,7 @@
 
   </div>
 
+  <script src="js/admin-auth.js"></script>
   <script src="data.js"></script>
   <script src="js/reviews.js"></script>
   <script src="js/submissions.js"></script>

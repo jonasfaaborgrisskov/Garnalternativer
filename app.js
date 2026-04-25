@@ -25,14 +25,19 @@ function populatePatternTiers() {
       return;
     }
 
-    // Find alternatives by weight + fiber match
+    // Find alternatives by weight + fiber match + gauge tolerance (±2 masker/10cm)
     const sameWeight = YARNS.filter(y => y.weight === origYarn.weight && y.id !== origYarn.id);
-    const sameWeightFiber = sameWeight.filter(y =>
-      y.fiber.some(yf => origYarn.fiber.some(of => of.name.toLowerCase() === yf.name.toLowerCase()))
-    );
+    const goodMatch = sameWeight.filter(y => {
+      // Check gauge tolerance: allow ±2 stitches per 10cm
+      const gaugeDiff = Math.abs(y.gauge.stitches - origYarn.gauge.stitches);
+      if (gaugeDiff > 2) return false;
+
+      // Check fiber match: must have at least one matching fiber
+      return y.fiber.some(yf => origYarn.fiber.some(of => of.name.toLowerCase() === yf.name.toLowerCase()));
+    });
 
     // Sort by price
-    const byPrice = [...sameWeightFiber].sort((a, b) => a.price_dkk_50g - b.price_dkk_50g);
+    const byPrice = [...goodMatch].sort((a, b) => a.price_dkk_50g - b.price_dkk_50g);
 
     // Assign tiers (budget: cheapest, mid: original price level, premium: most expensive)
     if (!pattern.tiers.budget || pattern.tiers.budget.length === 0) {
@@ -183,6 +188,8 @@ function renderPatternGrid(patterns) {
     const w = WEIGHTS[yarn.weight];
     const tierCount = Object.values(p.tiers).flat().length;
     const isFav = isFavorited(p.id);
+    const materials = p.materials?.join(', ') || '';
+    const hoursText = p.estimatedHours ? ` · ${p.estimatedHours}h` : '';
     return `
       <article class="pattern-card" data-pattern-id="${p.id}" onclick="showDetail('${p.id}')" role="button" tabindex="0"
                onkeydown="if(event.key==='Enter')showDetail('${p.id}')">
@@ -191,9 +198,10 @@ function renderPatternGrid(patterns) {
         </button>
         <div class="pattern-card-emoji">${p.emoji}</div>
         <div class="pattern-card-body">
-          <div class="pattern-card-type">${p.type} · ${p.designer}</div>
+          <div class="pattern-card-type">${p.type} · ${p.designer} · ${p.difficulty}${hoursText}</div>
           <h3 class="pattern-card-name">${p.name}</h3>
           <div class="pattern-card-yarn">Originalt garn: <strong>${yarn.name}</strong> — ${yarn.brand}</div>
+          ${materials ? `<div class="pattern-card-materials">Fiber: ${materials}</div>` : ''}
           <div class="pattern-card-pills">
             <span class="pill pill-weight">${w.label}</span>
             <span class="pill pill-gauge">${yarn.gauge.stitches} m/10 cm</span>

@@ -40,6 +40,87 @@
       </div>
     </div>
 
+    <!-- ── Yarn Browser Controls ──────────────────────────── -->
+    <section class="section yarn-browser-controls-section">
+      <div class="container">
+        <div class="yarn-browser-controls">
+          <!-- Search -->
+          <div class="control-group">
+            <label for="yarnSearchInput" class="control-label">Søg:</label>
+            <input type="search" id="yarnSearchInput" class="control-input" placeholder="Søg efter navn, brand eller fiber…" />
+          </div>
+
+          <!-- Sort -->
+          <div class="control-group">
+            <label for="yarnSortSelect" class="control-label">Sortér efter:</label>
+            <select id="yarnSortSelect" class="control-select">
+              <option value="name">Navn A-Z</option>
+              <option value="price">Pris (billigst først)</option>
+              <option value="price-desc">Pris (dyreste først)</option>
+              <option value="weight">Vægt (let til tung)</option>
+            </select>
+          </div>
+
+          <!-- Weight Filter -->
+          <div class="control-group">
+            <label for="yarnFilterWeight" class="control-label">Vægt:</label>
+            <select id="yarnFilterWeight" class="control-select">
+              <option value="">Alle vægte</option>
+              <option value="fingering">Fingering</option>
+              <option value="sport">Sport</option>
+              <option value="DK">DK</option>
+              <option value="worsted">Worsted</option>
+              <option value="bulky">Bulky</option>
+            </select>
+          </div>
+
+          <!-- Eco Filter -->
+          <div class="control-group control-checkbox">
+            <input type="checkbox" id="yarnFilterEco" class="control-checkbox-input" />
+            <label for="yarnFilterEco" class="control-checkbox-label">Kun økologisk</label>
+          </div>
+
+          <!-- Reset Button -->
+          <button id="yarnResetFilters" class="control-reset-btn">Nulstil</button>
+        </div>
+
+        <!-- Fiber Filters -->
+        <div class="yarn-fiber-filters">
+          <div class="fiber-filter-label">Fiber:</div>
+          <div class="fiber-filter-checkboxes">
+            <label class="fiber-filter-checkbox">
+              <input type="checkbox" class="yarn-fiber-checkbox" value="Wool" />
+              Uld
+            </label>
+            <label class="fiber-filter-checkbox">
+              <input type="checkbox" class="yarn-fiber-checkbox" value="Cotton" />
+              Bomuld
+            </label>
+            <label class="fiber-filter-checkbox">
+              <input type="checkbox" class="yarn-fiber-checkbox" value="Silk" />
+              Silke
+            </label>
+            <label class="fiber-filter-checkbox">
+              <input type="checkbox" class="yarn-fiber-checkbox" value="Alpaca" />
+              Alpaka
+            </label>
+            <label class="fiber-filter-checkbox">
+              <input type="checkbox" class="yarn-fiber-checkbox" value="Acrylic" />
+              Akryl
+            </label>
+            <label class="fiber-filter-checkbox">
+              <input type="checkbox" class="yarn-fiber-checkbox" value="Merino" />
+              Merino
+            </label>
+            <label class="fiber-filter-checkbox">
+              <input type="checkbox" class="yarn-fiber-checkbox" value="Nylon" />
+              Nylon
+            </label>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ── Yarn Browser ────────────────────────────────────── -->
     <section class="section">
       <div class="container">
@@ -67,5 +148,6 @@
   <script src="js/collections.js"></script>
   <script src="js/budget.js"></script>
   <script src="js/yarn-browser.js"></script>
+  <script src="js/yarn-browser-controls.js"></script>
 </body>
 </html>
