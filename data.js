@@ -38,6 +38,26 @@ const WEIGHTS = {
 const YARNS = [
 
   {
+    id: 'isager-soft',
+    name: 'Isager Soft',
+    brand: 'Isager',
+    origin: 'Danmark (design + spinding)',
+    tier: 'mid',
+    weight: 'DK',
+    gauge: { stitches: 22, needle_mm: 5.5 },
+    fiber: [{ name: 'Alpaka', pct: 56 }, { name: 'Økologisk Pima Bomuld', pct: 44 }],
+    meters_per_50g: 125,
+    price_dkk_50g: 64,
+    care: 'Håndvask 30°C',
+    eco: true, vegan: false, mulesing_free: true,
+    properties: { softness: 5, warmth: 3, elasticity: 3, drape: 4 },
+    buyUrl: 'https://isagerstrik.dk/en/product/isager-soft/',
+    description: 'Blødtog luksurigt DK-garn af alpaka og økologisk bomuld. Blow yarn med karakteristisk fluffylook. Perfekt til sommertrøjer og luftige projekter.',
+    certifications: [],
+    spinType: 'blow',
+  },
+
+  {
     id: 'krea-deluxe-organic-cotton',
     name: 'Organic Cotton',
     brand: 'Krea Deluxe',
@@ -53,6 +73,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Organic Cotton from Krea Deluxe. Composition: 100 % bomuld.',
+    spinType: 'worsted',
     certifications: ['GOTS'],
   },
 
@@ -72,6 +93,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Deluxe silk mohair from Krea Deluxe. Composition: 45% silke, 33% mohair, 22% baby alpaca.',
+    spinType: 'worsted',
     certifications: ['Cruelty free?'],
   },
 
@@ -91,6 +113,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Organic wool 1 from Krea Deluxe. Composition: 100 % merinould.',
+    spinType: 'worsted',
     certifications: ['GOTS'],
   },
 
@@ -110,6 +133,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Organic wool 2 from Krea Deluxe. Composition: 100 % merinould.',
+    spinType: 'worsted',
     certifications: ['GOTS'],
   },
 
@@ -129,6 +153,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Raw - Organic Cotton from Krea Deluxe. Composition: 100 % bomuld.',
+    spinType: 'worsted',
     certifications: ['GOTS?'],
   },
 
@@ -148,6 +173,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Raw - Organic wool 1 from Krea Deluxe. Composition: 100 % uld.',
+    spinType: 'worsted',
     certifications: ['GOTS?'],
   },
 
@@ -167,6 +193,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Raw - Organic wool 2 from Krea Deluxe. Composition: 100 % uld.',
+    spinType: 'worsted',
     certifications: ['GOTS?'],
   },
 
@@ -186,6 +213,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Brisa from BC Garn. Composition: 42 % bomuld, 35 % alpaca, 23 % uld.',
+    spinType: 'worsted',
     certifications: ['RAS', 'RWS'],
   },
 
@@ -205,6 +233,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Svala from BC Garn. Composition: 100 % alpaca.',
+    spinType: 'blow?',
     certifications: ['RAS'],
   },
 
@@ -224,6 +253,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Big bio balance GOTS from BC Garn. Composition: 55 % uld, 45 % bomuld.',
+    spinType: 'worsted',
     certifications: ['GOTS'],
   },
 
@@ -243,6 +273,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'bio balance GOTS from BC Garn. Composition: 56 % uld, 45 % bomuld.',
+    spinType: 'worsted',
     certifications: ['GOTS'],
   },
 
@@ -262,6 +293,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Babyalpaca from BC Garn. Composition: 100 % babyalpaca.',
+    spinType: 'worsted',
     certifications: ['RAS'],
   },
 
@@ -281,6 +313,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Bio Shetland GOTS from BC Garn. Composition: 100 % uld.',
+    spinType: 'worsted',
     certifications: ['GOTS'],
   },
 
@@ -300,6 +333,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Loch lomond GOTS from BC Garn. Composition: 100 % uld.',
+    spinType: 'worsted',
     certifications: ['GOTS'],
   },
 
@@ -319,6 +353,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Loch lomond lace GOTS from BC Garn. Composition: 100 % uld.',
+    spinType: 'worsted',
     certifications: ['GOTS'],
   },
 
@@ -338,6 +373,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Lino from BC Garn. Composition: 100 % hør.',
+    spinType: 'worsted',
     certifications: ['GOTS?'],
   },
 
@@ -357,6 +393,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Alba GOTS from BC Garn. Composition: 100 % bomuld.',
+    spinType: 'worsted',
     certifications: ['GOTS'],
   },
 
@@ -376,6 +413,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Jaipur peace silk from BC Garn. Composition: 100 % eri silke.',
+    spinType: 'worsted',
     certifications: ['Cruelty free?'],
   },
 
@@ -395,6 +433,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Semilla silkbloom GOTS from BC Garn. Composition: 75 % uld, 25 % silke.',
+    spinType: 'blow?',
     certifications: ['GOTS'],
   },
 
@@ -414,6 +453,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Allino from BC Garn. Composition: 50 % hør, 50 % bomuld.',
+    spinType: 'worsted',
     certifications: ['GOTS?'],
   },
 
@@ -433,6 +473,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Soft silk from BC Garn. Composition: 100 % Bourette silke.',
+    spinType: 'worsted',
     certifications: ['Cruelty free?'],
   },
 
@@ -452,6 +493,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Summer in Kashmir from BC Garn. Composition: 90 % bomuld, 10 % kashmir.',
+    spinType: 'worsted',
     certifications: ['GOTS'],
   },
 
@@ -471,6 +513,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Tussah tweed from BC Garn. Composition: 100 % tussahsilke.',
+    spinType: 'worsted',
     certifications: ['Cruelty free?'],
   },
 
@@ -490,6 +533,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Hamelton tweed 1GOTS from BC Garn. Composition: 90 % uld, 10 % viscose.',
+    spinType: 'worsted',
     certifications: ['GOTS'],
   },
 
@@ -509,6 +553,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Hamelton tweed 2 from BC Garn. Composition: 90 % uld, 10 % viscose.',
+    spinType: 'worsted',
     certifications: ['GOTS'],
   },
 
@@ -528,6 +573,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Semilla Melange GOTS from BC Garn. Composition: 100 % uld.',
+    spinType: 'worsted',
     certifications: ['GOTS'],
   },
 
@@ -547,6 +593,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Semilla GOTS from BC Garn. Composition: 100 % uld.',
+    spinType: 'worsted',
     certifications: ['GOTS'],
   },
 
@@ -566,6 +613,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Semilla Pura GOTS from BC Garn. Composition: 100 % uld.',
+    spinType: 'worsted',
     certifications: ['GOTS'],
   },
 
@@ -585,6 +633,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Babyalpaca from BC Garn. Composition: 100 % alpaca.',
+    spinType: 'worsted',
     certifications: ['RAS?'],
   },
 
@@ -604,6 +653,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Luxor mercerised cotton from BC Garn. Composition: 100 % merceriseret bomuld.',
+    spinType: 'worsted',
     certifications: ['GOTS?'],
   },
 
@@ -623,6 +673,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Jaipur silk fino from BC Garn. Composition: 100 % silke.',
+    spinType: 'worsted',
     certifications: ['Cruelty free?'],
   },
 
@@ -642,6 +693,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Kid cotton from Kremke. Composition: 65 % mohair, 35 % bomuld.',
+    spinType: 'blow',
     certifications: ['GOTS?'],
   },
 
@@ -661,6 +713,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'The merry merino 70 GOTS from Kremke. Composition: 100 % virgin wool.',
+    spinType: 'worsted',
     certifications: ['GOTS'],
   },
 
@@ -680,6 +733,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'The merry merino 110 GOTS from Kremke. Composition: 100 % virgin wool.',
+    spinType: 'worsted',
     certifications: ['GOTS'],
   },
 
@@ -699,6 +753,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'the merry merino 140 GOTS from Kremke. Composition: 100 % virgin wool.',
+    spinType: 'worsted',
     certifications: ['GOTS'],
   },
 
@@ -718,6 +773,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'The merry merino 220 from Kremke. Composition: 100 % virgin wool.',
+    spinType: 'worsted',
     certifications: ['GOTS'],
   },
 
@@ -737,6 +793,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Silky kid RMS from Kremke. Composition: 72 % mohair, 28 % silke.',
+    spinType: 'worsted',
     certifications: ['RMS'],
   },
 
@@ -756,6 +813,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Big vintage wool GOTS from Erika Knight. Composition: 100 % uld.',
+    spinType: 'worsted',
     certifications: ['GOTS'],
   },
 
@@ -775,6 +833,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Puno baby alpaca RAS from Amano. Composition: 100 % alpaca.',
+    spinType: 'worsted',
     certifications: ['RAS'],
   },
 
@@ -794,6 +853,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'baby alpaca from imagine. Composition: 100 baby alpaca.',
+    spinType: 'worsted',
     certifications: ['RAS'],
   },
 
@@ -813,6 +873,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'merino linen from imagine. Composition: 70 % bomuld, 30 % hør.',
+    spinType: 'worsted',
     certifications: ['GOTS'],
   },
 
@@ -832,6 +893,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Bio Lana fine from Lane Mondial. Composition: 100 % uld.',
+    spinType: 'worsted',
     certifications: ['GOTS'],
   },
 
@@ -851,7 +913,47 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Bio Lana from Lane Mondial. Composition: 100 % uld.',
+    spinType: 'worsted',
     certifications: ['GOTS'],
+  },
+  {
+    id: 'cardiff-cashmere-classic',
+    name: 'Cashmere Classic',
+    brand: 'Cardiff',
+    origin: 'UK',
+    tier: 'premium',
+    weight: 'sport',
+    gauge: { stitches: 29, needle_mm: 3.5 },
+    fiber: [{ name: 'Cashmere', pct: 100 }],
+    meters_per_50g: 200,
+    price_dkk_50g: 258,
+    care: 'Håndvask 30°C',
+    eco: false, vegan: false, mulesing_free: false,
+    properties: { softness: 5, warmth: 4, elasticity: 2, drape: 5 },
+    buyUrl: 'https://www.cardiffwools.com/',
+    description: 'Eksklusivt sportgarn af 100% cashmere. Behageligt glat og luftigt. Perfekt til fine sjaler og tørklæder.',
+    certifications: [],
+    spinType: 'worsted',
+  },
+
+  {
+    id: 'sandnes-doppel-sunday',
+    name: 'Doppel-Sunday',
+    brand: 'Sandnes Garn',
+    origin: 'Norge',
+    tier: 'mid',
+    weight: 'DK',
+    gauge: { stitches: 21, needle_mm: 3.75 },
+    fiber: [{ name: 'Merino uld', pct: 100 }],
+    meters_per_50g: 108,
+    price_dkk_50g: 57,
+    care: 'Håndvask 30°C',
+    eco: false, vegan: false, mulesing_free: true,
+    properties: { softness: 4, warmth: 4, elasticity: 3, drape: 4 },
+    buyUrl: 'https://www.sandnesgarn.com/double-sunday',
+    description: 'Dobbelttrådet merino-uld fra Sandnes. Klassisk kvalitet designet i samarbejde med PetiteKnit. Kanaliseres både enkelt og dobbelt.',
+    certifications: [],
+    spinType: 'worsted',
   },
 
 ];
@@ -865,15 +967,91 @@ const PATTERNS = [
     designer: 'PetiteKnit',
     type: 'Tørklæde',
     difficulty: 'Begynder',
-    description: 'Let, luftigt tørklæde strikket i mohair holdt dobbelt.',
-    originalYarn_id: 'sandnes-tynn-silk-mohair',
+    description: 'Elegant sjal strikket i lyst cashmere. Klassisk PetiteKnit design.',
+    originalYarn_id: 'cardiff-cashmere-classic',
     secondaryYarn_id: null,
     totalMeters_M: 600,
-    tags: ['tørklæde', 'scarf', 'lace', 'mohair', 'petiteknit'],
+    tags: ['tørklæde', 'scarf', 'cashmere', 'petiteknit'],
     tiers: {
       mid:     [],
       budget:  [],
       premium: [],
+    },
+  },
+
+  {
+    id: 'scarlet-sweater',
+    name: 'Scarlet Sweater',
+    emoji: '👕',
+    designer: 'PetiteKnit',
+    type: 'Trøje',
+    difficulty: 'Intermediate',
+    description: 'Smuk sweater strikket i dobbelt merino-uld.',
+    originalYarn_id: 'sandnes-doppel-sunday',
+    secondaryYarn_id: null,
+    totalMeters_M: 1000,
+    tags: ['sweater', 'merino', 'petiteknit'],
+    tiers: {
+      mid:     ['isager-soft'],
+      budget:  [],
+      premium: ['krea-deluxe-organic-wool-2', 'krea-deluxe-raw---organic-wool-1', 'krea-deluxe-raw---organic-wool-2'],
+    },
+  },
+
+  {
+    id: 'scarlet-cardigan',
+    name: 'Scarlet Cardigan',
+    emoji: '🧥',
+    designer: 'PetiteKnit',
+    type: 'Cardigan',
+    difficulty: 'Intermediate',
+    description: 'Klassisk cardigan strikket i dobbelt merino-uld.',
+    originalYarn_id: 'sandnes-doppel-sunday',
+    secondaryYarn_id: null,
+    totalMeters_M: 1200,
+    tags: ['cardigan', 'merino', 'petiteknit'],
+    tiers: {
+      mid:     ['isager-soft'],
+      budget:  [],
+      premium: ['krea-deluxe-organic-wool-2', 'krea-deluxe-raw---organic-wool-1', 'krea-deluxe-raw---organic-wool-2'],
+    },
+  },
+
+  {
+    id: 'ivy-sweater',
+    name: 'Ivy Sweater',
+    emoji: '👕',
+    designer: 'PetiteKnit',
+    type: 'Trøje',
+    difficulty: 'Intermediate',
+    description: 'Luftig sommertrøje i blød alpaka-bomuld.',
+    originalYarn_id: 'isager-soft',
+    secondaryYarn_id: null,
+    totalMeters_M: 900,
+    tags: ['sweater', 'alpaca', 'cotton', 'petiteknit'],
+    tiers: {
+      mid:     ['sandnes-doppel-sunday'],
+      budget:  [],
+      premium: ['krea-deluxe-organic-cotton', 'krea-deluxe-organic-wool-2', 'krea-deluxe-raw---organic-cotton'],
+    },
+  },
+
+  {
+    id: 'ivy-cardigan',
+    name: 'Ivy Cardigan',
+    emoji: '🧥',
+    designer: 'PetiteKnit',
+    type: 'Cardigan',
+    difficulty: 'Intermediate',
+    description: 'Elegant cardigan i blød alpaka-bomuld.',
+    originalYarn_id: 'isager-soft',
+    secondaryYarn_id: null,
+    totalMeters_M: 1100,
+    tags: ['cardigan', 'alpaca', 'cotton', 'petiteknit'],
+    tiers: {
+      mid:     ['sandnes-doppel-sunday'],
+      budget:  [],
+      premium: ['krea-deluxe-organic-cotton', 'krea-deluxe-organic-wool-2', 'krea-deluxe-raw---organic-cotton'],
     },
   },
 ];

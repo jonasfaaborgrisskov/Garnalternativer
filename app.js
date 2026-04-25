@@ -78,6 +78,7 @@ function showDetail(patternId) {
   document.getElementById('detailContent').innerHTML = `
     ${renderPatternHeader(currentPattern, origYarn, secYarn)}
     ${renderTierSections(currentPattern, origYarn)}
+    ${renderShareSection(currentPattern)}
   `;
 }
 
@@ -179,6 +180,22 @@ function renderTierSections(pattern, origYarn) {
         <div class="yarn-cards">${cards}</div>
       </section>`;
   }).join('');
+}
+
+function renderShareSection(pattern) {
+  return `
+    <section class="share-section">
+      <h3>Del på Instagram</h3>
+      <p class="share-intro">Gør dine venner klar til at strikke ${pattern.name} 🧶</p>
+      <div class="share-buttons">
+        <button class="share-btn instagram-btn" onclick="shareOnInstagram('${pattern.id}')">
+          📷 Del på Instagram
+        </button>
+        <button class="share-btn copy-btn" onclick="copyShareLink()">
+          📋 Kopier link
+        </button>
+      </div>
+    </section>`;
 }
 
 // ─── Yarn Card ────────────────────────────────────────────────────
@@ -384,4 +401,33 @@ function buildBadges(yarn, origYarn) {
 // ─── Helpers ──────────────────────────────────────────────────────
 function findYarn(id) {
   return YARNS.find(y => y.id === id);
+}
+
+function shareOnInstagram(patternId) {
+  const pattern = PATTERNS.find(p => p.id === patternId);
+  const baseUrl = window.location.origin + window.location.pathname;
+  const url = `${baseUrl}?pattern=${patternId}`;
+  const text = `Check out ${pattern.name} on Garnalternativer! 🧶\n\n${url}`;
+
+  // Copy to clipboard
+  navigator.clipboard.writeText(text).then(() => {
+    alert('Link copied! Paste it in your Instagram bio, story, or DM.');
+    window.open('https://www.instagram.com/', '_blank');
+  }).catch(err => {
+    console.error('Failed to copy:', err);
+    alert('Could not copy link. Please try again.');
+  });
+}
+
+function copyShareLink() {
+  if (!currentPattern) return;
+  const baseUrl = window.location.origin + window.location.pathname;
+  const url = `${baseUrl}?pattern=${currentPattern.id}`;
+
+  navigator.clipboard.writeText(url).then(() => {
+    alert('Link copied to clipboard!');
+  }).catch(err => {
+    console.error('Failed to copy:', err);
+    alert('Could not copy link. Please try again.');
+  });
 }
