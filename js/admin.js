@@ -57,6 +57,8 @@ function switchTab(tabName) {
     renderReviews();
   } else if (tabName === 'stats') {
     updateStats();
+  } else if (tabName === 'security') {
+    // Security tab just needs to show the form, no special rendering needed
   }
 }
 
