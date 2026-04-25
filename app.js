@@ -97,15 +97,38 @@ function renderPatternHeader(pattern, origYarn, secYarn) {
   let secondaryBox = '';
   if (secYarn) {
     const sf = secYarn.fiber.map(f => `${f.pct}% ${f.name}`).join(', ');
+    const secCostEst = estimateCost(secYarn, pattern.totalMeters_M);
     secondaryBox = `
       <div class="yarn-spec-box secondary">
         <div class="yarn-spec-label">Sekundært garn (holdes dobbelt)</div>
         <div class="yarn-spec-name">${secYarn.name} <span class="yarn-brand">— ${secYarn.brand}</span></div>
-        <div class="yarn-spec-row">
-          <span>${sf}</span>
-          <span>${secYarn.gauge.stitches} m/10 cm · Pind ${secYarn.gauge.needle_mm} mm</span>
-          <span>${secYarn.meters_per_50g} m/50g</span>
-          <span class="price-tag">${secYarn.price_dkk_50g} kr./50g</span>
+        <div class="spec-compare">
+          <div class="spec-column">
+            <div class="spec-item">
+              <div class="spec-item-label">Strikkefasthed</div>
+              <div class="spec-item-value">${secYarn.gauge.stitches} m/10 cm</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-item-label">Pind</div>
+              <div class="spec-item-value">${secYarn.gauge.needle_mm} mm</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-item-label">Fiber</div>
+              <div class="spec-item-value">${sf}</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-item-label">Meter/50g</div>
+              <div class="spec-item-value">${secYarn.meters_per_50g} m</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-item-label">Pris/50g</div>
+              <div class="spec-item-value">${secYarn.price_dkk_50g} kr.</div>
+            </div>
+          </div>
+        </div>
+        <div class="yarn-spec-cost">
+          Estimeret projektkost (str. M, ~${pattern.totalMeters_M} m):
+          <strong>${secCostEst.skeins} nøgler à ${secYarn.price_dkk_50g} kr. = ca. ${secCostEst.total} kr.</strong>
         </div>
       </div>`;
   }
@@ -123,11 +146,29 @@ function renderPatternHeader(pattern, origYarn, secYarn) {
         <div class="yarn-spec-box">
           <div class="yarn-spec-label">Originalt garn</div>
           <div class="yarn-spec-name">${origYarn.name} <span class="yarn-brand">— ${origYarn.brand}</span></div>
-          <div class="yarn-spec-row">
-            <span>${fiberStr}</span>
-            <span><strong>${origYarn.gauge.stitches} masker/10 cm</strong> · Pind ${origYarn.gauge.needle_mm} mm</span>
-            <span>${origYarn.meters_per_50g} m/50g</span>
-            <span class="price-tag">${origYarn.price_dkk_50g} kr./50g</span>
+          <div class="spec-compare">
+            <div class="spec-column">
+              <div class="spec-item">
+                <div class="spec-item-label">Strikkefasthed</div>
+                <div class="spec-item-value">${origYarn.gauge.stitches} m/10 cm</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-item-label">Pind</div>
+                <div class="spec-item-value">${origYarn.gauge.needle_mm} mm</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-item-label">Fiber</div>
+                <div class="spec-item-value">${fiberStr}</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-item-label">Meter/50g</div>
+                <div class="spec-item-value">${origYarn.meters_per_50g} m</div>
+              </div>
+              <div class="spec-item">
+                <div class="spec-item-label">Pris/50g</div>
+                <div class="spec-item-value">${origYarn.price_dkk_50g} kr.</div>
+              </div>
+            </div>
           </div>
           <div class="yarn-spec-cost">
             Estimeret projektkost (str. M, ~${pattern.totalMeters_M} m):

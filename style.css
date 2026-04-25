@@ -743,6 +743,26 @@ body {
 .spec-item-value.close { color: var(--close-col); }
 .spec-item-value.diff  { color: var(--diff-col); }
 
+/* Single-column spec layout (for original yarn header) */
+.yarn-spec-box .spec-compare {
+  grid-template-columns: 1fr;
+}
+.yarn-spec-box .spec-divider {
+  display: none;
+}
+.yarn-spec-box .spec-column {
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--sp-5);
+}
+.yarn-spec-box .spec-item-value {
+  font-weight: 500;
+  color: var(--ink);
+}
+
 @media (max-width: 600px) {
   .spec-compare {
     grid-template-columns: 1fr;
@@ -752,6 +772,10 @@ body {
   }
   .spec-column {
     padding: var(--sp-3);
+  }
+  .yarn-spec-box .spec-column {
+    grid-template-columns: 1fr;
+    gap: var(--sp-4);
   }
 }
 
