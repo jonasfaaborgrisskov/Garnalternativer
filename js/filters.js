@@ -11,6 +11,7 @@ function getDefaultFilters() {
     ecoOnly: false,            // boolean
     seasonality: null,         // null or 'spring', 'summer', 'fall', 'winter'
     searchQuery: '',           // text search
+    maxBudget: null,           // null or number - max project cost in DKK
   };
 }
 
@@ -54,6 +55,14 @@ function applyFilters(patterns, filterState) {
     if (filterState.seasonality) {
       const patternSeasons = pattern.seasonality || [];
       if (!patternSeasons.includes(filterState.seasonality)) {
+        return false;
+      }
+    }
+
+    // Budget filter - check if pattern cost exceeds max budget
+    if (filterState.maxBudget) {
+      const cost = calculatePatternCost(pattern.id, pattern.originalYarn_id);
+      if (cost.totalCost > filterState.maxBudget) {
         return false;
       }
     }

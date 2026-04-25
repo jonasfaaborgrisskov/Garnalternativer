@@ -11,6 +11,7 @@
   <link rel="stylesheet" href="css/instagram.css" />
   <link rel="stylesheet" href="css/collections.css" />
   <link rel="stylesheet" href="css/reviews.css" />
+  <link rel="stylesheet" href="css/budget.css" />
 </head>
 <body>
 
@@ -100,6 +101,12 @@
               </label>
             </div>
 
+            <div class="filter-group filter-budget">
+              <label for="filterBudget" class="filter-budget-label">Max pris per projekt</label>
+              <input type="number" id="filterBudget" class="filter-budget-input" placeholder="Beløb i DKK" min="0" />
+              <span class="filter-budget-unit">Lad stå tomt for ingen grænse</span>
+            </div>
+
             <button id="filterReset" class="filter-reset-btn">Nulstil filtre</button>
           </div>
         </div>
@@ -181,6 +188,7 @@
   <script src="js/inspiration.js"></script>
   <script src="js/instagram.js"></script>
   <script src="js/reviews.js"></script>
+  <script src="js/budget.js"></script>
   <script src="app.js"></script>
   <script>
     // Show pattern count

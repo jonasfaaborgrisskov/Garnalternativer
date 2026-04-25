@@ -95,6 +95,16 @@ function initializeFilters() {
     applyAllFilters();
   });
 
+  // Budget filter
+  const budgetInput = document.getElementById('filterBudget');
+  if (budgetInput) {
+    budgetInput.addEventListener('input', e => {
+      const value = e.target.value.trim();
+      filterState.maxBudget = value ? parseInt(value) : null;
+      applyAllFilters();
+    });
+  }
+
   // Reset button
   document.getElementById('filterReset').addEventListener('click', () => {
     filterState = getDefaultFilters();
@@ -102,6 +112,7 @@ function initializeFilters() {
     document.getElementById('filterWeight').value = '';
     document.querySelectorAll('.fiber-checkbox, .difficulty-checkbox, .season-checkbox').forEach(cb => cb.checked = false);
     document.getElementById('filterEco').checked = false;
+    if (budgetInput) budgetInput.value = '';
     applyAllFilters();
   });
 }
@@ -176,6 +187,7 @@ function showDetail(patternId) {
 
   document.getElementById('detailContent').innerHTML = `
     ${renderPatternHeader(currentPattern, origYarn, secYarn)}
+    ${renderTierComparison(currentPattern.id)}
     ${renderTierSections(currentPattern, origYarn)}
     ${renderShareSection(currentPattern)}
     <div id="reviewsSection-${currentPattern.id}"></div>
