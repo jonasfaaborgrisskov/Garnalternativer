@@ -39,6 +39,7 @@
         <button class="admin-nav-btn" data-tab="reviews">⭐ Reviews</button>
         <button class="admin-nav-btn" data-tab="stats">📊 Stats</button>
         <button class="admin-nav-btn" data-tab="export">💾 Export</button>
+        <button class="admin-nav-btn" data-tab="security">🔐 Sikkerhed</button>
       </nav>
       <div class="admin-footer">
         <a href="index.html" class="btn btn-secondary" style="margin-bottom: var(--space-sm);">← Tilbage</a>
@@ -123,6 +124,38 @@
         <div class="export-section">
           <h2>Cache Clear</h2>
           <button class="btn btn-warning" onclick="clearAllLocalStorage()">🗑️ Clear All localStorage</button>
+        </div>
+      </div>
+
+      <!-- Security Tab -->
+      <div class="admin-tab" id="security-tab">
+        <h1>🔐 Sikkerhedsindstillinger</h1>
+
+        <div class="security-section">
+          <h2>Skift Admin-password</h2>
+          <p class="section-subtitle">Skift dit admin-panel-password til noget mere sikkert</p>
+          <form onsubmit="handleChangePassword(event)">
+            <div class="form-group">
+              <label for="newPassword">Nyt password:</label>
+              <input type="password" id="newPassword" placeholder="Mindst 6 tegn" minlength="6" required />
+            </div>
+            <div class="form-group">
+              <label for="confirmPassword">Bekræft password:</label>
+              <input type="password" id="confirmPassword" placeholder="Gentag passwordet" minlength="6" required />
+            </div>
+            <div id="passwordMessage" class="form-message"></div>
+            <button type="submit" class="btn btn-primary">Opdater password</button>
+          </form>
+        </div>
+
+        <div class="security-section">
+          <h2>Session-information</h2>
+          <div class="session-info">
+            <p><strong>Status:</strong> Logget ind ✅</p>
+            <p><strong>Session timeout:</strong> 8 timer</p>
+            <p><strong>Sidst opdateret:</strong> <span id="sessionTime">-</span></p>
+            <button class="btn btn-secondary" onclick="logoutAdmin()">Log ud</button>
+          </div>
         </div>
       </div>
 

@@ -63,8 +63,57 @@ function logoutAdmin() {
   document.getElementById('adminPassword').value = '';
 }
 
+function handleChangePassword(event) {
+  event.preventDefault();
+
+  const newPassword = document.getElementById('newPassword').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+  const messageDiv = document.getElementById('passwordMessage');
+
+  if (newPassword !== confirmPassword) {
+    messageDiv.className = 'form-message error';
+    messageDiv.textContent = 'Passwordene matcher ikke';
+    return;
+  }
+
+  if (newPassword.length < 6) {
+    messageDiv.className = 'form-message error';
+    messageDiv.textContent = 'Password skal være mindst 6 tegn';
+    return;
+  }
+
+  // Update the password in localStorage (in production, this would be a server-side operation)
+  localStorage.setItem('garnalternativer_admin_password', newPassword);
+  ADMIN_PASSWORD = newPassword;
+
+  messageDiv.className = 'form-message success';
+  messageDiv.textContent = '✅ Password ændret med succes!';
+
+  // Reset form
+  setTimeout(() => {
+    document.getElementById('newPassword').value = '';
+    document.getElementById('confirmPassword').value = '';
+  }, 1000);
+}
+
 // Check authentication on page load
 document.addEventListener('DOMContentLoaded', () => {
+  // Load stored password if it exists
+  const storedPassword = localStorage.getItem('garnalternativer_admin_password');
+  if (storedPassword) {
+    ADMIN_PASSWORD = storedPassword;
+  }
+
+  // Update session time display
+  const sessionInfo = JSON.parse(localStorage.getItem(ADMIN_SESSION_KEY) || '{}');
+  if (sessionInfo.timestamp) {
+    const date = new Date(sessionInfo.timestamp);
+    const sessionTimeEl = document.getElementById('sessionTime');
+    if (sessionTimeEl) {
+      sessionTimeEl.textContent = date.toLocaleString('da-DK');
+    }
+  }
+
   if (isAdminAuthenticated()) {
     showAdminPanel();
   } else {
