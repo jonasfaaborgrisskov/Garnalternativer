@@ -661,11 +661,13 @@ body {
   border: 1px solid var(--border-light);
   border-radius: var(--radius-sm);
   overflow: hidden;
+  max-width: 700px;
+  margin: var(--sp-4) auto;
 }
 
 .spec-column {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-rows: auto auto auto auto auto;
   gap: var(--sp-3);
   padding: var(--sp-4);
 }
