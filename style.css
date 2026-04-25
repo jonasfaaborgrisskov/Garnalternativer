@@ -677,7 +677,7 @@ body {
 }
 
 .spec-column-alt {
-  background: #fdfcfb;
+  background: var(--bg);
 }
 
 .spec-column-label {
@@ -693,7 +693,7 @@ body {
 }
 
 .spec-column-alt .spec-column-label {
-  color: var(--accent);
+  color: var(--ink-4);
 }
 
 .spec-item {
@@ -721,7 +721,7 @@ body {
 }
 
 .spec-column-alt .spec-item-value {
-  color: var(--ink);
+  color: var(--ink-2);
   font-weight: 400;
 }
 
