@@ -1,19 +1,10 @@
 // ─── Admin Authentication ────────────────────────────────────────
+// Default password: "garn2026"
+// Change this to something unique before deploying!
 
-const ADMIN_PASSWORD_HASH = 'garnalternativer2026';  // Simple hash (in production, use proper bcrypt)
+const ADMIN_PASSWORD = 'garn2026';  // Change this to a unique password
 const ADMIN_SESSION_KEY = 'garnalternativer_admin_session';
 const ADMIN_SESSION_TIMEOUT = 8 * 60 * 60 * 1000;  // 8 hours
-
-function hashPassword(pwd) {
-  // Simple hash for demo (NOT for production use)
-  let hash = 0;
-  for (let i = 0; i < pwd.length; i++) {
-    const char = pwd.charCodeAt(i);
-    hash = ((hash << 5) - hash) + char;
-    hash = hash & hash; // Convert to 32bit integer
-  }
-  return hash.toString();
-}
 
 function isAdminAuthenticated() {
   const session = localStorage.getItem(ADMIN_SESSION_KEY);
@@ -42,8 +33,8 @@ function handleAdminLogin(event) {
   const password = passwordInput.value;
   const errorDiv = document.getElementById('loginError');
 
-  // Simple comparison (in production, never store passwords in client)
-  if (password === ADMIN_PASSWORD_HASH || hashPassword(password) === hashPassword(ADMIN_PASSWORD_HASH)) {
+  // Simple password comparison
+  if (password === ADMIN_PASSWORD) {
     // Store session
     localStorage.setItem(ADMIN_SESSION_KEY, JSON.stringify({
       authenticated: true,

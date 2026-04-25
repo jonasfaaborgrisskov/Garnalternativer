@@ -11,6 +11,16 @@ document.addEventListener('DOMContentLoaded', () => {
   document.getElementById('searchInput').addEventListener('keydown', e => {
     if (e.key === 'Escape') { e.target.value = ''; filterState.searchQuery = ''; applyAllFilters(); }
   });
+
+  // Check for pattern parameter in URL (e.g., ?pattern=scarlet-sweater)
+  const urlParams = new URLSearchParams(window.location.search);
+  const patternParam = urlParams.get('pattern');
+  if (patternParam) {
+    const pattern = PATTERNS.find(p => p.id === patternParam);
+    if (pattern) {
+      setTimeout(() => showDetail(patternParam), 100);
+    }
+  }
 });
 
 // ─── Tier Population (Auto-match alternatives) ─────────────────────
