@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Indsend dine egne strikeopskrifter og garn til Garnalternativer." />
+  <title>Indsend opskrift eller garn — Garnalternativer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/submissions.css" />
+</head>
+<body>
+
+  <!-- ── Header ─────────────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🧶</span>
+        <span class="logo-text">Garnalternativer</span>
+      </a>
+      <nav class="site-nav" aria-label="Primær navigation">
+        <a href="index.html">Opskrifter</a>
+        <a href="browse.html">Søg i Garn</a>
+        <a href="collections.html">Gemte</a>
+        <a href="submit.html" class="active">Indsend</a>
+        <a href="https://instagram.com/garnalternativer" class="follow-btn" target="_blank" rel="noopener noreferrer">
+          📷 Instagram
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="section">
+      <div class="container">
+        <h1>Indsend din opskrift eller garn</h1>
+        <p class="section-subtitle">Hjælp os med at bygge det bedste samling af strikeopskrifter og garn-alternativer!</p>
+
+        <!-- Tabs -->
+        <div class="submission-tabs">
+          <button class="tab-button active" data-tab="pattern">Opskrift</button>
+          <button class="tab-button" data-tab="yarn">Garn</button>
+        </div>
+
+        <!-- Pattern Submission Form -->
+        <div class="tab-content active" id="pattern-tab">
+          <form id="patternForm" class="submission-form">
+            <div class="form-group">
+              <label for="patternName">Opskriftsnavn *</label>
+              <input type="text" id="patternName" name="name" required placeholder="fx. Minimalistisk cardigan" />
+            </div>
+
+            <div class="form-group">
+              <label for="patternDesigner">Designer *</label>
+              <input type="text" id="patternDesigner" name="designer" required placeholder="fx. Jane Smith" />
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="patternType">Type</label>
+                <select id="patternType" name="type">
+                  <option>Sweater</option>
+                  <option>Cardigan</option>
+                  <option>Scarf</option>
+                  <option>Hat</option>
+                  <option>Mittens</option>
+                  <option>Other</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="patternDifficulty">Sværhedsgrad *</label>
+                <select id="patternDifficulty" name="difficulty" required>
+                  <option value="">Vælg...</option>
+                  <option value="Beginner">Begynder</option>
+                  <option value="Intermediate">Intermediate</option>
+                  <option value="Advanced">Avanceret</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="patternYarn">Originalt garn *</label>
+                <select id="patternYarn" name="originalYarnId" required>
+                  <option value="">Vælg garn...</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label for="patternMeters">Meter (ca.) *</label>
+                <input type="number" id="patternMeters" name="totalMeters_M" required placeholder="fx. 1200" min="50" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="patternDescription">Beskrivelse *</label>
+              <textarea id="patternDescription" name="description" required placeholder="Beskriv opskriften, sværhedsgrad, inspiration..." minlength="10" maxlength="500"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label for="patternHours">Estimeret timer</label>
+              <input type="number" id="patternHours" name="estimatedHours" placeholder="fx. 20" min="1" />
+            </div>
+
+            <div class="form-group">
+              <label for="patternAuthor">Dit navn (valgfrit)</label>
+              <input type="text" id="patternAuthor" name="author" placeholder="Dit navn eller kaldenavn" />
+            </div>
+
+            <div class="form-group">
+              <label for="patternEmail">Email (valgfrit)</label>
+              <input type="email" id="patternEmail" name="email" placeholder="din@email.dk" />
+            </div>
+
+            <p class="form-note">* Påkrævet felt</p>
+
+            <button type="button" class="btn btn-primary" onclick="submitPatternForm()">Indsend opskrift</button>
+            <div id="patternMessage" class="form-message"></div>
+          </form>
+        </div>
+
+        <!-- Yarn Submission Form -->
+        <div class="tab-content" id="yarn-tab">
+          <form id="yarnForm" class="submission-form">
+            <div class="form-group">
+              <label for="yarnBrand">Brand *</label>
+              <input type="text" id="yarnBrand" name="brand" required placeholder="fx. Isager" />
+            </div>
+
+            <div class="form-group">
+              <label for="yarnName">Garn navn *</label>
+              <input type="text" id="yarnName" name="name" required placeholder="fx. Soft Merino" />
+            </div>
+
+            <div class="form-group">
+              <label for="yarnWeight">Vægt *</label>
+              <select id="yarnWeight" name="weight" required>
+                <option value="">Vælg...</option>
+                <option value="fingering">Fingering</option>
+                <option value="sport">Sport</option>
+                <option value="DK">DK</option>
+                <option value="worsted">Worsted</option>
+                <option value="bulky">Bulky</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="yarnGaugeStitches">Masketæthed (m/10cm) *</label>
+                <input type="number" id="yarnGaugeStitches" name="gauge_stitches" required placeholder="fx. 20" min="1" />
+              </div>
+
+              <div class="form-group">
+                <label for="yarnGaugeNeedle">Pindestørrelse (mm) *</label>
+                <input type="number" id="yarnGaugeNeedle" name="gauge_needle_mm" step="0.5" required placeholder="fx. 4.5" min="1" />
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="yarnMeters">Meter pr. 50g *</label>
+                <input type="number" id="yarnMeters" name="meters_per_50g" required placeholder="fx. 180" min="10" />
+              </div>
+
+              <div class="form-group">
+                <label for="yarnPrice">Pris pr. 50g (DKK) *</label>
+                <input type="number" id="yarnPrice" name="price_dkk_50g" required placeholder="fx. 65" min="1" />
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="yarnFiber">Fiber sammensætning *</label>
+              <input type="text" id="yarnFiber" name="fiber_composition" required placeholder="fx. 100% merino wool eller 70% wool, 30% silk" />
+            </div>
+
+            <div class="form-group">
+              <label for="yarnBuyUrl">Køb link (valgfrit)</label>
+              <input type="url" id="yarnBuyUrl" name="buyUrl" placeholder="https://example.com/yarn" />
+            </div>
+
+            <div class="form-group">
+              <label class="checkbox">
+                <input type="checkbox" name="eco" />
+                Økologisk garn
+              </label>
+              <label class="checkbox">
+                <input type="checkbox" name="vegan" />
+                Vegansk (ingen dyr)
+              </label>
+              <label class="checkbox">
+                <input type="checkbox" name="mulesing_free" />
+                Mulesing-frit (hvis uld)
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label for="yarnAuthor">Dit navn (valgfrit)</label>
+              <input type="text" id="yarnAuthor" name="author" placeholder="Dit navn eller kaldenavn" />
+            </div>
+
+            <div class="form-group">
+              <label for="yarnEmail">Email (valgfrit)</label>
+              <input type="email" id="yarnEmail" name="email" placeholder="din@email.dk" />
+            </div>
+
+            <p class="form-note">* Påkrævet felt</p>
+
+            <button type="button" class="btn btn-primary" onclick="submitYarnForm()">Indsend garn</button>
+            <div id="yarnMessage" class="form-message"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-logo">🧶 Garnalternativer</div>
+      <p class="footer-sub">Hjælper strikkere med at finde de bedste garnalternativer siden 2026</p>
+      <div class="footer-social">
+        <p class="footer-social-label">Følg os på Instagram:</p>
+        <a href="https://instagram.com/garnalternativer" class="footer-instagram-link" target="_blank" rel="noopener noreferrer">
+          @garnalternativer
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="js/submissions.js"></script>
+  <script>
+    // Initialize yarn dropdown
+    const patternYarnSelect = document.getElementById('patternYarn');
+    YARNS.forEach(yarn => {
+      const opt = document.createElement('option');
+      opt.value = yarn.id;
+      opt.textContent = `${yarn.name} (${yarn.brand})`;
+      patternYarnSelect.appendChild(opt);
+    });
+
+    // Tab switching
+    document.querySelectorAll('.tab-button').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.tab + '-tab').classList.add('active');
+      });
+    });
+
+    function submitPatternForm() {
+      const form = document.getElementById('patternForm');
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+
+      const result = submitPattern(data);
+      const msgEl = document.getElementById('patternMessage');
+
+      if (result.success) {
+        msgEl.className = 'form-message success';
+        msgEl.textContent = 'Tak! Din opskrift er indsendt og venter på godkendelse.';
+        form.reset();
+      } else {
+        msgEl.className = 'form-message error';
+        msgEl.textContent = 'Fejl: ' + result.errors.join(', ');
+      }
+    }
+
+    function submitYarnForm() {
+      const form = document.getElementById('yarnForm');
+      const formData = new FormData(form);
+      const data = Object.fromEntries(formData);
+
+      const result = submitYarn(data);
+      const msgEl = document.getElementById('yarnMessage');
+
+      if (result.success) {
+        msgEl.className = 'form-message success';
+        msgEl.textContent = 'Tak! Dit garn er indsendt og venter på godkendelse.';
+        form.reset();
+      } else {
+        msgEl.className = 'form-message error';
+        msgEl.textContent = 'Fejl: ' + result.errors.join(', ');
+      }
+    }
+  </script>
+</body>
+</html>
