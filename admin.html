@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Admin dashboard for Garnalternativer." />
+  <title>Admin Dashboard — Garnalternativer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/admin.css" />
+</head>
+<body class="admin-body">
+
+  <div class="admin-container">
+
+    <!-- ── Sidebar ──────────────────────────────────────── -->
+    <aside class="admin-sidebar">
+      <div class="admin-logo">🧶 Admin</div>
+      <nav class="admin-nav">
+        <button class="admin-nav-btn active" data-tab="submissions">📨 Submissions</button>
+        <button class="admin-nav-btn" data-tab="reviews">⭐ Reviews</button>
+        <button class="admin-nav-btn" data-tab="stats">📊 Stats</button>
+        <button class="admin-nav-btn" data-tab="export">💾 Export</button>
+      </nav>
+      <div class="admin-footer">
+        <a href="index.html" class="btn btn-secondary">← Tilbage</a>
+      </div>
+    </aside>
+
+    <!-- ── Main Content ────────────────────────────────────── -->
+    <main class="admin-main">
+
+      <!-- Submissions Tab -->
+      <div class="admin-tab active" id="submissions-tab">
+        <h1>Submissions in Review</h1>
+        <div class="submissions-filters">
+          <button class="filter-btn active" data-filter="all">Alle</button>
+          <button class="filter-btn" data-filter="pending">Pending</button>
+          <button class="filter-btn" data-filter="approved">Approved</button>
+          <button class="filter-btn" data-filter="rejected">Rejected</button>
+        </div>
+        <div id="submissionsContainer" class="submissions-list"></div>
+      </div>
+
+      <!-- Reviews Tab -->
+      <div class="admin-tab" id="reviews-tab">
+        <h1>Review Moderation</h1>
+        <div class="reviews-filters">
+          <button class="filter-btn active" data-filter="all">Alle</button>
+          <button class="filter-btn" data-filter="pattern">Patterns</button>
+          <button class="filter-btn" data-filter="yarn">Yarns</button>
+        </div>
+        <div id="reviewsContainer" class="reviews-list"></div>
+      </div>
+
+      <!-- Stats Tab -->
+      <div class="admin-tab" id="stats-tab">
+        <h1>Analytics & Metrics</h1>
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-number" id="patternCount">0</div>
+            <div class="stat-label">Patterns</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="yarnCount">0</div>
+            <div class="stat-label">Yarns</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="reviewCount">0</div>
+            <div class="stat-label">Reviews</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="submissionCount">0</div>
+            <div class="stat-label">Pending Submissions</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="avgRating">0</div>
+            <div class="stat-label">Avg Rating</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" id="favoriteCount">0</div>
+            <div class="stat-label">Total Favorites</div>
+          </div>
+        </div>
+
+        <h2>Recent Submissions</h2>
+        <div id="recentSubmissionsContainer"></div>
+      </div>
+
+      <!-- Export Tab -->
+      <div class="admin-tab" id="export-tab">
+        <h1>Data Export & Backup</h1>
+        <div class="export-section">
+          <h2>Submissions</h2>
+          <button class="btn btn-primary" onclick="downloadSubmissionsJSON()">📥 Export All Submissions (JSON)</button>
+          <button class="btn btn-secondary" onclick="exportApprovedAsDataJs()">📥 Export Approved as data.js snippet</button>
+        </div>
+
+        <div class="export-section">
+          <h2>All Data</h2>
+          <button class="btn btn-primary" onclick="downloadAllDataJSON()">📥 Export All (Reviews, Collections, etc.)</button>
+        </div>
+
+        <div class="export-section">
+          <h2>Cache Clear</h2>
+          <button class="btn btn-warning" onclick="clearAllLocalStorage()">🗑️ Clear All localStorage</button>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="data.js"></script>
+  <script src="js/reviews.js"></script>
+  <script src="js/submissions.js"></script>
+  <script src="js/collections.js"></script>
+  <script src="js/admin.js"></script>
+
+</body>
+</html>
