@@ -1,5 +1,63 @@
 // ─── Yarn Browser ──────────────────────────────────────────────────
 
+function findYarn(id) {
+  return YARNS.find(y => y.id === id);
+}
+
+function renderBrowserYarnCard(yarn, tier) {
+  const w = WEIGHTS[yarn.weight];
+  const t = TIERS[tier || yarn.tier];
+  const isFav = (typeof isFavorited === 'function') ? isFavorited(yarn.id) : false;
+
+  return `
+    <article class="yarn-card" data-yarn-id="${yarn.id}">
+      ${typeof isFavorited === 'function' ? `<button class="favorite-btn ${isFav ? 'favorited' : ''}" onclick="event.stopPropagation(); toggleFavorite('${yarn.id}'); location.reload();">
+        ${isFav ? '❤️' : '🤍'}
+      </button>` : ''}
+      <div class="yarn-card-header">
+        <h3 class="yarn-name">${yarn.name}</h3>
+        <p class="yarn-brand">${yarn.brand}</p>
+      </div>
+      <div class="yarn-card-specs">
+        <div class="yarn-spec-item">
+          <span class="yarn-spec-label">Vægt</span>
+          <span class="yarn-spec-value">${w.label}</span>
+        </div>
+        <div class="yarn-spec-item">
+          <span class="yarn-spec-label">Masketæthed</span>
+          <span class="yarn-spec-value">${yarn.gauge.stitches} m/10 cm</span>
+        </div>
+        <div class="yarn-spec-item">
+          <span class="yarn-spec-label">Pind</span>
+          <span class="yarn-spec-value">${yarn.gauge.needle_mm} mm</span>
+        </div>
+        <div class="yarn-spec-item">
+          <span class="yarn-spec-label">Meter/50g</span>
+          <span class="yarn-spec-value">${yarn.meters_per_50g} m</span>
+        </div>
+      </div>
+      <div class="yarn-card-fiber">
+        <span class="yarn-spec-label">Fiber</span>
+        <div class="fiber-list">
+          ${yarn.fiber.map(f => `<span class="fiber-tag">${f.pct}% ${f.name}</span>`).join('')}
+        </div>
+      </div>
+      <div class="yarn-card-price">
+        <span class="yarn-spec-label">Pris</span>
+        <span class="yarn-price">${yarn.price_dkk_50g} kr / 50g</span>
+      </div>
+      <div class="yarn-card-tier">
+        <span class="tier-badge" style="background: ${t.color}; color: white;">
+          ${t.emoji} ${t.label}
+        </span>
+      </div>
+      <div class="yarn-card-actions">
+        ${yarn.buyUrl ? `<a href="${yarn.buyUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Køb</a>` : ''}
+      </div>
+    </article>
+  `;
+}
+
 function renderYarnBrowser() {
   const html = Object.entries(FIBER_GROUPS).map(([fiberKey, group]) => {
     const yarns = group.yarns.map(yarnId => findYarn(yarnId)).filter(Boolean);
@@ -16,7 +74,7 @@ function renderYarnBrowser() {
           </div>
         </div>
         <div class="yarn-grid">
-          ${yarns.map(yarn => renderYarnCard(yarn, null, null, yarn.tier)).join('')}
+          ${yarns.map(yarn => renderBrowserYarnCard(yarn, yarn.tier)).join('')}
         </div>
       </section>
     `;

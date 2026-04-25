@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "garnalternativer",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "--directory", "C:\\Users\\jonas\\github\\Garnalternativer"],
+      "autoPort": true
+    }
+  ]
+}
