@@ -972,6 +972,9 @@ const PATTERNS = [
     secondaryYarn_id: null,
     totalMeters_M: 600,
     tags: ['tørklæde', 'scarf', 'cashmere', 'petiteknit'],
+    materials: ['cashmere'],
+    seasonality: ['spring', 'fall', 'winter'],
+    estimatedHours: 15,
     tiers: {
       mid:     [],
       budget:  [],
@@ -991,6 +994,9 @@ const PATTERNS = [
     secondaryYarn_id: null,
     totalMeters_M: 1000,
     tags: ['sweater', 'merino', 'petiteknit'],
+    materials: ['merino', 'wool'],
+    seasonality: ['spring', 'fall', 'winter'],
+    estimatedHours: 30,
     tiers: {
       mid:     ['isager-soft'],
       budget:  [],
@@ -1010,6 +1016,9 @@ const PATTERNS = [
     secondaryYarn_id: null,
     totalMeters_M: 1200,
     tags: ['cardigan', 'merino', 'petiteknit'],
+    materials: ['merino', 'wool'],
+    seasonality: ['spring', 'fall', 'winter'],
+    estimatedHours: 35,
     tiers: {
       mid:     ['isager-soft'],
       budget:  [],
@@ -1029,6 +1038,9 @@ const PATTERNS = [
     secondaryYarn_id: null,
     totalMeters_M: 900,
     tags: ['sweater', 'alpaca', 'cotton', 'petiteknit'],
+    materials: ['alpaca', 'cotton'],
+    seasonality: ['spring', 'summer'],
+    estimatedHours: 25,
     tiers: {
       mid:     ['sandnes-doppel-sunday'],
       budget:  [],
@@ -1047,6 +1059,9 @@ const PATTERNS = [
     originalYarn_id: 'isager-soft',
     secondaryYarn_id: null,
     totalMeters_M: 1100,
+    materials: ['alpaca', 'cotton'],
+    seasonality: ['spring', 'summer'],
+    estimatedHours: 32,
     tags: ['cardigan', 'alpaca', 'cotton', 'petiteknit'],
     tiers: {
       mid:     ['sandnes-doppel-sunday'],

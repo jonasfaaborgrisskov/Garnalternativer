@@ -1,26 +1,120 @@
 // ─── State ────────────────────────────────────────────────────────
 let currentPattern = null;
+let filterState = getDefaultFilters();
 
 // ─── Boot ─────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
-  renderPatternGrid(PATTERNS);
+  initializeFilters();
+  applyAllFilters();
   document.getElementById('searchInput').addEventListener('input', handleSearch);
   document.getElementById('searchInput').addEventListener('keydown', e => {
-    if (e.key === 'Escape') { e.target.value = ''; renderPatternGrid(PATTERNS); }
+    if (e.key === 'Escape') { e.target.value = ''; filterState.searchQuery = ''; applyAllFilters(); }
   });
 });
 
+// ─── Filters ──────────────────────────────────────────────────────
+function initializeFilters() {
+  const options = getFilterOptions();
+
+  // Populate weight dropdown
+  const weightSelect = document.getElementById('filterWeight');
+  options.weights.forEach(w => {
+    const opt = document.createElement('option');
+    opt.value = w;
+    opt.textContent = formatFilterLabel(w, 'weight');
+    weightSelect.appendChild(opt);
+  });
+  weightSelect.addEventListener('change', e => {
+    filterState.weight = e.target.value || null;
+    applyAllFilters();
+  });
+
+  // Populate fiber checkboxes
+  const fibersContainer = document.getElementById('filterFibers');
+  options.fibers.forEach(f => {
+    const id = `fiber-${f.toLowerCase().replace(/\s+/g, '-')}`;
+    const item = document.createElement('div');
+    item.className = 'filter-checkbox-item';
+    item.innerHTML = `
+      <input type="checkbox" id="${id}" class="fiber-checkbox" value="${f}" />
+      <label for="${id}">${f}</label>
+    `;
+    fibersContainer.appendChild(item);
+    item.querySelector('input').addEventListener('change', e => {
+      if (e.target.checked) {
+        if (!filterState.fiber.includes(f)) filterState.fiber.push(f);
+      } else {
+        filterState.fiber = filterState.fiber.filter(x => x !== f);
+      }
+      applyAllFilters();
+    });
+  });
+
+  // Populate difficulty checkboxes
+  const difficultyContainer = document.getElementById('filterDifficulty');
+  options.difficulties.forEach(d => {
+    const id = `difficulty-${d.toLowerCase()}`;
+    const item = document.createElement('div');
+    item.className = 'filter-checkbox-item';
+    item.innerHTML = `
+      <input type="checkbox" id="${id}" class="difficulty-checkbox" value="${d}" />
+      <label for="${id}">${formatFilterLabel(d, 'difficulty')}</label>
+    `;
+    difficultyContainer.appendChild(item);
+    item.querySelector('input').addEventListener('change', e => {
+      if (e.target.checked) {
+        if (!filterState.difficulty.includes(d)) filterState.difficulty.push(d);
+      } else {
+        filterState.difficulty = filterState.difficulty.filter(x => x !== d);
+      }
+      applyAllFilters();
+    });
+  });
+
+  // Populate seasonality checkboxes
+  const seasonalityContainer = document.getElementById('filterSeasonality');
+  options.seasons.forEach(s => {
+    const id = `season-${s.toLowerCase()}`;
+    const item = document.createElement('div');
+    item.className = 'filter-checkbox-item';
+    item.innerHTML = `
+      <input type="checkbox" id="${id}" class="season-checkbox" value="${s}" />
+      <label for="${id}">${formatFilterLabel(s, 'seasonality')}</label>
+    `;
+    seasonalityContainer.appendChild(item);
+    item.querySelector('input').addEventListener('change', e => {
+      filterState.seasonality = e.target.checked ? s : null;
+      applyAllFilters();
+    });
+  });
+
+  // Eco-only checkbox
+  const ecoCheckbox = document.getElementById('filterEco');
+  ecoCheckbox.addEventListener('change', e => {
+    filterState.ecoOnly = e.target.checked;
+    applyAllFilters();
+  });
+
+  // Reset button
+  document.getElementById('filterReset').addEventListener('click', () => {
+    filterState = getDefaultFilters();
+    document.getElementById('searchInput').value = '';
+    document.getElementById('filterWeight').value = '';
+    document.querySelectorAll('.fiber-checkbox, .difficulty-checkbox, .season-checkbox').forEach(cb => cb.checked = false);
+    document.getElementById('filterEco').checked = false;
+    applyAllFilters();
+  });
+}
+
+function applyAllFilters() {
+  const results = applyFilters(PATTERNS, filterState);
+  renderPatternGrid(results);
+}
+
 // ─── Search ──────────────────────────────────────────────────────
 function handleSearch(e) {
-  const q = e.target.value.trim().toLowerCase();
-  if (!q) { renderPatternGrid(PATTERNS); return; }
-  const results = PATTERNS.filter(p =>
-    p.name.toLowerCase().includes(q) ||
-    p.designer.toLowerCase().includes(q) ||
-    p.type.toLowerCase().includes(q) ||
-    p.tags.some(t => t.includes(q))
-  );
-  renderPatternGrid(results);
+  filterState.searchQuery = e.target.value.trim();
+  applyAllFilters();
 }
 
 // ─── Pattern Grid ─────────────────────────────────────────────────

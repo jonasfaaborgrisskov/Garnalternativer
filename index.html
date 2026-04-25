@@ -6,6 +6,7 @@
   <meta name="description" content="Find det perfekte garnalternativ til din strikeopskrift. Budget, midrange og premium alternativer med strikkefasthed og prissammenligning." />
   <title>Garnalternativer — Find det perfekte garn</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/filters.css" />
 </head>
 <body>
 
@@ -48,6 +49,44 @@
                 aria-label="Søg i opskrifter"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Filters -->
+      <section class="section filter-section">
+        <div class="container">
+          <div class="filters-wrap">
+            <div class="filter-group">
+              <label for="filterWeight" class="filter-label">Garnvægt</label>
+              <select id="filterWeight" class="filter-select">
+                <option value="">Alle vægte</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <label class="filter-label">Fiber</label>
+              <div class="filter-checkboxes" id="filterFibers"></div>
+            </div>
+
+            <div class="filter-group">
+              <label class="filter-label">Sværhedsgrad</label>
+              <div class="filter-checkboxes" id="filterDifficulty"></div>
+            </div>
+
+            <div class="filter-group">
+              <label class="filter-label">Årstid</label>
+              <div class="filter-checkboxes" id="filterSeasonality"></div>
+            </div>
+
+            <div class="filter-group">
+              <label class="filter-label">
+                <input type="checkbox" id="filterEco" class="filter-checkbox" />
+                Kun økologisk
+              </label>
+            </div>
+
+            <button id="filterReset" class="filter-reset-btn">Nulstil filtre</button>
           </div>
         </div>
       </section>
@@ -109,6 +148,7 @@
   </footer>
 
   <script src="data.js"></script>
+  <script src="js/filters.js"></script>
   <script src="app.js"></script>
   <script>
     // Show pattern count
