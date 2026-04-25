@@ -743,7 +743,7 @@ body {
 .spec-item-value.close { color: var(--close-col); }
 .spec-item-value.diff  { color: var(--diff-col); }
 
-/* Original yarn header — streamlined layout */
+/* Original yarn header — matches yarn card structure */
 .original-yarn-header {
   background: var(--bg);
   border: 1px solid var(--border-light);
@@ -754,21 +754,63 @@ body {
   gap: var(--sp-4);
 }
 
-.original-yarn-header-top {
-  border-bottom: 1px solid var(--border-light);
-  padding-bottom: var(--sp-4);
+.yarn-spec-label {
+  font-size: 0.65rem;
+  color: var(--ink-4);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 700;
+  margin-bottom: 0;
 }
 
-.original-yarn-attrs {
+.orig-yarn-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--sp-4);
+  padding-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.orig-yarn-name {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  color: var(--ink);
+  margin-bottom: 4px;
+  font-weight: normal;
+}
+
+.orig-yarn-brand {
+  font-size: 0.85rem;
+  color: var(--ink-3);
+}
+
+.orig-yarn-price {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.orig-price-main {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.orig-price-unit {
+  font-size: 0.75rem;
+  color: var(--ink-3);
+}
+
+.orig-yarn-attrs {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   gap: var(--sp-4) var(--sp-5);
 }
 
 .orig-attr {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
 }
 
 .orig-attr-label {

@@ -99,15 +99,21 @@ function renderPatternHeader(pattern, origYarn, secYarn) {
     const sf = secYarn.fiber.map(f => `${f.pct}% ${f.name}`).join(', ');
     const secCostEst = estimateCost(secYarn, pattern.totalMeters_M);
     secondaryBox = `
-      <div class="yarn-spec-box original-yarn-header">
-        <div class="original-yarn-header-top">
+      <div class="original-yarn-header">
+        <div class="yarn-spec-label">Sekundært garn (holdes dobbelt)</div>
+
+        <div class="orig-yarn-top">
           <div>
-            <div class="yarn-spec-label">Sekundært garn (holdes dobbelt)</div>
-            <div class="yarn-spec-name">${secYarn.name} <span class="yarn-brand">— ${secYarn.brand}</span></div>
+            <div class="orig-yarn-name">${secYarn.name}</div>
+            <div class="orig-yarn-brand">${secYarn.brand}</div>
+          </div>
+          <div class="orig-yarn-price">
+            <div class="orig-price-main">${secYarn.price_dkk_50g} kr.</div>
+            <div class="orig-price-unit">pr. 50g</div>
           </div>
         </div>
 
-        <div class="original-yarn-attrs">
+        <div class="orig-yarn-attrs">
           <div class="orig-attr">
             <div class="orig-attr-label">Strikkefasthed</div>
             <div class="orig-attr-value">${secYarn.gauge.stitches} m/10 cm</div>
@@ -123,10 +129,6 @@ function renderPatternHeader(pattern, origYarn, secYarn) {
           <div class="orig-attr">
             <div class="orig-attr-label">Meter/50g</div>
             <div class="orig-attr-value">${secYarn.meters_per_50g} m</div>
-          </div>
-          <div class="orig-attr">
-            <div class="orig-attr-label">Pris/50g</div>
-            <div class="orig-attr-value">${secYarn.price_dkk_50g} kr.</div>
           </div>
         </div>
 
@@ -146,15 +148,21 @@ function renderPatternHeader(pattern, origYarn, secYarn) {
         <h1 class="detail-title">${pattern.name}</h1>
         <p class="detail-desc">${pattern.description}</p>
 
-        <div class="yarn-spec-box original-yarn-header">
-          <div class="original-yarn-header-top">
+        <div class="original-yarn-header">
+          <div class="yarn-spec-label">Originalt garn</div>
+
+          <div class="orig-yarn-top">
             <div>
-              <div class="yarn-spec-label">Originalt garn</div>
-              <div class="yarn-spec-name">${origYarn.name} <span class="yarn-brand">— ${origYarn.brand}</span></div>
+              <div class="orig-yarn-name">${origYarn.name}</div>
+              <div class="orig-yarn-brand">${origYarn.brand}</div>
+            </div>
+            <div class="orig-yarn-price">
+              <div class="orig-price-main">${origYarn.price_dkk_50g} kr.</div>
+              <div class="orig-price-unit">pr. 50g</div>
             </div>
           </div>
 
-          <div class="original-yarn-attrs">
+          <div class="orig-yarn-attrs">
             <div class="orig-attr">
               <div class="orig-attr-label">Strikkefasthed</div>
               <div class="orig-attr-value">${origYarn.gauge.stitches} m/10 cm</div>
@@ -170,10 +178,6 @@ function renderPatternHeader(pattern, origYarn, secYarn) {
             <div class="orig-attr">
               <div class="orig-attr-label">Meter/50g</div>
               <div class="orig-attr-value">${origYarn.meters_per_50g} m</div>
-            </div>
-            <div class="orig-attr">
-              <div class="orig-attr-label">Pris/50g</div>
-              <div class="orig-attr-value">${origYarn.price_dkk_50g} kr.</div>
             </div>
           </div>
 
