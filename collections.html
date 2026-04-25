@@ -22,6 +22,7 @@
         <a href="browse.html">Søg i Garn</a>
         <a href="collections.html" class="active">Gemte</a>
         <a href="submit.html">Indsend</a>
+        <a href="admin.html" style="opacity: 0.5; font-size: 0.9rem;">⚙️ Admin</a>
         <a href="https://instagram.com/garnalternativer" class="follow-btn" target="_blank" rel="noopener noreferrer">
           📷 Instagram
         </a>
@@ -63,6 +64,12 @@
 
   <script src="data.js"></script>
   <script src="js/collections.js"></script>
+  <script src="js/budget.js"></script>
+  <script>
+    function findYarn(id) {
+      return YARNS.find(y => y.id === id);
+    }
+  </script>
   <script>
     function renderSavedPatterns() {
       const saved = getSavedPatterns();

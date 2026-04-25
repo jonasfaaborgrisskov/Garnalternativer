@@ -4,6 +4,7 @@ let filterState = getDefaultFilters();
 
 // ─── Boot ─────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', () => {
+  populatePatternTiers();
   initializeFilters();
   applyAllFilters();
   document.getElementById('searchInput').addEventListener('input', handleSearch);
@@ -11,6 +12,40 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Escape') { e.target.value = ''; filterState.searchQuery = ''; applyAllFilters(); }
   });
 });
+
+// ─── Tier Population (Auto-match alternatives) ─────────────────────
+function populatePatternTiers() {
+  // Auto-populate empty tier arrays with similar yarns
+  PATTERNS.forEach(pattern => {
+    const origYarn = findYarn(pattern.originalYarn_id);
+    if (!origYarn) return;
+
+    // If tiers are already populated, skip
+    if (pattern.tiers.budget?.length > 0 && pattern.tiers.mid?.length > 0 && pattern.tiers.premium?.length > 0) {
+      return;
+    }
+
+    // Find alternatives by weight + fiber match
+    const sameWeight = YARNS.filter(y => y.weight === origYarn.weight && y.id !== origYarn.id);
+    const sameWeightFiber = sameWeight.filter(y =>
+      y.fiber.some(yf => origYarn.fiber.some(of => of.name.toLowerCase() === yf.name.toLowerCase()))
+    );
+
+    // Sort by price
+    const byPrice = [...sameWeightFiber].sort((a, b) => a.price_dkk_50g - b.price_dkk_50g);
+
+    // Assign tiers (budget: cheapest, mid: original price level, premium: most expensive)
+    if (!pattern.tiers.budget || pattern.tiers.budget.length === 0) {
+      pattern.tiers.budget = byPrice.slice(0, 2).map(y => y.id).filter(id => id !== pattern.originalYarn_id);
+    }
+    if (!pattern.tiers.mid || pattern.tiers.mid.length === 0) {
+      pattern.tiers.mid = [pattern.originalYarn_id];
+    }
+    if (!pattern.tiers.premium || pattern.tiers.premium.length === 0) {
+      pattern.tiers.premium = byPrice.slice(-2).map(y => y.id).filter(id => id !== pattern.originalYarn_id);
+    }
+  });
+}
 
 // ─── Filters ──────────────────────────────────────────────────────
 function initializeFilters() {

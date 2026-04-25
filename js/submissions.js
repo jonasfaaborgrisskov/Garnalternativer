@@ -53,14 +53,25 @@ function submitPattern(data) {
     id: generateSubmissionId(),
     type: 'pattern',
     data: {
+      id: data.name.toLowerCase().replace(/\s+/g, '-'),
       name: data.name.trim(),
       designer: data.designer.trim(),
       type: data.type || 'Sweater',
+      emoji: '🧶',
       originalYarnId: data.originalYarnId,
+      secondaryYarnId: null,
       totalMeters_M: parseInt(data.totalMeters_M),
       difficulty: data.difficulty,
       estimatedHours: parseInt(data.estimatedHours) || 0,
       description: data.description.trim(),
+      tags: ['community-submission', new Date().getFullYear().toString()],
+      materials: [],
+      seasonality: [],
+      tiers: {
+        budget: [],
+        mid: [],
+        premium: []
+      }
     },
     submittedDate: new Date().toISOString().split('T')[0],
     author: data.author?.trim() || 'Anonym',
@@ -117,20 +128,24 @@ function submitYarn(data) {
     id: generateSubmissionId(),
     type: 'yarn',
     data: {
+      id: (data.brand.trim() + '-' + data.name.trim()).toLowerCase().replace(/\s+/g, '-'),
       brand: data.brand.trim(),
       name: data.name.trim(),
+      tier: 'mid',
       weight: data.weight,
       gauge: {
         stitches: parseInt(data.gauge_stitches),
         needle_mm: parseFloat(data.gauge_needle_mm),
       },
+      fiber: parseFiberComposition(data.fiber_composition.trim()),
       meters_per_50g: parseInt(data.meters_per_50g),
       price_dkk_50g: parseInt(data.price_dkk_50g),
-      fiberComposition: data.fiber_composition.trim(),
-      buyUrl: data.buyUrl?.trim() || '',
+      care: 'See yarn label for care instructions',
       eco: data.eco === 'on',
       vegan: data.vegan === 'on',
       mulesing_free: data.mulesing_free === 'on',
+      buyUrl: data.buyUrl?.trim() || '',
+      description: 'Community submission: ' + data.fiber_composition.trim(),
     },
     submittedDate: new Date().toISOString().split('T')[0],
     author: data.author?.trim() || 'Anonym',
@@ -141,6 +156,18 @@ function submitYarn(data) {
   submissions.submissions.push(submission);
   saveSubmissions(submissions);
   return { success: true, submissionId: submission.id };
+}
+
+function parseFiberComposition(text) {
+  // Simple parser for "100% wool" or "70% wool, 30% silk" format
+  const parts = text.split(',').map(s => s.trim());
+  return parts.map(part => {
+    const match = part.match(/(\d+)%\s*(.+)/);
+    if (match) {
+      return { pct: parseInt(match[1]), name: match[2].trim() };
+    }
+    return { pct: 0, name: part };
+  }).filter(f => f.pct > 0);
 }
 
 // ─── Admin Functions ─────────────────────────────────────────────────
