@@ -7,6 +7,9 @@
   <title>Garnalternativer — Find det perfekte garn</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="css/filters.css" />
+  <link rel="stylesheet" href="css/inspiration.css" />
+  <link rel="stylesheet" href="css/instagram.css" />
+  <link rel="stylesheet" href="css/collections.css" />
 </head>
 <body>
 
@@ -19,6 +22,8 @@
       </a>
       <nav class="site-nav" aria-label="Primær navigation">
         <a href="#" onclick="showPatternList(); return false;">Opskrifter</a>
+        <a href="browse.html">Søg i Garn</a>
+        <a href="collections.html">Gemte</a>
         <a href="#om">Om projektet</a>
         <a href="https://instagram.com/garnalternativer" class="follow-btn" target="_blank" rel="noopener noreferrer">
           📷 Instagram
@@ -50,6 +55,14 @@
               />
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- Inspiration / Aesthetic Browser -->
+      <section class="section inspiration-section">
+        <div class="container">
+          <h2 class="inspiration-title">Find Dit Stil</h2>
+          <div class="aesthetic-grid" id="aestheticGrid" role="list"></div>
         </div>
       </section>
 
@@ -102,6 +115,20 @@
         </div>
       </section>
 
+      <!-- Instagram Gallery -->
+      <section class="instagram-section">
+        <div class="container">
+          <div class="instagram-header">
+            <h2 class="instagram-title">Inspiration fra Samfundet</h2>
+            <p class="instagram-subtitle">Se hvad andre strikkere skaber med Garnalternativer</p>
+            <a href="https://instagram.com/garnalternativer" class="instagram-cta" target="_blank" rel="noopener noreferrer">
+              📷 Følg @garnalternativer
+            </a>
+          </div>
+          <div id="igGallery" role="list"></div>
+        </div>
+      </section>
+
       <!-- About -->
       <section class="section" id="om" style="background: var(--bg-warm); border-top: 1px solid var(--border);">
         <div class="container" style="max-width: 640px;">
@@ -149,6 +176,9 @@
 
   <script src="data.js"></script>
   <script src="js/filters.js"></script>
+  <script src="js/collections.js"></script>
+  <script src="js/inspiration.js"></script>
+  <script src="js/instagram.js"></script>
   <script src="app.js"></script>
   <script>
     // Show pattern count

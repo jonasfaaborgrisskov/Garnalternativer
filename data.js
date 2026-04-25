@@ -1070,3 +1070,91 @@ const PATTERNS = [
     },
   },
 ];
+
+// ─── Fiber Groups (Yarn Browser) ───────────────────────────────────
+const FIBER_GROUPS = {
+  'merino': {
+    label: 'Merino',
+    emoji: '🐑',
+    description: 'Varm, elastisk, let at vaske',
+    yarns: ['merino-ull-fra-bama', 'merino-lace-merino', 'merino-400-merino-lace', 'merino-lace-merino-2'],
+  },
+  'alpaca': {
+    label: 'Alpaka',
+    emoji: '🦙',
+    description: 'Blødt, flot fald, ingen elasticitet',
+    yarns: ['isager-soft', 'krea-deluxe-alpaca', 'drops-alpaca', 'drops-alpaca-bouclé'],
+  },
+  'cotton': {
+    label: 'Bomuld',
+    emoji: '🌾',
+    description: 'Let, åndbar, perfekt til sommer',
+    yarns: ['isager-tvinni', 'krea-deluxe-organic-cotton', 'krea-deluxe-raw---organic-cotton', 'drops-cotton-merino'],
+  },
+  'wool': {
+    label: 'Uld',
+    emoji: '🧶',
+    description: 'Klassisk, varm, holdbar',
+    yarns: ['sandnes-doppel-sunday', 'sandnes-garn-sunday', 'merino-ull-fra-bama', 'krea-deluxe-organic-wool-1', 'krea-deluxe-organic-wool-2'],
+  },
+  'cashmere': {
+    label: 'Kasjmir',
+    emoji: '✨',
+    description: 'Eksklusivt blødt, luksus-fiber',
+    yarns: ['cardiff-cashmere-classic', 'cardiff-cashmere-4ply', 'drops-brushed-alpaca-silk'],
+  },
+};
+
+// ─── Aesthetic Inspirations (Inspiration/Mood Board) ─────────────────
+const AESTHETICS = {
+  minimalist: {
+    label: 'Minimalist',
+    emoji: '◻️',
+    color: '#8b8278',
+    patterns: ['scarlet-sweater', 'scarlet-cardigan'],
+    description: 'Rene linjer, neutrale farver, tidløs design',
+  },
+  colorful: {
+    label: 'Farverigt',
+    emoji: '🌈',
+    color: '#c85a17',
+    patterns: ['ivy-cardigan', 'ivy-sweater'],
+    description: 'Dristige nuancer, sjove designs, iøjnefaldende',
+  },
+  cozy: {
+    label: 'Koselig',
+    emoji: '☕',
+    color: '#6b9f4f',
+    patterns: ['sophie-scarf'],
+    description: 'Varmt, behageligt, komfortkryb-designs',
+  },
+  earthy: {
+    label: 'Naturlig',
+    emoji: '🌿',
+    color: '#d4a574',
+    patterns: [],
+    description: 'Naturfibre, økologisk vibe, bæredygtighed',
+  },
+};
+
+// ─── Instagram Features (Community Showcase) ───────────────────────
+const INSTAGRAM_FEATURES = [
+  {
+    patternId: 'scarlet-sweater',
+    instagramUrl: 'https://instagram.com/garnalternativer',
+    caption: 'Stunning Scarlet Sweater in Isager Soft 🧶',
+    imageAlt: 'Scarlet Sweater knitted in blue',
+  },
+  {
+    patternId: 'sophie-scarf',
+    instagramUrl: 'https://instagram.com/garnalternativer',
+    caption: 'Cozy Sophie Scarf — perfect for spring mornings 🌸',
+    imageAlt: 'Sophie Scarf in soft cashmere',
+  },
+  {
+    patternId: 'ivy-cardigan',
+    instagramUrl: 'https://instagram.com/garnalternativer',
+    caption: 'Ivy Cardigan in alpaca blend — so soft! 🦙',
+    imageAlt: 'Ivy Cardigan detail shot',
+  },
+];

@@ -338,6 +338,41 @@ body {
 }
 .pattern-card:hover .card-arrow { transform: translateX(3px); }
 
+/* Favorite Button on Pattern Card */
+.favorite-btn {
+  position: absolute;
+  top: var(--sp-3);
+  right: var(--sp-3);
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all var(--transition);
+  z-index: 10;
+}
+
+.favorite-btn:hover {
+  background: white;
+  border-color: var(--accent);
+  transform: scale(1.1);
+}
+
+.favorite-btn.favorited {
+  animation: favorite-pulse 0.3s ease;
+}
+
+@keyframes favorite-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
 .no-results {
   grid-column: 1 / -1;
   text-align: center;

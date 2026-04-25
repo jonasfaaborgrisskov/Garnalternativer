@@ -136,9 +136,13 @@ function renderPatternGrid(patterns) {
     const yarn = findYarn(p.originalYarn_id);
     const w = WEIGHTS[yarn.weight];
     const tierCount = Object.values(p.tiers).flat().length;
+    const isFav = isFavorited(p.id);
     return `
-      <article class="pattern-card" onclick="showDetail('${p.id}')" role="button" tabindex="0"
+      <article class="pattern-card" data-pattern-id="${p.id}" onclick="showDetail('${p.id}')" role="button" tabindex="0"
                onkeydown="if(event.key==='Enter')showDetail('${p.id}')">
+        <button class="favorite-btn ${isFav ? 'favorited' : ''}" onclick="event.stopPropagation(); toggleFavorite('${p.id}')">
+          ${isFav ? '❤️' : '🤍'}
+        </button>
         <div class="pattern-card-emoji">${p.emoji}</div>
         <div class="pattern-card-body">
           <div class="pattern-card-type">${p.type} · ${p.designer}</div>
@@ -157,6 +161,7 @@ function renderPatternGrid(patterns) {
       </article>
     `;
   }).join('');
+  updateFavoriteButtons();
 }
 
 // ─── Pattern Detail ───────────────────────────────────────────────

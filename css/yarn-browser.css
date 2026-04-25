@@ -1,0 +1,83 @@
+/* ─── Yarn Browser ─────────────────────────────────────────────────*/
+
+.yarn-browser-header {
+  background: var(--bg-warm);
+  border-bottom: 1px solid var(--border);
+  padding: var(--sp-6) 0;
+  margin-bottom: var(--sp-5);
+}
+
+.yarn-browser-title {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-family: var(--serif);
+  color: var(--ink);
+  margin-bottom: var(--sp-2);
+}
+
+.yarn-browser-subtitle {
+  font-size: 1rem;
+  color: var(--ink-2);
+  line-height: 1.6;
+}
+
+/* Fiber Sections */
+.fiber-section {
+  margin-bottom: var(--sp-6);
+  scroll-margin-top: 80px;
+}
+
+.fiber-section:last-child {
+  margin-bottom: 0;
+}
+
+.fiber-header {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-4);
+  padding-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--border);
+}
+
+.fiber-emoji {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.fiber-info {
+  flex: 1;
+}
+
+.fiber-label {
+  font-size: 1.5rem;
+  font-family: var(--serif);
+  color: var(--ink);
+  margin: 0 0 var(--sp-1) 0;
+  font-weight: normal;
+}
+
+.fiber-desc {
+  font-size: 0.95rem;
+  color: var(--ink-2);
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* Yarn Grid in Browser */
+.yarn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--sp-4);
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .yarn-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .fiber-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Dine gemte og favoritmarkerede opskrifter." />
+  <title>Gemte Opskrifter — Garnalternativer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/collections.css" />
+</head>
+<body>
+
+  <!-- ── Header ─────────────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🧶</span>
+        <span class="logo-text">Garnalternativer</span>
+      </a>
+      <nav class="site-nav" aria-label="Primær navigation">
+        <a href="index.html">Opskrifter</a>
+        <a href="browse.html">Søg i Garn</a>
+        <a href="collections.html" class="active">Gemte</a>
+        <a href="#om">Om projektet</a>
+        <a href="https://instagram.com/garnalternativer" class="follow-btn" target="_blank" rel="noopener noreferrer">
+          📷 Instagram
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── Collections Header ──────────────────────────────── -->
+    <div class="collections-header">
+      <div class="container">
+        <h1 class="collections-title">Gemte Opskrifter</h1>
+      </div>
+    </div>
+
+    <!-- ── Collections Content ─────────────────────────────── -->
+    <section class="section">
+      <div class="container" style="max-width: 800px;">
+        <div id="collectionsContent"></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-logo">🧶 Garnalternativer</div>
+      <p class="footer-sub">Hjælper strikkere med at finde de bedste garnalternativer siden 2026</p>
+      <div class="footer-social">
+        <p class="footer-social-label">Følg os på Instagram:</p>
+        <a href="https://instagram.com/garnalternativer" class="footer-instagram-link" target="_blank" rel="noopener noreferrer">
+          @garnalternativer
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="data.js"></script>
+  <script src="js/collections.js"></script>
+  <script>
+    function renderSavedPatterns() {
+      const saved = getSavedPatterns();
+      const container = document.getElementById('collectionsContent');
+
+      if (saved.length === 0) {
+        container.innerHTML = `
+          <div class="collections-empty">
+            <div class="collections-empty-emoji">📋</div>
+            <p class="collections-empty-text">
+              Du har ikke gemt nogen opskrifter endnu.<br>
+              Gå til en opskrift og gem den for senere.
+            </p>
+            <a href="index.html" class="collections-empty-btn">Se Opskrifter</a>
+          </div>
+        `;
+        return;
+      }
+
+      const html = saved.map(save => {
+        const pattern = PATTERNS.find(p => p.id === save.patternId);
+        const yarn = findYarn(save.selectedYarn);
+        const date = new Date(save.addedDate);
+        const dateStr = date.toLocaleDateString('da-DK');
+
+        if (!pattern || !yarn) return '';
+
+        return `
+          <div class="saved-pattern-item">
+            <div class="saved-pattern-info">
+              <h3>${pattern.name}</h3>
+              <p class="saved-pattern-meta">${pattern.type} · ${pattern.designer}</p>
+              <div class="saved-pattern-yarn">
+                <div class="saved-pattern-yarn-name">${yarn.name}</div>
+                <span class="saved-pattern-yarn-tier">${TIERS[save.tier].label}</span>
+              </div>
+            </div>
+            <div class="saved-pattern-actions">
+              <p class="saved-pattern-date">Gemt ${dateStr}</p>
+              <button class="remove-btn" onclick="removeSavedPattern('${save.patternId}', '${save.selectedYarn}')">
+                Fjern
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      container.innerHTML = html;
+    }
+
+    function removeSavedPattern(patternId, yarnId) {
+      const collections = getCollections();
+      collections.myPatterns = collections.myPatterns.filter(
+        p => !(p.patternId === patternId && p.selectedYarn === yarnId)
+      );
+      saveCollections(collections);
+      renderSavedPatterns();
+    }
+
+    document.addEventListener('DOMContentLoaded', renderSavedPatterns);
+  </script>
+</body>
+</html>

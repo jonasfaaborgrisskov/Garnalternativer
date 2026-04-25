@@ -1,0 +1,159 @@
+/* ─── Collections Page ──────────────────────────────────────────────*/
+
+.collections-header {
+  background: var(--bg-warm);
+  border-bottom: 1px solid var(--border);
+  padding: var(--sp-6) 0;
+  margin-bottom: var(--sp-5);
+}
+
+.collections-title {
+  font-size: clamp(1.75rem, 5vw, 2.5rem);
+  font-family: var(--serif);
+  color: var(--ink);
+  margin-bottom: var(--sp-2);
+}
+
+.collections-empty {
+  text-align: center;
+  padding: var(--sp-6) var(--sp-4);
+  color: var(--ink-2);
+}
+
+.collections-empty-emoji {
+  font-size: 3rem;
+  margin-bottom: var(--sp-3);
+}
+
+.collections-empty-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: var(--sp-4);
+}
+
+.collections-empty-btn {
+  padding: 0.75rem 1.5rem;
+  background: var(--color-brand);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: none;
+  display: inline-block;
+  transition: opacity 0.18s ease;
+}
+
+.collections-empty-btn:hover {
+  opacity: 0.85;
+}
+
+/* Saved Pattern Card */
+.saved-pattern-item {
+  background: var(--color-surface);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: var(--sp-4);
+  margin-bottom: var(--sp-3);
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  gap: var(--sp-4);
+  align-items: start;
+}
+
+.saved-pattern-info h3 {
+  font-size: 1.1rem;
+  color: var(--ink);
+  margin: 0 0 var(--sp-2) 0;
+  font-family: var(--serif);
+}
+
+.saved-pattern-meta {
+  font-size: 0.875rem;
+  color: var(--ink-3);
+  margin-bottom: var(--sp-2);
+}
+
+.saved-pattern-yarn {
+  background: var(--bg);
+  padding: var(--sp-2) var(--sp-3);
+  border-radius: 4px;
+  margin-top: var(--sp-2);
+}
+
+.saved-pattern-yarn-name {
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 4px;
+  font-size: 0.9rem;
+}
+
+.saved-pattern-yarn-tier {
+  font-size: 0.8rem;
+  color: var(--ink-3);
+  padding: 4px 8px;
+  background: var(--color-surface);
+  border-radius: 3px;
+  display: inline-block;
+}
+
+.saved-pattern-actions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.saved-pattern-date {
+  font-size: 0.75rem;
+  color: var(--ink-4);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--sp-2);
+}
+
+.remove-btn {
+  padding: 0.5rem 1rem;
+  background: transparent;
+  border: 1px solid var(--border);
+  color: var(--ink-2);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: all 0.18s ease;
+}
+
+.remove-btn:hover {
+  border-color: var(--ink-1);
+  color: var(--ink-1);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+/* Favorite Button */
+.favorite-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.18s ease;
+}
+
+.favorite-btn:hover {
+  transform: scale(1.1);
+}
+
+.favorite-btn.favorited {
+  animation: favorite-pulse 0.3s ease;
+}
+
+@keyframes favorite-pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .saved-pattern-item {
+    grid-template-columns: 1fr;
+  }
+}
