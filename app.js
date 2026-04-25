@@ -215,7 +215,7 @@ function renderTierSections(pattern, origYarn) {
               <div class="tier-sublabel">${tier.sublabel}</div>
             </div>
           </div>
-          <p class="tier-empty">Ingen kuraterede alternativer i dette niveau endnu.</p>
+          <p class="tier-empty">Ingen alternativer endnu.</p>
         </section>`;
     }
 
