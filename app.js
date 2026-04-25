@@ -178,7 +178,11 @@ function showDetail(patternId) {
     ${renderPatternHeader(currentPattern, origYarn, secYarn)}
     ${renderTierSections(currentPattern, origYarn)}
     ${renderShareSection(currentPattern)}
+    <div id="reviewsSection-${currentPattern.id}"></div>
   `;
+
+  // Render reviews after DOM is ready
+  setTimeout(() => renderReviewsSection(currentPattern.id), 100);
 }
 
 function showPatternList() {
