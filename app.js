@@ -132,8 +132,9 @@ function renderPatternHeader(pattern, origYarn, secYarn) {
           </div>
         </div>
 
-        <div class="yarn-spec-cost">
-          Estimeret projektkost (str. M, ~${pattern.totalMeters_M} m): <strong>${secCostEst.skeins} nøgler à ${secYarn.price_dkk_50g} kr. = ca. ${secCostEst.total} kr.</strong>
+        <div class="orig-yarn-cost">
+          <div class="orig-cost-label">Estimeret projektkost (str. M, ~${pattern.totalMeters_M} m)</div>
+          <div class="orig-cost-value">${secCostEst.skeins} nøgler × ${secYarn.price_dkk_50g} kr. = <strong>${secCostEst.total} kr.</strong></div>
         </div>
       </div>`;
   }
@@ -181,8 +182,9 @@ function renderPatternHeader(pattern, origYarn, secYarn) {
             </div>
           </div>
 
-          <div class="yarn-spec-cost">
-            Estimeret projektkost (str. M, ~${pattern.totalMeters_M} m): <strong>${costEst.skeins} nøgler à ${origYarn.price_dkk_50g} kr. = ca. ${costEst.total} kr.</strong>
+          <div class="orig-yarn-cost">
+            <div class="orig-cost-label">Estimeret projektkost (str. M, ~${pattern.totalMeters_M} m)</div>
+            <div class="orig-cost-value">${costEst.skeins} nøgler × ${origYarn.price_dkk_50g} kr. = <strong>${costEst.total} kr.</strong></div>
           </div>
         </div>
         ${secondaryBox}
