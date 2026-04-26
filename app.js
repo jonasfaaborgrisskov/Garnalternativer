@@ -200,13 +200,16 @@ function renderPatternGrid(patterns) {
     const isFav = isFavorited(p.id);
     const materials = p.materials?.join(', ') || '';
     const hoursText = p.estimatedHours ? ` · ${p.estimatedHours}h` : '';
+    const imageHtml = p.imageUrl
+      ? `<div class="pattern-card-image"><img src="${p.imageUrl}" alt="${p.name}" onerror="this.parentElement.style.display='none'"></div>`
+      : `<div class="pattern-card-emoji">${p.emoji}</div>`;
     return `
       <article class="pattern-card" data-pattern-id="${p.id}" onclick="showDetail('${p.id}')" role="button" tabindex="0"
                onkeydown="if(event.key==='Enter')showDetail('${p.id}')">
         <button class="favorite-btn ${isFav ? 'favorited' : ''}" onclick="event.stopPropagation(); toggleFavorite('${p.id}')">
           ${isFav ? '❤️' : '🤍'}
         </button>
-        <div class="pattern-card-emoji">${p.emoji}</div>
+        ${imageHtml}
         <div class="pattern-card-body">
           <div class="pattern-card-type">${p.type} · ${p.designer} · ${typeof p.difficulty === 'number' ? p.difficulty + '/10' : p.difficulty}${hoursText}</div>
           <h3 class="pattern-card-name">${p.name}</h3>
@@ -307,12 +310,16 @@ function renderPatternHeader(pattern, origYarn, secYarn) {
       </div>`;
   }
 
+  const imageCol = pattern.imageUrl
+    ? `<div class="detail-image-col"><img src="${pattern.imageUrl}" alt="${pattern.name}" onerror="this.parentElement.className='detail-image-col detail-image-col--fallback'; this.outerHTML='<div class=&quot;detail-emoji-fallback&quot;>${pattern.emoji}</div>'"></div>`
+    : `<div class="detail-image-col detail-image-col--fallback"><div class="detail-emoji-fallback">${pattern.emoji}</div></div>`;
+
   return `
     <button class="back-btn" onclick="showPatternList()">← Alle opskrifter</button>
 
-    <div class="detail-header">
-      <div class="detail-emoji">${pattern.emoji}</div>
-      <div class="detail-meta">
+    <div class="detail-hero">
+      ${imageCol}
+      <div class="detail-data">
         <div class="detail-type">${pattern.type} · ${pattern.designer} · Sværhedsgrad: ${typeof pattern.difficulty === 'number' ? pattern.difficulty + '/10' : pattern.difficulty}</div>
         <h1 class="detail-title">${pattern.name}</h1>
         <p class="detail-desc">${pattern.description}</p>

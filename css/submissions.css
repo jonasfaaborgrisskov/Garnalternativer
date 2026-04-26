@@ -299,6 +299,40 @@ input[type="range"]::-moz-range-thumb:hover {
   display: block;
 }
 
+/* ─── Buttons ──────────────────────────────────────────────────────── */
+
+.btn {
+  display: inline-block;
+  padding: var(--space-md) var(--space-lg);
+  border: none;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.18s ease, background 0.18s ease;
+  text-decoration: none;
+  text-align: center;
+}
+
+.btn-primary {
+  width: 100%;
+  background: var(--color-brand);
+  color: white;
+}
+
+.btn-primary:hover {
+  opacity: 0.85;
+}
+
+.btn-secondary {
+  background: var(--color-accent-1);
+  color: white;
+}
+
+.btn-secondary:hover {
+  opacity: 0.85;
+}
+
 /* ─── Responsive ────────────────────────────────────────────────────── */
 
 @media (max-width: 768px) {

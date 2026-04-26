@@ -975,6 +975,7 @@ const PATTERNS = [
     materials: ['cashmere'],
     seasonality: ['spring', 'fall', 'winter'],
     estimatedHours: 15,
+    imageUrl: 'https://images4-f.ravelrycache.com/uploads/PetiteKnitDK/1057947486/sophie_721_ito_cardiff_small2.jpg',
     tiers: {
       mid:     [],
       budget:  [],
@@ -997,6 +998,7 @@ const PATTERNS = [
     materials: ['merino', 'wool'],
     seasonality: ['spring', 'fall', 'winter'],
     estimatedHours: 30,
+    imageUrl: 'https://images4-g.ravelrycache.com/uploads/PetiteKnitDK/1056924718/scarlet_sweater_badstuerock22-02_small2.jpg',
     tiers: {
       mid:     ['isager-soft'],
       budget:  [],
@@ -1019,6 +1021,7 @@ const PATTERNS = [
     materials: ['merino', 'wool'],
     seasonality: ['spring', 'fall', 'winter'],
     estimatedHours: 35,
+    imageUrl: 'https://images4-f.ravelrycache.com/uploads/PetiteKnitDK/1072659795/scarlet_cardigan1-01_small2.jpg',
     tiers: {
       mid:     ['isager-soft'],
       budget:  [],
@@ -1041,6 +1044,7 @@ const PATTERNS = [
     materials: ['alpaca', 'cotton'],
     seasonality: ['spring', 'summer'],
     estimatedHours: 25,
+    imageUrl: 'https://images4-f.ravelrycache.com/uploads/PetiteKnitDK/1080122471/ivy_sweater_sand2_small2.jpg',
     tiers: {
       mid:     ['sandnes-doppel-sunday'],
       budget:  [],
@@ -1063,6 +1067,7 @@ const PATTERNS = [
     seasonality: ['spring', 'summer'],
     estimatedHours: 32,
     tags: ['cardigan', 'alpaca', 'cotton', 'petiteknit'],
+    imageUrl: 'https://images4-g.ravelrycache.com/uploads/PetiteKnitDK/1096770458/ivy_cardigan7_small2.jpg',
     tiers: {
       mid:     ['sandnes-doppel-sunday'],
       budget:  [],

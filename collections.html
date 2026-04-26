@@ -99,8 +99,11 @@
 
         if (!pattern || !yarn) return '';
 
+        const imageHtml = pattern.imageUrl ? `<div class="saved-pattern-image"><img src="${pattern.imageUrl}" alt="${pattern.name}" onerror="this.parentElement.style.display='none'"></div>` : '';
+
         return `
           <div class="saved-pattern-item">
+            ${imageHtml}
             <div class="saved-pattern-info">
               <h3>${pattern.name}</h3>
               <p class="saved-pattern-meta">${pattern.type} · ${pattern.designer}</p>

@@ -22,8 +22,21 @@ img { display: block; max-width: 100%; }
   --ink-3:        #7a746c;
   --ink-4:        #a09890;
 
+  /* Text color aliases */
+  --color-text: var(--ink);
+  --color-text-muted: var(--ink-2);
+  --color-surface: var(--bg-card);
+
   --accent:       #8b6040;   /* warm terracotta brown */
   --accent-hover: #6e4c30;
+
+  /* New color system */
+  --color-brand:      #0d47a1;   /* cobalt blue */
+  --color-accent-1:   #6b9f4f;   /* sage green */
+  --color-accent-2:   #c85a17;   /* burnt orange */
+  --color-success:    #4caf50;   /* green */
+  --color-warning:    #ff9800;   /* orange */
+  --color-error:      #f44336;   /* red */
 
   /* Tier colours */
   --budget-col:   #3d5c30;   /* forest green */
@@ -45,9 +58,17 @@ img { display: block; max-width: 100%; }
   --sp-7: 48px;
   --sp-8: 64px;
 
+  /* Spacing aliases */
+  --space-xs: var(--sp-1);
+  --space-sm: var(--sp-2);
+  --space-md: var(--sp-4);
+  --space-lg: var(--sp-5);
+  --space-xl: var(--sp-6);
+
   /* Typography */
   --serif:  Georgia, 'Times New Roman', serif;
   --sans:   -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  --font-body: var(--sans);
 
   /* Misc */
   --radius:    10px;
@@ -260,6 +281,29 @@ body {
   outline-offset: 2px;
 }
 
+.pattern-card-image {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+  background: var(--bg-warm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.pattern-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.3s ease;
+}
+
+.pattern-card:hover .pattern-card-image img {
+  transform: scale(1.05);
+}
+
 .pattern-card-emoji {
   background: var(--bg-warm);
   font-size: 4rem;
@@ -399,6 +443,64 @@ body {
 .back-btn:hover { color: var(--accent-hover); }
 
 /* ── Detail Header ──────────────────────────────────────────────── */
+/* ── Detail 50/50 Hero ─────────────────────────────────────────── */
+.detail-hero {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 480px;
+  margin-bottom: var(--sp-7);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.detail-image-col {
+  overflow: hidden;
+  background: var(--bg-warm);
+}
+
+.detail-image-col img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+}
+
+.detail-image-col--fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.detail-emoji-fallback {
+  font-size: 8rem;
+  line-height: 1;
+}
+
+.detail-data {
+  padding: var(--sp-7) var(--sp-6);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+@media (max-width: 800px) {
+  .detail-hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .detail-image-col {
+    height: 320px;
+  }
+
+  .detail-data {
+    padding: var(--sp-5) var(--sp-4);
+  }
+}
+
 .detail-header {
   display: grid;
   grid-template-columns: 200px 1fr;
