@@ -1,268 +1,261 @@
-/* ─── Reviews & Ratings ─────────────────────────────────────────────────── */
+/* ─── Reviews & Ratings ──────────────────────────────────────────────────────
+   Aesthetic: matches site design system exactly — warm cream, terracotta accent,
+   Georgia serif headings, soft shadows. NO green. NO blue. NO bright colours.
+──────────────────────────────────────────────────────────────────────────── */
 
 .reviews-section {
-  margin: var(--sp-6) 0;
-  padding: var(--sp-6) var(--sp-5);
-  background: linear-gradient(135deg, rgba(107, 159, 79, 0.02) 0%, rgba(107, 159, 79, 0.04) 100%);
-  border-top: 4px solid var(--color-accent-1);
-  border-radius: 8px;
+  margin-top: var(--sp-7);
+  padding-top: var(--sp-6);
+  border-top: 1px solid var(--border);
 }
 
+/* ─── Header ─────────────────────────────────────────────────────────────── */
+
 .reviews-header {
-  margin-bottom: var(--sp-5);
-  padding-bottom: var(--sp-4);
-  border-bottom: 2px solid var(--color-accent-1);
+  margin-bottom: var(--sp-6);
 }
 
 .reviews-header h3 {
-  font-size: 1.75rem;
   font-family: var(--serif);
+  font-size: 1.5rem;
+  font-weight: normal;
   color: var(--ink);
-  margin: 0 0 var(--sp-2) 0;
-  font-weight: 600;
-  letter-spacing: -0.5px;
+  margin: 0 0 var(--sp-3) 0;
+  letter-spacing: -0.01em;
 }
 
 .rating-summary {
   display: flex;
   align-items: center;
-  gap: var(--sp-2);
-  font-size: 1.1rem;
+  gap: var(--sp-3);
+  font-size: 0.9rem;
+  color: var(--ink-3);
 }
 
 .rating-avg {
-  font-weight: 700;
-  color: var(--color-brand);
+  font-weight: 600;
+  color: var(--ink-2);
   display: flex;
   align-items: center;
   gap: var(--sp-1);
 }
 
 .rating-count {
-  color: var(--ink-2);
-  font-size: 0.95rem;
+  color: var(--ink-4);
+  font-size: 0.85rem;
 }
 
 .no-reviews {
-  color: var(--ink-2);
+  color: var(--ink-4);
   font-style: italic;
+  font-size: 0.9rem;
   margin: 0;
-  padding: var(--sp-5) var(--sp-3);
-  text-align: center;
-  font-size: 1rem;
-  line-height: 1.6;
+  padding: var(--sp-4) 0;
 }
 
-/* ─── Reviews List ─────────────────────────────────────────────────── */
+/* ─── Reviews List ───────────────────────────────────────────────────────── */
 
-.reviews-list {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-3);
-  margin-bottom: var(--sp-4);
-}
-
+.reviews-list,
 .reviews-expanded {
   display: flex;
   flex-direction: column;
-  gap: var(--sp-3);
-  margin-bottom: var(--sp-4);
+  gap: var(--sp-4);
+  margin-bottom: var(--sp-6);
 }
 
 .review-card {
-  padding: var(--sp-4);
-  background: white;
-  border-left: 5px solid var(--color-accent-1);
-  border-radius: 6px;
-  transition: all 0.18s ease;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  padding: var(--sp-5);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  transition: box-shadow var(--transition);
 }
 
 .review-card:hover {
-  box-shadow: 0 6px 20px rgba(107, 159, 79, 0.12);
-  transform: translateY(-3px);
+  box-shadow: var(--shadow-sm);
 }
 
 .review-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: var(--sp-2);
-  padding-bottom: var(--sp-2);
-  border-bottom: 1px solid rgba(107, 159, 79, 0.2);
+  align-items: baseline;
+  margin-bottom: var(--sp-3);
 }
 
 .review-author {
-  font-weight: 700;
+  font-weight: 600;
   color: var(--ink);
-  font-size: 1rem;
+  font-size: 0.9rem;
 }
 
 .review-date {
-  color: var(--ink-2);
-  font-size: 0.85rem;
+  color: var(--ink-4);
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
 }
 
 .review-rating {
-  font-size: 1.3rem;
+  font-size: 0.95rem;
   margin-bottom: var(--sp-2);
-  letter-spacing: 0.15em;
+  letter-spacing: 0.1em;
+  color: var(--accent);
 }
 
 .review-comment {
   color: var(--ink-2);
   line-height: 1.7;
   margin: 0;
-  word-break: break-word;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
 }
 
-/* ─── Review Form ─────────────────────────────────────────────────── */
+/* ─── Divider between list and form ─────────────────────────────────────── */
+
+.reviews-section hr,
+.reviews-divider {
+  border: none;
+  border-top: 1px solid var(--border-light);
+  margin: var(--sp-6) 0;
+}
+
+/* ─── Review Form ────────────────────────────────────────────────────────── */
 
 .review-form {
-  padding: var(--sp-4);
-  background: rgba(107, 159, 79, 0.06);
-  border: 1px solid var(--color-accent-1);
-  border-radius: 6px;
-  margin-top: var(--sp-4);
+  background: var(--bg-warm);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: var(--sp-6);
 }
 
 .review-form h4 {
-  font-size: 1.2rem;
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  font-weight: normal;
   color: var(--ink);
-  margin: 0 0 var(--sp-3) 0;
-  font-weight: 700;
+  margin: 0 0 var(--sp-5) 0;
 }
 
+/* ─── Star Picker ────────────────────────────────────────────────────────── */
+
 .star-picker {
-  margin-bottom: var(--sp-3);
+  margin-bottom: var(--sp-4);
 }
 
 .star-picker label {
   display: block;
-  font-weight: 700;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-3);
   margin-bottom: var(--sp-3);
-  font-size: 1rem;
-  color: var(--ink);
-  letter-spacing: 0.3px;
 }
 
 .stars {
   display: flex;
   gap: var(--sp-2);
-  margin-bottom: var(--sp-3);
+  margin-bottom: var(--sp-2);
 }
 
 .star {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 2.5rem;
-  padding: var(--sp-1);
-  transition: transform 0.15s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.15s ease;
-  opacity: 0.25;
-  color: #ffc107;
+  font-size: 1.6rem;
+  padding: 2px;
   line-height: 1;
+  transition: transform 0.12s ease, opacity 0.12s ease;
+  opacity: 0.2;
+  filter: grayscale(0.4);
 }
 
 .star:hover {
-  opacity: 0.75;
-  transform: scale(1.15) translateY(-4px);
+  opacity: 0.6;
+  transform: scale(1.12);
 }
 
 .star.active {
   opacity: 1;
-  transform: scale(1.1);
+  filter: none;
 }
 
 .selected-rating {
   display: block;
-  font-size: 0.95rem;
-  color: var(--ink-2);
-  margin-bottom: var(--sp-3);
-  font-weight: 500;
+  font-size: 0.82rem;
+  color: var(--ink-3);
+  margin-bottom: var(--sp-4);
+  min-height: 1.2em;
 }
+
+/* ─── Form Inputs ────────────────────────────────────────────────────────── */
 
 .review-textarea,
 .review-author {
   display: block;
   width: 100%;
-  padding: var(--sp-3);
+  padding: var(--sp-3) var(--sp-4);
   margin-bottom: var(--sp-3);
-  border: 1.5px solid #e8e4df;
-  border-radius: 6px;
-  font-family: var(--body-font);
-  font-size: 0.95rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--sans);
+  font-size: 0.92rem;
+  color: var(--ink);
   box-sizing: border-box;
-  transition: border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
-  background: #fafaf9;
+  transition: border-color var(--transition), box-shadow var(--transition);
 }
 
 .review-textarea {
   line-height: 1.7;
   resize: vertical;
-  min-height: 130px;
-  font-size: 0.95rem;
+  min-height: 110px;
+}
+
+.review-textarea::placeholder,
+.review-author::placeholder {
+  color: var(--ink-4);
 }
 
 .review-textarea:focus,
 .review-author:focus {
   outline: none;
-  border-color: var(--color-accent-1);
-  background: white;
-  box-shadow: 0 0 0 3px rgba(107, 159, 79, 0.12), 0 2px 8px rgba(107, 159, 79, 0.08);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(139, 96, 64, 0.08);
 }
+
+/* ─── Submit Button ──────────────────────────────────────────────────────── */
 
 .review-form .btn {
   width: 100%;
-  background: var(--color-accent-1);
+  background: var(--accent);
   color: white;
   border: none;
-  padding: var(--sp-3) var(--sp-4);
-  font-weight: 700;
-  font-size: 1rem;
+  padding: var(--sp-3) var(--sp-5);
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
   cursor: pointer;
-  border-radius: 6px;
-  transition: all 0.18s ease;
-  letter-spacing: 0.3px;
-  box-shadow: 0 2px 8px rgba(107, 159, 79, 0.15);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition), transform var(--transition);
 }
 
 .review-form .btn:hover {
-  background: #5d8c42;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(107, 159, 79, 0.25);
+  background: var(--accent-hover);
+  transform: translateY(-1px);
 }
 
 .review-form .btn:active {
   transform: translateY(0);
-  box-shadow: 0 1px 4px rgba(107, 159, 79, 0.15);
 }
 
-/* ─── Responsive ─────────────────────────────────────────────────── */
+/* ─── Responsive ─────────────────────────────────────────────────────────── */
 
-@media (max-width: 768px) {
-  .reviews-section {
+@media (max-width: 600px) {
+  .review-form {
     padding: var(--sp-4);
   }
 
-  .review-card {
-    padding: var(--sp-2);
-  }
-
-  .star-picker {
-    margin-bottom: var(--sp-2);
-  }
-
-  .stars {
-    gap: var(--sp-1);
-  }
-
   .star {
-    font-size: 1.75rem;
-  }
-
-  .review-form {
-    padding: var(--sp-3);
+    font-size: 1.4rem;
   }
 }
