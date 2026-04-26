@@ -22,7 +22,60 @@ let yarnBrowserState = {
   filterEco: false
 };
 
+function buildFiberFilters() {
+  const container = document.getElementById('yarnFiberFilters');
+  if (!container) return;
+
+  // Collect which canonical fiber keys actually appear in YARNS
+  const present = new Set();
+  YARNS.forEach(yarn => {
+    if (!yarn.fiber) return;
+    yarn.fiber.forEach(yf => {
+      if (!yf || !yf.name) return;
+      const name = yf.name.toLowerCase();
+      Object.entries(FIBER_NAME_MAP).forEach(([key, aliases]) => {
+        if (aliases.some(alias => name.includes(alias) || alias.includes(name))) {
+          present.add(key);
+        }
+      });
+    });
+  });
+
+  // Label map for display
+  const labels = {
+    Wool:     'Uld',
+    Merino:   'Merino',
+    Alpaca:   'Alpaka',
+    Cotton:   'Bomuld',
+    Silk:     'Silke',
+    Mohair:   'Mohair',
+    Cashmere: 'Cashmere',
+    Nylon:    'Nylon',
+    Acrylic:  'Akryl',
+    Linen:    'Hør',
+  };
+
+  // Render only fibers that exist, in a fixed order
+  const order = ['Merino','Wool','Alpaca','Mohair','Cashmere','Cotton','Silk','Linen','Nylon','Acrylic'];
+  order.filter(k => present.has(k)).forEach(key => {
+    const label = document.createElement('label');
+    label.className = 'fiber-filter-checkbox';
+    label.innerHTML = `<input type="checkbox" class="yarn-fiber-checkbox" value="${key}" />${labels[key] || key}`;
+    container.appendChild(label);
+    label.querySelector('input').addEventListener('change', e => {
+      if (e.target.checked) {
+        if (!yarnBrowserState.filterFiber.includes(key)) yarnBrowserState.filterFiber.push(key);
+      } else {
+        yarnBrowserState.filterFiber = yarnBrowserState.filterFiber.filter(f => f !== key);
+      }
+      renderYarnBrowser();
+    });
+  });
+}
+
 function initYarnBrowserControls() {
+  buildFiberFilters();
+
   const searchInput  = document.getElementById('yarnSearchInput');
   const sortSelect   = document.getElementById('yarnSortSelect');
   const weightSelect = document.getElementById('yarnFilterWeight');
@@ -73,7 +126,7 @@ function initYarnBrowserControls() {
       if (sortSelect)   sortSelect.value   = 'name';
       if (weightSelect) weightSelect.value = '';
       if (ecoCheckbox)  ecoCheckbox.checked = false;
-      document.querySelectorAll('.yarn-fiber-checkbox').forEach(cb => cb.checked = false);
+      document.querySelectorAll('#yarnFiberFilters .yarn-fiber-checkbox').forEach(cb => cb.checked = false);
       renderYarnBrowser();
     });
   }

@@ -86,39 +86,10 @@
           <button id="yarnResetFilters" class="control-reset-btn">Nulstil</button>
         </div>
 
-        <!-- Fiber Filters -->
+        <!-- Fiber Filters — dynamically populated from YARNS in yarn-browser-controls.js -->
         <div class="yarn-fiber-filters">
           <div class="fiber-filter-label">Fiber:</div>
-          <div class="fiber-filter-checkboxes">
-            <label class="fiber-filter-checkbox">
-              <input type="checkbox" class="yarn-fiber-checkbox" value="Wool" />
-              Uld
-            </label>
-            <label class="fiber-filter-checkbox">
-              <input type="checkbox" class="yarn-fiber-checkbox" value="Cotton" />
-              Bomuld
-            </label>
-            <label class="fiber-filter-checkbox">
-              <input type="checkbox" class="yarn-fiber-checkbox" value="Silk" />
-              Silke
-            </label>
-            <label class="fiber-filter-checkbox">
-              <input type="checkbox" class="yarn-fiber-checkbox" value="Alpaca" />
-              Alpaka
-            </label>
-            <label class="fiber-filter-checkbox">
-              <input type="checkbox" class="yarn-fiber-checkbox" value="Acrylic" />
-              Akryl
-            </label>
-            <label class="fiber-filter-checkbox">
-              <input type="checkbox" class="yarn-fiber-checkbox" value="Merino" />
-              Merino
-            </label>
-            <label class="fiber-filter-checkbox">
-              <input type="checkbox" class="yarn-fiber-checkbox" value="Nylon" />
-              Nylon
-            </label>
-          </div>
+          <div class="fiber-filter-checkboxes" id="yarnFiberFilters"></div>
         </div>
       </div>
     </section>
