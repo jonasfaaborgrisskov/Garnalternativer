@@ -19,12 +19,25 @@ function saveCollections(collections) {
 
 function toggleFavorite(patternId) {
   const collections = getCollections();
-  const idx = collections.favorites.indexOf(patternId);
-  if (idx > -1) {
-    collections.favorites.splice(idx, 1);
+  const pattern = PATTERNS.find(p => p.id === patternId);
+
+  // Check if already saved
+  const existingIdx = collections.myPatterns.findIndex(p => p.patternId === patternId);
+
+  if (existingIdx > -1) {
+    // Remove from saved
+    collections.myPatterns.splice(existingIdx, 1);
   } else {
-    collections.favorites.push(patternId);
+    // Add to saved (with first available yarn option or original yarn)
+    const originalYarnId = pattern ? pattern.originalYarn_id : null;
+    collections.myPatterns.push({
+      patternId,
+      selectedYarn: originalYarnId,
+      tier: 'mid',
+      addedDate: new Date().toISOString(),
+    });
   }
+
   saveCollections(collections);
   updateFavoriteButtons();
 }
@@ -45,7 +58,7 @@ function savePattern(patternId, yarnId, tier) {
 
 function isFavorited(patternId) {
   const collections = getCollections();
-  return collections.favorites.includes(patternId);
+  return collections.myPatterns.some(p => p.patternId === patternId);
 }
 
 function getSavedPatterns() {
