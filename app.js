@@ -208,7 +208,7 @@ function renderPatternGrid(patterns) {
         </button>
         <div class="pattern-card-emoji">${p.emoji}</div>
         <div class="pattern-card-body">
-          <div class="pattern-card-type">${p.type} · ${p.designer} · ${p.difficulty}${hoursText}</div>
+          <div class="pattern-card-type">${p.type} · ${p.designer} · ${typeof p.difficulty === 'number' ? p.difficulty + '/10' : p.difficulty}${hoursText}</div>
           <h3 class="pattern-card-name">${p.name}</h3>
           <div class="pattern-card-yarn">Originalt garn: <strong>${yarn.name}</strong> — ${yarn.brand}</div>
           ${materials ? `<div class="pattern-card-materials">Fiber: ${materials}</div>` : ''}
@@ -313,7 +313,7 @@ function renderPatternHeader(pattern, origYarn, secYarn) {
     <div class="detail-header">
       <div class="detail-emoji">${pattern.emoji}</div>
       <div class="detail-meta">
-        <div class="detail-type">${pattern.type} · ${pattern.designer} · ${pattern.difficulty}</div>
+        <div class="detail-type">${pattern.type} · ${pattern.designer} · Sværhedsgrad: ${typeof pattern.difficulty === 'number' ? pattern.difficulty + '/10' : pattern.difficulty}</div>
         <h1 class="detail-title">${pattern.name}</h1>
         <p class="detail-desc">${pattern.description}</p>
 

@@ -68,22 +68,23 @@
               </div>
 
               <div class="form-group">
-                <label for="patternDifficulty">Sværhedsgrad *</label>
-                <select id="patternDifficulty" name="difficulty" required>
-                  <option value="">Vælg...</option>
-                  <option value="Beginner">Begynder</option>
-                  <option value="Intermediate">Intermediate</option>
-                  <option value="Advanced">Avanceret</option>
-                </select>
+                <label for="patternDifficulty">Sværhedsgrad * (1-10)</label>
+                <input type="range" id="patternDifficulty" name="difficulty" min="1" max="10" value="5" required />
+                <div class="difficulty-display">
+                  <span id="difficultyValue">5</span> / 10
+                </div>
               </div>
             </div>
 
             <div class="form-row">
               <div class="form-group">
-                <label for="patternYarn">Originalt garn *</label>
-                <select id="patternYarn" name="originalYarnId" required>
-                  <option value="">Vælg garn...</option>
-                </select>
+                <label for="patternYarnSearch">Originalt garn *</label>
+                <div class="yarn-search-wrapper">
+                  <input type="text" id="patternYarnSearch" class="yarn-search-input" placeholder="Søg efter garn (navn, brand)..." autocomplete="off" />
+                  <div id="yarnSearchResults" class="yarn-search-results"></div>
+                  <input type="hidden" id="patternYarn" name="originalYarnId" required />
+                  <div id="yarnSelected" class="yarn-selected"></div>
+                </div>
               </div>
 
               <div class="form-group">
@@ -230,14 +231,100 @@
   <script src="data.js"></script>
   <script src="js/submissions.js"></script>
   <script>
-    // Initialize yarn dropdown
-    const patternYarnSelect = document.getElementById('patternYarn');
-    YARNS.forEach(yarn => {
-      const opt = document.createElement('option');
-      opt.value = yarn.id;
-      opt.textContent = `${yarn.name} (${yarn.brand})`;
-      patternYarnSelect.appendChild(opt);
-    });
+    // ── Difficulty Slider ──
+    const diffSlider = document.getElementById('patternDifficulty');
+    const diffValue = document.getElementById('difficultyValue');
+    if (diffSlider) {
+      diffSlider.addEventListener('input', (e) => {
+        diffValue.textContent = e.target.value;
+      });
+    }
+
+    // ── Yarn Search/Autocomplete ──
+    const yarnSearchInput = document.getElementById('patternYarnSearch');
+    const yarnSearchResults = document.getElementById('yarnSearchResults');
+    const yarnSelectedDiv = document.getElementById('yarnSelected');
+    const yarnHiddenInput = document.getElementById('patternYarn');
+
+    if (yarnSearchInput) {
+      yarnSearchInput.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase();
+        yarnSearchResults.innerHTML = '';
+
+        if (query.length < 1) {
+          yarnSearchResults.style.display = 'none';
+          return;
+        }
+
+        const matches = YARNS.filter(y =>
+          y.name.toLowerCase().includes(query) ||
+          y.brand.toLowerCase().includes(query)
+        ).slice(0, 8);
+
+        if (matches.length === 0) {
+          yarnSearchResults.innerHTML = `
+            <div class="yarn-search-no-result">
+              <p>Intet garn fundet</p>
+              <button type="button" class="yarn-other-btn" onclick="selectOtherYarn()">
+                + Tilføj som "andet garn"
+              </button>
+            </div>
+          `;
+        } else {
+          matches.forEach(yarn => {
+            const item = document.createElement('div');
+            item.className = 'yarn-search-item';
+            item.innerHTML = `
+              <strong>${yarn.name}</strong><br>
+              <small>${yarn.brand} • ${yarn.weight}</small>
+            `;
+            item.onclick = () => selectYarn(yarn.id, `${yarn.name} (${yarn.brand})`);
+            yarnSearchResults.appendChild(item);
+          });
+
+          // Add "other yarn" option
+          const otherBtn = document.createElement('div');
+          otherBtn.className = 'yarn-search-item yarn-other-item';
+          otherBtn.innerHTML = `<strong>+ Tilføj som "andet garn"</strong>`;
+          otherBtn.onclick = selectOtherYarn;
+          yarnSearchResults.appendChild(otherBtn);
+        }
+
+        yarnSearchResults.style.display = 'block';
+      });
+
+      // Close dropdown on blur
+      yarnSearchInput.addEventListener('blur', () => {
+        setTimeout(() => {
+          yarnSearchResults.style.display = 'none';
+        }, 200);
+      });
+    }
+
+    function selectYarn(yarnId, yarnName) {
+      yarnHiddenInput.value = yarnId;
+      yarnSearchInput.value = yarnName;
+      yarnSearchInput.setAttribute('data-yarn-id', yarnId);
+      yarnSearchResults.style.display = 'none';
+      updateYarnSelected(yarnName, 'selected');
+    }
+
+    function selectOtherYarn() {
+      const customYarnName = prompt('Skriv garnnavn (brand + navn):');
+      if (customYarnName && customYarnName.trim()) {
+        yarnHiddenInput.value = 'custom_' + Date.now();
+        yarnHiddenInput.setAttribute('data-custom-yarn', customYarnName);
+        yarnSearchInput.value = customYarnName + ' (custom)';
+        yarnSearchResults.style.display = 'none';
+        updateYarnSelected(customYarnName, 'custom');
+      }
+    }
+
+    function updateYarnSelected(name, type) {
+      yarnSelectedDiv.innerHTML = type === 'custom'
+        ? `✓ Brugerdefineret garn: <strong>${name}</strong>`
+        : `✓ Valgt: <strong>${name}</strong>`;
+    }
 
     // Tab switching
     document.querySelectorAll('.tab-button').forEach(btn => {

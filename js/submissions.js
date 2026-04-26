@@ -27,13 +27,14 @@ function validatePatternSubmission(data) {
     errors.push('Designer-navn skal være mindst 2 tegn');
   }
   if (!data.originalYarnId) {
-    errors.push('Vælg et originalt garn');
+    errors.push('Vælg et garn');
   }
   if (!data.totalMeters_M || data.totalMeters_M <= 0) {
     errors.push('Meter skal være større end 0');
   }
-  if (!data.difficulty) {
-    errors.push('Vælg sværhedsgrad');
+  const difficulty = parseInt(data.difficulty);
+  if (!difficulty || difficulty < 1 || difficulty > 10) {
+    errors.push('Sværhedsgrad skal være mellem 1-10');
   }
   if (!data.description || data.description.trim().length < 10) {
     errors.push('Beskrivelse skal være mindst 10 tegn');
@@ -59,9 +60,10 @@ function submitPattern(data) {
       type: data.type || 'Sweater',
       emoji: '🧶',
       originalYarnId: data.originalYarnId,
+      originalYarnCustom: data.originalYarnId?.startsWith('custom_') ? data.originalYarnId : null,
       secondaryYarnId: null,
       totalMeters_M: parseInt(data.totalMeters_M),
-      difficulty: data.difficulty,
+      difficulty: parseInt(data.difficulty),  // Now 1-10 instead of text
       estimatedHours: parseInt(data.estimatedHours) || 0,
       description: data.description.trim(),
       tags: ['community-submission', new Date().getFullYear().toString()],
@@ -221,7 +223,7 @@ function exportPatternAsDataJs(submission) {
   designer: '${data.designer}',
   type: '${data.type}',
   emoji: '🧶',
-  difficulty: '${data.difficulty}',
+  difficulty: ${data.difficulty},
   description: '${data.description}',
   originalYarn_id: '${data.originalYarnId}',
   totalMeters_M: ${data.totalMeters_M},
