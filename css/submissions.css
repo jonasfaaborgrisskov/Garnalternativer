@@ -316,21 +316,24 @@ input[type="range"]::-moz-range-thumb:hover {
 
 .btn-primary {
   width: 100%;
-  background: var(--color-brand);
+  background: var(--accent);
   color: white;
 }
 
 .btn-primary:hover {
-  opacity: 0.85;
+  background: var(--accent-hover);
+  transform: translateY(-1px);
 }
 
 .btn-secondary {
-  background: var(--color-accent-1);
-  color: white;
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
 }
 
 .btn-secondary:hover {
-  opacity: 0.85;
+  background: var(--accent);
+  color: white;
 }
 
 /* ─── Responsive ────────────────────────────────────────────────────── */

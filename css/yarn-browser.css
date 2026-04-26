@@ -160,19 +160,22 @@
 }
 
 .control-reset-btn {
-  padding: var(--sp-2) var(--sp-3);
-  background: var(--color-accent-1);
+  padding: var(--sp-2) var(--sp-4);
+  background: var(--accent);
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: var(--radius-sm);
   font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
   cursor: pointer;
-  transition: opacity 0.18s ease;
-  font-size: 0.95rem;
+  transition: background var(--transition), transform var(--transition);
+  align-self: flex-end;
 }
 
 .control-reset-btn:hover {
-  opacity: 0.85;
+  background: var(--accent-hover);
+  transform: translateY(-1px);
 }
 
 /* Fiber Filters */

@@ -30,13 +30,13 @@ img { display: block; max-width: 100%; }
   --accent:       #8b6040;   /* warm terracotta brown */
   --accent-hover: #6e4c30;
 
-  /* New color system */
-  --color-brand:      #0d47a1;   /* cobalt blue */
-  --color-accent-1:   #6b9f4f;   /* sage green */
-  --color-accent-2:   #c85a17;   /* burnt orange */
-  --color-success:    #4caf50;   /* green */
-  --color-warning:    #ff9800;   /* orange */
-  --color-error:      #f44336;   /* red */
+  /* New color system — all use the warm terracotta brand accent */
+  --color-brand:      #8b6040;   /* = --accent, terracotta brown */
+  --color-accent-1:   #8b6040;   /* = --accent, terracotta brown */
+  --color-accent-2:   #6e4c30;   /* = --accent-hover */
+  --color-success:    #4caf50;   /* green (status only) */
+  --color-warning:    #ff9800;   /* orange (status only) */
+  --color-error:      #f44336;   /* red (status only) */
 
   /* Tier colours */
   --budget-col:   #3d5c30;   /* forest green */
