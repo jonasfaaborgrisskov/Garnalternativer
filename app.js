@@ -24,40 +24,68 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // ─── Tier Population (Auto-match alternatives) ─────────────────────
+//
+// Rules (per editorial decisions):
+// 1. Tier is RELATIVE to original yarn price — budget = cheaper, premium = pricier
+// 2. Gauge preference: exact match > ±1 > ±2 > reject (>±2 never used)
+// 3. Halsnært strik (tørklæde/sjal/halskrave): exclude mohair
+// 4. Mid tier: similar price (±25%) with different fiber — original always included
+//
 function populatePatternTiers() {
-  // Auto-populate empty tier arrays with similar yarns
+  const HALSNÆRT_TYPES = ['tørklæde', 'halstørklæde', 'halskrave', 'sjal'];
+
   PATTERNS.forEach(pattern => {
     const origYarn = findYarn(pattern.originalYarn_id);
     if (!origYarn) return;
 
-    // If tiers are already populated, skip
-    if (pattern.tiers.budget?.length > 0 && pattern.tiers.mid?.length > 0 && pattern.tiers.premium?.length > 0) {
-      return;
-    }
+    const origPrice = origYarn.price_dkk_50g;
+    const isHalsnært = HALSNÆRT_TYPES.some(t => (pattern.type || '').toLowerCase().includes(t));
 
-    // Find alternatives by weight + fiber match + gauge tolerance (±2 masker/10cm)
-    const sameWeight = YARNS.filter(y => y.weight === origYarn.weight && y.id !== origYarn.id);
-    const goodMatch = sameWeight.filter(y => {
-      // Check gauge tolerance: allow ±2 stitches per 10cm
-      const gaugeDiff = Math.abs(y.gauge.stitches - origYarn.gauge.stitches);
-      if (gaugeDiff > 2) return false;
+    // Candidate pool: same weight, within ±2 gauge, not the original
+    const candidates = YARNS
+      .filter(y => {
+        if (y.id === origYarn.id) return false;
+        if (y.weight !== origYarn.weight) return false;
+        if (Math.abs(y.gauge.stitches - origYarn.gauge.stitches) > 2) return false;
+        // Halsnært: no mohair
+        if (isHalsnært && y.fiber.some(f => f.name.toLowerCase().includes('mohair'))) return false;
+        return true;
+      })
+      .map(y => ({
+        yarn: y,
+        gaugeDelta: Math.abs(y.gauge.stitches - origYarn.gauge.stitches),
+      }))
+      // Sort: gauge quality first (exact > ±1 > ±2), then price ascending
+      .sort((a, b) => a.gaugeDelta - b.gaugeDelta || a.yarn.price_dkk_50g - b.yarn.price_dkk_50g);
 
-      // Check fiber match: must have at least one matching fiber
-      return y.fiber.some(yf => origYarn.fiber.some(of => of.name.toLowerCase() === yf.name.toLowerCase()));
-    });
+    // Tier boundaries relative to original
+    const isBudget  = y => y.price_dkk_50g < origPrice * 0.90;       // >10% cheaper
+    const isMid     = y => y.price_dkk_50g >= origPrice * 0.75        // within ±25%
+                        && y.price_dkk_50g <= origPrice * 1.25;
+    const isPremium = y => y.price_dkk_50g > origPrice * 1.10;        // >10% pricier
 
-    // Sort by price
-    const byPrice = [...goodMatch].sort((a, b) => a.price_dkk_50g - b.price_dkk_50g);
-
-    // Assign tiers (budget: cheapest, mid: original price level, premium: most expensive)
     if (!pattern.tiers.budget || pattern.tiers.budget.length === 0) {
-      pattern.tiers.budget = byPrice.slice(0, 2).map(y => y.id).filter(id => id !== pattern.originalYarn_id);
+      pattern.tiers.budget = candidates
+        .filter(({yarn}) => isBudget(yarn))
+        .slice(0, 3)
+        .map(({yarn}) => yarn.id);
     }
+
     if (!pattern.tiers.mid || pattern.tiers.mid.length === 0) {
-      pattern.tiers.mid = [pattern.originalYarn_id];
+      const midAlts = candidates
+        .filter(({yarn}) => isMid(yarn))
+        .slice(0, 3)
+        .map(({yarn}) => yarn.id);
+      // Always include original as the baseline mid option
+      pattern.tiers.mid = [origYarn.id, ...midAlts.filter(id => id !== origYarn.id)].slice(0, 3);
     }
+
     if (!pattern.tiers.premium || pattern.tiers.premium.length === 0) {
-      pattern.tiers.premium = byPrice.slice(-2).map(y => y.id).filter(id => id !== pattern.originalYarn_id);
+      pattern.tiers.premium = candidates
+        .filter(({yarn}) => isPremium(yarn))
+        .sort((a, b) => b.yarn.price_dkk_50g - a.yarn.price_dkk_50g) // priciest first
+        .slice(0, 3)
+        .map(({yarn}) => yarn.id);
     }
   });
 }
