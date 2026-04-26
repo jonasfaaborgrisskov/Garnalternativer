@@ -3,7 +3,7 @@
 // Maps checkbox values (English) to Danish fiber names used in data.js
 const FIBER_NAME_MAP = {
   'Wool':    ['uld', 'wool'],
-  'Cotton':  ['bomuld', 'cotton'],
+  'Cotton':  ['bomuld', 'cotton', 'merceriseret bomuld'],
   'Silk':    ['silke', 'silk'],
   'Alpaca':  ['alpaka', 'alpaca'],
   'Acrylic': ['akryl', 'acrylic'],
@@ -11,6 +11,7 @@ const FIBER_NAME_MAP = {
   'Nylon':   ['nylon'],
   'Mohair':  ['mohair'],
   'Cashmere':['cashmere', 'kashmir'],
+  'Linen':   ['hør', 'linen', 'lin'],
 };
 
 let yarnBrowserState = {
@@ -80,9 +81,14 @@ function initYarnBrowserControls() {
 
 function yarnMatchesFiberFilter(yarn, selectedFibers) {
   if (selectedFibers.length === 0) return true;
+  if (!yarn.fiber || !Array.isArray(yarn.fiber) || yarn.fiber.length === 0) return false;
   return selectedFibers.some(selected => {
     const aliases = FIBER_NAME_MAP[selected] || [selected.toLowerCase()];
-    return yarn.fiber.some(yf => aliases.includes(yf.name.toLowerCase()));
+    return yarn.fiber.some(yf => {
+      if (!yf || !yf.name) return false;
+      const name = yf.name.toLowerCase();
+      return aliases.some(alias => name.includes(alias) || alias.includes(name));
+    });
   });
 }
 

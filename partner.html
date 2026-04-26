@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Samarbejd med Garnalternativer — få dit garn på listen eller lav en opskrift i dit garn." />
+  <title>Samarbejde — Garnalternativer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="css/partner.css" />
+</head>
+<body>
+
+  <!-- ── Header ─────────────────────────────────────────────── -->
+  <header class="site-header">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">🧶</span>
+        <span class="logo-text">Garnalternativer</span>
+      </a>
+      <nav class="site-nav" aria-label="Primær navigation">
+        <a href="index.html">Opskrifter</a>
+        <a href="browse.html">Søg i Garn</a>
+        <a href="collections.html">Gemte</a>
+        <a href="submit.html">Indsend</a>
+        <a href="partner.html" class="active">Samarbejde</a>
+        <a href="https://instagram.com/garnalternativer" class="follow-btn" target="_blank" rel="noopener noreferrer">
+          📷 Instagram
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── Hero ───────────────────────────────────────────────── -->
+    <section class="partner-hero">
+      <div class="container">
+        <div class="partner-hero-inner">
+          <p class="partner-eyebrow">For garnproducenter & brands</p>
+          <h1>Samarbejd med Garnalternativer</h1>
+          <p class="partner-lead">
+            Garnalternativer hjælper tusindvis af strikkere med at finde det rigtige garn til deres opskrifter.
+            Vi vil gerne hjælpe dit brand med at komme ud til netop dem.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Tal ────────────────────────────────────────────────── -->
+    <section class="partner-stats">
+      <div class="container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">60+</div>
+            <div class="stat-label">Garn i databasen</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">5</div>
+            <div class="stat-label">Kurerede opskrifter</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Prisniveauer pr. opskrift</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Fokus på strik</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── To måder at samarbejde ─────────────────────────────── -->
+    <section class="section">
+      <div class="container">
+        <h2 class="partner-section-title">Hvad kan vi gøre for dig?</h2>
+
+        <div class="partner-options">
+
+          <!-- Option 1: Tilføj garn -->
+          <div class="partner-option">
+            <div class="partner-option-icon">🧶</div>
+            <div class="partner-option-body">
+              <h3>Få dit garn på listen</h3>
+              <p>
+                Er dit garn ikke i vores database endnu? Vi kurerer vores garnliste grundigt —
+                vi kigger på strikkefasthed, fiber, pris og bæredygtighed. Hvis dit garn passer til
+                vores strikkere, tilføjer vi det gerne.
+              </p>
+              <ul class="partner-option-list">
+                <li>Dit garn vises som alternativ til populære opskrifter</li>
+                <li>Direkte link til din webshop fra hvert garnkort</li>
+                <li>Kategoriseret som budget, mid eller premium</li>
+                <li>Fremhævet med øko-, vegansk- og mulesing-frit-badges</li>
+              </ul>
+              <button class="partner-option-btn" onclick="openForm('yarn')">
+                Ansøg om optagelse →
+              </button>
+            </div>
+          </div>
+
+          <!-- Option 2: Samarbejde -->
+          <div class="partner-option">
+            <div class="partner-option-icon">✍️</div>
+            <div class="partner-option-body">
+              <h3>Samarbejd om en opskrift</h3>
+              <p>
+                Vil du have en strikopskrift udviklet specifikt til dit garn? Vi kan hjælpe med at
+                koble dit garn til en designer eller bygge en opskrift op, der viser dit garns
+                kvaliteter frem.
+              </p>
+              <ul class="partner-option-list">
+                <li>Opskrift skræddersyet til dit garns egenskaber</li>
+                <li>Opskriften publiceres på Garnalternativer med dit garn som original</li>
+                <li>Del på Instagram med tag og omtale</li>
+                <li>Mulighed for sponsored content eller affiliate-aftale</li>
+              </ul>
+              <button class="partner-option-btn" onclick="openForm('collab')">
+                Hør mere om samarbejde →
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Kontaktformular ─────────────────────────────────────── -->
+    <section class="section partner-form-section" id="contactFormSection" style="display:none;">
+      <div class="container">
+        <div class="partner-form-wrap">
+          <h2 id="formTitle">Kom i kontakt</h2>
+          <p id="formSubtitle" class="partner-form-subtitle"></p>
+
+          <form id="partnerForm" class="partner-form" onsubmit="submitPartnerForm(event)">
+            <input type="hidden" id="inquiryType" name="type" value="" />
+
+            <div class="form-row">
+              <div class="pf-group">
+                <label for="pfName">Dit navn *</label>
+                <input type="text" id="pfName" name="name" required placeholder="Jonas Hansen" />
+              </div>
+              <div class="pf-group">
+                <label for="pfEmail">Email *</label>
+                <input type="email" id="pfEmail" name="email" required placeholder="info@ditbrand.dk" />
+              </div>
+            </div>
+
+            <div class="pf-group">
+              <label for="pfBrand">Brand / virksomhed *</label>
+              <input type="text" id="pfBrand" name="brand" required placeholder="fx. Isager, Drops, Sandnes Garn" />
+            </div>
+
+            <div class="pf-group">
+              <label for="pfWebsite">Hjemmeside</label>
+              <input type="url" id="pfWebsite" name="website" placeholder="https://ditbrand.dk" />
+            </div>
+
+            <div class="pf-group" id="yarnField" style="display:none;">
+              <label for="pfYarns">Hvilke garn ønsker du at få tilføjet?</label>
+              <input type="text" id="pfYarns" name="yarns" placeholder="fx. Soft Merino DK, Organic Cotton Sport" />
+            </div>
+
+            <div class="pf-group">
+              <label for="pfMessage">Besked *</label>
+              <textarea id="pfMessage" name="message" required placeholder="Fortæl os lidt om dit brand og hvad du ønsker samarbejdet skal indeholde…" minlength="20"></textarea>
+            </div>
+
+            <div class="pf-group pf-checkbox-group">
+              <label class="pf-checkbox">
+                <input type="checkbox" name="eco_focus" />
+                Vores garn har fokus på bæredygtighed / øko
+              </label>
+              <label class="pf-checkbox">
+                <input type="checkbox" name="affiliate" />
+                Jeg er interesseret i en affiliate-aftale
+              </label>
+            </div>
+
+            <p class="pf-note">* Påkrævet felt. Vi svarer inden for 2–3 hverdage.</p>
+
+            <button type="submit" class="pf-submit">Send henvendelse</button>
+            <div id="pfMessage-result" class="pf-result"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Hvad sker der så ────────────────────────────────────── -->
+    <section class="section partner-process">
+      <div class="container">
+        <h2 class="partner-section-title">Sådan foregår det</h2>
+        <div class="process-steps">
+          <div class="process-step">
+            <div class="process-num">1</div>
+            <h4>Du skriver til os</h4>
+            <p>Udfyld kontaktformularen med dit brand og hvad du ønsker.</p>
+          </div>
+          <div class="process-arrow">→</div>
+          <div class="process-step">
+            <div class="process-num">2</div>
+            <h4>Vi kigger på dit garn</h4>
+            <p>Vi vurderer om garnet passer til vores strikkerfællesskab og databasens krav.</p>
+          </div>
+          <div class="process-arrow">→</div>
+          <div class="process-step">
+            <div class="process-num">3</div>
+            <h4>Vi er i dialog</h4>
+            <p>Vi svarer inden for 2–3 hverdage og aftaler de næste skridt.</p>
+          </div>
+          <div class="process-arrow">→</div>
+          <div class="process-step">
+            <div class="process-num">4</div>
+            <h4>Dit garn er live</h4>
+            <p>Dit garn vises som alternativ til relevante opskrifter — med link til din shop.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ─────────────────────────────────────────── -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-logo">🧶 Garnalternativer</div>
+      <p class="footer-sub">Hjælper strikkere med at finde de bedste garnalternativer siden 2026</p>
+      <div class="footer-social">
+        <p class="footer-social-label">Følg os på Instagram:</p>
+        <a href="https://instagram.com/garnalternativer" class="footer-instagram-link" target="_blank" rel="noopener noreferrer">
+          @garnalternativer
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function openForm(type) {
+      const section  = document.getElementById('contactFormSection');
+      const title    = document.getElementById('formTitle');
+      const subtitle = document.getElementById('formSubtitle');
+      const yarnField = document.getElementById('yarnField');
+      const typeInput = document.getElementById('inquiryType');
+
+      typeInput.value = type;
+
+      if (type === 'yarn') {
+        title.textContent    = 'Ansøg om at få dit garn på listen';
+        subtitle.textContent = 'Udfyld formularen nedenfor, så kigger vi på dit garn og vender tilbage inden for 2–3 hverdage.';
+        yarnField.style.display = '';
+      } else {
+        title.textContent    = 'Fortæl os om dit samarbejdsønske';
+        subtitle.textContent = 'Er du interesseret i en opskrift i dit garn eller et andet samarbejde? Skriv til os.';
+        yarnField.style.display = 'none';
+      }
+
+      section.style.display = '';
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function submitPartnerForm(e) {
+      e.preventDefault();
+      const form   = document.getElementById('partnerForm');
+      const result = document.getElementById('pfMessage-result');
+      const data   = Object.fromEntries(new FormData(form));
+
+      // Store in localStorage so admin can view
+      const key       = 'garnalternativer_partner_inquiries';
+      const stored    = JSON.parse(localStorage.getItem(key) || '[]');
+      stored.push({ ...data, submittedAt: new Date().toISOString(), id: 'pi-' + Date.now() });
+      localStorage.setItem(key, JSON.stringify(stored));
+
+      // Also open mailto as backup
+      const subject  = data.type === 'yarn'
+        ? `Garnoptagelse: ${data.brand}`
+        : `Samarbejde: ${data.brand}`;
+      const body = `Brand: ${data.brand}\nNavn: ${data.name}\nEmail: ${data.email}\nWebsite: ${data.website || '—'}\n\n${data.message}`;
+      window.location.href = `mailto:jonas_faaborg@hotmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+
+      result.className  = 'pf-result pf-result--success';
+      result.textContent = '✓ Tak! Din henvendelse er sendt. Vi vender tilbage inden for 2–3 hverdage.';
+      form.reset();
+    }
+  </script>
+
+</body>
+</html>

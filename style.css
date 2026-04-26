@@ -27,13 +27,13 @@ img { display: block; max-width: 100%; }
   --color-text-muted: var(--ink-2);
   --color-surface: var(--bg-card);
 
-  --accent:       #8b6040;   /* warm terracotta brown */
-  --accent-hover: #6e4c30;
+  --accent:       #7a95a8;   /* dusty slate blue — calm, Scandinavian */
+  --accent-hover: #5d7d92;
 
-  /* New color system — all use the warm terracotta brand accent */
-  --color-brand:      #8b6040;   /* = --accent, terracotta brown */
-  --color-accent-1:   #8b6040;   /* = --accent, terracotta brown */
-  --color-accent-2:   #6e4c30;   /* = --accent-hover */
+  /* New color system — all use the dusty slate-blue accent */
+  --color-brand:      #7a95a8;
+  --color-accent-1:   #7a95a8;
+  --color-accent-2:   #5d7d92;
   --color-success:    #4caf50;   /* green (status only) */
   --color-warning:    #ff9800;   /* orange (status only) */
   --color-error:      #f44336;   /* red (status only) */
