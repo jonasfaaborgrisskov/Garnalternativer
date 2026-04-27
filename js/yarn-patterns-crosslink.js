@@ -41,7 +41,7 @@ function renderYarnWithPatterns(yarnId) {
                 <div class="yarn-pattern-name">${p.name}</div>
                 <div class="yarn-pattern-designer">${p.type} · ${p.designer}</div>
               </div>
-              <button class="yarn-pattern-btn" onclick="showDetail('${p.id}')">Se opskrift →</button>
+              <button class="yarn-pattern-btn" onclick="if(typeof showDetail==='function'){closeYarnDetail();showDetail('${p.id}');}else{window.location.href='index.html?pattern=${p.id}';}">Se opskrift →</button>
             </div>
           `).join('')}
         </div>
@@ -145,10 +145,11 @@ function createYarnDetailContainer() {
 }
 
 // Make yarn cards clickable to show details
+// Handles both .yarn-card (pattern detail page) and .bc-yarn-card (browse page)
 function enhanceYarnCardClick() {
   document.addEventListener('click', (e) => {
-    const yarnCard = e.target.closest('.yarn-card');
-    if (yarnCard && !e.target.closest('a, button, .favorite-btn')) {
+    const yarnCard = e.target.closest('.yarn-card, .bc-yarn-card');
+    if (yarnCard && !e.target.closest('a, button, .favorite-btn, .bc-fav-btn')) {
       const yarnId = yarnCard.getAttribute('data-yarn-id');
       if (yarnId) {
         showYarnDetail(yarnId);

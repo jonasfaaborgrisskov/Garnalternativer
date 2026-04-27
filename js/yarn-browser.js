@@ -56,7 +56,7 @@ function renderBrowserYarnCard(yarn) {
       <div class="bc-yarn-footer">
         ${typeof isFavorited === 'function' ? `
           <button class="bc-fav-btn ${isFav ? 'bc-fav-btn--active' : ''}"
-            onclick="event.stopPropagation(); toggleFavorite('${yarn.id}'); location.reload();"
+            onclick="event.stopPropagation(); (function(btn, id) { toggleFavorite(id); const fav = isFavorited(id); btn.textContent = fav ? '❤️' : '🤍'; btn.classList.toggle('bc-fav-btn--active', fav); btn.setAttribute('aria-label', fav ? 'Fjern fra favoritter' : 'Gem som favorit'); })(this, '${yarn.id}');"
             aria-label="${isFav ? 'Fjern fra favoritter' : 'Gem som favorit'}">
             ${isFav ? '❤️' : '🤍'}
           </button>` : '<span></span>'}
