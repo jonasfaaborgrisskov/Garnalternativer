@@ -4398,19 +4398,19 @@ const INSTAGRAM_FEATURES = [
   {
     patternId: 'scarlet-sweater',
     instagramUrl: 'https://instagram.com/garnalternativer',
-    caption: 'Stunning Scarlet Sweater in Isager Soft 🧶',
-    imageAlt: 'Scarlet Sweater knitted in blue',
+    caption: 'Smuk Scarlet Sweater i Isager Soft 🧶',
+    imageAlt: 'Scarlet Sweater strikket i blåt',
   },
   {
     patternId: 'sophie-scarf',
     instagramUrl: 'https://instagram.com/garnalternativer',
-    caption: 'Cozy Sophie Scarf — perfect for spring mornings 🌸',
-    imageAlt: 'Sophie Scarf in soft cashmere',
+    caption: 'Koselig Sophie Scarf — perfekt til forårsmorgener 🌸',
+    imageAlt: 'Sophie Scarf i blødt cashmere',
   },
   {
     patternId: 'ivy-cardigan',
     instagramUrl: 'https://instagram.com/garnalternativer',
-    caption: 'Ivy Cardigan in alpaca blend — so soft! 🦙',
-    imageAlt: 'Ivy Cardigan detail shot',
+    caption: 'Ivy Cardigan i alpakafiber — så blød! 🦙',
+    imageAlt: 'Ivy Cardigan detaljesnapshot',
   },
 ];
