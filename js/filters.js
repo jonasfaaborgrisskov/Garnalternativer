@@ -9,7 +9,7 @@ function getDefaultFilters() {
     fiber: [],                 // array of fiber names
     difficulty: [],            // array of 'Begynder', 'Intermediate', 'Advanced'
     ecoOnly: false,            // boolean
-    seasonality: null,         // null or 'spring', 'summer', 'fall', 'winter'
+    seasonality: [],           // array of 'spring', 'summer', 'fall', 'winter'
     searchQuery: '',           // text search
     maxBudget: null,           // null or number - max project cost in DKK
   };
@@ -51,12 +51,11 @@ function applyFilters(patterns, filterState) {
       return false;
     }
 
-    // Seasonality filter
-    if (filterState.seasonality) {
+    // Seasonality filter — OR logic: pattern matches if any of its seasons is selected
+    if (filterState.seasonality.length > 0) {
       const patternSeasons = pattern.seasonality || [];
-      if (!patternSeasons.includes(filterState.seasonality)) {
-        return false;
-      }
+      const hasMatch = filterState.seasonality.some(s => patternSeasons.includes(s));
+      if (!hasMatch) return false;
     }
 
     // Budget filter - check if pattern cost exceeds max budget
@@ -121,12 +120,13 @@ function getFilterOptions() {
 function formatFilterLabel(value, type) {
   const labels = {
     'Begynder': 'Begynder',
-    'Intermediate': 'Intermediate',
-    'Advanced': 'Advanced',
-    'sport': 'Sport',
-    'DK': 'DK',
-    'worsted': 'Worsted',
-    'bulky': 'Bulky',
+    'Intermediate': 'Mellemniveau',
+    'Advanced': 'Avanceret',
+    'fingering': 'Fingering / 2-ply',
+    'sport': 'Sport / 4-ply',
+    'DK': 'DK / Double Knit',
+    'worsted': 'Worsted / Aran',
+    'bulky': 'Bulky / Chunky',
     'spring': '🌸 Forår',
     'summer': '☀️ Sommer',
     'fall': '🍂 Efterår',

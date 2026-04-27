@@ -161,7 +161,11 @@ function initializeFilters() {
     `;
     seasonalityContainer.appendChild(item);
     item.querySelector('input').addEventListener('change', e => {
-      filterState.seasonality = e.target.checked ? s : null;
+      if (e.target.checked) {
+        if (!filterState.seasonality.includes(s)) filterState.seasonality.push(s);
+      } else {
+        filterState.seasonality = filterState.seasonality.filter(x => x !== s);
+      }
       applyAllFilters();
     });
   });
