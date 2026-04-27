@@ -26,6 +26,9 @@ img { display: block; max-width: 100%; }
   --color-text: var(--ink);
   --color-text-muted: var(--ink-2);
   --color-surface: var(--bg-card);
+  /* Background/border aliases (used in older css files) */
+  --color-bg:     var(--bg);
+  --color-border: var(--border);
 
   --accent:       #7a95a8;   /* dusty slate blue — calm, Scandinavian */
   --accent-hover: #5d7d92;

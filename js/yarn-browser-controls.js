@@ -106,19 +106,6 @@ function initYarnBrowserControls() {
       renderYarnBrowser();
     });
   }
-  document.querySelectorAll('.yarn-fiber-checkbox').forEach(checkbox => {
-    checkbox.addEventListener('change', e => {
-      const fiber = e.target.value;
-      if (e.target.checked) {
-        if (!yarnBrowserState.filterFiber.includes(fiber)) {
-          yarnBrowserState.filterFiber.push(fiber);
-        }
-      } else {
-        yarnBrowserState.filterFiber = yarnBrowserState.filterFiber.filter(f => f !== fiber);
-      }
-      renderYarnBrowser();
-    });
-  });
   if (resetBtn) {
     resetBtn.addEventListener('click', () => {
       yarnBrowserState = { searchQuery: '', sortBy: 'name', filterWeight: '', filterFiber: [], filterEco: false };

@@ -122,6 +122,18 @@
   color: var(--color-brand);
 }
 
+/* ─── Empty tier state ─────────────────────────────────────────────────── */
+
+.comparison-item--empty {
+  opacity: 0.4;
+  filter: grayscale(0.5);
+}
+
+.comparison-item--empty .comparison-amount {
+  font-size: 1.4rem;
+  color: var(--color-text-muted);
+}
+
 /* ─── Budget Filter ────────────────────────────────────────────────────── */
 
 .filter-budget {

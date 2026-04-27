@@ -225,6 +225,7 @@ function renderPatternGrid(patterns) {
     const yarn = findYarn(p.originalYarn_id);
     const w = WEIGHTS[yarn.weight];
     const tierCount = Object.values(p.tiers).flat().length;
+    const activeTiers = Object.values(p.tiers).filter(t => t && t.length > 0).length;
     const isFav = isFavorited(p.id);
     const materials = p.materials?.join(', ') || '';
     const hoursText = p.estimatedHours ? ` · ${p.estimatedHours}h` : '';
@@ -249,7 +250,7 @@ function renderPatternGrid(patterns) {
             <span class="pill pill-needle">Pind ${yarn.gauge.needle_mm} mm</span>
           </div>
           <div class="pattern-card-footer">
-            <span class="alt-count">${tierCount} alternativer i 3 prisniveauer</span>
+            <span class="alt-count">${tierCount} ${tierCount === 1 ? 'alternativ' : 'alternativer'} i ${activeTiers} prisniveauer</span>
             <span class="card-arrow">→</span>
           </div>
         </div>

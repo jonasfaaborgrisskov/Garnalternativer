@@ -107,25 +107,45 @@ function renderTierComparison(patternId) {
   const comparison = getTierComparison(patternId);
   if (!comparison) return '';
 
+  const pattern = findPattern(patternId);
+  const hasBudget  = pattern && pattern.tiers.budget  && pattern.tiers.budget.length  > 0;
+  const hasPremium = pattern && pattern.tiers.premium && pattern.tiers.premium.length > 0;
+
+  const budgetHtml = hasBudget
+    ? `<div class="comparison-item budget">
+         <div class="comparison-label">Budget</div>
+         <div class="comparison-amount">${comparison.budget} kr.</div>
+         <div class="comparison-percent">-${comparison.savings}%</div>
+       </div>`
+    : `<div class="comparison-item budget comparison-item--empty">
+         <div class="comparison-label">Budget</div>
+         <div class="comparison-amount">–</div>
+         <div class="comparison-percent">ingen</div>
+       </div>`;
+
+  const premiumHtml = hasPremium
+    ? `<div class="comparison-item premium">
+         <div class="comparison-label">Premium</div>
+         <div class="comparison-amount">${comparison.premium} kr.</div>
+         <div class="comparison-percent">+${comparison.premiumUpcharge}%</div>
+       </div>`
+    : `<div class="comparison-item premium comparison-item--empty">
+         <div class="comparison-label">Premium</div>
+         <div class="comparison-amount">–</div>
+         <div class="comparison-percent">ingen</div>
+       </div>`;
+
   return `
     <div class="tier-comparison">
       <h4>Prissammenligning</h4>
       <div class="comparison-bars">
-        <div class="comparison-item budget">
-          <div class="comparison-label">Budget</div>
-          <div class="comparison-amount">${comparison.budget} kr.</div>
-          <div class="comparison-percent">-${comparison.savings}%</div>
-        </div>
+        ${budgetHtml}
         <div class="comparison-item original">
           <div class="comparison-label">Original</div>
           <div class="comparison-amount">${comparison.original} kr.</div>
           <div class="comparison-percent">baseline</div>
         </div>
-        <div class="comparison-item premium">
-          <div class="comparison-label">Premium</div>
-          <div class="comparison-amount">${comparison.premium} kr.</div>
-          <div class="comparison-percent">+${comparison.premiumUpcharge}%</div>
-        </div>
+        ${premiumHtml}
       </div>
     </div>
   `;
