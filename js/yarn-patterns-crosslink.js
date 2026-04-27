@@ -79,7 +79,7 @@ function renderYarnWithPatterns(yarnId) {
               </div>
               <div class="spec-item">
                 <div class="spec-label">Strikkefasthed</div>
-                <div class="spec-value">${yarn.gauge.stitches} m/10 cm</div>
+                <div class="spec-value">${yarn.gauge.stitches != null ? yarn.gauge.stitches + ' m/10 cm' : '–'}</div>
               </div>
               <div class="spec-item">
                 <div class="spec-label">Pindestørrelse</div>

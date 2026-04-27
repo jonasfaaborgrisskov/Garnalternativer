@@ -46,6 +46,7 @@ function populatePatternTiers() {
       .filter(y => {
         if (y.id === origYarn.id) return false;
         if (y.weight !== origYarn.weight) return false;
+        if (y.gauge.stitches == null || origYarn.gauge.stitches == null) return false;
         if (Math.abs(y.gauge.stitches - origYarn.gauge.stitches) > 2) return false;
         // Halsnært: no mohair
         if (isHalsnært && y.fiber.some(f => f.name.toLowerCase().includes('mohair'))) return false;

@@ -39,7 +39,7 @@ function renderBrowserYarnCard(yarn) {
         </div>
         <div class="bc-spec">
           <span class="bc-spec-label">Masker/10 cm</span>
-          <span class="bc-spec-value">${yarn.gauge.stitches}</span>
+          <span class="bc-spec-value">${yarn.gauge.stitches != null ? yarn.gauge.stitches : '–'}</span>
         </div>
         <div class="bc-spec">
           <span class="bc-spec-label">Pind</span>
