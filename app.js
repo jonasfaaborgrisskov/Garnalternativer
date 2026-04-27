@@ -703,27 +703,25 @@ function shareOnInstagram(patternId) {
   const pattern = PATTERNS.find(p => p.id === patternId);
   const baseUrl = window.location.origin + window.location.pathname;
   const url = `${baseUrl}?pattern=${patternId}`;
-  const text = `Check out ${pattern.name} on Garnalternativer! 🧶\n\n${url}`;
+  const text = `Se ${pattern.name} på Garnalternativer! 🧶\n\n${url}`;
 
-  // Copy to clipboard
+  // Copy to clipboard then open Instagram
   navigator.clipboard.writeText(text).then(() => {
-    alert('Link copied! Paste it in your Instagram bio, story, or DM.');
+    alert('Link kopieret! Indsæt det i din Instagram bio, story eller DM.');
     window.open('https://www.instagram.com/', '_blank');
-  }).catch(err => {
-    console.error('Failed to copy:', err);
-    alert('Could not copy link. Please try again.');
+  }).catch(() => {
+    alert('Kunne ikke kopiere link. Prøv igen.');
   });
 }
 
 function copyShareLink() {
   if (!currentPattern) return;
-  const baseUrl = window.location.origin + window.location.pathname;
-  const url = `${baseUrl}?pattern=${currentPattern.id}`;
+  // Use current URL directly — URL routing keeps it in sync
+  const url = window.location.href;
 
   navigator.clipboard.writeText(url).then(() => {
-    alert('Link copied to clipboard!');
-  }).catch(err => {
-    console.error('Failed to copy:', err);
-    alert('Could not copy link. Please try again.');
+    alert('Link kopieret til udklipsholder!');
+  }).catch(() => {
+    alert('Kunne ikke kopiere link. Prøv igen.');
   });
 }
