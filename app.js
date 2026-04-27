@@ -469,7 +469,7 @@ function renderYarnCard(yarn, origYarn, pattern, tierId) {
   const why       = buildWhy(yarn, origYarn, tierId, gaugeDiff);
 
   return `
-    <div class="yarn-card">
+    <div class="yarn-card" data-yarn-id="${yarn.id}">
       <div class="yarn-card-top">
         <div>
           <div class="yarn-card-name">${yarn.name}</div>
