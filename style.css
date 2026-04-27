@@ -1088,6 +1088,19 @@ body {
 .buy-btn:active {
   transform: translateY(0);
 }
+.buy-btn--unavailable {
+  background: transparent;
+  color: var(--ink-4);
+  border-color: var(--border);
+  cursor: default;
+  opacity: 0.7;
+}
+.buy-btn--unavailable:hover {
+  background: transparent;
+  border-color: var(--border);
+  transform: none;
+  box-shadow: none;
+}
 
 /* ── Instagram Integration ───────────────────────────────────────── */
 .follow-btn {

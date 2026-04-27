@@ -547,9 +547,9 @@ function renderYarnCard(yarn, origYarn, pattern, tierId) {
         <span class="why-text">${why}</span>
       </div>
 
-      <a class="buy-btn" href="${yarn.buyUrl}" target="_blank" rel="noopener">
-        Køb ${yarn.name} →
-      </a>
+      ${yarn.buyUrl
+        ? `<a class="buy-btn" href="${yarn.buyUrl}" target="_blank" rel="noopener noreferrer">Køb ${yarn.name} →</a>`
+        : `<span class="buy-btn buy-btn--unavailable">Køb-link kommer snart</span>`}
     </div>
   `;
 }
