@@ -4388,7 +4388,7 @@ const AESTHETICS = {
     label: 'Naturlig',
     emoji: '🌿',
     color: '#d4a574',
-    patterns: [],
+    patterns: ['ivy-sweater', 'ivy-cardigan', 'sophie-scarf'],
     description: 'Naturfibre, økologisk vibe, bæredygtighed',
   },
 };

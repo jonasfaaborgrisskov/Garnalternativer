@@ -397,7 +397,7 @@ function renderPatternHeader(pattern, origYarn, secYarn) {
 
     <div class="tier-intro">
       <p>Herunder finder du alternativer til <em>${origYarn.name}</em> i tre prisniveauer.
-      Alle alternativer er indenfor samme garnvægt og max ±2 maskers afvigelse i strikkefasthed.</p>
+      Strikkefasthed og pindestørrelse er angivet på hvert garn — husk altid at strikke en prøvelap.</p>
     </div>
   `;
 }
@@ -592,26 +592,38 @@ function buildWhy(yarn, origYarn, tierId, gaugeDiff) {
   if (shared.length === origFibers.length && shared.length === newFibers.length) {
     parts.push('Identisk fiberindhold — du får samme egenskaber som originalen.');
   } else {
-    // Specific fiber swaps
-    const hasAlpaka   = newFibers.some(f => f.includes('alpaka'));
-    const hasMerino   = newFibers.some(f => f.includes('merino'));
-    const hasMohair   = newFibers.some(f => f.includes('mohair'));
-    const hasBomuld   = newFibers.some(f => f.includes('bomuld'));
-    const hasYak      = newFibers.some(f => f.includes('yak'));
-    const origMohair  = origFibers.some(f => f.includes('mohair'));
-    const origAlpaka  = origFibers.some(f => f.includes('alpaka'));
+    // Specific fiber swaps — check both Danish (alpaka/bomuld) and English (alpaca/cotton) spellings
+    const isAlpaka   = f => f.includes('alpaka') || f.includes('alpaca');
+    const isMerino   = f => f.includes('merino');
+    const isMohair   = f => f.includes('mohair');
+    const isBomuld   = f => f.includes('bomuld') || f.includes('cotton');
+    const isSilke    = f => f.includes('silke')  || f.includes('silk');
+    const isCashmere = f => f.includes('cashmere') || f.includes('kashmir');
 
-    if (hasMerino && !origFibers.some(f => f.includes('merino'))) {
+    const hasAlpaka   = newFibers.some(isAlpaka);
+    const hasMerino   = newFibers.some(isMerino);
+    const hasMohair   = newFibers.some(isMohair);
+    const hasBomuld   = newFibers.some(isBomuld);
+    const hasYak      = newFibers.some(f => f.includes('yak'));
+    const hasCashmere = newFibers.some(isCashmere);
+    const origMohair  = origFibers.some(isMohair);
+    const origAlpaka  = origFibers.some(isAlpaka);
+    const origCashmere = origFibers.some(isCashmere);
+
+    if (hasCashmere && !origCashmere) {
+      parts.push('Cashmere er ekstremt blødt og luksurøst — blødere end merino og draper smukt.');
+    }
+    if (hasMerino && !origFibers.some(isMerino)) {
       parts.push('Merino giver mere elasticitet end originalens fiber — ribber og strukturmønstre vil sidde skarpere.');
     }
     if (hasAlpaka && !origAlpaka) {
-      parts.push('Alpaka giver ekstra blødhed og drape, men lav elasticitet — undgå tætte ribber.');
+      parts.push('Alpaka giver ekstra blødhed og drape — blødt mod huden, men lav elasticitet (undgå tætte ribber).');
     }
     if (hasMohair && !origMohair) {
       parts.push('Mohair-fibre skaber en karakteristisk halo-effekt der løfter garnets visuelle udtryk.');
     }
-    if (hasBomuld) {
-      parts.push('Bomuld har ingen elasticitet — perfekt til sommerstrik, men undgå ribber og farvespil.');
+    if (hasBomuld && !origFibers.some(isBomuld)) {
+      parts.push('Bomuld har ingen elasticitet — perfekt til sommerstrik og luftige projekter.');
     }
     if (hasYak) {
       parts.push('Yak-fiber er ekstraordinært blødt og varmt — en sjælden luksus der overgår selv cashmere i blødhed.');

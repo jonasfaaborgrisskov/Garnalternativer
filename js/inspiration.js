@@ -26,10 +26,10 @@ function filterByAesthetic(aestheticId) {
   const filtered = PATTERNS.filter(p => aesthetic.patterns.includes(p.id));
   renderPatternGrid(filtered);
 
-  // Scroll to patterns
-  const patternsSection = document.getElementById('patternSection');
-  if (patternsSection) {
-    patternsSection.scrollIntoView({ behavior: 'smooth' });
+  // Scroll to the pattern grid (below filters), not the top of the page
+  const patternGrid = document.getElementById('patternGrid');
+  if (patternGrid) {
+    patternGrid.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 }
 
