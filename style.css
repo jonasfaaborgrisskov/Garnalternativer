@@ -18,6 +18,7 @@ img { display: block; max-width: 100%; }
   --border-light: #ede9e1;
 
   --ink:          #1c1a17;
+  --ink-1:        #2e2a24;   /* between --ink and --ink-2, used in filter labels */
   --ink-2:        #4a453e;
   --ink-3:        #7a746c;
   --ink-4:        #a09890;
