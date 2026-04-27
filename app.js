@@ -18,8 +18,22 @@ document.addEventListener('DOMContentLoaded', () => {
   if (patternParam) {
     const pattern = PATTERNS.find(p => p.id === patternParam);
     if (pattern) {
-      setTimeout(() => showDetail(patternParam), 100);
+      // Use replaceState to set the correct state for this initial URL
+      history.replaceState({ pattern: patternParam }, '', '?pattern=' + patternParam);
+      setTimeout(() => showDetail(patternParam, false), 100);
     }
+  } else {
+    // Ensure the initial list view has a state entry for back-navigation
+    history.replaceState({}, '', window.location.pathname + window.location.search);
+  }
+});
+
+// Handle browser back/forward buttons
+window.addEventListener('popstate', (e) => {
+  if (e.state && e.state.pattern) {
+    showDetail(e.state.pattern, false);
+  } else {
+    showPatternList(false);
   }
 });
 
@@ -266,7 +280,7 @@ function renderPatternGrid(patterns) {
 }
 
 // ─── Pattern Detail ───────────────────────────────────────────────
-function showDetail(patternId) {
+function showDetail(patternId, pushToHistory = true) {
   currentPattern = PATTERNS.find(p => p.id === patternId);
   const origYarn = findYarn(currentPattern.originalYarn_id);
   const secYarn  = currentPattern.secondaryYarn_id ? findYarn(currentPattern.secondaryYarn_id) : null;
@@ -283,14 +297,22 @@ function showDetail(patternId) {
     <div id="reviewsSection-${currentPattern.id}"></div>
   `;
 
+  // Update URL so users can share/bookmark this pattern
+  if (pushToHistory) {
+    history.pushState({ pattern: patternId }, '', '?pattern=' + patternId);
+  }
+
   // Render reviews after DOM is ready
   setTimeout(() => renderReviewsSection(currentPattern.id), 100);
 }
 
-function showPatternList() {
+function showPatternList(pushToHistory = true) {
   document.getElementById('patternSection').style.display = '';
   document.getElementById('detailSection').style.display = 'none';
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  if (pushToHistory) {
+    history.pushState({}, '', window.location.pathname);
+  }
 }
 
 // ─── Pattern Header ───────────────────────────────────────────────
