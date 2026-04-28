@@ -76,6 +76,23 @@
             </select>
           </div>
 
+          <!-- Price Filter -->
+          <div class="control-group">
+            <label for="yarnFilterPrice" class="control-label">Max pris/50g (kr):</label>
+            <input type="number" id="yarnFilterPrice" class="control-input control-input--narrow" placeholder="f.eks. 100" min="0" />
+          </div>
+
+          <!-- Tier Filter -->
+          <div class="control-group">
+            <label for="yarnFilterTier" class="control-label">Prisniveau:</label>
+            <select id="yarnFilterTier" class="control-select">
+              <option value="">Alle niveauer</option>
+              <option value="budget">Budget (&lt;50 kr)</option>
+              <option value="mid">Mid (50–150 kr)</option>
+              <option value="premium">Premium (&gt;150 kr)</option>
+            </select>
+          </div>
+
           <!-- Eco Filter -->
           <div class="control-group control-checkbox">
             <input type="checkbox" id="yarnFilterEco" class="control-checkbox-input" />
@@ -91,6 +108,9 @@
           <div class="fiber-filter-label">Fiber:</div>
           <div class="fiber-filter-checkboxes" id="yarnFiberFilters"></div>
         </div>
+
+        <!-- Result count -->
+        <div class="yarn-result-count" id="yarnResultCount" style="margin-top:0.75rem; font-size:0.85rem; color:var(--ink-3);"></div>
       </div>
     </section>
 

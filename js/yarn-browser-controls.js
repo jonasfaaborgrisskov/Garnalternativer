@@ -19,7 +19,9 @@ let yarnBrowserState = {
   sortBy: 'name',
   filterWeight: '',
   filterFiber: [],
-  filterEco: false
+  filterEco: false,
+  filterMaxPrice: null,
+  filterTier: '',
 };
 
 function buildFiberFilters() {
@@ -80,6 +82,8 @@ function initYarnBrowserControls() {
   const sortSelect   = document.getElementById('yarnSortSelect');
   const weightSelect = document.getElementById('yarnFilterWeight');
   const ecoCheckbox  = document.getElementById('yarnFilterEco');
+  const priceInput   = document.getElementById('yarnFilterPrice');
+  const tierSelect   = document.getElementById('yarnFilterTier');
   const resetBtn     = document.getElementById('yarnResetFilters');
 
   if (searchInput) {
@@ -106,13 +110,28 @@ function initYarnBrowserControls() {
       renderYarnBrowser();
     });
   }
+  if (priceInput) {
+    priceInput.addEventListener('input', e => {
+      const v = parseFloat(e.target.value);
+      yarnBrowserState.filterMaxPrice = isNaN(v) ? null : v;
+      renderYarnBrowser();
+    });
+  }
+  if (tierSelect) {
+    tierSelect.addEventListener('change', e => {
+      yarnBrowserState.filterTier = e.target.value || '';
+      renderYarnBrowser();
+    });
+  }
   if (resetBtn) {
     resetBtn.addEventListener('click', () => {
-      yarnBrowserState = { searchQuery: '', sortBy: 'name', filterWeight: '', filterFiber: [], filterEco: false };
+      yarnBrowserState = { searchQuery: '', sortBy: 'name', filterWeight: '', filterFiber: [], filterEco: false, filterMaxPrice: null, filterTier: '' };
       if (searchInput)  searchInput.value  = '';
       if (sortSelect)   sortSelect.value   = 'name';
       if (weightSelect) weightSelect.value = '';
       if (ecoCheckbox)  ecoCheckbox.checked = false;
+      if (priceInput)   priceInput.value   = '';
+      if (tierSelect)   tierSelect.value   = '';
       document.querySelectorAll('#yarnFiberFilters .yarn-fiber-checkbox').forEach(cb => cb.checked = false);
       renderYarnBrowser();
     });
@@ -152,24 +171,35 @@ function filterAndSortAllYarns() {
   if (yarnBrowserState.filterEco) {
     filtered = filtered.filter(y => y.eco === true);
   }
+  if (yarnBrowserState.filterMaxPrice != null) {
+    filtered = filtered.filter(y => y.price_dkk_50g <= yarnBrowserState.filterMaxPrice);
+  }
+  if (yarnBrowserState.filterTier) {
+    filtered = filtered.filter(y => y.tier === yarnBrowserState.filterTier);
+  }
 
-  const weightOrder = { fingering: 1, sport: 2, DK: 3, worsted: 4, bulky: 5 };
+  const weightOrder = { lace: 0, fingering: 1, sport: 2, DK: 3, worsted: 4, bulky: 5, superbulky: 6 };
   filtered.sort((a, b) => {
     switch (yarnBrowserState.sortBy) {
       case 'price':      return a.price_dkk_50g - b.price_dkk_50g;
       case 'price-desc': return b.price_dkk_50g - a.price_dkk_50g;
       case 'weight':     return (weightOrder[a.weight] || 99) - (weightOrder[b.weight] || 99);
-      default:           return a.name.localeCompare(b.name);
+      default:           return a.name.localeCompare(b.name, 'da');
     }
   });
   return filtered;
 }
 
 function renderYarnBrowser() {
-  const container = document.getElementById('yarnBrowserContainer');
+  const container   = document.getElementById('yarnBrowserContainer');
+  const countEl     = document.getElementById('yarnResultCount');
   if (!container) return;
 
   const yarns = filterAndSortAllYarns();
+
+  if (countEl) {
+    countEl.textContent = `${yarns.length} garn ud af ${YARNS.length} i alt`;
+  }
 
   if (yarns.length === 0) {
     container.innerHTML = `
@@ -183,11 +213,13 @@ function renderYarnBrowser() {
   // Group by weight
   const byWeight = {};
   const weightLabels = {
-    fingering: 'Fingering / 2-ply',
-    sport:     'Sport / 4-ply',
-    DK:        'DK / Double Knit',
-    worsted:   'Worsted / Aran',
-    bulky:     'Bulky / Chunky',
+    lace:       'Lace / 0-ply',
+    fingering:  'Fingering / 2-ply',
+    sport:      'Sport / 4-ply',
+    DK:         'DK / Double Knit',
+    worsted:    'Worsted / Aran',
+    bulky:      'Bulky / Chunky',
+    superbulky: 'Super Bulky',
   };
 
   yarns.forEach(yarn => {
@@ -196,7 +228,7 @@ function renderYarnBrowser() {
     byWeight[w].push(yarn);
   });
 
-  const weightOrder = ['fingering', 'sport', 'DK', 'worsted', 'bulky'];
+  const weightOrder = ['lace', 'fingering', 'sport', 'DK', 'worsted', 'bulky', 'superbulky'];
   const keys = [...weightOrder.filter(k => byWeight[k]), ...Object.keys(byWeight).filter(k => !weightOrder.includes(k))];
 
   container.innerHTML = keys.map(weight => {

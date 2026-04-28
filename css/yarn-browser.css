@@ -303,6 +303,10 @@
   box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.1);
 }
 
+.control-input--narrow {
+  width: 90px;
+}
+
 .control-checkbox {
   display: flex;
   align-items: center;

@@ -44,7 +44,10 @@ window.addEventListener('popstate', (e) => {
 // 2. Gauge preference: exact match > ±1 > ±2 > reject (>±2 never used)
 // 3. Halsnært strik (tørklæde/sjal/halskrave): exclude mohair
 // 4. Mid tier: similar price (±25%) with different fiber — original always included
+// 5. Manually curated entries always stay at the top; auto-matches are appended
 //
+const MAX_PER_TIER = 12; // max alternatives shown per tier (manual + auto)
+
 function populatePatternTiers() {
   const HALSNÆRT_TYPES = ['tørklæde', 'halstørklæde', 'halskrave', 'sjal'];
 
@@ -79,28 +82,63 @@ function populatePatternTiers() {
                         && y.price_dkk_50g <= origPrice * 1.25;
     const isPremium = y => y.price_dkk_50g > origPrice * 1.10;        // >10% pricier
 
-    if (!pattern.tiers.budget || pattern.tiers.budget.length === 0) {
-      pattern.tiers.budget = candidates
-        .filter(({yarn}) => isBudget(yarn))
-        .slice(0, 3)
+    // Save manual curation counts before augmenting (used by renderTierSections)
+    pattern._curatedCount = {
+      budget:  (pattern.tiers.budget  || []).length,
+      mid:     (pattern.tiers.mid     || []).length,
+      premium: (pattern.tiers.premium || []).length,
+    };
+
+    // All manually curated IDs across all tiers — auto-matches must not duplicate these
+    const allManual = new Set([
+      ...(pattern.tiers.budget  || []),
+      ...(pattern.tiers.mid     || []),
+      ...(pattern.tiers.premium || []),
+      origYarn.id,
+    ]);
+    // Track auto-assigned IDs to prevent cross-tier duplicates
+    const autoAssigned = new Set();
+
+    // ── Budget tier ──
+    {
+      const manual = pattern.tiers.budget || [];
+      const slots  = Math.max(0, MAX_PER_TIER - manual.length);
+      const auto   = candidates
+        .filter(({yarn}) => isBudget(yarn) && !allManual.has(yarn.id) && !autoAssigned.has(yarn.id))
+        .slice(0, slots)
         .map(({yarn}) => yarn.id);
+      auto.forEach(id => autoAssigned.add(id));
+      pattern.tiers.budget = [...manual, ...auto];
     }
 
-    if (!pattern.tiers.mid || pattern.tiers.mid.length === 0) {
-      const midAlts = candidates
-        .filter(({yarn}) => isMid(yarn))
-        .slice(0, 3)
+    // ── Mid tier ──
+    {
+      const manual = pattern.tiers.mid || [];
+      const slots  = Math.max(0, MAX_PER_TIER - manual.length);
+      const auto   = candidates
+        .filter(({yarn}) => isMid(yarn) && !allManual.has(yarn.id) && !autoAssigned.has(yarn.id))
+        .slice(0, slots)
         .map(({yarn}) => yarn.id);
-      // Always include original as the baseline mid option
-      pattern.tiers.mid = [origYarn.id, ...midAlts.filter(id => id !== origYarn.id)].slice(0, 3);
+      auto.forEach(id => autoAssigned.add(id));
+      // If mid was completely empty, prepend original as curated baseline
+      if (manual.length === 0) {
+        pattern.tiers.mid = [origYarn.id, ...auto];
+        pattern._curatedCount.mid = 1; // original counts as curated
+      } else {
+        pattern.tiers.mid = [...manual, ...auto];
+      }
     }
 
-    if (!pattern.tiers.premium || pattern.tiers.premium.length === 0) {
-      pattern.tiers.premium = candidates
-        .filter(({yarn}) => isPremium(yarn))
+    // ── Premium tier ──
+    {
+      const manual = pattern.tiers.premium || [];
+      const slots  = Math.max(0, MAX_PER_TIER - manual.length);
+      const auto   = candidates
+        .filter(({yarn}) => isPremium(yarn) && !allManual.has(yarn.id) && !autoAssigned.has(yarn.id))
         .sort((a, b) => b.yarn.price_dkk_50g - a.yarn.price_dkk_50g) // priciest first
-        .slice(0, 3)
+        .slice(0, slots)
         .map(({yarn}) => yarn.id);
+      pattern.tiers.premium = [...manual, ...auto];
     }
   });
 }
@@ -432,9 +470,10 @@ function renderPatternHeader(pattern, origYarn, secYarn) {
 // ─── Tier Sections ────────────────────────────────────────────────
 function renderTierSections(pattern, origYarn) {
   return ['mid', 'budget', 'premium'].map(tierId => {
-    const tier = TIERS[tierId];
+    const tier    = TIERS[tierId];
     const yarnIds = pattern.tiers[tierId] || [];
-    const yarns = yarnIds.map(findYarn).filter(Boolean);
+    const yarns   = yarnIds.map(findYarn).filter(Boolean);
+    const curatedN = (pattern._curatedCount && pattern._curatedCount[tierId]) || 0;
 
     if (yarns.length === 0) {
       return `
@@ -450,7 +489,20 @@ function renderTierSections(pattern, origYarn) {
         </section>`;
     }
 
-    const cards = yarns.map(yarn => renderYarnCard(yarn, origYarn, pattern, tierId)).join('');
+    // Split into curated + auto sections
+    const curatedYarns = yarns.slice(0, curatedN);
+    const autoYarns    = yarns.slice(curatedN);
+
+    let cardsHtml = '';
+    if (curatedYarns.length > 0) {
+      cardsHtml += `<div class="yarn-cards">${curatedYarns.map(y => renderYarnCard(y, origYarn, pattern, tierId)).join('')}</div>`;
+    }
+    if (autoYarns.length > 0) {
+      const divider = curatedYarns.length > 0
+        ? `<div class="tier-auto-divider"><span>Flere matchende alternativer fra databasen</span></div>`
+        : '';
+      cardsHtml += `${divider}<div class="yarn-cards yarn-cards--auto">${autoYarns.map(y => renderYarnCard(y, origYarn, pattern, tierId)).join('')}</div>`;
+    }
 
     return `
       <section class="tier-section">
@@ -458,10 +510,10 @@ function renderTierSections(pattern, origYarn) {
           <span class="tier-emoji">${tier.emoji}</span>
           <div>
             <div class="tier-label" style="color:${tier.color}">${tier.label}</div>
-            <div class="tier-sublabel">${tier.sublabel}</div>
+            <div class="tier-sublabel">${tier.sublabel} · ${yarns.length} alternativer</div>
           </div>
         </div>
-        <div class="yarn-cards">${cards}</div>
+        ${cardsHtml}
       </section>`;
   }).join('');
 }

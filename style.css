@@ -688,6 +688,34 @@ body {
   .yarn-cards { grid-template-columns: 1fr; }
 }
 
+/* Auto-matched extras — subtle visual distinction */
+.yarn-cards--auto .yarn-card {
+  border-color: var(--border-light);
+  opacity: 0.92;
+}
+
+/* Divider between curated and auto-matched alternatives */
+.tier-auto-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: var(--sp-6) 0 var(--sp-4);
+  color: var(--ink-4);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.tier-auto-divider::before,
+.tier-auto-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border-light);
+}
+.tier-auto-divider span {
+  white-space: nowrap;
+}
+
 /* ── Yarn Card ──────────────────────────────────────────────────── */
 .yarn-card {
   background: var(--bg-card);
