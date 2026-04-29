@@ -111,3 +111,25 @@ git push   # → GitHub Pages opdaterer automatisk (~2 min)
 - **Dette repo er fuldstændigt separat fra ProductManagement og GenerateOffer**
 - Pull requests her går KUN til `jonasfaaborgrisskov/Garnalternativer`
 - Branch: `master`
+
+---
+
+## Session-workflow (vigtigt)
+
+**Claude-sessioner i dette repo skal køre direkte i `master` — ikke i en isoleret git-worktree.**
+
+Hvorfor:
+- Den lokale udviklingsserver (se `.claude/launch.json`) serverer fra repoets rod (`C:\Users\jonas\github\Garnalternativer`), ikke fra worktrees.
+- Hvis sessionen havner i `.claude/worktrees/<branch>/`, ser brugeren IKKE ændringerne i sin browser — de er isoleret på en separat branch.
+- Brugerens deploy-flow er simpelt: redigér master lokalt → `git push` → GitHub Pages opdaterer.
+
+Hvis du som AI-agent opdager at sessionen er startet i en worktree (CWD indeholder `.claude/worktrees/`):
+1. **Stop og fortæl brugeren** før du laver ændringer.
+2. Tilbyd at flytte ændringerne ind i master direkte (kopier fil, eller `git merge`).
+3. Brug `ExitWorktree` med `action: "remove"` hvis worktreen blev oprettet i samme session — ellers manuel oprydning efter sessionen via:
+   ```bash
+   git -C /c/Users/jonas/github/Garnalternativer worktree remove --force .claude/worktrees/<branch>
+   git -C /c/Users/jonas/github/Garnalternativer branch -D claude/<branch>
+   ```
+
+**Ingen pull requests, ingen feature-branches** — brugeren foretrækker direkte commits til master for dette projekt.
