@@ -2,7 +2,7 @@
 // Default password: "garn2026"
 // Change this to something unique before deploying!
 
-const ADMIN_PASSWORD = 'garn2026';  // Change this to a unique password
+let ADMIN_PASSWORD = 'garn2026';  // Change this to a unique password
 const ADMIN_SESSION_KEY = 'garnalternativer_admin_session';
 const ADMIN_SESSION_TIMEOUT = 8 * 60 * 60 * 1000;  // 8 hours
 

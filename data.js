@@ -1097,26 +1097,6 @@ const YARNS = [
     spinType: '',
   },
 
-  {
-    id: 'holst-garn-highland',
-    name: 'Highland',
-    brand: 'Holst Garn',
-    origin: '',
-    tier: 'budget',
-    weight: 'fingering',
-    gauge: { stitches: 30, needle_mm: 2.75 },
-    fiber: [{ name: 'Superwash highland uld', pct: 80 }, { name: 'Nylon', pct: 20 }],
-    meters_per_50g: 210,
-    price_dkk_50g: 45,
-    care: 'Maskinvask, uldprogram anbefales',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 3, warmth: 3, elasticity: 4, drape: 3 },
-    buyUrl: 'https://holstgarn.dk/highland-stroempegarn-44/',
-    description: 'Strømpegarn i superwash highland uld med nylon. Maskinvaskbart.',
-    certifications: [],
-    spinType: '',
-  },
-
   // ── Hjelholts Uldspinderi ─────────────────────────────────────────
   {
     id: 'hjelholts-2-tradet-mohair',
@@ -1398,6 +1378,7 @@ const YARNS = [
     description: 'Slidstærkt strømpegarn i uld/nylon-blanding med superwash-behandling.',
     certifications: [],
     spinType: '',
+    isSockYarn: true,
   },
 
   {
@@ -2125,26 +2106,6 @@ const YARNS = [
     spinType: 'blow',
   },
 
-  {
-    id: 'walloee-single-merino',
-    name: 'Single Merino',
-    brand: 'Walløe',
-    origin: '',
-    tier: 'mid',
-    weight: 'sport',
-    gauge: { stitches: 26, needle_mm: 3.5 },
-    fiber: [{ name: 'Superwash Merino', pct: 100 }],
-    meters_per_50g: 180,
-    price_dkk_50g: 75,
-    care: 'Maskinvask (superwash)',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 5, warmth: 3, elasticity: 3, drape: 4 },
-    buyUrl: 'https://sommerfuglen.dk/shop/walloee-single-merino-71322p.html',
-    description: '100% superwash merino, single-ply. 360 m/100g.',
-    certifications: ['Superwash'],
-    spinType: 'single',
-  },
-
   // ── Lang Yarns ───────────────────────────────────────────────────
   {
     id: 'lang-yarns-crealino',
@@ -2206,26 +2167,6 @@ const YARNS = [
     spinType: '',
   },
 
-  {
-    id: 'lang-yarns-infinity',
-    name: 'Infinity',
-    brand: 'Lang Yarns',
-    origin: '',
-    tier: 'mid',
-    weight: 'worsted',
-    gauge: { stitches: 19, needle_mm: 4.75 },
-    fiber: [{ name: 'Merino Extra Fine (superwash)', pct: 100 }],
-    meters_per_50g: 130,
-    price_dkk_50g: 149,
-    care: 'Maskinvask (superwash)',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 5, warmth: 4, elasticity: 3, drape: 4 },
-    buyUrl: 'https://sommerfuglen.dk/shop/lang-yarns-infinity-74334p.html',
-    description: '100% superwash extra fine merino, single-ply.',
-    certifications: [],
-    spinType: 'single',
-  },
-
   // ── ITO ──────────────────────────────────────────────────────────
   {
     id: 'ito-kinu',
@@ -2248,26 +2189,6 @@ const YARNS = [
   },
 
   // ── La Bien Aimée ─────────────────────────────────────────────────
-  {
-    id: 'la-bien-aimee-merino-dk',
-    name: 'Merino DK',
-    brand: 'La Bien Aimée',
-    origin: '',
-    tier: 'mid',
-    weight: 'DK',
-    gauge: { stitches: 21, needle_mm: 4.25 },
-    fiber: [{ name: 'Superwash Merino', pct: 100 }],
-    meters_per_50g: 100,
-    price_dkk_50g: 138,
-    care: 'Håndvask',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 5, warmth: 4, elasticity: 3, drape: 4 },
-    buyUrl: 'https://sommerfuglen.dk/shop/la-bien-aimee-72605p.html',
-    description: '100% superwash merino. Håndfarvet. 230 m/115g.',
-    certifications: [],
-    spinType: '',
-  },
-
   // ── Kit Couture ───────────────────────────────────────────────────
   {
     id: 'kit-couture-silk-linen',
@@ -2328,6 +2249,7 @@ const YARNS = [
     description: '90% superwash merino, 10% nylon. Håndfarvet. 400 m/100g.',
     certifications: [],
     spinType: '',
+    isSockYarn: true,
   },
 
   // ── Froehlich ─────────────────────────────────────────────────────
@@ -2943,86 +2865,6 @@ const YARNS = [
 
   // ── Woolfolk
 
-  {
-    id: 'woolfolk-luft',
-    name: 'Luft',
-    brand: 'Woolfolk',
-    origin: 'Argentina',
-    tier: 'mid',
-    weight: 'bulky',
-    gauge: { stitches: 12, needle_mm: 6.75 },
-    fiber: [{ name: 'Ovis 21 Ultimate Merino', pct: 55 }, { name: 'Økologisk Pima bomuld', pct: 35 }, { name: 'Andet', pct: 10 }],
-    meters_per_50g: 100,
-    price_dkk_50g: 147,
-    care: 'Håndvask i vaskepose, tørres fladt',
-    eco: true, vegan: false, mulesing_free: false,
-    properties: { softness: 5, warmth: 4, elasticity: 3, drape: 4 },
-    buyUrl: 'https://uldstedet.dk/garn-170/woolfolk-239/woolfolk-luft-15021.html',
-    description: 'Let, luftig og superblød blanding. Ultimate Merino fra bæredygtige argentinske grassletter med organisk Pima bomuld.',
-    certifications: [],
-    spinType: '',
-  },
-
-  {
-    id: 'woolfolk-tynd',
-    name: 'Tynd',
-    brand: 'Woolfolk',
-    origin: 'Argentina',
-    tier: 'premium',
-    weight: 'sport',
-    gauge: { stitches: 25, needle_mm: 3.0 },
-    fiber: [{ name: 'Ovis 21 Ultimate Merino', pct: 100 }],
-    meters_per_50g: 205,
-    price_dkk_50g: 180,
-    care: 'Håndvask i vaskepose, tørres fladt',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 5, warmth: 3, elasticity: 4, drape: 4 },
-    buyUrl: 'https://uldstedet.dk/garn-170/woolfolk-239/woolfolk-tynd-13065.html',
-    description: '100% Ultimate Merino i fingering-vægt. Cashmere-blødt men merinos slidstyrke. Kun forhandlet hos Uldstedet i Danmark.',
-    certifications: [],
-    spinType: '',
-  },
-
-  {
-    id: 'woolfolk-flette',
-    name: 'Flette',
-    brand: 'Woolfolk',
-    origin: 'Argentina',
-    tier: 'premium',
-    weight: 'worsted',
-    gauge: { stitches: 19, needle_mm: 3.625 },
-    fiber: [{ name: 'Ovis 21 Ultimate Merino', pct: 100 }],
-    meters_per_50g: 120,
-    price_dkk_50g: 170,
-    care: 'Håndvask i vaskepose, tørres fladt',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 5, warmth: 4, elasticity: 3, drape: 3 },
-    buyUrl: 'https://uldstedet.dk/garn-170/woolfolk-239/woolfolk-flette-15198.html',
-    description: 'Tekstureret Ultimate Merino med moderne bouclé-konstruktion. Let og behageligt at strikke med.',
-    certifications: [],
-    spinType: 'bouclé',
-  },
-
-  {
-    id: 'woolfolk-sno',
-    name: 'Snø',
-    brand: 'Woolfolk',
-    origin: 'Argentina',
-    tier: 'premium',
-    weight: 'sport',
-    gauge: { stitches: 25, needle_mm: 3.0 },
-    fiber: [{ name: 'Ovis 21 Ultimate Merino', pct: 100 }],
-    meters_per_50g: 205,
-    price_dkk_50g: 190,
-    care: 'Håndvask i vaskepose, tørres fladt',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 5, warmth: 3, elasticity: 4, drape: 4 },
-    buyUrl: 'https://uldstedet.dk/garn-170/woolfolk-239/woolfolk-sno-13079.html',
-    description: 'To-farvet spundet Ultimate Merino i fingering-vægt. Til flerfarvede projekter og strukturmønstre.',
-    certifications: [],
-    spinType: '',
-  },
-
   // ── Laines du Nord
 
   {
@@ -3231,267 +3073,28 @@ const YARNS = [
 
   // ── Mayflower
 
-  {
-    id: 'mayflower-easy-care',
-    name: 'Easy Care',
-    brand: 'Mayflower',
-    origin: 'Danmark',
-    tier: 'budget',
-    weight: 'fingering',
-    gauge: { stitches: 28, needle_mm: 3.25 },
-    fiber: [{ name: 'Merinould', pct: 100 }],
-    meters_per_50g: 185,
-    price_dkk_50g: 42,
-    care: 'Maskinvask 40°C',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 4, warmth: 3, elasticity: 4, drape: 3 },
-    buyUrl: 'https://yarnliving.com/mayflower-224/mayflower-easy-care-p879',
-    description: 'Dansk klassikers 100% merinould i fingering-vægt. Maskinvaskbar. 61 farver.',
-    certifications: [],
-    spinType: '',
-  },
-
-  {
-    id: 'mayflower-easy-care-classic',
-    name: 'Easy Care Classic',
-    brand: 'Mayflower',
-    origin: 'Danmark',
-    tier: 'budget',
-    weight: 'DK',
-    gauge: { stitches: 22, needle_mm: 4.0 },
-    fiber: [{ name: 'Merinould', pct: 100 }],
-    meters_per_50g: 106,
-    price_dkk_50g: 42,
-    care: 'Maskinvask 40°C',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 4, warmth: 4, elasticity: 4, drape: 3 },
-    buyUrl: 'https://yarnliving.com/mayflower-224/mayflower-easy-care-classic-p880',
-    description: 'Populær 100% merinould i DK-vægt. Maskinvaskbar. 54 farver.',
-    certifications: [],
-    spinType: '',
-  },
-
-  {
-    id: 'mayflower-easy-care-big',
-    name: 'Easy Care BIG',
-    brand: 'Mayflower',
-    origin: 'Danmark',
-    tier: 'budget',
-    weight: 'worsted',
-    gauge: { stitches: 18, needle_mm: 5.0 },
-    fiber: [{ name: 'Merinould', pct: 100 }],
-    meters_per_50g: 85,
-    price_dkk_50g: 42,
-    care: 'Maskinvask 40°C',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 4, warmth: 4, elasticity: 4, drape: 3 },
-    buyUrl: 'https://yarnliving.com/mayflower-224/mayflower-easy-care-big-p881',
-    description: 'Hurtig strik med 100% merinould i worsted/bulky. Maskinvaskbar. 35 farver.',
-    certifications: [],
-    spinType: '',
-  },
-
-  {
-    id: 'mayflower-london-merino',
-    name: 'London Merino',
-    brand: 'Mayflower',
-    origin: 'Danmark',
-    tier: 'budget',
-    weight: 'DK',
-    gauge: { stitches: 22, needle_mm: 3.75 },
-    fiber: [{ name: 'Merinould', pct: 100 }],
-    meters_per_50g: 120,
-    price_dkk_50g: 42,
-    care: 'Maskinvask maks. 30°C, tørres fladt',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 4, warmth: 4, elasticity: 4, drape: 3 },
-    buyUrl: 'https://yarnliving.com/mayflower-224/mayflower-london-merino-p6440',
-    description: 'OekoTex-certificeret merinould med smuk snoet struktur. 44 farver.',
-    certifications: ['OekoTex'],
-    spinType: '',
-  },
-
-  {
-    id: 'mayflower-london-merino-fine',
-    name: 'London Merino Fine',
-    brand: 'Mayflower',
-    origin: 'Danmark',
-    tier: 'budget',
-    weight: 'fingering',
-    gauge: { stitches: 28, needle_mm: 3.0 },
-    fiber: [{ name: 'Uld', pct: 100 }],
-    meters_per_50g: 175,
-    price_dkk_50g: 42,
-    care: 'Maskinvask skånsomt maks. 30°C, tørres fladt',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 4, warmth: 3, elasticity: 4, drape: 3 },
-    buyUrl: 'https://yarnliving.com/mayflower-224/mayflower-london-merino-fine-p6452',
-    description: 'Tyndt fingering-uldgarn. 44 farver. Til tynde sweaters og detaljerige projekter.',
-    certifications: [],
-    spinType: '',
-  },
-
-  {
-    id: 'mayflower-easy-care-tweed',
-    name: 'Easy Care Tweed',
-    brand: 'Mayflower',
-    origin: 'Danmark',
-    tier: 'budget',
-    weight: 'fingering',
-    gauge: { stitches: 28, needle_mm: 3.25 },
-    fiber: [{ name: 'Uld', pct: 80 }, { name: 'Polyakryl', pct: 14 }, { name: 'Viskose', pct: 6 }],
-    meters_per_50g: 185,
-    price_dkk_50g: 42,
-    care: 'Maskinvask maks. 40°C',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
-    buyUrl: 'https://yarnliving.com/mayflower-224/mayflower-easy-care-tweed-p5995',
-    description: 'Tweedgarn af uld med smukke viskose-blænk. Maskinvaskbar. 15 farver.',
-    certifications: [],
-    spinType: '',
-  },
-
-  {
-    id: 'mayflower-elba',
-    name: 'Elba',
-    brand: 'Mayflower',
-    origin: 'Danmark',
-    tier: 'mid',
-    weight: 'DK',
-    gauge: { stitches: 22, needle_mm: 3.75 },
-    fiber: [{ name: 'Alpaka (Suri)', pct: 68 }, { name: 'Polyamid', pct: 32 }],
-    meters_per_50g: 500,
-    price_dkk_50g: 70,
-    care: 'Håndvask',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 5, warmth: 3, elasticity: 2, drape: 5 },
-    buyUrl: 'https://yarnliving.com/mayflower-224/mayflower-elba-p7080',
-    description: 'Suri-alpaka og polyamid. 25g nøgle = 250m. Ekstremt silkeagtigt og draperé. 30 farver.',
-    certifications: [],
-    spinType: '',
-  },
-
-  {
-    id: 'mayflower-super-kid-silk',
-    name: 'Super Kid Silk',
-    brand: 'Mayflower',
-    origin: 'Danmark',
-    tier: 'mid',
-    weight: 'DK',
-    gauge: { stitches: 22, needle_mm: 4.75 },
-    fiber: [{ name: 'Mohair', pct: 76 }, { name: 'Silke', pct: 24 }],
-    meters_per_50g: 390,
-    price_dkk_50g: 131.9,
-    care: 'Håndvask',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 5, warmth: 4, elasticity: 2, drape: 5 },
-    buyUrl: 'https://yarnliving.com/mayflower-224/mayflower-super-kid-silk-p1892',
-    description: 'Mohair og silke fra Mayflower. 25g nøgle = 195m. 60+ farver. Til sjaler og fine sweaters.',
-    certifications: [],
-    spinType: '',
-  },
-
-  {
-    id: 'mayflower-birmingham',
-    name: 'Birmingham',
-    brand: 'Mayflower',
-    origin: 'Danmark',
-    tier: 'budget',
-    weight: 'fingering',
-    gauge: { stitches: 27, needle_mm: 3.25 },
-    fiber: [{ name: 'Uld', pct: 69 }, { name: 'Alpaka', pct: 16 }, { name: 'Viskose', pct: 15 }],
-    meters_per_50g: 215,
-    price_dkk_50g: 46,
-    care: 'Håndvask, tørres fladt',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 4, warmth: 3, elasticity: 3, drape: 4 },
-    buyUrl: 'https://yarnliving.com/mayflower-224/mayflower-birmingham-p6370',
-    description: 'Uld-alpaka-viskose tweedgarn. Viskose giver glans. 30 farver.',
-    certifications: [],
-    spinType: '',
-  },
-
-  {
-    id: 'mayflower-santiago-light',
-    name: 'Santiago Light',
-    brand: 'Mayflower',
-    origin: 'Danmark',
-    tier: 'mid',
-    weight: 'DK',
-    gauge: { stitches: 22, needle_mm: 3.5 },
-    fiber: [{ name: 'Uld', pct: 56 }, { name: 'Polyamid', pct: 30 }, { name: 'Alpaka', pct: 14 }],
-    meters_per_50g: 300,
-    price_dkk_50g: 60,
-    care: 'Håndvask maks. 30°C, tørres fladt',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 4, warmth: 4, elasticity: 4, drape: 3 },
-    buyUrl: 'https://yarnliving.com/mayflower-224/mayflower-santiago-light-p8308',
-    description: 'Slidstærkt uld-polyamid-alpaka-garn. 26 farver. Velegnet til sokker og sweaters.',
-    certifications: [],
-    spinType: '',
-  },
-
-  {
-    id: 'mayflower-molly-fine',
-    name: 'Molly Fine',
-    brand: 'Mayflower',
-    origin: 'Danmark',
-    tier: 'budget',
-    weight: 'bulky',
-    gauge: { stitches: 14, needle_mm: 6.5 },
-    fiber: [{ name: 'Merinould', pct: 100 }],
-    meters_per_50g: 67.5,
-    price_dkk_50g: 39.5,
-    care: 'Håndvask maks. 30°C, tørres fladt',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 4, warmth: 5, elasticity: 2, drape: 3 },
-    buyUrl: 'https://yarnliving.com/mayflower-224/mayflower-molly-fine-p5022',
-    description: '100% letspundet merinould i bulky. 100g nøgle = 135m. Kan filtes. Hurtige projekter.',
-    certifications: [],
-    spinType: '',
-  },
-
-  {
-    id: 'mayflower-1-class-cashmere',
-    name: '1 Class Cashmere',
-    brand: 'Mayflower',
-    origin: 'Danmark',
-    tier: 'budget',
-    weight: 'fingering',
-    gauge: { stitches: 28, needle_mm: 2.75 },
-    fiber: [{ name: 'Uld', pct: 65 }, { name: 'Polyamid', pct: 25 }, { name: 'Cashmere', pct: 10 }],
-    meters_per_50g: 210,
-    price_dkk_50g: 42,
-    care: 'Maskinvask 30°C, tørres fladt',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 4, warmth: 3, elasticity: 4, drape: 3 },
-    buyUrl: 'https://yarnliving.com/mayflower-224/mayflower-1-class-cashmere-p6525',
-    description: 'Uld-nylon-cashmere strømpegarn. Superwash. Maskinvaskbar. 20 farver.',
-    certifications: [],
-    spinType: '',
-  },
-
-  {
-    id: 'mayflower-amalfi',
-    name: 'Amalfi',
-    brand: 'Mayflower',
-    origin: 'Danmark',
-    tier: 'budget',
-    weight: 'DK',
-    gauge: { stitches: 21, needle_mm: 4.25 },
-    fiber: [{ name: 'Bomuld', pct: 52 }, { name: 'Viskose (bambus)', pct: 48 }],
-    meters_per_50g: 95,
-    price_dkk_50g: 34,
-    care: 'Håndvask, tørres fladt',
-    eco: false, vegan: true, mulesing_free: true,
-    properties: { softness: 4, warmth: 1, elasticity: 2, drape: 5 },
-    buyUrl: 'https://yarnliving.com/mayflower-224/mayflower-amalfi-p6240',
-    description: 'Bomuld og bambusviskose. Silkeagtigt og draperé. God til sommerstrik.',
-    certifications: [],
-    spinType: '',
-  },
-
   // ── Onion
+
+  {
+    id: 'onion-nettle-sock-yarn',
+    name: 'Nettle Sock Yarn',
+    brand: 'Onion',
+    origin: 'Danmark',
+    tier: 'mid',
+    weight: 'fingering',
+    gauge: { stitches: 28, needle_mm: 2.5 },
+    fiber: [{ name: 'Superwash uld', pct: 70 }, { name: 'Nældefibre', pct: 30 }],
+    meters_per_50g: 185,
+    price_dkk_50g: 51,
+    care: 'Maskinvask uldprogram 30°C, tørres fladt',
+    eco: false, vegan: false, mulesing_free: false,
+    properties: { softness: 3, warmth: 3, elasticity: 4, drape: 3 },
+    buyUrl: 'https://yarnliving.com/onion-garn-290/onion-nettle-sock-yarn-p3221',
+    description: 'Strømpegarn med nældefibre for naturlig glans og slidstyrke.',
+    certifications: [],
+    spinType: '',
+    isSockYarn: true,
+  },
 
   {
     id: 'onion-no4-organic-wool-nettles',
@@ -3614,26 +3217,6 @@ const YARNS = [
   },
 
   {
-    id: 'onion-nettle-sock-yarn',
-    name: 'Nettle Sock Yarn',
-    brand: 'Onion',
-    origin: 'Danmark',
-    tier: 'mid',
-    weight: 'fingering',
-    gauge: { stitches: 28, needle_mm: 2.5 },
-    fiber: [{ name: 'Superwash uld', pct: 70 }, { name: 'Nældefibre', pct: 30 }],
-    meters_per_50g: 185,
-    price_dkk_50g: 51,
-    care: 'Maskinvask uldprogram 30°C, tørres fladt',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 3, warmth: 3, elasticity: 4, drape: 3 },
-    buyUrl: 'https://yarnliving.com/onion-garn-290/onion-nettle-sock-yarn-p3221',
-    description: 'Strømpegarn med nældefibre for naturlig glans og slidstyrke.',
-    certifications: [],
-    spinType: '',
-  },
-
-  {
     id: 'onion-silk-kid-mohair',
     name: 'Silk+Kid Mohair',
     brand: 'Onion',
@@ -3729,26 +3312,6 @@ const YARNS = [
     properties: { softness: 3, warmth: 1, elasticity: 2, drape: 4 },
     buyUrl: 'https://yarnliving.com/onion-garn-290/onion-hemp-cotton-modal-p8040',
     description: 'Plantefibre-blanding med hamp, bomuld og modal. Vegansk og slidstærkt.',
-    certifications: [],
-    spinType: '',
-  },
-
-  {
-    id: 'onion-organic-cotton-nettles-wool',
-    name: 'Organic Cotton+Nettles+Wool',
-    brand: 'Onion',
-    origin: 'Danmark',
-    tier: 'budget',
-    weight: 'DK',
-    gauge: { stitches: 22, needle_mm: 3.5 },
-    fiber: [{ name: 'Økologisk bomuld', pct: 44 }, { name: 'Nældefibre', pct: 34 }, { name: 'Superwash uld', pct: 22 }],
-    meters_per_50g: 135,
-    price_dkk_50g: 48,
-    care: 'Maskinvask maks. 30°C uldprogram, tørres fladt',
-    eco: true, vegan: false, mulesing_free: false,
-    properties: { softness: 3, warmth: 2, elasticity: 3, drape: 3 },
-    buyUrl: 'https://yarnliving.com/onion-garn-290/onion-organic-cotton-nettles-wool-p7338',
-    description: 'Bomuld, nælde og uld i bæredygtig blanding. 10 farver.',
     certifications: [],
     spinType: '',
   },
@@ -4003,26 +3566,6 @@ const YARNS = [
 
   // ── Wooldreamers
 
-  {
-    id: 'wooldreamers-manchelopis',
-    name: 'Manchelopis',
-    brand: 'Wooldreamers',
-    origin: 'Spanien',
-    tier: 'budget',
-    weight: 'DK',
-    gauge: { stitches: 22, needle_mm: 4.0 },
-    fiber: [{ name: 'Uld (Manchega)', pct: 100 }],
-    meters_per_50g: 230,
-    price_dkk_50g: 39.5,
-    care: 'Håndvask koldt',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 3, warmth: 4, elasticity: 3, drape: 3 },
-    buyUrl: 'https://uldstedet.dk/garn-170/wooldreamers-339/wooldreamers-manchelopis-15261.html',
-    description: 'Ikke-spundet 2-trådsgarn af spansk Manchega-fåreuld. 100g = 460m enkelt. Kan bruges enkelt eller dobbelt.',
-    certifications: [],
-    spinType: '',
-  },
-
   // ── Rosa Pomar
 
   {
@@ -4193,86 +3736,6 @@ const YARNS = [
 
   // ── Hjertegarn ────────────────────────────────────────────────────
   {
-    id: 'hjertegarn-90-extrafine-merino',
-    name: '90 Extrafine Merino',
-    brand: 'Hjertegarn',
-    origin: 'Tyrkiet',
-    tier: 'budget',
-    weight: 'worsted',
-    gauge: { stitches: 18, needle_mm: 4.5 },
-    fiber: [{ name: 'Superwash Merinould', pct: 100 }],
-    meters_per_50g: 90,
-    price_dkk_50g: 34,
-    care: 'Finvask eller uldvask 30°C, tørres fladt',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 4, warmth: 4, elasticity: 4, drape: 3 },
-    buyUrl: 'https://rito.dk/2009-hjertegarn-90-extrafine-merino',
-    description: '100% superwash merinould. Maskinvaskbar og blød. Velegnet til sweaters, huer og tilbehør.',
-    certifications: [],
-    spinType: '',
-  },
-
-  {
-    id: 'hjertegarn-120-extrafine-merino',
-    name: '120 Extrafine Merino',
-    brand: 'Hjertegarn',
-    origin: 'Tyrkiet',
-    tier: 'budget',
-    weight: 'DK',
-    gauge: { stitches: 22, needle_mm: 3.75 },
-    fiber: [{ name: 'Superwash Merinould', pct: 100 }],
-    meters_per_50g: 120,
-    price_dkk_50g: 30,
-    care: 'Finvask eller uldvask 30°C, tørres fladt',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 4, warmth: 4, elasticity: 4, drape: 3 },
-    buyUrl: 'https://rito.dk/850-hjertegarn-extrafine-merino-120',
-    description: '100% superwash merinould, 120 m/50g. Maskinvaskbart DK-garn. Ideel til sweaters og babytøj.',
-    certifications: [],
-    spinType: '',
-  },
-
-  {
-    id: 'hjertegarn-150-extrafine-merino',
-    name: '150 Extrafine Merino',
-    brand: 'Hjertegarn',
-    origin: 'Tyrkiet',
-    tier: 'budget',
-    weight: 'sport',
-    gauge: { stitches: 24, needle_mm: 2.75 },
-    fiber: [{ name: 'Superwash Merinould', pct: 100 }],
-    meters_per_50g: 150,
-    price_dkk_50g: 30,
-    care: 'Finvask eller uldvask 30°C, tørres fladt',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 4, warmth: 4, elasticity: 4, drape: 3 },
-    buyUrl: 'https://rito.dk/994-hjertegarn-extrafine-merino-150',
-    description: 'Tynt superwash merinould på pind 2,5–3mm. 150 m/50g til detaljeret strikkeri.',
-    certifications: [],
-    spinType: '',
-  },
-
-  {
-    id: 'hjertegarn-vital',
-    name: 'Vital',
-    brand: 'Hjertegarn',
-    origin: 'Tyrkiet',
-    tier: 'budget',
-    weight: 'DK',
-    gauge: { stitches: 22, needle_mm: 3.75 },
-    fiber: [{ name: 'Uld (superwash)', pct: 100 }],
-    meters_per_50g: 115,
-    price_dkk_50g: 26,
-    care: 'Håndvask eller uldvask 30–40°C, tørres fladt',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 3, warmth: 4, elasticity: 4, drape: 3 },
-    buyUrl: 'https://www.strikkestedet.dk/products/hjertegarn-vital',
-    description: 'Klassisk 100% superwash uldgarn til pind 3,5–4. Budget-venlig kvalitet til sweaters, huer og børnetøj.',
-    certifications: [],
-    spinType: '',
-  },
-
-  {
     id: 'hjertegarn-lima',
     name: 'Lima Uld',
     brand: 'Hjertegarn',
@@ -4330,26 +3793,6 @@ const YARNS = [
     description: 'Rustik 100% uldgarn i 100g nøgler til pind 6–7. Til filtearbejde, tæpper og grove sweaters.',
     certifications: [],
     spinType: 'single',
-  },
-
-  {
-    id: 'hjertegarn-wool-silk',
-    name: 'Wool Silk',
-    brand: 'Hjertegarn',
-    origin: '',
-    tier: 'budget',
-    weight: 'sport',
-    gauge: { stitches: 26, needle_mm: 3.25 },
-    fiber: [{ name: 'Økologisk Superwash Lammeuld', pct: 75 }, { name: 'Silke', pct: 25 }],
-    meters_per_50g: 300,
-    price_dkk_50g: 32,
-    care: 'Maskinvask 30°C',
-    eco: true, vegan: false, mulesing_free: false,
-    properties: { softness: 5, warmth: 3, elasticity: 3, drape: 5 },
-    buyUrl: 'https://rito.dk/2041-hjertegarn-wool-silk',
-    description: '75% økologisk superwash lammeuld og 25% silke. Maskinvaskbart med smukt skind. Til sjaler og sommerstrik.',
-    certifications: ['GOTS'],
-    spinType: '',
   },
 
   {
@@ -4636,46 +4079,6 @@ const YARNS = [
   },
 
   // ── Wadils ────────────────────────────────────────────────────────
-  {
-    id: 'wadils-uno-lammeuld',
-    name: 'Uno Lammeuld',
-    brand: 'Wadils',
-    origin: '',
-    tier: 'budget',
-    weight: 'fingering',
-    gauge: { stitches: 29, needle_mm: 3.0 },
-    fiber: [{ name: 'Lammeuld', pct: 100 }],
-    meters_per_50g: 250,
-    price_dkk_50g: 32,
-    care: 'Håndvask, tørres fladt',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 3, warmth: 4, elasticity: 3, drape: 3 },
-    buyUrl: 'https://wadils.dk/products/uno-lammeuld-50',
-    description: '100% lammeuld, enkelttrådsgarn, 250m/50g. Bruges typisk dobbelt eller kombineret med andet garn. Blødere efter vask.',
-    certifications: [],
-    spinType: 'single',
-  },
-
-  {
-    id: 'wadils-super-kid-mohair',
-    name: 'Super Kid Mohair',
-    brand: 'Wadils',
-    origin: '',
-    tier: 'mid',
-    weight: 'fingering',
-    gauge: { stitches: 32, needle_mm: 2.5 },
-    fiber: [{ name: 'Kid Mohair', pct: 80 }, { name: 'Polyamid', pct: 20 }],
-    meters_per_50g: 500,
-    price_dkk_50g: 90,
-    care: 'Håndvask, tørres fladt',
-    eco: false, vegan: false, mulesing_free: false,
-    properties: { softness: 5, warmth: 3, elasticity: 2, drape: 5 },
-    buyUrl: 'https://wadils.dk/products/fleurdelise-super-kidmohair',
-    description: '80% kid mohair og 20% polyamid. Let og luftigt børstet garn med 500m/50g. Bruges alene på pind 2,5 eller holdt dobbelt.',
-    certifications: [],
-    spinType: 'brushed',
-  },
-
 ];
 
 // ─── Pattern Database ──────────────────────────────────────────────
@@ -4687,7 +4090,17 @@ const PATTERNS = [
     designer: 'PetiteKnit',
     type: 'Tørklæde',
     difficulty: 'Begynder',
-    description: 'Elegant sjal strikket i lyst cashmere. Klassisk PetiteKnit design.',
+    description: 'Elegant sjal strikket i lyst cashmere — fingering eller sport. Klassisk PetiteKnit design.',
+    // PetiteKnit-blessede originaler (flere muligheder):
+    //   - Cashmere fra Mondial / Cardiff Cashmere Classic / Lang Cashmere Premium /
+    //     Pascuali Cashmere 6/28 (alle fingering-vægt cashmere, enkelttråd)
+    //   - Compatible Cashmere fra Knitting for Olive (lace, strikkes med DOBBELTTRÅD)
+    //   - Mini Alpakka fra Sandnes Garn (sport-vægt 100% alpaca, enkelttråd)
+    // Vi bruger cardiff-cashmere-classic som primær reference. Bemærk at
+    // PetiteKnit selv anerkender alpaca som valid for denne opskrift — derfor
+    // er alpaca-baserede alternativer (fx isager-alpaca-1) acceptable her,
+    // selvom alpaca har anden karakter end cashmere. Garter-strik (retstrik)
+    // skjuler fiberforskelle mere end stockinette.
     originalYarn_id: 'cardiff-cashmere-classic',
     secondaryYarn_id: null,
     totalMeters_M: 600,
@@ -4696,17 +4109,50 @@ const PATTERNS = [
     seasonality: ['spring', 'fall', 'winter'],
     estimatedHours: 15,
     imageUrl: 'https://images4-f.ravelrycache.com/uploads/PetiteKnitDK/1057947486/sophie_721_ito_cardiff_small2.jpg',
-    // Sophie Scarf: Cardiff Cashmere Classic = sport, 29 masker, 258 kr, 100% cashmere.
-    // Tørklæde = halsnært → mohair altid ekskluderet.
-    // Mid: garna-meriana (sport, 25 m, ±4, 100% cashmere, 290 kr) — samme fiber, "godt alternativ"
-    //      ±4 gauge, men eneste cashmere-alternativ i DK nær dette gauge. Sjalstrikker sætter
-    //      selv pind til ønsket densitet, så ±4 er acceptabelt her.
-    // Budget: isager-alpaca-1 (fingering, 28 m, ±1, 100% alpaca, 70 kr) og
-    //         holst-garn-haya (fingering, 28 m, ±1, baby alpaca/silke/yak, 76 kr) —
-    //         begge ±1 gauge, manuelt kureret da ingen sport-vægt rammer ±2 nær 29 m.
-    // Premium: tom — ingen cashmere i højere kvalitetssegment inden for acceptable gauge.
+    // ── Visuelt match-priortet (ny princip) ───────────────────────────
+    // Originalkarakter (Cardiff Cashmere Classic): smooth/defineret strik,
+    //   matte sheen, light halo, lett luftig, luxuriøs cashmere-feel.
+    //   Sport, 29 m/10 cm, 100% cashmere, 258 kr/50g, 200 m/50g.
+    //   Halsnært tørklæde → blødhed obligatorisk; mohair ekskluderet.
+    //
+    // Visuelt mål: pure cashmere (eller cashmere-lignende luksusblanding)
+    //   med defineret strik og let halo. INGEN tweed, INGEN heavy alpaca,
+    //   INGEN bouncy merino — disse giver forkert færdigt udtryk.
+    //
+    // Mid (godt alternativ — samme fiber, sammenlignelig pris):
+    //   - onion-cashmere (fingering, 28 m, ±1 gauge, 95% genbrugs-cashmere, 252 kr)
+    //     Næsten samme pris, samme fiber. Bæredygtig variant.
+    //   - kit-couture-cashmere (fingering, 28 m, ±1 gauge, 100% kashmir, 276 kr)
+    //     Italiensk cashmere, samme defineret-glat karakter.
+    //
+    // Budget (PetiteKnit-blessede + ærlige kompromis):
+    //   - isager-alpaca-1 (fingering, 28 m, ±1 gauge, 100% alpaca, 70 kr)
+    //     Alpaca som PetiteKnit selv anerkender (deres officielle Mini Alpakka-
+    //     anbefaling). Andet udtryk end cashmere (mere drape, mere sheen),
+    //     men retstrik-formatet skjuler fiberforskellen meget. ~73% billigere.
+    //   - holst-garn-haya (fingering, 28 m, ±1 gauge, baby alpaca/mulberry silke/yak, 76 kr)
+    //     Lukseriøs blanding med yak (let halo), baby alpaca (drape), silke (sheen).
+    //     Lidt tættere på cashmere-feel end pure alpaca, men ikke PetiteKnit-listet.
+    //
+    // Premium (TOM — ingen pure cashmere i databasen passer rule 1):
+    //   Original gauge: 29 m / 10 cm på 3.5 mm pind.
+    //   Tilladelse: ±2 masker, ±0.5 mm pind (±1.0 borderline).
+    //   Pure cashmere kandidater i databasen:
+    //     - garna-meriana: 25 m gauge → ±4 (overtræder)
+    //     - pascuali-cashmere-6-28: 24 m gauge → ±5 (overtræder)
+    //     - garna-edda: 28 m gauge ✓, men TWEEDY → forkert visuelt
+    //     - cardiff-classic: DK 22 m → ±7 gauge (overtræder)
+    //     - lang-yarns-cashmere-premium: DK 22 m → ±7 gauge (overtræder)
+    //     - gepard-cashmere-klassik: DK 21 m → ±8 gauge (overtræder)
+    //   Tom premium-tier er ærligt valg — ingen cashmere-match findes på den
+    //   gauge/pind-kombination originalen kræver.
+    //
+    // Frasorteret (forkert visuelt udtryk):
+    //   - garna-edda (cashmere TWEEDY): tweed ≠ smooth Cardiff
+    //   - cardiff-classic (DK 22m): wrong gauge + weight
+    //   - rowan-cashmere-tweed (tweed): tweed-karakter, ikke smooth
     tiers: {
-      mid:     ['garna-meriana'],
+      mid:     ['onion-cashmere', 'kit-couture-cashmere'],
       budget:  ['isager-alpaca-1', 'holst-garn-haya'],
       premium: [],
     },
@@ -4719,7 +4165,11 @@ const PATTERNS = [
     designer: 'PetiteKnit',
     type: 'Trøje',
     difficulty: 'Intermediate',
-    description: 'Smuk sweater strikket i dobbelt merino-uld.',
+    description: 'Smuk sweater strikket i Double Sunday fra Sandnes Garn — et 100% merinogarn (DK-vægt, enkelttråd).',
+    // PetiteKnit-original: Double Sunday fra Sandnes Garn, strikket SINGLE strand.
+    // OBS: "Double Sunday" er garnets navn (et tykkere twist-variant af Sunday) —
+    // det er IKKE en instruktion om at strikke med dobbelttråd. Tidligere beskrivelse
+    // sagde "dobbelt merino-uld", hvilket var misvisende.
     originalYarn_id: 'sandnes-doppel-sunday',
     secondaryYarn_id: null,
     totalMeters_M: 1000,
@@ -4728,12 +4178,47 @@ const PATTERNS = [
     seasonality: ['spring', 'fall', 'winter'],
     estimatedHours: 30,
     imageUrl: 'https://images4-g.ravelrycache.com/uploads/PetiteKnitDK/1056924718/scarlet_sweater_badstuerock22-02_small2.jpg',
-    // Scarlet Sweater: Sandnes Doppel-Sunday = DK, 21 masker, 57 kr, 100% merino.
-    // Budget: sandnes-peer-gynt (42 kr, ±1 gauge), filcolana-pernilla (43 kr, ±2 gauge)
+    // ── Visuelt match-priortet (ny princip) ───────────────────────────
+    // Originalkarakter (Sandnes Doppel-Sunday): defineret merino,
+    //   worsted-spundet, smooth, matte, bouncy, klassisk uld-look.
+    //   DK, 21 m/10 cm (strikkes både enkelt og dobbelt), 100% merino, 57 kr/50g.
+    //   Ingen halo, solide farver, elastisk strik.
+    //
+    // Visuelt mål: pure merino eller fin pure uld i DK (eller worsted nær 21 m),
+    //   worsted-spundet, smooth, matte, solid-farvet. INGEN blow yarn (Isager Soft
+    //   var fejl — fluffy halo ≠ defineret merino). INGEN tweed. INGEN alpaca/silke
+    //   blandinger (forkert sheen og drape).
+    //
+    // Mid (godt alternativ — samme defineret merino-karakter, dyrere):
+    //   - krea-deluxe-organic-wool-2 (DK, 20 m, ±1 gauge, 100% merinould, 100 kr)
+    //     Eco-opgradering. GOTS-certificeret. Samme smooth merino-look.
+    //   - krea-deluxe-raw---organic-wool-2 (DK, 20 m, ±1 gauge, 100% uld, 100 kr)
+    //     Raw eco-uld. Fin pure uld med samme defineret karakter.
+    //
+    // Budget (samme karakter, billigere):
+    //   - sandnes-peer-gynt (DK, 22 m, ±1 gauge, 100% norsk uld, 42 kr)
+    //     Klassisk pure uld, defineret strik. Lidt mindre soft end merino, men
+    //     samme worsted-spundet visuelt udtryk.
+    //   - filcolana-pernilla (DK, 23 m, ±2 gauge, 100% ren ny uld, 43 kr)
+    //     Pure uld, samme matte defineret karakter.
+    //
+    // Premium (TOM — ingen non-superwash kandidat passer rule 1):
+    //   Mid-tier (krea-deluxe organic merino) repræsenterer allerede eco-opgraderingen.
+    //   Premium-pris pure merino ved DK gauge findes ikke i databasen efter
+    //   superwash-cleanup. Tom premium > forkert match.
+    //
+    // Frasorteret/fjernet:
+    //   - isager-soft (BLOW yarn, alpaka/bomuld): fluffy halo ≠ defineret merino
+    //   - krea-deluxe-organic-wool-1 (DK, 26 m): forkert gauge, for tæt
+    //   - sandnes-peer-gynt-tweed: tweed-nister ≠ solid Doppel-Sunday
+    //   - rowan-cashmere-tweed: tweed-karakter, ikke smooth
+    //   - la-bien-aimee-merino-dk, lang-yarns-infinity: SUPERWASH (fjernet fra db)
+    //   - wooldreamers-manchelopis: fjernet (Wooldreamers-mærket fjernet fra db)
+    //   - woolfolk-flette: fjernet (Woolfolk-mærket fjernet fra db)
     tiers: {
-      mid:     ['isager-soft'],
+      mid:     ['krea-deluxe-organic-wool-2', 'krea-deluxe-raw---organic-wool-2'],
       budget:  ['sandnes-peer-gynt', 'filcolana-pernilla'],
-      premium: ['krea-deluxe-organic-wool-2', 'krea-deluxe-raw---organic-wool-1', 'krea-deluxe-raw---organic-wool-2'],
+      premium: [],
     },
   },
 
@@ -4744,7 +4229,10 @@ const PATTERNS = [
     designer: 'PetiteKnit',
     type: 'Cardigan',
     difficulty: 'Intermediate',
-    description: 'Klassisk cardigan strikket i dobbelt merino-uld.',
+    description: 'Klassisk cardigan strikket i Double Sunday fra Sandnes Garn — et 100% merinogarn (DK-vægt, enkelttråd).',
+    // PetiteKnit-original: Double Sunday fra Sandnes Garn, strikket SINGLE strand.
+    // (Samme garn-misforståelse rettet som i Scarlet Sweater — "Double Sunday" er
+    // garnets navn, ikke en strikketeknik med dobbelttråd.)
     originalYarn_id: 'sandnes-doppel-sunday',
     secondaryYarn_id: null,
     totalMeters_M: 1200,
@@ -4753,11 +4241,16 @@ const PATTERNS = [
     seasonality: ['spring', 'fall', 'winter'],
     estimatedHours: 35,
     imageUrl: 'https://images4-f.ravelrycache.com/uploads/PetiteKnitDK/1072659795/scarlet_cardigan1-01_small2.jpg',
-    // Scarlet Cardigan: samme original som Scarlet Sweater — identiske tiers.
+    // ── Visuelt match-priortet ────────────────────────────────────────
+    // Samme original som Scarlet Sweater (Sandnes Doppel-Sunday).
+    // Identiske tiers — se Scarlet Sweater for fuld begrundelse.
+    // Visuelt mål: defineret pure merino/uld, smooth, matte, ingen halo, solide farver.
+    // Premium tom: ingen non-superwash mulesing-fri pure merino i DK-gauge
+    // ved premium-pris findes i databasen.
     tiers: {
-      mid:     ['isager-soft'],
+      mid:     ['krea-deluxe-organic-wool-2', 'krea-deluxe-raw---organic-wool-2'],
       budget:  ['sandnes-peer-gynt', 'filcolana-pernilla'],
-      premium: ['krea-deluxe-organic-wool-2', 'krea-deluxe-raw---organic-wool-1', 'krea-deluxe-raw---organic-wool-2'],
+      premium: [],
     },
   },
 
@@ -4768,7 +4261,11 @@ const PATTERNS = [
     designer: 'PetiteKnit',
     type: 'Trøje',
     difficulty: 'Intermediate',
-    description: 'Luftig sommertrøje i blød alpaka-bomuld.',
+    description: 'Luftig sommertrøje strikket i blow yarn — alpaka/bomuld med fluffy halo.',
+    // PetiteKnit-blessede originaler (alle blow yarn-karakter):
+    //   - Isager Soft fra Isager Yarn (DK, 50g = 125m) — primær reference
+    //   - Snefnug fra CaMaRose (DK, 50g = 110m)
+    //   - Poppy fra Sandnes Garn (DK, 50g = 110m)
     originalYarn_id: 'isager-soft',
     secondaryYarn_id: null,
     totalMeters_M: 900,
@@ -4777,13 +4274,40 @@ const PATTERNS = [
     seasonality: ['spring', 'summer'],
     estimatedHours: 25,
     imageUrl: 'https://images4-f.ravelrycache.com/uploads/PetiteKnitDK/1080122471/ivy_sweater_sand2_small2.jpg',
-    // Ivy Sweater: Isager Soft = DK, 22 masker, 64 kr, 56% Alpaka + 44% Øko Pima Bomuld.
-    // Budget: rauma-petunia (49 kr, ±1 gauge, 100% pimabomuld — bomuld passer til sommertøjet),
-    //         sandnes-duo (56 kr, eksakt gauge, 55% uld + 45% bomuld — bomuld/uld-blend)
+    // ── Visuelt match-priortet (ny princip) ───────────────────────────
+    // Originalkarakter (Isager Soft): BLOW YARN — karakteristisk fluffy halo,
+    //   hazy, soft, drapy, summery. Defineret-men-luftig look (ikke ren mohair-haze).
+    //   DK, 22 m/10 cm, 56% alpaka + 44% øko pimabomuld, 64 kr/50g, 125 m/50g.
+    //
+    // Visuelt mål: blow yarn (eller blow-spundet) i nær DK gauge med alpaka/bomuld
+    //   eller alpaka-base. INGEN worsted-spundet pure merino (defineret bouncy ≠
+    //   fluffy blow). INGEN ren bomuld (smooth defineret cotton ≠ fluffy halo).
+    //   INGEN ren mohair (mohair-haze er fluffigere/længere fibre end blow yarn).
+    //
+    // ALLE TIERS TOMME — DATA-ISSUE FLAG:
+    //   Original Isager Soft har gauge 22 m / 10 cm på 5.5 mm pind ifølge data.js.
+    //   Det er en usædvanlig pind-størrelse for DK gauge (typisk DK = 3.5–4.5 mm).
+    //   Under rule 1 (pind ±1.0 mm) skal alternativer have pind 4.5–6.5 mm:
+    //     - bc-garn-svala (DK, 4.0 mm): pind ±1.5 → overtræder
+    //     - rowan-alpaca-classic (sport, 3.75 mm): pind ±1.75 → overtræder
+    //     - kremke-kid-cotton (DK, 4.0 mm): pind ±1.5 + mohair giver wrong character
+    //     - walloee-fluffy-alpaca (bulky, 6.0 mm): pind ±0.5 ✓, men gauge 14 m → ±8
+    //     - drops-air (worsted, 5.0 mm): pind ±0.5 ✓, men gauge 17 m → ±5
+    //   Ingen blow yarn i databasen rammer både ±1.0 mm pind OG ±2 m gauge.
+    //
+    //   To muligheder:
+    //   (a) Verificér Isager Soft's pind-data — er 5.5 mm korrekt?
+    //       PetiteKnit's Ivy Sweater-opskrift bør tjekkes for faktisk pind-anbefaling.
+    //   (b) Tilføj nye blow yarns til databasen der matcher.
+    //   Indtil da: tomme tiers er ærligt valg.
+    //
+    // PetiteKnit-blessede originaler (alle blow yarn-karakter):
+    //   - Isager Soft, Snefnug fra CaMaRose, Poppy fra Sandnes Garn
+    //   Ingen af de to sidste er i databasen — de kunne tilføjes som "samme tier"-alternativer.
     tiers: {
-      mid:     ['sandnes-doppel-sunday'],
-      budget:  ['rauma-petunia', 'sandnes-duo'],
-      premium: ['krea-deluxe-organic-cotton', 'krea-deluxe-organic-wool-2', 'krea-deluxe-raw---organic-cotton'],
+      mid:     [],
+      budget:  [],
+      premium: [],
     },
   },
 
@@ -4794,20 +4318,62 @@ const PATTERNS = [
     designer: 'PetiteKnit',
     type: 'Cardigan',
     difficulty: 'Intermediate',
-    description: 'Elegant cardigan i blød alpaka-bomuld.',
-    originalYarn_id: 'isager-soft',
+    description: 'Luftig cardigan strikket i silke-mohair holdt dobbelt — hazy halo og let drape.',
+    // PetiteKnit-original: Deluxe Silk Mohair fra Krea Deluxe (strikkes med dobbelttråd).
+    // Andre PetiteKnit-blessede originaler: Soft Silk Mohair fra Knitting for Olive,
+    // Tynn Silk Mohair fra Sandnes Garn, Silk Mohair fra Isager Yarn.
+    // (Tidligere fejl: var sat til isager-soft/alpaka-bomuld blow yarn — det er Ivy SWEATER.)
+    originalYarn_id: 'krea-deluxe-deluxe-silk-mohair',
     secondaryYarn_id: null,
     totalMeters_M: 1100,
-    materials: ['alpaca', 'cotton'],
-    seasonality: ['spring', 'summer'],
+    materials: ['mohair', 'silk'],
+    seasonality: ['spring', 'fall', 'winter'],
     estimatedHours: 32,
-    tags: ['cardigan', 'alpaca', 'cotton', 'petiteknit'],
+    tags: ['cardigan', 'mohair', 'silk', 'petiteknit'],
     imageUrl: 'https://images4-g.ravelrycache.com/uploads/PetiteKnitDK/1096770458/ivy_cardigan7_small2.jpg',
-    // Ivy Cardigan: samme original som Ivy Sweater — identiske tiers.
+    // ── Visuelt match-priortet ────────────────────────────────────────
+    // Originalkarakter (Krea Deluxe Deluxe Silk Mohair holdt dobbelt):
+    //   Hazy halo (mohair-luftighed), subtil silke-sheen, lightweight, drapy.
+    //   Etherisk fluffy look — meget anderledes end blow yarn (Isager Soft) og
+    //   meget anderledes end defineret merino. Den fluffy halo er signaturen.
+    //
+    // Visuelt mål: silke-mohair holdt dobbelt (eller tilsvarende lace-vægt
+    //   mohair/silke-blanding). INGEN pure merino (defineret bouncy ≠ hazy halo).
+    //   INGEN pure alpaca (heavy drape, mindre halo). INGEN bomuld (smooth defineret).
+    //
+    // Mid (samme silke-mohair-karakter, sammenlignelig pris):
+    //   - kremke-silky-kid-rms (72% mohair, 28% silke, 100 kr/50g, pind 4.0 mm)
+    //     Næsten identisk fiber-ratio som original. Samme silke-mohair-blanding.
+    //     Pind eksakt ±0.0 mm.
+    //   - lana-grossa-silkhair (70% mohair, 30% silke, 124 kr/50g, pind 4.75 mm)
+    //     Klassisk mohair/silke. Pind ±0.75 mm (acceptabel grænseværdi).
+    //
+    // Budget (TOM — ingen ærlig kandidat):
+    //   Mayflower og Wadils silke-mohair-garn er fjernet fra databasen.
+    //   Ingen anden silke-mohair i databasen ligger billigere end originalen og
+    //   uden polyamid. Tom tier er ærligt valg fremfor forkert match.
+    //
+    // Premium (samme silke-mohair-karakter, dyrere):
+    //   - mohair-by-canard-brushed-lace (70% superkid mohair, 30% silke, 172 kr/50g)
+    //     Dansk premium silke-mohair. Lacevægt holdt dobbelt.
+    //   - garna-cava (73% superkid mohair, 27% morbærsilke, 174 kr/50g)
+    //     Luksus fin silke-mohair. Floret og meget blød.
+    //   - camijoknit-silk-mohair (72% kid mohair, 28% silke, 225 kr/50g)
+    //     Håndfarvet dansk silke-mohair. Unikke farver i små batches.
+    //
+    // Frasorteret (forkert visuelt udtryk):
+    //   - isager-soft (alpaka/bomuld blow yarn): defineret blow ≠ hazy mohair-halo
+    //   - bc-garn-svala (alpaca blow): forkert character (blow ≠ silke-mohair)
+    //   - mohair-by-canard-1-tradet-mohair (kid mohair/merinould): merino-tilsætning
+    //     ændrer karakteren — for elastisk og defineret, mindre hazy
+    //   - drops-brushed-alpaca-silk (alpaka/silke "mohair-lignende"): alpaka-haze ≠
+    //     ægte mohair-haze (anderledes længde og krympning af fibre)
+    //   - onion-silk-kid-mohair (60/40 — for meget silke): silke-tungt giver mere
+    //     sheen end original, mindre fluffy
     tiers: {
-      mid:     ['sandnes-doppel-sunday'],
-      budget:  ['rauma-petunia', 'sandnes-duo'],
-      premium: ['krea-deluxe-organic-cotton', 'krea-deluxe-organic-wool-2', 'krea-deluxe-raw---organic-cotton'],
+      mid:     ['kremke-silky-kid-rms', 'lana-grossa-silkhair'],
+      budget:  [],
+      premium: ['mohair-by-canard-brushed-lace', 'garna-cava', 'camijoknit-silk-mohair'],
     },
   },
 ];

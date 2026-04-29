@@ -250,6 +250,8 @@ function renderYarnBrowser() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+  const totalEl = document.getElementById('yarnTotalCount');
+  if (totalEl) totalEl.textContent = `${YARNS.length} garn i databasen`;
   initYarnBrowserControls();
   renderYarnBrowser();
 });
