@@ -4,8 +4,8 @@
     {
       "name": "garnalternativer",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "--directory", "C:\\Users\\jonas\\github\\Garnalternativer"],
-      "autoPort": true
+      "runtimeArgs": ["-m", "http.server", "9123", "--directory", "C:\\Users\\jonas\\github\\Garnalternativer"],
+      "port": 9123
     }
   ]
 }

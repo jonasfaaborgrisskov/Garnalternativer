@@ -133,3 +133,23 @@ Hvis du som AI-agent opdager at sessionen er startet i en worktree (CWD indehold
    ```
 
 **Ingen pull requests, ingen feature-branches** — brugeren foretrækker direkte commits til master for dette projekt.
+
+---
+
+## Mulesing-verifikation (sporbarhed)
+
+`mulesing_free`-flaget i `data.js` afspejler verifikation udført 2026-04-29. 186 af 199 garn er markeret som mulesing-fri (93 %).
+
+**Verificerede mulesing-fri brands** (alle deres uld-holdige garn er flippet til `true`):
+Isager, Sandnes Garn, Filcolana, GARNA (bruger-bekræftet) · Onion, Lana Grossa, Drops Design, Rowan, Hjertegarn, Hjelholts Uldspinderi, Hjelholt, Holst Garn, Noro, Mohair by Canard, Hobbii, Gepard, Madelinetosh, Biches & Buches (web-verificeret via brandets officielle policy eller produktbeskrivelser).
+
+**Ikke-verificerede brands** (uld-holdige garn behold `mulesing_free: false`):
+- Lammy Yarns — site utilgængelig under verifikation
+- Rauma — kun general welfare-statement, ingen mulesing-policy
+- Du Store Alpakka — alpaca-only garn er flippet, men merino-blends mangler brandets policy
+- Walløe — site utilgængeligt under verifikation
+- Froehlich — site utilgængeligt under verifikation
+
+Garn med 0 % fårebaseret fiber (ren alpaca, cashmere, mohair, silke, bomuld m.fl.) er flippet til `true` per definition, da mulesing kun praktiseres på får.
+
+**Genverificering anbefales** når Walløe og Froehlich's sites igen er tilgængelige.
