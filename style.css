@@ -792,6 +792,26 @@ body {
 .badge-wash  { background: #e8f0f8; color: #2040680; border: 1px solid #b8cce0; }
 .badge-fiber { background: #f4ede8; color: #6e3820; border: 1px solid #d8c0b0; }
 
+.held-double-badge {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 7px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  background: #f0ece4;
+  color: #5c4a2a;
+  border: 1px solid #d4c8a8;
+  border-radius: 3px;
+  vertical-align: middle;
+}
+
+.spec-note {
+  font-size: 0.75em;
+  color: #888;
+  font-style: italic;
+}
+
 /* Price block */
 .yarn-card-price {
   text-align: right;

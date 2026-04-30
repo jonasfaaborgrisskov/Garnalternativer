@@ -83,11 +83,11 @@ const YARNS = [
     brand: 'Krea Deluxe',
     origin: 'Unknown',
     tier: 'mid',
-    weight: 'DK',
-    gauge: { stitches: null, needle_mm: 4.0 },
+    weight: 'lace',
+    gauge: { stitches: 23, needle_mm: 3.5 },
     fiber: [{ name: 'silke', pct: 45 }, { name: 'mohair', pct: 33 }, { name: 'baby alpaca', pct: 22 }],
-    meters_per_50g: 100,
-    price_dkk_50g: 100,
+    meters_per_50g: 600,
+    price_dkk_50g: 89,
     care: 'Handwash 30C',
     eco: true, vegan: false, mulesing_free: true,
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
@@ -126,8 +126,8 @@ const YARNS = [
     weight: 'DK',
     gauge: { stitches: 20, needle_mm: 4.0 },
     fiber: [{ name: 'merinould', pct: 100 }],
-    meters_per_50g: 100,
-    price_dkk_50g: 100,
+    meters_per_50g: 85,
+    price_dkk_50g: 69,
     care: 'Handwash 30C',
     eco: true, vegan: false, mulesing_free: true,
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
@@ -185,9 +185,9 @@ const YARNS = [
     tier: 'mid',
     weight: 'DK',
     gauge: { stitches: 20, needle_mm: 4.0 },
-    fiber: [{ name: 'uld', pct: 100 }],
-    meters_per_50g: 100,
-    price_dkk_50g: 100,
+    fiber: [{ name: 'merinould', pct: 100 }],
+    meters_per_50g: 85,
+    price_dkk_50g: 69,
     care: 'Handwash 30C',
     eco: true, vegan: false, mulesing_free: true,
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
@@ -223,17 +223,17 @@ const YARNS = [
     brand: 'BC Garn',
     origin: 'Unknown',
     tier: 'mid',
-    weight: 'DK',
-    gauge: { stitches: 24, needle_mm: 4.0 },
+    weight: 'fingering',
+    gauge: { stitches: 24, needle_mm: 3.0 },
     fiber: [{ name: 'alpaca', pct: 100 }],
-    meters_per_50g: 100,
+    meters_per_50g: 400,
     price_dkk_50g: 100,
     care: 'Handwash 30C',
     eco: true, vegan: false, mulesing_free: true,
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Svala from BC Garn. Composition: 100 % alpaca.',
-    spinType: 'blow?',
+    spinType: '',
     certifications: ['RAS'],
   },
 
@@ -433,7 +433,7 @@ const YARNS = [
     properties: { softness: 3, warmth: 3, elasticity: 3, drape: 3 },
     buyUrl: '',
     description: 'Semilla silkbloom GOTS from BC Garn. Composition: 75 % uld, 25 % silke.',
-    spinType: 'blow?',
+    spinType: '',
     certifications: ['GOTS'],
   },
 
@@ -683,10 +683,10 @@ const YARNS = [
     brand: 'Kremke',
     origin: 'Unknown',
     tier: 'mid',
-    weight: 'DK',
+    weight: 'lace',
     gauge: { stitches: 18, needle_mm: 4.0 },
     fiber: [{ name: 'mohair', pct: 65 }, { name: 'bomuld', pct: 35 }],
-    meters_per_50g: 100,
+    meters_per_50g: 420,
     price_dkk_50g: 100,
     care: 'Handwash 30C',
     eco: true, vegan: false, mulesing_free: true,
@@ -783,10 +783,10 @@ const YARNS = [
     brand: 'Kremke',
     origin: 'Unknown',
     tier: 'mid',
-    weight: 'DK',
+    weight: 'lace',
     gauge: { stitches: 18, needle_mm: 4.0 },
     fiber: [{ name: 'mohair', pct: 72 }, { name: 'silke', pct: 28 }],
-    meters_per_50g: 100,
+    meters_per_50g: 420,
     price_dkk_50g: 100,
     care: 'Handwash 30C',
     eco: true, vegan: false, mulesing_free: true,
@@ -923,9 +923,9 @@ const YARNS = [
     origin: 'UK',
     tier: 'premium',
     weight: 'sport',
-    gauge: { stitches: 29, needle_mm: 3.5 },
+    gauge: { stitches: 24, needle_mm: 3.5 },
     fiber: [{ name: 'Cashmere', pct: 100 }],
-    meters_per_50g: 200,
+    meters_per_50g: 220,
     price_dkk_50g: 258,
     care: 'Håndvask 30°C',
     eco: false, vegan: false, mulesing_free: true,
@@ -943,7 +943,7 @@ const YARNS = [
     origin: 'Norge',
     tier: 'mid',
     weight: 'DK',
-    gauge: { stitches: 21, needle_mm: 3.75 },
+    gauge: { stitches: 23, needle_mm: 3.0 },
     fiber: [{ name: 'Merino uld', pct: 100 }],
     meters_per_50g: 108,
     price_dkk_50g: 57,
@@ -1156,6 +1156,7 @@ const YARNS = [
     description: 'Ekstra stærkt sokkegarn i 100% uld, spundet til at holde til slid. Et fed på 150g rækker til et par sokker op til str. 45-47.',
     certifications: [],
     spinType: '',
+    isSockYarn: true,
   },
 
   {
@@ -2023,6 +2024,7 @@ const YARNS = [
     description: '100% norsk uld inkl. spælsaufår for holdbarhed.',
     certifications: [],
     spinType: '2-ply',
+    isSockYarn: true,
   },
 
   {
@@ -2372,7 +2374,7 @@ const YARNS = [
     buyUrl: 'https://garnvaerkstedet.dk/products/drops-air-natur-01',
     description: 'Utrolig let blowyarn af alpaka. Færre nøgler nødvendige pga. ekstremt lav vægt. Smukt draperet resultat.',
     certifications: [],
-    spinType: 'blowyarn',
+    spinType: 'blow',
   },
 
   {
@@ -2392,7 +2394,7 @@ const YARNS = [
     buyUrl: 'https://garnvaerkstedet.dk/products/drops-brushed-alpaca-silk-natur-01',
     description: 'Luksus mohair-lignende garn af alpaka og silke. 25g nøgle = 140m. Bruges ofte dobbelt eller enkelt til fine sjaler og sweaters.',
     certifications: [],
-    spinType: '',
+    spinType: 'blow',
   },
 
   {
@@ -2698,7 +2700,7 @@ const YARNS = [
     buyUrl: 'https://garnvaerkstedet.dk/products/202-natural-alpaca-pelo-lana-grossa',
     description: 'Blød blowyarn af bomuld og baby alpaka. Let og luftig tekstur.',
     certifications: [],
-    spinType: 'blowyarn',
+    spinType: 'blow',
   },
 
   {
@@ -2969,6 +2971,7 @@ const YARNS = [
     description: 'Norsk alpaka-merino-nylon-strømpegarn. Over 60 farver. Slidstærkt og blødt.',
     certifications: [],
     spinType: '',
+    isSockYarn: true,
   },
 
   {
@@ -3397,7 +3400,7 @@ const YARNS = [
     buyUrl: 'https://uldstedet.dk/garn-170/rowan-166/rowan-alpaca-classic-15003.html',
     description: 'Blowspundet alpaka og bomuld. 25g nøgle = 120m. Let og luftig til fine projekter.',
     certifications: [],
-    spinType: 'blowyarn',
+    spinType: 'blow',
   },
 
   {
@@ -4112,7 +4115,7 @@ const PATTERNS = [
     // ── Visuelt match-priortet (ny princip) ───────────────────────────
     // Originalkarakter (Cardiff Cashmere Classic): smooth/defineret strik,
     //   matte sheen, light halo, lett luftig, luxuriøs cashmere-feel.
-    //   Sport, 29 m/10 cm, 100% cashmere, 258 kr/50g, 200 m/50g.
+    //   Sport, 24 m/10 cm, 100% cashmere, 258 kr/50g, 220 m/50g.
     //   Halsnært tørklæde → blødhed obligatorisk; mohair ekskluderet.
     //
     // Visuelt mål: pure cashmere (eller cashmere-lignende luksusblanding)
@@ -4134,18 +4137,9 @@ const PATTERNS = [
     //     Lukseriøs blanding med yak (let halo), baby alpaca (drape), silke (sheen).
     //     Lidt tættere på cashmere-feel end pure alpaca, men ikke PetiteKnit-listet.
     //
-    // Premium (TOM — ingen pure cashmere i databasen passer rule 1):
-    //   Original gauge: 29 m / 10 cm på 3.5 mm pind.
-    //   Tilladelse: ±2 masker, ±0.5 mm pind (±1.0 borderline).
-    //   Pure cashmere kandidater i databasen:
-    //     - garna-meriana: 25 m gauge → ±4 (overtræder)
-    //     - pascuali-cashmere-6-28: 24 m gauge → ±5 (overtræder)
-    //     - garna-edda: 28 m gauge ✓, men TWEEDY → forkert visuelt
-    //     - cardiff-classic: DK 22 m → ±7 gauge (overtræder)
-    //     - lang-yarns-cashmere-premium: DK 22 m → ±7 gauge (overtræder)
-    //     - gepard-cashmere-klassik: DK 21 m → ±8 gauge (overtræder)
-    //   Tom premium-tier er ærligt valg — ingen cashmere-match findes på den
-    //   gauge/pind-kombination originalen kræver.
+    // Premium (auto-matched ved korrekt gauge 24 m / 3.5 mm pind):
+    //   pascuali-cashmere-6-28, garna-cumulus auto-matches nu korrekt.
+    //   Frasorteret: garna-edda (TWEEDY ±4 gauge).
     //
     // Frasorteret (forkert visuelt udtryk):
     //   - garna-edda (cashmere TWEEDY): tweed ≠ smooth Cardiff
@@ -4181,25 +4175,25 @@ const PATTERNS = [
     // ── Visuelt match-priortet (ny princip) ───────────────────────────
     // Originalkarakter (Sandnes Doppel-Sunday): defineret merino,
     //   worsted-spundet, smooth, matte, bouncy, klassisk uld-look.
-    //   DK, 21 m/10 cm (strikkes både enkelt og dobbelt), 100% merino, 57 kr/50g.
+    //   DK, 23 m/10 cm på 3 mm pind (PetiteKnit spec), 100% merino, 57 kr/50g.
     //   Ingen halo, solide farver, elastisk strik.
     //
-    // Visuelt mål: pure merino eller fin pure uld i DK (eller worsted nær 21 m),
+    // Visuelt mål: pure merino eller fin pure uld i DK (eller worsted nær 23 m),
     //   worsted-spundet, smooth, matte, solid-farvet. INGEN blow yarn (Isager Soft
     //   var fejl — fluffy halo ≠ defineret merino). INGEN tweed. INGEN alpaca/silke
     //   blandinger (forkert sheen og drape).
     //
     // Mid (godt alternativ — samme defineret merino-karakter, dyrere):
-    //   - krea-deluxe-organic-wool-2 (DK, 20 m, ±1 gauge, 100% merinould, 100 kr)
+    //   - krea-deluxe-organic-wool-2 (DK, 20 m, ±3 gauge, 100% merinould, 69 kr)
     //     Eco-opgradering. GOTS-certificeret. Samme smooth merino-look.
-    //   - krea-deluxe-raw---organic-wool-2 (DK, 20 m, ±1 gauge, 100% uld, 100 kr)
+    //   - krea-deluxe-raw---organic-wool-2 (DK, 20 m, ±3 gauge, 100% merinould, 69 kr)
     //     Raw eco-uld. Fin pure uld med samme defineret karakter.
     //
     // Budget (samme karakter, billigere):
     //   - sandnes-peer-gynt (DK, 22 m, ±1 gauge, 100% norsk uld, 42 kr)
     //     Klassisk pure uld, defineret strik. Lidt mindre soft end merino, men
     //     samme worsted-spundet visuelt udtryk.
-    //   - filcolana-pernilla (DK, 23 m, ±2 gauge, 100% ren ny uld, 43 kr)
+    //   - filcolana-pernilla (DK, 23 m, ±0 gauge, 100% ren ny uld, 43 kr)
     //     Pure uld, samme matte defineret karakter.
     //
     // Premium (TOM — ingen non-superwash kandidat passer rule 1):
@@ -4280,7 +4274,7 @@ const PATTERNS = [
     // Manual kuration prioriterer blow yarn-karakter over algoritmisk gauge-match.
     tiers: {
       budget:  ['drops-brushed-alpaca-silk'],
-      mid:     ['isager-soft'],
+      mid:     [],
       premium: ['bc-garn-svala', 'kremke-kid-cotton'],
     },
   },
