@@ -48,6 +48,16 @@ window.addEventListener('popstate', (e) => {
 //
 const MAX_PER_TIER = 12; // max alternatives shown per tier (manual + auto)
 
+// Parse needle_mm which may be a number (3.75) or a range string ("3,5-4" / "3-3,5").
+// Returns the midpoint as a number for algorithmic comparisons.
+function parseNeedle(val) {
+  if (val == null) return null;
+  if (typeof val === 'number') return val;
+  const parts = String(val).replace(/,/g, '.').split('-').map(Number).filter(n => !isNaN(n));
+  if (parts.length === 0) return null;
+  return parts.reduce((a, b) => a + b, 0) / parts.length;
+}
+
 // Classify yarn into broad visual-character groups.
 // Alternatives must share the same group — merino and linen look nothing alike.
 function getFiberGroup(yarn) {
@@ -88,7 +98,7 @@ function populatePatternTiers() {
         if (y.gauge.stitches == null || origYarn.gauge.stitches == null) return false;
         if (Math.abs(y.gauge.stitches - origYarn.gauge.stitches) > 2) return false;
         if (y.gauge.needle_mm != null && origYarn.gauge.needle_mm != null &&
-            Math.abs(y.gauge.needle_mm - origYarn.gauge.needle_mm) > 1.0) return false;
+            Math.abs(parseNeedle(y.gauge.needle_mm) - parseNeedle(origYarn.gauge.needle_mm)) > 1.0) return false;
         if (getFiberGroup(y) !== origGroup) return false;
         // Blow yarns only match blow yarns, regular yarns don't get blow yarn alternatives
         const origIsBlow = origYarn.spinType === 'blow';
@@ -181,10 +191,10 @@ function populatePatternTiers() {
         if (y.id === origYarn.id) return false;
         if (y.gauge.stitches == null || origYarn.gauge.stitches == null) return false;
         const hdStitches = Math.round(y.gauge.stitches * 0.72);
-        const hdNeedle   = y.gauge.needle_mm != null ? y.gauge.needle_mm * 1.4 : null;
+        const hdNeedle   = y.gauge.needle_mm != null ? parseNeedle(y.gauge.needle_mm) * 1.4 : null;
         if (Math.abs(hdStitches - origYarn.gauge.stitches) > 2) return false;
         if (hdNeedle != null && origYarn.gauge.needle_mm != null &&
-            Math.abs(hdNeedle - origYarn.gauge.needle_mm) > 1.0) return false;
+            Math.abs(hdNeedle - parseNeedle(origYarn.gauge.needle_mm)) > 1.0) return false;
         if (getFiberGroup(y) !== origGroup) return false;
         if (y.spinType === 'blow') return false;
         if (y.isSockYarn) return false;
@@ -618,7 +628,7 @@ function renderShareSection(pattern) {
 function renderYarnCard(yarn, origYarn, pattern, tierId, heldDouble = false) {
   // For held-double: effective gauge/needle/price are different from single-strand
   const effStitches = heldDouble ? Math.round(yarn.gauge.stitches * 0.72) : yarn.gauge.stitches;
-  const effNeedle   = heldDouble ? Math.round(yarn.gauge.needle_mm * 1.4 * 4) / 4 : yarn.gauge.needle_mm;
+  const effNeedle   = heldDouble ? Math.round(parseNeedle(yarn.gauge.needle_mm) * 1.4 * 4) / 4 : parseNeedle(yarn.gauge.needle_mm);
   const effPrice    = heldDouble ? yarn.price_dkk_50g * 2 : yarn.price_dkk_50g;
   const effMeters   = heldDouble ? Math.round(yarn.meters_per_50g / 2) : yarn.meters_per_50g;
 
@@ -627,7 +637,7 @@ function renderYarnCard(yarn, origYarn, pattern, tierId, heldDouble = false) {
     : estimateCost(yarn, pattern.totalMeters_M);
   const gaugeDiff = effStitches - origYarn.gauge.stitches;
   const gaugeStatus = gaugeLabel(gaugeDiff);
-  const needleDiff  = effNeedle - origYarn.gauge.needle_mm;
+  const needleDiff  = effNeedle - parseNeedle(origYarn.gauge.needle_mm);
   const needleStatus = needleLabel(needleDiff);
   const fiberStr  = yarn.fiber.map(f => `${f.pct}% ${f.name}`).join(', ');
   const origFiber = origYarn.fiber.map(f => `${f.pct}% ${f.name}`).join(', ');
