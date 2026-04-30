@@ -937,8 +937,8 @@ const YARNS = [
   },
 
   {
-    id: 'sandnes-doppel-sunday',
-    name: 'Doppel-Sunday',
+    id: 'sandnes-double-sunday',
+    name: 'Double Sunday',
     brand: 'Sandnes Garn',
     origin: 'Norge',
     tier: 'mid',
@@ -4688,7 +4688,7 @@ const PATTERNS = [
     // OBS: "Double Sunday" er garnets navn (et tykkere twist-variant af Sunday) —
     // det er IKKE en instruktion om at strikke med dobbelttråd. Tidligere beskrivelse
     // sagde "dobbelt merino-uld", hvilket var misvisende.
-    originalYarn_id: 'sandnes-doppel-sunday',
+    originalYarn_id: 'sandnes-double-sunday',
     secondaryYarn_id: null,
     totalMeters_M: 1000,
     tags: ['sweater', 'merino', 'petiteknit'],
@@ -4697,7 +4697,7 @@ const PATTERNS = [
     estimatedHours: 30,
     imageUrl: 'https://images4-g.ravelrycache.com/uploads/PetiteKnitDK/1056924718/scarlet_sweater_badstuerock22-02_small2.jpg',
     // ── Visuelt match-priortet (ny princip) ───────────────────────────
-    // Originalkarakter (Sandnes Doppel-Sunday): defineret merino,
+    // Originalkarakter (Sandnes Double Sunday): defineret merino,
     //   worsted-spundet, smooth, matte, bouncy, klassisk uld-look.
     //   DK, 23 m/10 cm på 3 mm pind (PetiteKnit spec), 100% merino, 57 kr/50g.
     //   Ingen halo, solide farver, elastisk strik.
@@ -4728,7 +4728,7 @@ const PATTERNS = [
     // Frasorteret/fjernet:
     //   - isager-soft (BLOW yarn, alpaka/bomuld): fluffy halo ≠ defineret merino
     //   - krea-deluxe-organic-wool-1 (DK, 26 m): forkert gauge, for tæt
-    //   - sandnes-peer-gynt-tweed: tweed-nister ≠ solid Doppel-Sunday
+    //   - sandnes-peer-gynt-tweed: tweed-nister ≠ solid Double Sunday
     //   - rowan-cashmere-tweed: tweed-karakter, ikke smooth
     //   - la-bien-aimee-merino-dk, lang-yarns-infinity: SUPERWASH (fjernet fra db)
     //   - wooldreamers-manchelopis: fjernet (Wooldreamers-mærket fjernet fra db)
@@ -4751,7 +4751,7 @@ const PATTERNS = [
     // PetiteKnit-original: Double Sunday fra Sandnes Garn, strikket SINGLE strand.
     // (Samme garn-misforståelse rettet som i Scarlet Sweater — "Double Sunday" er
     // garnets navn, ikke en strikketeknik med dobbelttråd.)
-    originalYarn_id: 'sandnes-doppel-sunday',
+    originalYarn_id: 'sandnes-double-sunday',
     secondaryYarn_id: null,
     totalMeters_M: 1200,
     tags: ['cardigan', 'merino', 'petiteknit'],
@@ -4760,7 +4760,7 @@ const PATTERNS = [
     estimatedHours: 35,
     imageUrl: 'https://images4-f.ravelrycache.com/uploads/PetiteKnitDK/1072659795/scarlet_cardigan1-01_small2.jpg',
     // ── Visuelt match-priortet ────────────────────────────────────────
-    // Samme original som Scarlet Sweater (Sandnes Doppel-Sunday).
+    // Samme original som Scarlet Sweater (Sandnes Double Sunday).
     // Identiske tiers — se Scarlet Sweater for fuld begrundelse.
     // Visuelt mål: defineret pure merino/uld, smooth, matte, ingen halo, solide farver.
     // Premium tom: ingen non-superwash mulesing-fri pure merino i DK-gauge
@@ -4894,7 +4894,7 @@ const FIBER_GROUPS = {
     label: 'Uld',
     emoji: '🧶',
     description: 'Klassisk, varm, holdbar',
-    yarns: ['sandnes-doppel-sunday', 'sandnes-garn-sunday', 'merino-ull-fra-bama', 'krea-deluxe-organic-wool-1', 'krea-deluxe-organic-wool-2'],
+    yarns: ['sandnes-double-sunday', 'sandnes-garn-sunday', 'merino-ull-fra-bama', 'krea-deluxe-organic-wool-1', 'krea-deluxe-organic-wool-2'],
   },
   'cashmere': {
     label: 'Kasjmir',
