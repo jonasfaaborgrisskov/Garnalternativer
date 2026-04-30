@@ -69,7 +69,9 @@ function needleEndpoints(val) {
 
 // Classify yarn into broad visual-character groups.
 // Alternatives must share the same group — merino and linen look nothing alike.
+// A yarn may override its computed group via the fiberGroup field in data.js.
 function getFiberGroup(yarn) {
+  if (yarn.fiberGroup) return yarn.fiberGroup;
   const fibers = yarn.fiber || [];
   const pct = name => fibers
     .filter(f => f.name.toLowerCase().includes(name))

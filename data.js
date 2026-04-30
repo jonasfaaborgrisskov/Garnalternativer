@@ -1278,6 +1278,7 @@ const YARNS = [
     description: 'Ultralette luksus cashmere/silke-garn. 74% cashmere og 26% silke. 300 m/25g.',
     certifications: [],
     spinType: '',
+    fiberGroup: 'mohair',
   },
 
   {
