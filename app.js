@@ -91,6 +91,29 @@ function getFiberGroup(yarn) {
   return 'protein'; // wool, merino, alpaca, lambswool, blends, etc.
 }
 
+// Classify the sheep-wool character of a yarn for visual matching.
+// Returns null when the yarn has no sheep wool (pure alpaca, cashmere, silk, cotton…) — check is skipped.
+// Pelsuld (Gotland, pelt sheep) has a lustrous, airy character unlike merino or shetland.
+function getWoolType(yarn) {
+  const fibers = yarn.fiber || [];
+  const woolFibers = fibers.filter(f => {
+    const n = f.name.toLowerCase();
+    if (n.includes('bomuld') || n.includes('cotton') || n.includes('bomull')) return false; // cotton ≠ wool
+    return n.includes('uld') || n.includes('wool') || n.includes('merino') ||
+           n.includes('shetland') || n.includes('highland') || n.includes('donegal') ||
+           n.includes('lambswool') || n.includes('lammeuld') || n.includes('pelsuld') ||
+           n.includes('pelssau');
+  });
+  if (woolFibers.length === 0) return null;
+  const all = woolFibers.map(f => f.name.toLowerCase()).join(' ');
+  if (all.includes('pelsuld') || all.includes('gotland') || all.includes('pelssau')) return 'pelsuld';
+  if (all.includes('merino')  || all.includes('merin'))      return 'merino';
+  if (all.includes('shetland') || all.includes('donegal'))   return 'shetland';
+  if (all.includes('highland') || all.includes('højland'))   return 'highland';
+  if (all.includes('lambswool') || all.includes('lammeuld')) return 'lambswool';
+  return 'generic'; // plain uld, norsk uld, dansk uld, portugisisk uld, etc.
+}
+
 function populatePatternTiers() {
   const HALSNÆRT_TYPES = ['tørklæde', 'halstørklæde', 'halskrave', 'sjal'];
   const SYNTH = ['nylon', 'polyamid', 'polyester', 'akryl', 'acrylic'];
@@ -108,8 +131,9 @@ function populatePatternTiers() {
 
     originals.forEach((origYarn, origIdx) => {
       const origPrice = origYarn.price_dkk_50g;
-      const origGroup = getFiberGroup(origYarn);
-      const origIsBlow = origYarn.spinType === 'blow';
+      const origGroup    = getFiberGroup(origYarn);
+      const origWoolType = getWoolType(origYarn);
+      const origIsBlow   = origYarn.spinType === 'blow';
 
       // Manual curation: primary original uses pattern.tiers; secondary originals start empty.
       // Curated yarns with gauge diff ≥ 6 on the same needle are silently excluded —
@@ -166,6 +190,8 @@ function populatePatternTiers() {
           if (y.gauge.needle_mm != null && origYarn.gauge.needle_mm != null &&
               Math.abs(parseNeedle(y.gauge.needle_mm) - parseNeedle(origYarn.gauge.needle_mm)) > 1.0) return false;
           if (getFiberGroup(y) !== origGroup) return false;
+          const yWT = getWoolType(y);
+          if (origWoolType !== null && origWoolType !== yWT) return false;
           if (origIsBlow !== (y.spinType === 'blow')) return false;
           if (y.isSockYarn) return false;
           if (y.fiber.some(f => SYNTH.some(s => f.name.toLowerCase().includes(s)))) return false;
@@ -222,6 +248,8 @@ function populatePatternTiers() {
             if (hdNeedle != null && origYarn.gauge.needle_mm != null &&
                 Math.abs(hdNeedle - parseNeedle(origYarn.gauge.needle_mm)) > 1.0) return false;
             if (getFiberGroup(y) !== origGroup) return false;
+            const yWTHd = getWoolType(y);
+            if (origWoolType !== null && origWoolType !== yWTHd) return false;
             if (y.spinType === 'blow') return false;
             if (y.isSockYarn) return false;
             if (y.fiber.some(f => SYNTH.some(s => f.name.toLowerCase().includes(s)))) return false;
@@ -441,6 +469,28 @@ function renderPatternGrid(patterns) {
   updateFavoriteButtons();
 }
 
+// ─── Size helpers ─────────────────────────────────────────────────
+function getPatternMeters(pattern) {
+  if (pattern.sizes) {
+    const key = pattern._selectedSize || Object.keys(pattern.sizes)[0];
+    return pattern.sizes[key].meters;
+  }
+  return pattern.totalMeters_M;
+}
+
+function getPatternSizeLabel(pattern) {
+  if (pattern.sizes) {
+    const key = pattern._selectedSize || Object.keys(pattern.sizes)[0];
+    return `str. ${key}`;
+  }
+  return pattern.sizeLabel || 'str. M';
+}
+
+function selectPatternSize(patternId, sizeKey) {
+  const p = PATTERNS.find(x => x.id === patternId);
+  if (p) { p._selectedSize = sizeKey; showDetail(patternId, false); }
+}
+
 // ─── Pattern Detail ───────────────────────────────────────────────
 function showDetail(patternId, pushToHistory = true) {
   currentPattern = PATTERNS.find(p => p.id === patternId);
@@ -484,9 +534,22 @@ function renderPatternHeader(pattern) {
     ? `<div class="detail-image-col"><img src="${pattern.imageUrl}" alt="${pattern.name}" onerror="this.parentElement.className='detail-image-col detail-image-col--fallback'; this.outerHTML='<div class=&quot;detail-emoji-fallback&quot;>${pattern.emoji}</div>'"></div>`
     : `<div class="detail-image-col detail-image-col--fallback"><div class="detail-emoji-fallback">${pattern.emoji}</div></div>`;
 
+  const priceUnitG  = pattern.priceUnit_g || 50;
+  const totalMeters = getPatternMeters(pattern);
+  const sizeLabel   = getPatternSizeLabel(pattern);
+  const currentSizeData = pattern.sizes
+    ? pattern.sizes[pattern._selectedSize || Object.keys(pattern.sizes)[0]]
+    : null;
   const originalsHtml = originals.map(y => {
-    const fiberStr = y.fiber.map(f => `${f.pct}% ${f.name}`).join(', ');
-    const costEst  = estimateCost(y, pattern.totalMeters_M);
+    const fiberStr   = y.fiber.map(f => `${f.pct}% ${f.name}`).join(', ');
+    const skeinUnit  = y.packageSize_g || 50;
+    const displayPrice = Math.round(y.price_dkk_50g * skeinUnit / 50);
+    const displayMeters = Math.round(y.meters_per_50g * skeinUnit / 50);
+    const gramsNeeded = currentSizeData?.gramsPerYarn?.[y.id] ?? null;
+    const displaySkeinCount = gramsNeeded !== null
+      ? Math.ceil(gramsNeeded / skeinUnit)
+      : Math.ceil(totalMeters / (y.meters_per_50g * skeinUnit / 50));
+    const displayCostTotal = displaySkeinCount * displayPrice;
     return `
       <div class="pk-original-item">
         <div class="pk-original-top">
@@ -494,15 +557,15 @@ function renderPatternHeader(pattern) {
             <div class="pk-original-name">${y.name}</div>
             <div class="pk-original-brand">${y.brand}</div>
           </div>
-          <div class="pk-original-price">${y.price_dkk_50g} kr.<span class="pk-original-price-unit">/50g</span></div>
+          <div class="pk-original-price">${displayPrice} kr.<span class="pk-original-price-unit">/${skeinUnit}g</span></div>
         </div>
         <div class="pk-original-attrs">
           <span>${y.gauge.stitches} m/10 cm</span>
           <span>Pind ${y.gauge.needle_mm} mm</span>
-          <span>${y.meters_per_50g} m/50g</span>
+          <span>${displayMeters} m/${skeinUnit}g</span>
           <span>${fiberStr}</span>
         </div>
-        <div class="pk-original-cost">Ca. ${costEst.total} kr. til str. M (${costEst.skeins} nøgler)</div>
+        <div class="pk-original-cost">Ca. ${displayCostTotal} kr. til ${sizeLabel} (${displaySkeinCount} nøgle${displaySkeinCount !== 1 ? 'r' : ''})</div>
         ${y.buyUrl ? `<a class="pk-original-buy" href="${y.buyUrl}" target="_blank" rel="noopener noreferrer">Køb ${y.name} →</a>` : ''}
       </div>`;
   }).join('');
@@ -525,6 +588,14 @@ function renderPatternHeader(pattern) {
         <h1 class="detail-title">${pattern.name}</h1>
         <p class="detail-desc">${pattern.description}</p>
 
+        ${pattern.sizes ? `
+        <div class="size-selector">
+          <span class="size-selector-label">Størrelse:</span>
+          ${Object.keys(pattern.sizes).map(key => `
+            <button class="size-selector-btn${(pattern._selectedSize || Object.keys(pattern.sizes)[0]) === key ? ' active' : ''}"
+              onclick="selectPatternSize('${pattern.id}','${key}'); return false;">${key}</button>
+          `).join('')}
+        </div>` : ''}
         <div class="pk-originals-box">
           <div class="yarn-spec-label">${originals.length > 1 ? 'PetiteKnit anbefaler' : 'Originalt garn'}</div>
           <div class="pk-originals-list">${originalsHtml}</div>
@@ -576,14 +647,16 @@ function renderUnifiedAlternativesSection(pattern) {
 
 function renderOriginalYarnSubheader(pattern, origYarn) {
   const fiberStr = origYarn.fiber.map(f => `${f.pct}% ${f.name}`).join(', ');
-  const costEst  = estimateCost(origYarn, pattern.totalMeters_M);
+  const costEst  = estimateCost(origYarn, getPatternMeters(pattern));
+  const priceUnitG = pattern.priceUnit_g || 50;
+  const displayOrigPrice = Math.round(origYarn.price_dkk_50g * priceUnitG / 50);
   return `
     <div class="original-yarn-subheader">
       <h2 class="original-yarn-subheader-title">Alternativer til ${origYarn.name}</h2>
       <div class="original-yarn-subheader-meta">
         ${origYarn.brand} · ${origYarn.gauge.stitches} m/10 cm · Pind ${origYarn.gauge.needle_mm} mm ·
-        ${fiberStr} · ${origYarn.price_dkk_50g} kr./50g · ${origYarn.meters_per_50g} m/50g ·
-        ca. ${costEst.total} kr. til str. M
+        ${fiberStr} · ${displayOrigPrice} kr./${priceUnitG}g · ${origYarn.meters_per_50g} m/50g ·
+        ca. ${costEst.total} kr. til ${getPatternSizeLabel(pattern)}
         ${origYarn.buyUrl ? `· <a href="${origYarn.buyUrl}" target="_blank" rel="noopener noreferrer">Køb →</a>` : ''}
       </div>
     </div>`;
@@ -671,9 +744,10 @@ function renderYarnCard(yarn, origYarn, pattern, tierId, heldDouble = false) {
   const effPrice    = heldDouble ? yarn.price_dkk_50g * 2 : yarn.price_dkk_50g;
   const effMeters   = heldDouble ? Math.round(yarn.meters_per_50g / 2) : yarn.meters_per_50g;
 
+  const patternMeters = getPatternMeters(pattern);
   const costEst   = heldDouble
-    ? estimateCost({ ...yarn, meters_per_50g: effMeters, price_dkk_50g: effPrice }, pattern.totalMeters_M)
-    : estimateCost(yarn, pattern.totalMeters_M);
+    ? estimateCost({ ...yarn, meters_per_50g: effMeters, price_dkk_50g: effPrice }, patternMeters)
+    : estimateCost(yarn, patternMeters);
   const gaugeDiff = effStitches - origYarn.gauge.stitches;
   const gaugeStatus = gaugeLabel(gaugeDiff);
   const needleDiff  = effNeedleNum - parseNeedle(origYarn.gauge.needle_mm);
@@ -681,6 +755,13 @@ function renderYarnCard(yarn, origYarn, pattern, tierId, heldDouble = false) {
   const fiberStr  = yarn.fiber.map(f => `${f.pct}% ${f.name}`).join(', ');
   const origFiber = origYarn.fiber.map(f => `${f.pct}% ${f.name}`).join(', ');
   const priceDiff = effPrice - origYarn.price_dkk_50g;
+  const priceUnitG = pattern.priceUnit_g || 50;
+  const displayEffPrice  = Math.round(effPrice * priceUnitG / 50);
+  const displayOrigPrice = Math.round(origYarn.price_dkk_50g * priceUnitG / 50);
+  const displayPriceDiff = displayEffPrice - displayOrigPrice;
+  const metersPerDisplayUnit = yarn.meters_per_50g * priceUnitG / 50;
+  const displaySkeins = Math.ceil(patternMeters / metersPerDisplayUnit);
+  const displayTotal  = displaySkeins * displayEffPrice;
   const badges    = buildBadges(yarn, origYarn);
   const why       = buildWhy(yarn, origYarn, tierId, gaugeDiff);
 
@@ -693,9 +774,9 @@ function renderYarnCard(yarn, origYarn, pattern, tierId, heldDouble = false) {
           ${badges ? `<div class="yarn-card-badges">${badges}</div>` : ''}
         </div>
         <div class="yarn-card-price">
-          <div class="price-main">${effPrice} kr.</div>
-          <div class="price-unit">${heldDouble ? 'pr. 2×50g' : 'pr. 50g'}</div>
-          ${priceDiff !== 0 ? `<div class="price-diff ${priceDiff < 0 ? 'cheaper' : 'pricier'}">${priceDiff < 0 ? '▼' : '▲'} ${Math.abs(priceDiff)} kr.</div>` : '<div class="price-diff same">Samme pris</div>'}
+          <div class="price-main">${displayEffPrice} kr.</div>
+          <div class="price-unit">${heldDouble ? `pr. 2×${priceUnitG}g` : `pr. ${priceUnitG}g`}</div>
+          ${displayPriceDiff !== 0 ? `<div class="price-diff ${displayPriceDiff < 0 ? 'cheaper' : 'pricier'}">${displayPriceDiff < 0 ? '▼' : '▲'} ${Math.abs(displayPriceDiff)} kr.</div>` : '<div class="price-diff same">Samme pris</div>'}
         </div>
       </div>
 
@@ -750,8 +831,8 @@ function renderYarnCard(yarn, origYarn, pattern, tierId, heldDouble = false) {
       </div>
 
       <div class="cost-estimate">
-        <span class="cost-label">Estimeret projektkost (str. M, ~${pattern.totalMeters_M} m)</span>
-        <span class="cost-value">${heldDouble ? `${costEst.skeins} nøgler × ${effPrice} kr. (2×${yarn.price_dkk_50g} kr.)` : `${costEst.skeins} nøgler × ${yarn.price_dkk_50g} kr.`} = <strong>${costEst.total} kr.</strong></span>
+        <span class="cost-label">Estimeret projektkost (${getPatternSizeLabel(pattern)}, ~${patternMeters} m)</span>
+        <span class="cost-value">${heldDouble ? `${costEst.skeins} nøgler × ${effPrice} kr. (2×${yarn.price_dkk_50g} kr.)` : `${displaySkeins} nøgler × ${displayEffPrice} kr.`} = <strong>${heldDouble ? costEst.total : displayTotal} kr.</strong></span>
       </div>
 
       <div class="why-box">

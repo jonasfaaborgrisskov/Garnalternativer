@@ -285,6 +285,173 @@
   opacity: 0.85;
 }
 
+/* Similar Yarns Section */
+.similar-yarns-section {
+  margin-top: var(--sp-4);
+  padding-top: var(--sp-4);
+  border-top: 2px solid var(--border);
+}
+
+.similar-yarns-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-3);
+  margin-bottom: var(--sp-3);
+  flex-wrap: wrap;
+}
+
+.similar-yarns-title {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+}
+
+.similar-sort-btns {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.similar-sort {
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: transparent;
+  font-size: 0.8rem;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.similar-sort.active,
+.similar-sort:hover {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+  background: rgba(107, 159, 79, 0.08);
+}
+
+.similar-filter-chips {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: var(--sp-2);
+  flex-wrap: wrap;
+}
+
+.similar-filter-label {
+  font-size: 0.8rem;
+  color: var(--ink-2);
+  font-weight: 600;
+}
+
+.similar-chip {
+  padding: 0.2rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: transparent;
+  font-size: 0.78rem;
+  color: var(--ink-2);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.similar-chip.active,
+.similar-chip:hover {
+  border-color: var(--color-brand);
+  background: rgba(107, 159, 79, 0.12);
+  color: var(--color-brand);
+}
+
+.similar-yarns-count {
+  font-size: 0.82rem;
+  color: var(--ink-3);
+  margin-bottom: var(--sp-3);
+}
+
+.similar-yarns-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+}
+
+.similar-yarn-item {
+  display: flex;
+  gap: var(--sp-3);
+  justify-content: space-between;
+  padding: var(--sp-3);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.similar-yarn-item:hover {
+  background: rgba(107, 159, 79, 0.06);
+  border-color: var(--color-brand);
+}
+
+.similar-yarn-main {
+  flex: 1;
+  min-width: 0;
+}
+
+.similar-yarn-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ink);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.similar-yarn-brand {
+  font-size: 0.82rem;
+  color: var(--ink-2);
+  margin-bottom: 0.2rem;
+}
+
+.similar-yarn-specs {
+  font-size: 0.78rem;
+  color: var(--ink-3);
+}
+
+.similar-yarn-price-col {
+  text-align: right;
+  flex-shrink: 0;
+}
+
+.similar-yarn-price {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.similar-yarn-unit {
+  font-size: 0.75rem;
+  font-weight: 400;
+  color: var(--ink-3);
+}
+
+.similar-yarn-diff,
+.similar-yarn-gauge {
+  font-size: 0.78rem;
+  margin-top: 0.1rem;
+}
+
+.sim-price-cheaper { color: #2d7d46; }
+.sim-price-same    { color: var(--ink-2); }
+.sim-price-pricier { color: #b45309; }
+.sim-gauge-exact   { color: #2d7d46; }
+.sim-gauge-close   { color: var(--ink-2); }
+
+.similar-empty {
+  font-size: 0.88rem;
+  color: var(--ink-3);
+  padding: var(--sp-3) 0;
+  text-align: center;
+}
+
 /* Mobile */
 @media (max-width: 640px) {
   .yarn-detail-modal {

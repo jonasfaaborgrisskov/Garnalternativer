@@ -1269,6 +1269,35 @@ body {
 .footer-logo { font-family: var(--serif); font-size: 1rem; color: var(--ink-2); }
 .footer-sub  { font-size: 0.78rem; color: var(--ink-4); }
 
+/* ── Size Selector ─────────────────────────────────────────────── */
+.size-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+.size-selector-label {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-3);
+}
+.size-selector-btn {
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: transparent;
+  color: var(--ink-3);
+  font-size: 0.8rem;
+  font-family: var(--sans);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.size-selector-btn:hover { border-color: var(--ink-3); color: var(--ink-1); }
+.size-selector-btn.active { border-color: var(--accent); color: var(--accent); font-weight: 600; }
+
 /* ── PK Originals Box (multiple originals in pattern header) ───── */
 .pk-originals-box {
   background: var(--bg);

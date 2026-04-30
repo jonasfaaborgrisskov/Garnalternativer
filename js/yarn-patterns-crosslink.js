@@ -111,6 +111,7 @@ function renderYarnWithPatterns(yarnId) {
           ` : ''}
 
           ${patternsList}
+          ${typeof renderSimilarYarnsSection === 'function' ? renderSimilarYarnsSection(yarnId) : ''}
         </div>
       </div>
     </div>
