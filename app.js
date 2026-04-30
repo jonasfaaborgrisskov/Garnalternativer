@@ -628,7 +628,8 @@ function renderShareSection(pattern) {
 function renderYarnCard(yarn, origYarn, pattern, tierId, heldDouble = false) {
   // For held-double: effective gauge/needle/price are different from single-strand
   const effStitches = heldDouble ? Math.round(yarn.gauge.stitches * 0.72) : yarn.gauge.stitches;
-  const effNeedle   = heldDouble ? Math.round(parseNeedle(yarn.gauge.needle_mm) * 1.4 * 4) / 4 : parseNeedle(yarn.gauge.needle_mm);
+  const effNeedleNum = heldDouble ? Math.round(parseNeedle(yarn.gauge.needle_mm) * 1.4 * 4) / 4 : parseNeedle(yarn.gauge.needle_mm);
+  const effNeedle    = heldDouble ? effNeedleNum : yarn.gauge.needle_mm;
   const effPrice    = heldDouble ? yarn.price_dkk_50g * 2 : yarn.price_dkk_50g;
   const effMeters   = heldDouble ? Math.round(yarn.meters_per_50g / 2) : yarn.meters_per_50g;
 
@@ -637,7 +638,7 @@ function renderYarnCard(yarn, origYarn, pattern, tierId, heldDouble = false) {
     : estimateCost(yarn, pattern.totalMeters_M);
   const gaugeDiff = effStitches - origYarn.gauge.stitches;
   const gaugeStatus = gaugeLabel(gaugeDiff);
-  const needleDiff  = effNeedle - parseNeedle(origYarn.gauge.needle_mm);
+  const needleDiff  = effNeedleNum - parseNeedle(origYarn.gauge.needle_mm);
   const needleStatus = needleLabel(needleDiff);
   const fiberStr  = yarn.fiber.map(f => `${f.pct}% ${f.name}`).join(', ');
   const origFiber = origYarn.fiber.map(f => `${f.pct}% ${f.name}`).join(', ');
