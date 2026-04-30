@@ -4802,23 +4802,26 @@ const PATTERNS = [
     // er alpaca-baserede alternativer (fx isager-alpaca-1) acceptable her,
     // selvom alpaca har anden karakter end cashmere. Garter-strik (retstrik)
     // skjuler fiberforskelle mere end stockinette.
-    originalYarns: ['gepard-eco-cashmere-vintage', 'sandnes-alpakka-ull', 'cardiff-cashmere-large'],
-    originalYarn_id: 'gepard-eco-cashmere-vintage',
+    originalYarns: ['cardiff-cashmere-classic', 'pascuali-cashmere-6-28'],
+    originalYarn_id: 'cardiff-cashmere-classic',
     secondaryYarn_id: null,
-    totalMeters_M: 500,
+    totalMeters_M: 600,
     tags: ['tørklæde', 'scarf', 'cashmere', 'petiteknit'],
     materials: ['cashmere'],
     seasonality: ['spring', 'fall', 'winter'],
     estimatedHours: 15,
     imageUrl: 'https://images4-f.ravelrycache.com/uploads/PetiteKnitDK/1057947486/sophie_721_ito_cardiff_small2.jpg',
-    // PetiteKnit-blessede originaler (alle tre viser samme opskrift):
-    //   - Gepard Eco Cashmere Vintage (DK, 50g = 150m) — primær reference
-    //   - Sandnes Alpakka Ull (worsted, 50g = 100m)
-    //   - Cardiff Cashmere Large (worsted, 25g = 56m)
+    // PetiteKnit-blessede originaler (sport-vægt cashmere, pind 3.5mm):
+    //   - Cardiff Cashmere Classic (25g = 112m) — primær reference
+    //   - Pascuali Cashmere 6/28 (25g = 112m)
+    //   - Lang Yarns Cashmere Premium (25g = 115m) — i DB men gauge-data usikker
+    //   - Sandnes Garn Cashmere (25g = 110m) — ikke i DB endnu
+    //   - KFO Compatible Cashmere (25g = 150m, holdes dobbelt) — ikke i DB endnu
+    //   - Sandnes Mini Alpakka (50g = 150m, sport-vægt alpaca) — ikke i DB endnu
     // Halsnært tørklæde → blødhed obligatorisk; mohair ekskluderet.
     tiers: {
-      mid:     [],
-      budget:  [],
+      mid:     ['onion-cashmere', 'kit-couture-cashmere'],
+      budget:  ['isager-alpaca-1', 'holst-garn-haya'],
       premium: [],
     },
   },
