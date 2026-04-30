@@ -4606,6 +4606,180 @@ const YARNS = [
   },
 
   // ── Wadils ────────────────────────────────────────────────────────
+
+  // ── CaMaRose ─────────────────────────────────────────────────────
+
+  {
+    id: 'camarose-snefnug',
+    name: 'Snefnug',
+    brand: 'CaMaRose',
+    origin: 'Peru / Egypten',
+    tier: 'mid',
+    weight: 'DK',
+    gauge: { stitches: 14, needle_mm: '4-6' },
+    fiber: [{ name: 'Baby alpaka', pct: 55 }, { name: 'Økologisk bomuld', pct: 35 }, { name: 'Extrafin merinould', pct: 10 }],
+    meters_per_50g: 110,
+    price_dkk_50g: 76,
+    care: 'Håndvask',
+    eco: true, vegan: false, mulesing_free: true,
+    properties: { softness: 5, warmth: 3, elasticity: 2, drape: 5 },
+    buyUrl: 'https://www.camarose.dk/shop/snefnug-146c1.html',
+    description: 'Blødt og luftigt blow yarn i baby alpaka, økologisk bomuld og merinould. Fluffy halo-look. Perfekt til Ivy Sweater og andre luftige projekter.',
+    certifications: ['RWS', 'GOTS'],
+    spinType: 'blow',
+  },
+
+  // ── Sandnes Garn (ekstra) ─────────────────────────────────────────
+
+  {
+    id: 'sandnes-poppy',
+    name: 'Poppy',
+    brand: 'Sandnes Garn',
+    origin: 'Italien',
+    tier: 'mid',
+    weight: 'DK',
+    gauge: { stitches: 15, needle_mm: '5,5-7' },
+    fiber: [{ name: 'Superfin alpaka', pct: 50 }, { name: 'Bomuld', pct: 35 }, { name: 'Merinould', pct: 15 }],
+    meters_per_50g: 110,
+    price_dkk_50g: 77,
+    care: 'Håndvask 30°C',
+    eco: false, vegan: false, mulesing_free: true,
+    properties: { softness: 5, warmth: 3, elasticity: 2, drape: 5 },
+    buyUrl: 'https://www.sandnesgarn.no/poppy',
+    description: 'Blød alpaka/bomuld/merino blow yarn med fluffy karakter. Bruges til Ivy Sweater og luftige sommerprojekter.',
+    certifications: [],
+    spinType: 'blow',
+  },
+
+  {
+    id: 'sandnes-alpakka-ull',
+    name: 'Alpakka Ull',
+    brand: 'Sandnes Garn',
+    origin: 'Peru / Bolivia',
+    tier: 'budget',
+    weight: 'worsted',
+    gauge: { stitches: 19, needle_mm: '3,5-5' },
+    fiber: [{ name: 'Alpaka', pct: 65 }, { name: 'Uld', pct: 35 }],
+    meters_per_50g: 100,
+    price_dkk_50g: 51,
+    care: 'Maskinvask 30°C uldskylle',
+    eco: false, vegan: false, mulesing_free: true,
+    properties: { softness: 4, warmth: 4, elasticity: 3, drape: 4 },
+    buyUrl: 'https://www.sandnesgarn.no/alpakka-ull',
+    description: '65% alpaka og 35% uld i worsted-vægt. Blød og varm med alpakkaens naturlige glans og uldens elasticitet.',
+    certifications: [],
+    spinType: 'worsted',
+  },
+
+  {
+    id: 'sandnes-tynn-silk-mohair',
+    name: 'Tynn Silk Mohair',
+    brand: 'Sandnes Garn',
+    origin: 'Sydafrika / Kina',
+    tier: 'mid',
+    weight: 'lace',
+    gauge: { stitches: 22, needle_mm: '3-5' },
+    fiber: [{ name: 'Mohair', pct: 57 }, { name: 'Silke', pct: 28 }, { name: 'Uld', pct: 15 }],
+    meters_per_50g: 424,
+    price_dkk_50g: 136,
+    care: 'Maskinvask 30°C uldskylle',
+    eco: false, vegan: false, mulesing_free: true,
+    properties: { softness: 4, warmth: 4, elasticity: 3, drape: 5 },
+    buyUrl: 'https://www.sandnesgarn.no/tynn-silk-mohair',
+    description: '57% mohair, 28% silke, 15% uld. Lacevægt silke-mohair — bruges holdt dobbelt til Ivy Cardigan og lignende projekter. OEKO-TEX certificeret.',
+    certifications: ['Oeko-Tex Standard 100'],
+    spinType: '',
+  },
+
+  // ── Knitting for Olive ────────────────────────────────────────────
+
+  {
+    id: 'knitting-for-olive-soft-silk-mohair',
+    name: 'Soft Silk Mohair',
+    brand: 'Knitting for Olive',
+    origin: 'Frankrig / Kina',
+    tier: 'mid',
+    weight: 'lace',
+    gauge: { stitches: 22, needle_mm: 4.0 },
+    fiber: [{ name: 'Mohair', pct: 70 }, { name: 'Silke', pct: 30 }],
+    meters_per_50g: 450,
+    price_dkk_50g: 143,
+    care: 'Håndvask',
+    eco: false, vegan: false, mulesing_free: true,
+    properties: { softness: 5, warmth: 4, elasticity: 2, drape: 5 },
+    buyUrl: 'https://knittingforolive.com/products/soft-silk-mohair',
+    description: '70% mohair og 30% silke fra Knitting for Olive. Lacevægt — bruges holdt dobbelt. Hazy halo og let silkesheen. 25g nøgle = 225m.',
+    certifications: [],
+    spinType: '',
+  },
+
+  // ── Isager (ekstra) ───────────────────────────────────────────────
+
+  {
+    id: 'isager-silk-mohair',
+    name: 'Silk Mohair',
+    brand: 'Isager',
+    origin: 'Sydafrika / Kina',
+    tier: 'premium',
+    weight: 'lace',
+    gauge: { stitches: 18, needle_mm: 4.0 },
+    fiber: [{ name: 'Mohair', pct: 75 }, { name: 'Silke', pct: 25 }],
+    meters_per_50g: 424,
+    price_dkk_50g: 172,
+    care: 'Håndvask maks. 28°C',
+    eco: false, vegan: false, mulesing_free: true,
+    properties: { softness: 5, warmth: 4, elasticity: 2, drape: 5 },
+    buyUrl: 'https://isagerstrik.dk/en/product/silk-mohair/',
+    description: '75% RMS-certificeret mohair og 25% silke. Bruges holdt dobbelt til Ivy Cardigan og andre mohair-projekter. 25g nøgle = 212m.',
+    certifications: ['RMS'],
+    spinType: '',
+  },
+
+  // ── Gepard (ekstra) ───────────────────────────────────────────────
+
+  {
+    id: 'gepard-eco-cashmere-vintage',
+    name: 'Eco Cashmere Vintage',
+    brand: 'Gepard',
+    origin: 'Italien',
+    tier: 'premium',
+    weight: 'DK',
+    gauge: { stitches: 18, needle_mm: '4-4,5' },
+    fiber: [{ name: 'Cashmere', pct: 100 }],
+    meters_per_50g: 150,
+    price_dkk_50g: 238,
+    care: 'Håndvask 20-25°C',
+    eco: true, vegan: false, mulesing_free: true,
+    properties: { softness: 5, warmth: 5, elasticity: 2, drape: 5 },
+    buyUrl: 'https://uldstedet.dk/garn-170/gepard-160/',
+    description: 'Blanding af nye, fine lange cashmere-fibre og genbrugscashmere. DK-vægt, 150m/50g. Bæredygtig luksus til Sophie Shawl og andre projekter.',
+    certifications: [],
+    spinType: '',
+  },
+
+  // ── Cardiff (ekstra) ──────────────────────────────────────────────
+
+  {
+    id: 'cardiff-cashmere-large',
+    name: 'Cashmere Large',
+    brand: 'Cardiff Cashmere',
+    origin: 'Italien',
+    tier: 'premium',
+    weight: 'worsted',
+    gauge: { stitches: 18, needle_mm: '5-5,5' },
+    fiber: [{ name: 'Cashmere', pct: 100 }],
+    meters_per_50g: 112,
+    price_dkk_50g: 265,
+    care: 'Håndvask 20°C',
+    eco: false, vegan: false, mulesing_free: true,
+    properties: { softness: 5, warmth: 5, elasticity: 2, drape: 5 },
+    buyUrl: 'https://cardiffcashmere.it/en/product/large/',
+    description: '100% cashmere i worsted-vægt. 25g nøgle = 56m. Eksklusivt blødt garn til Sophie Shawl og andre cashmere-projekter.',
+    certifications: [],
+    spinType: '',
+  },
+
+  // ── Wadils ────────────────────────────────────────────────────────
 ];
 
 // ─── Pattern Database ──────────────────────────────────────────────
@@ -4628,50 +4802,23 @@ const PATTERNS = [
     // er alpaca-baserede alternativer (fx isager-alpaca-1) acceptable her,
     // selvom alpaca har anden karakter end cashmere. Garter-strik (retstrik)
     // skjuler fiberforskelle mere end stockinette.
-    originalYarn_id: 'cardiff-cashmere-classic',
+    originalYarns: ['gepard-eco-cashmere-vintage', 'sandnes-alpakka-ull', 'cardiff-cashmere-large'],
+    originalYarn_id: 'gepard-eco-cashmere-vintage',
     secondaryYarn_id: null,
-    totalMeters_M: 600,
+    totalMeters_M: 500,
     tags: ['tørklæde', 'scarf', 'cashmere', 'petiteknit'],
     materials: ['cashmere'],
     seasonality: ['spring', 'fall', 'winter'],
     estimatedHours: 15,
     imageUrl: 'https://images4-f.ravelrycache.com/uploads/PetiteKnitDK/1057947486/sophie_721_ito_cardiff_small2.jpg',
-    // ── Visuelt match-priortet (ny princip) ───────────────────────────
-    // Originalkarakter (Cardiff Cashmere Classic): smooth/defineret strik,
-    //   matte sheen, light halo, lett luftig, luxuriøs cashmere-feel.
-    //   Sport, 24 m/10 cm, 100% cashmere, 258 kr/50g, 220 m/50g.
-    //   Halsnært tørklæde → blødhed obligatorisk; mohair ekskluderet.
-    //
-    // Visuelt mål: pure cashmere (eller cashmere-lignende luksusblanding)
-    //   med defineret strik og let halo. INGEN tweed, INGEN heavy alpaca,
-    //   INGEN bouncy merino — disse giver forkert færdigt udtryk.
-    //
-    // Mid (godt alternativ — samme fiber, sammenlignelig pris):
-    //   - onion-cashmere (fingering, 28 m, ±1 gauge, 95% genbrugs-cashmere, 252 kr)
-    //     Næsten samme pris, samme fiber. Bæredygtig variant.
-    //   - kit-couture-cashmere (fingering, 28 m, ±1 gauge, 100% kashmir, 276 kr)
-    //     Italiensk cashmere, samme defineret-glat karakter.
-    //
-    // Budget (PetiteKnit-blessede + ærlige kompromis):
-    //   - isager-alpaca-1 (fingering, 28 m, ±1 gauge, 100% alpaca, 70 kr)
-    //     Alpaca som PetiteKnit selv anerkender (deres officielle Mini Alpakka-
-    //     anbefaling). Andet udtryk end cashmere (mere drape, mere sheen),
-    //     men retstrik-formatet skjuler fiberforskellen meget. ~73% billigere.
-    //   - holst-garn-haya (fingering, 28 m, ±1 gauge, baby alpaca/mulberry silke/yak, 76 kr)
-    //     Lukseriøs blanding med yak (let halo), baby alpaca (drape), silke (sheen).
-    //     Lidt tættere på cashmere-feel end pure alpaca, men ikke PetiteKnit-listet.
-    //
-    // Premium (auto-matched ved korrekt gauge 24 m / 3.5 mm pind):
-    //   pascuali-cashmere-6-28, garna-cumulus auto-matches nu korrekt.
-    //   Frasorteret: garna-edda (TWEEDY ±4 gauge).
-    //
-    // Frasorteret (forkert visuelt udtryk):
-    //   - garna-edda (cashmere TWEEDY): tweed ≠ smooth Cardiff
-    //   - cardiff-classic (DK 22m): wrong gauge + weight
-    //   - rowan-cashmere-tweed (tweed): tweed-karakter, ikke smooth
+    // PetiteKnit-blessede originaler (alle tre viser samme opskrift):
+    //   - Gepard Eco Cashmere Vintage (DK, 50g = 150m) — primær reference
+    //   - Sandnes Alpakka Ull (worsted, 50g = 100m)
+    //   - Cardiff Cashmere Large (worsted, 25g = 56m)
+    // Halsnært tørklæde → blødhed obligatorisk; mohair ekskluderet.
     tiers: {
-      mid:     ['onion-cashmere', 'kit-couture-cashmere'],
-      budget:  ['isager-alpaca-1', 'holst-garn-haya'],
+      mid:     [],
+      budget:  [],
       premium: [],
     },
   },
@@ -4688,6 +4835,7 @@ const PATTERNS = [
     // OBS: "Double Sunday" er garnets navn (et tykkere twist-variant af Sunday) —
     // det er IKKE en instruktion om at strikke med dobbelttråd. Tidligere beskrivelse
     // sagde "dobbelt merino-uld", hvilket var misvisende.
+    originalYarns: ['sandnes-double-sunday'],
     originalYarn_id: 'sandnes-double-sunday',
     secondaryYarn_id: null,
     totalMeters_M: 1000,
@@ -4751,6 +4899,7 @@ const PATTERNS = [
     // PetiteKnit-original: Double Sunday fra Sandnes Garn, strikket SINGLE strand.
     // (Samme garn-misforståelse rettet som i Scarlet Sweater — "Double Sunday" er
     // garnets navn, ikke en strikketeknik med dobbelttråd.)
+    originalYarns: ['sandnes-double-sunday'],
     originalYarn_id: 'sandnes-double-sunday',
     secondaryYarn_id: null,
     totalMeters_M: 1200,
@@ -4784,6 +4933,7 @@ const PATTERNS = [
     //   - Isager Soft fra Isager Yarn (DK, 50g = 125m) — primær reference
     //   - Snefnug fra CaMaRose (DK, 50g = 110m)
     //   - Poppy fra Sandnes Garn (DK, 50g = 110m)
+    originalYarns: ['isager-soft', 'camarose-snefnug', 'sandnes-poppy'],
     originalYarn_id: 'isager-soft',
     secondaryYarn_id: null,
     totalMeters_M: 900,
@@ -4815,6 +4965,7 @@ const PATTERNS = [
     // Andre PetiteKnit-blessede originaler: Soft Silk Mohair fra Knitting for Olive,
     // Tynn Silk Mohair fra Sandnes Garn, Silk Mohair fra Isager Yarn.
     // (Tidligere fejl: var sat til isager-soft/alpaka-bomuld blow yarn — det er Ivy SWEATER.)
+    originalYarns: ['krea-deluxe-deluxe-silk-mohair', 'knitting-for-olive-soft-silk-mohair', 'sandnes-tynn-silk-mohair', 'isager-silk-mohair'],
     originalYarn_id: 'krea-deluxe-deluxe-silk-mohair',
     secondaryYarn_id: null,
     totalMeters_M: 1100,

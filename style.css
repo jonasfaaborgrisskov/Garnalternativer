@@ -1269,6 +1269,122 @@ body {
 .footer-logo { font-family: var(--serif); font-size: 1rem; color: var(--ink-2); }
 .footer-sub  { font-size: 0.78rem; color: var(--ink-4); }
 
+/* ── PK Originals Box (multiple originals in pattern header) ───── */
+.pk-originals-box {
+  background: var(--bg);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: var(--sp-4) var(--sp-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+}
+
+.pk-originals-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-4);
+}
+
+.pk-original-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding-bottom: var(--sp-4);
+  border-bottom: 1px solid var(--border-light);
+}
+.pk-original-item:last-child {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.pk-original-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.pk-original-name {
+  font-family: var(--serif);
+  font-size: 1.05rem;
+  color: var(--ink);
+  font-weight: normal;
+}
+
+.pk-original-brand {
+  font-size: 0.82rem;
+  color: var(--ink-3);
+  margin-top: 2px;
+}
+
+.pk-original-price {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+  flex-shrink: 0;
+}
+.pk-original-price-unit {
+  font-size: 0.72rem;
+  font-weight: 400;
+  color: var(--ink-3);
+}
+
+.pk-original-attrs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-1) var(--sp-4);
+  font-size: 0.8rem;
+  color: var(--ink-3);
+}
+
+.pk-original-cost {
+  font-size: 0.8rem;
+  color: var(--ink-3);
+}
+
+.pk-original-buy {
+  font-size: 0.82rem;
+  color: var(--forest);
+  text-decoration: none;
+  font-weight: 500;
+}
+.pk-original-buy:hover { text-decoration: underline; }
+
+/* ── Original yarn subheader (shown above each original's tiers) ── */
+.original-alternatives-section--secondary {
+  margin-top: var(--sp-8);
+  padding-top: var(--sp-6);
+  border-top: 2px solid var(--border);
+}
+
+.original-yarn-subheader {
+  background: var(--bg-warm);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: var(--sp-4) var(--sp-5);
+  margin-bottom: var(--sp-5);
+}
+
+.original-yarn-subheader-title {
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: normal;
+  color: var(--ink);
+  margin: 0 0 var(--sp-2) 0;
+}
+
+.original-yarn-subheader-meta {
+  font-size: 0.82rem;
+  color: var(--ink-3);
+  line-height: 1.6;
+}
+.original-yarn-subheader-meta a {
+  color: var(--forest);
+  text-decoration: none;
+  font-weight: 500;
+}
+.original-yarn-subheader-meta a:hover { text-decoration: underline; }
+
 /* ── Utility ───────────────────────────────────────────────────── */
 .visually-hidden {
   position: absolute; width: 1px; height: 1px;
