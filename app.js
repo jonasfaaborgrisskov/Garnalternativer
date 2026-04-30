@@ -58,6 +58,15 @@ function parseNeedle(val) {
   return parts.reduce((a, b) => a + b, 0) / parts.length;
 }
 
+// Returns [low, high] endpoints of a needle value or range.
+function needleEndpoints(val) {
+  if (val == null) return null;
+  if (typeof val === 'number') return [val, val];
+  const parts = String(val).replace(/,/g, '.').split('-').map(Number).filter(n => !isNaN(n));
+  if (parts.length === 0) return null;
+  return [Math.min(...parts), Math.max(...parts)];
+}
+
 // Classify yarn into broad visual-character groups.
 // Alternatives must share the same group — merino and linen look nothing alike.
 function getFiberGroup(yarn) {
@@ -112,7 +121,11 @@ function populatePatternTiers() {
         if (!y || y.gauge.stitches == null || origYarn.gauge.stitches == null) return false;
         if (Math.abs(y.gauge.stitches - origYarn.gauge.stitches) < 6) return false;
         if (y.gauge.needle_mm == null || origYarn.gauge.needle_mm == null) return false;
-        return Math.abs(parseNeedle(y.gauge.needle_mm) - parseNeedle(origYarn.gauge.needle_mm)) <= 0.5;
+        const origEP = needleEndpoints(origYarn.gauge.needle_mm);
+        const altNeedle = parseNeedle(y.gauge.needle_mm);
+        if (!origEP || altNeedle == null) return false;
+        const distToRange = Math.min(Math.abs(altNeedle - origEP[0]), Math.abs(altNeedle - origEP[1]));
+        return distToRange <= 0.75;
       };
 
       const manualTiers = {
