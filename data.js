@@ -2135,16 +2135,16 @@ const YARNS = [
     brand: 'Lang Yarns',
     origin: '',
     tier: 'premium',
-    weight: 'DK',
-    gauge: { stitches: 22, needle_mm: 4.0 },
-    fiber: [{ name: 'Kashmir', pct: 100 }],
+    weight: 'sport',
+    gauge: { stitches: 22, needle_mm: 3.5 },
+    fiber: [{ name: 'Cashmere', pct: 100 }],
     meters_per_50g: 230,
     price_dkk_50g: 278,
     care: 'Håndvask koldt',
     eco: false, vegan: false, mulesing_free: true,
     properties: { softness: 5, warmth: 4, elasticity: 2, drape: 4 },
     buyUrl: 'https://sommerfuglen.dk/shop/lang-yarns-cashmere-70157p.html',
-    description: '100% kashmir. 115 m/25g.',
+    description: '100% cashmere. 25g nøgle = 115m. PetiteKnit-anbefalet til Sophie Scarf.',
     certifications: [],
     spinType: '',
   },
@@ -4779,6 +4779,94 @@ const YARNS = [
     spinType: '',
   },
 
+  // ── Mondial ────────────────────────────────────────────────────────
+
+  {
+    id: 'mondial-cashmere',
+    name: 'Cashmere',
+    brand: 'Mondial',
+    origin: 'Italien',
+    tier: 'premium',
+    weight: 'sport',
+    gauge: { stitches: 22, needle_mm: 3.5 },
+    fiber: [{ name: 'Cashmere', pct: 100 }],
+    meters_per_50g: 230,
+    price_dkk_50g: 318,
+    care: 'Håndvask koldt',
+    eco: false, vegan: false, mulesing_free: true,
+    properties: { softness: 5, warmth: 4, elasticity: 2, drape: 5 },
+    buyUrl: 'https://www.uldgalleriet.dk/kategori/cashmere-laine-mondial',
+    description: '100% cashmere. PetiteKnits prøvenøgle til Sophie Scarf er strikket i dette garn (farve 938). 25g nøgle = 115m.',
+    certifications: [],
+    spinType: '',
+  },
+
+  // ── Sandnes Garn Cashmere ─────────────────────────────────────────
+
+  {
+    id: 'sandnes-garn-cashmere',
+    name: 'Cashmere',
+    brand: 'Sandnes Garn',
+    origin: 'Mongoliet',
+    tier: 'premium',
+    weight: 'sport',
+    gauge: { stitches: 22, needle_mm: 3.5 },
+    fiber: [{ name: 'Cashmere', pct: 100 }],
+    meters_per_50g: 220,
+    price_dkk_50g: 278,
+    care: 'Håndvask koldt',
+    eco: false, vegan: false, mulesing_free: true,
+    properties: { softness: 5, warmth: 4, elasticity: 2, drape: 5 },
+    buyUrl: 'https://maskefabrikken.dk/shop/251-sandnes-garn/13162-sandnes-garn---cashmere/',
+    description: '100% cashmere fra Sandnes Garn. 25g nøgle = 110m. PetiteKnit-anbefalet til Sophie Scarf.',
+    certifications: [],
+    spinType: '',
+  },
+
+  // ── KFO Compatible Cashmere ────────────────────────────────────────
+
+  {
+    id: 'knitting-for-olive-compatible-cashmere',
+    name: 'Compatible Cashmere',
+    brand: 'Knitting for Olive',
+    origin: 'Danmark',
+    tier: 'premium',
+    weight: 'sport',
+    gauge: { stitches: 22, needle_mm: 3.5 },
+    fiber: [{ name: 'Cashmere', pct: 100 }],
+    meters_per_50g: 300,
+    price_dkk_50g: 222,
+    care: 'Håndvask koldt, liggetørres',
+    eco: false, vegan: false, mulesing_free: true,
+    properties: { softness: 5, warmth: 4, elasticity: 2, drape: 5 },
+    buyUrl: 'https://knittingforolive.com/collections/compatible-cashmere',
+    description: '100% cashmere. Strikkes HOLDT DOBBELT (pind 3.5mm, 22 masker/10cm). 25g nøgle = 150m. Prisen er angivet pr. 50g-ækvivalent (2 nøgler).',
+    certifications: [],
+    spinType: '',
+  },
+
+  // ── Sandnes Mini Alpakka ──────────────────────────────────────────
+
+  {
+    id: 'sandnes-mini-alpakka',
+    name: 'Mini Alpakka',
+    brand: 'Sandnes Garn',
+    origin: 'Peru',
+    tier: 'budget',
+    weight: 'fingering',
+    gauge: { stitches: 27, needle_mm: 3.0 },
+    fiber: [{ name: 'Alpaka', pct: 100 }],
+    meters_per_50g: 150,
+    price_dkk_50g: 57,
+    care: 'Maskinvask 30°C uldskylle',
+    eco: false, vegan: false, mulesing_free: true,
+    properties: { softness: 5, warmth: 4, elasticity: 2, drape: 4 },
+    buyUrl: 'https://allerupstrik.dk/shop/269-sandnes-garn/6561-mini-alpakka-fra-sandnes-garn/',
+    description: '100% alpaca fra Peru. PetiteKnit-anbefalet til Sophie Scarf. 150m/50g på pind 3mm.',
+    certifications: [],
+    spinType: '',
+  },
+
   // ── Wadils ────────────────────────────────────────────────────────
 ];
 
@@ -4792,17 +4880,7 @@ const PATTERNS = [
     type: 'Tørklæde',
     difficulty: 'Begynder',
     description: 'Elegant sjal strikket i lyst cashmere — fingering eller sport. Klassisk PetiteKnit design.',
-    // PetiteKnit-blessede originaler (flere muligheder):
-    //   - Cashmere fra Mondial / Cardiff Cashmere Classic / Lang Cashmere Premium /
-    //     Pascuali Cashmere 6/28 (alle fingering-vægt cashmere, enkelttråd)
-    //   - Compatible Cashmere fra Knitting for Olive (lace, strikkes med DOBBELTTRÅD)
-    //   - Mini Alpakka fra Sandnes Garn (sport-vægt 100% alpaca, enkelttråd)
-    // Vi bruger cardiff-cashmere-classic som primær reference. Bemærk at
-    // PetiteKnit selv anerkender alpaca som valid for denne opskrift — derfor
-    // er alpaca-baserede alternativer (fx isager-alpaca-1) acceptable her,
-    // selvom alpaca har anden karakter end cashmere. Garter-strik (retstrik)
-    // skjuler fiberforskelle mere end stockinette.
-    originalYarns: ['cardiff-cashmere-classic', 'pascuali-cashmere-6-28'],
+    originalYarns: ['cardiff-cashmere-classic', 'pascuali-cashmere-6-28', 'lang-yarns-cashmere-premium', 'mondial-cashmere', 'sandnes-garn-cashmere', 'knitting-for-olive-compatible-cashmere', 'sandnes-mini-alpakka'],
     originalYarn_id: 'cardiff-cashmere-classic',
     secondaryYarn_id: null,
     totalMeters_M: 600,
@@ -4811,13 +4889,10 @@ const PATTERNS = [
     seasonality: ['spring', 'fall', 'winter'],
     estimatedHours: 15,
     imageUrl: 'https://images4-f.ravelrycache.com/uploads/PetiteKnitDK/1057947486/sophie_721_ito_cardiff_small2.jpg',
-    // PetiteKnit-blessede originaler (sport-vægt cashmere, pind 3.5mm):
-    //   - Cardiff Cashmere Classic (25g = 112m) — primær reference
-    //   - Pascuali Cashmere 6/28 (25g = 112m)
-    //   - Lang Yarns Cashmere Premium (25g = 115m) — i DB men gauge-data usikker
-    //   - Sandnes Garn Cashmere (25g = 110m) — ikke i DB endnu
-    //   - KFO Compatible Cashmere (25g = 150m, holdes dobbelt) — ikke i DB endnu
-    //   - Sandnes Mini Alpakka (50g = 150m, sport-vægt alpaca) — ikke i DB endnu
+    // PetiteKnit-blessede originaler (alle i databasen):
+    //   - Cardiff Classic, Pascuali 6/28, Lang Premium, Mondial, Sandnes Cashmere (sport-vægt cashmere, pind 3.5mm)
+    //   - KFO Compatible Cashmere (lace, holdes dobbelt, pind 3.5mm)
+    //   - Sandnes Mini Alpakka (100% alpaca, pind 3mm)
     // Halsnært tørklæde → blødhed obligatorisk; mohair ekskluderet.
     tiers: {
       mid:     ['onion-cashmere', 'kit-couture-cashmere'],
