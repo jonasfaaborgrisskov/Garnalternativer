@@ -112,7 +112,7 @@ function populatePatternTiers() {
         if (!y || y.gauge.stitches == null || origYarn.gauge.stitches == null) return false;
         if (Math.abs(y.gauge.stitches - origYarn.gauge.stitches) < 6) return false;
         if (y.gauge.needle_mm == null || origYarn.gauge.needle_mm == null) return false;
-        return Math.abs(parseNeedle(y.gauge.needle_mm) - parseNeedle(origYarn.gauge.needle_mm)) <= 0.25;
+        return Math.abs(parseNeedle(y.gauge.needle_mm) - parseNeedle(origYarn.gauge.needle_mm)) <= 0.5;
       };
 
       const manualTiers = {
