@@ -4882,6 +4882,7 @@ const PATTERNS = [
     description: 'Elegant sjal strikket i lyst cashmere — fingering eller sport. Klassisk PetiteKnit design.',
     originalYarns: ['cardiff-cashmere-classic', 'pascuali-cashmere-6-28', 'lang-yarns-cashmere-premium', 'mondial-cashmere', 'sandnes-garn-cashmere', 'knitting-for-olive-compatible-cashmere', 'sandnes-mini-alpakka'],
     originalYarn_id: 'cardiff-cashmere-classic',
+    unifiedAlternatives: true,
     secondaryYarn_id: null,
     totalMeters_M: 600,
     tags: ['tørklæde', 'scarf', 'cashmere', 'petiteknit'],

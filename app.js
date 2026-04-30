@@ -476,11 +476,13 @@ function renderPatternHeader(pattern) {
       </div>`;
   }).join('');
 
-  const intro = originals.length > 1
-    ? `Herunder finder du alternativer til hvert af PetiteKnits anbefalede garn, opdelt i tre prisniveauer. Husk altid at strikke en prøvelap.`
-    : originals.length === 1
-      ? `Herunder finder du alternativer til <em>${originals[0].name}</em> i tre prisniveauer. Husk altid at strikke en prøvelap.`
-      : '';
+  const intro = pattern.unifiedAlternatives
+    ? `Herunder finder du alternativer til opskriftens garn samlet i tre prisniveauer. Husk altid at strikke en prøvelap.`
+    : originals.length > 1
+      ? `Herunder finder du alternativer til hvert af PetiteKnits anbefalede garn, opdelt i tre prisniveauer. Husk altid at strikke en prøvelap.`
+      : originals.length === 1
+        ? `Herunder finder du alternativer til <em>${originals[0].name}</em> i tre prisniveauer. Husk altid at strikke en prøvelap.`
+        : '';
 
   return `
     <button class="back-btn" onclick="showPatternList()">← Alle opskrifter</button>
@@ -505,6 +507,10 @@ function renderPatternHeader(pattern) {
 
 // ─── Multi-original rendering ─────────────────────────────────────
 function renderAllOriginalSections(pattern) {
+  if (pattern.unifiedAlternatives) {
+    return renderUnifiedAlternativesSection(pattern);
+  }
+
   const originalIds = pattern.originalYarns || (pattern.originalYarn_id ? [pattern.originalYarn_id] : []);
   const originals   = originalIds.map(findYarn).filter(Boolean);
 
@@ -523,6 +529,18 @@ function renderAllOriginalSections(pattern) {
         ${renderTierSections(pattern, origYarn, tiers, heldDouble, curatedCount)}
       </div>`;
   }).join('');
+}
+
+function renderUnifiedAlternativesSection(pattern) {
+  const originalIds   = pattern.originalYarns || (pattern.originalYarn_id ? [pattern.originalYarn_id] : []);
+  const primaryOrig   = findYarn(originalIds[0]);
+  if (!primaryOrig) return '';
+
+  const tiers        = pattern._allOriginalTiers?.[originalIds[0]]        || pattern.tiers;
+  const hd           = pattern._allOriginalHeldDouble?.[originalIds[0]]   || new Set();
+  const curatedCount = pattern._allOriginalCuratedCount?.[originalIds[0]] || {};
+
+  return `<div class="original-alternatives-section">${renderTierSections(pattern, primaryOrig, tiers, hd, curatedCount)}</div>`;
 }
 
 function renderOriginalYarnSubheader(pattern, origYarn) {
