@@ -100,10 +100,26 @@ function populatePatternTiers() {
       const origGroup = getFiberGroup(origYarn);
       const origIsBlow = origYarn.spinType === 'blow';
 
-      // Manual curation: primary original uses pattern.tiers; secondary originals start empty
-      const manualTiers = origIdx === 0
+      // Manual curation: primary original uses pattern.tiers; secondary originals start empty.
+      // Curated yarns with gauge diff ≥ 6 on the same needle are silently excluded —
+      // same needle + 6-stitch gap means fundamentally different yarn thickness.
+      const rawManual = origIdx === 0
         ? (pattern.tiers || { budget: [], mid: [], premium: [] })
         : { budget: [], mid: [], premium: [] };
+
+      const badGaugeNeedle = id => {
+        const y = findYarn(id);
+        if (!y || y.gauge.stitches == null || origYarn.gauge.stitches == null) return false;
+        if (Math.abs(y.gauge.stitches - origYarn.gauge.stitches) < 6) return false;
+        if (y.gauge.needle_mm == null || origYarn.gauge.needle_mm == null) return false;
+        return Math.abs(parseNeedle(y.gauge.needle_mm) - parseNeedle(origYarn.gauge.needle_mm)) <= 0.25;
+      };
+
+      const manualTiers = {
+        budget:  (rawManual.budget  || []).filter(id => !badGaugeNeedle(id)),
+        mid:     (rawManual.mid     || []).filter(id => !badGaugeNeedle(id)),
+        premium: (rawManual.premium || []).filter(id => !badGaugeNeedle(id)),
+      };
 
       const curatedCount = {
         budget:  (manualTiers.budget  || []).length,
