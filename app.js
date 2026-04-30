@@ -738,8 +738,8 @@ function gaugeLabel(diff) {
 
 function needleLabel(diff) {
   if (diff === 0)            return { cls: 'exact', icon: '✓', text: 'Samme pind' };
-  if (Math.abs(diff) <= 0.5) return { cls: 'close', icon: '≈', text: `${diff > 0 ? '+' : ''}${diff} mm` };
-  return { cls: 'diff',  icon: '!', text: `${diff > 0 ? 'større' : 'mindre'} pind (${Math.abs(diff)} mm forskel)` };
+  if (Math.abs(diff) <= 0.5) return { cls: 'close', icon: '≈', text: `Lidt ${diff > 0 ? 'større' : 'mindre'} pind` };
+  return { cls: 'diff',  icon: '!', text: `OBS ${diff > 0 ? 'større' : 'mindre'} pind` };
 }
 
 // ─── Cost Estimation ──────────────────────────────────────────────
