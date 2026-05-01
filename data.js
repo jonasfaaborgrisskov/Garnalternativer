@@ -1425,6 +1425,26 @@ const YARNS = [
   },
 
   {
+    id: 'filcolana-mashdale',
+    name: 'Mashdale',
+    brand: 'Filcolana',
+    origin: 'England',
+    tier: 'budget',
+    weight: 'DK',
+    gauge: { stitches: 22, needle_mm: 3.5 },
+    fiber: [{ name: 'Corriedaleuld', pct: 75 }, { name: 'Mashamuld', pct: 25 }],
+    meters_per_50g: 125,
+    price_dkk_50g: null,
+    care: 'Håndvask',
+    eco: false, vegan: false, mulesing_free: true,
+    properties: { softness: 3, warmth: 4, elasticity: 3, drape: 2 },
+    buyUrl: 'https://en.filcolana.dk/yarns/mashdale.html',
+    description: '75% Corriedaleuld og 25% Mashamuld, spundet i England. Den ufarvet Masham-andel giver naturlig heather-effekt. Pris ikke bekræftet for DK-marked.',
+    certifications: [],
+    spinType: '2-ply',
+  },
+
+  {
     id: 'filcolana-tilia',
     name: 'Tilia',
     brand: 'Filcolana',
