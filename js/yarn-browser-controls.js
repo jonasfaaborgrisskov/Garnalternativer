@@ -2,16 +2,21 @@
 
 // Maps checkbox values (English) to Danish fiber names used in data.js
 const FIBER_NAME_MAP = {
-  'Wool':    ['uld', 'wool'],
-  'Cotton':  ['bomuld', 'cotton', 'merceriseret bomuld'],
-  'Silk':    ['silke', 'silk'],
-  'Alpaca':  ['alpaka', 'alpaca'],
-  'Acrylic': ['akryl', 'acrylic'],
-  'Merino':  ['merino'],
-  'Nylon':   ['nylon'],
-  'Mohair':  ['mohair'],
-  'Cashmere':['cashmere', 'kashmir'],
-  'Linen':   ['hør', 'linen', 'lin'],
+  'Wool':      ['uld', 'wool'],
+  'Cotton':    ['bomuld', 'cotton', 'merceriseret bomuld'],
+  'Silk':      ['silke', 'silk'],
+  'Alpaca':    ['alpaka', 'alpaca'],
+  'Acrylic':   ['akryl', 'acrylic'],
+  'Merino':    ['merino'],
+  'Nylon':     ['nylon'],
+  'Mohair':    ['mohair'],
+  'Cashmere':  ['cashmere', 'kashmir'],
+  'Linen':     ['hør', 'linen', 'lin'],
+  'Lambswool': ['lammeuld', 'lambswool'],
+  'Shetland':  ['shetland'],
+  'Falkland':  ['falkland'],
+  'Gotland':   ['gotland', 'pelsuld'],
+  'Iceland':   ['islandsk uld', 'islandsk'],
 };
 
 let yarnBrowserState = {
@@ -45,20 +50,25 @@ function buildFiberFilters() {
 
   // Label map for display
   const labels = {
-    Wool:     'Uld',
-    Merino:   'Merino',
-    Alpaca:   'Alpaka',
-    Cotton:   'Bomuld',
-    Silk:     'Silke',
-    Mohair:   'Mohair',
-    Cashmere: 'Cashmere',
-    Nylon:    'Nylon',
-    Acrylic:  'Akryl',
-    Linen:    'Hør',
+    Wool:       'Uld',
+    Merino:     'Merino',
+    Lambswool:  'Lammeuld',
+    Shetland:   'Shetlandsuld',
+    Falkland:   'Falklandsuld',
+    Gotland:    'Gotlandsk uld',
+    Iceland:    'Islandsk uld',
+    Alpaca:     'Alpaka',
+    Cotton:     'Bomuld',
+    Silk:       'Silke',
+    Mohair:     'Mohair',
+    Cashmere:   'Cashmere',
+    Nylon:      'Nylon',
+    Acrylic:    'Akryl',
+    Linen:      'Hør',
   };
 
   // Render only fibers that exist, in a fixed order
-  const order = ['Merino','Wool','Alpaca','Mohair','Cashmere','Cotton','Silk','Linen','Nylon','Acrylic'];
+  const order = ['Merino','Wool','Lambswool','Shetland','Falkland','Gotland','Iceland','Alpaca','Mohair','Cashmere','Cotton','Silk','Linen','Nylon','Acrylic'];
   order.filter(k => present.has(k)).forEach(key => {
     const label = document.createElement('label');
     label.className = 'fiber-filter-checkbox';
