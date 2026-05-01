@@ -17,6 +17,8 @@ const FIBER_NAME_MAP = {
   'Falkland':  ['falkland'],
   'Gotland':   ['gotland', 'pelsuld'],
   'Iceland':   ['islandsk uld', 'islandsk'],
+  'Yak':       ['yak'],
+  'BabyLama':  ['baby lama', 'babylama'],
 };
 
 let yarnBrowserState = {
@@ -57,6 +59,8 @@ function buildFiberFilters() {
     Falkland:   'Falklandsuld',
     Gotland:    'Gotlandsk uld',
     Iceland:    'Islandsk uld',
+    Yak:        'Yak',
+    BabyLama:   'Baby lama',
     Alpaca:     'Alpaka',
     Cotton:     'Bomuld',
     Silk:       'Silke',
@@ -68,7 +72,7 @@ function buildFiberFilters() {
   };
 
   // Render only fibers that exist, in a fixed order
-  const order = ['Merino','Wool','Lambswool','Shetland','Falkland','Gotland','Iceland','Alpaca','Mohair','Cashmere','Cotton','Silk','Linen','Nylon','Acrylic'];
+  const order = ['Merino','Wool','Lambswool','Shetland','Falkland','Gotland','Iceland','Yak','BabyLama','Alpaca','Mohair','Cashmere','Cotton','Silk','Linen','Nylon','Acrylic'];
   order.filter(k => present.has(k)).forEach(key => {
     const label = document.createElement('label');
     label.className = 'fiber-filter-checkbox';
