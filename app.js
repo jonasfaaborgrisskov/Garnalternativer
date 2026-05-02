@@ -144,14 +144,16 @@ function populatePatternTiers() {
 
       const badGaugeNeedle = id => {
         const y = findYarn(id);
-        if (!y || y.gauge.stitches == null || origYarn.gauge.stitches == null) return false;
-        if (Math.abs(y.gauge.stitches - origYarn.gauge.stitches) < 6) return false;
-        if (y.gauge.needle_mm == null || origYarn.gauge.needle_mm == null) return false;
-        const origEP = needleEndpoints(origYarn.gauge.needle_mm);
-        const altNeedle = parseNeedle(y.gauge.needle_mm);
-        if (!origEP || altNeedle == null) return false;
-        const distToRange = Math.min(Math.abs(altNeedle - origEP[0]), Math.abs(altNeedle - origEP[1]));
-        return distToRange <= 0.75;
+        if (!y) return false;
+        // Exact stitch match required
+        if (y.gauge.stitches != null && origYarn.gauge.stitches != null) {
+          if (y.gauge.stitches !== origYarn.gauge.stitches) return true;
+        }
+        // Exact needle match required
+        if (y.gauge.needle_mm != null && origYarn.gauge.needle_mm != null) {
+          if (Math.abs(parseNeedle(y.gauge.needle_mm) - parseNeedle(origYarn.gauge.needle_mm)) > 0.001) return true;
+        }
+        return false;
       };
 
       const manualTiers = {
@@ -244,9 +246,9 @@ function populatePatternTiers() {
             if (y.gauge.stitches == null || origYarn.gauge.stitches == null) return false;
             const hdStitches = Math.round(y.gauge.stitches * 0.72);
             const hdNeedle   = y.gauge.needle_mm != null ? parseNeedle(y.gauge.needle_mm) * 1.4 : null;
-            if (Math.abs(hdStitches - origYarn.gauge.stitches) > 2) return false;
+            if (hdStitches !== origYarn.gauge.stitches) return false;
             if (hdNeedle != null && origYarn.gauge.needle_mm != null &&
-                Math.abs(hdNeedle - parseNeedle(origYarn.gauge.needle_mm)) > 1.0) return false;
+                Math.abs(hdNeedle - parseNeedle(origYarn.gauge.needle_mm)) > 0.001) return false;
             if (getFiberGroup(y) !== origGroup) return false;
             const yWTHd = getWoolType(y);
             if (origWoolType !== null && origWoolType !== yWTHd) return false;
