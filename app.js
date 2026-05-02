@@ -39,14 +39,14 @@ window.addEventListener('popstate', (e) => {
 
 // ─── Tier Population (Auto-match alternatives) ─────────────────────
 //
-// Rules (per editorial decisions):
-// 1. Tier is RELATIVE to original yarn price — budget = cheaper, premium = pricier
-// 2. Gauge preference: exact match > ±1 > ±2 > reject (>±2 never used)
-// 3. Halsnært strik (tørklæde/sjal/halskrave): exclude mohair
-// 4. Mid tier: similar price (±25%) with different fiber — original always included
-// 5. Manually curated entries always stay at the top; auto-matches are appended
+// Two tiers:
+//   exact — same stitches/10 cm AND same needle (float tolerance 0.001)
+//   close — ±1-2 stitches AND needle within ±0.5 mm of original's range endpoints
 //
-const MAX_PER_TIER = 12; // max alternatives shown per tier (manual + auto)
+// Held-double variants are included with effective gauge/needle applied.
+// Fiber-group, wool-type, blow-yarn, synthetic and sock-yarn rules still apply.
+//
+const MAX_PER_TIER = 20;
 
 // Parse needle_mm which may be a number (3.75) or a range string ("3,5-4" / "3-3,5").
 // Returns the midpoint as a number for algorithmic comparisons.
@@ -125,174 +125,111 @@ function populatePatternTiers() {
 
     const isHalsnært = HALSNÆRT_TYPES.some(t => (pattern.type || '').toLowerCase().includes(t));
 
-    pattern._allOriginalTiers        = {};
-    pattern._allOriginalHeldDouble   = {};
-    pattern._allOriginalCuratedCount = {};
+    pattern._allOriginalTiers      = {};
+    pattern._allOriginalHeldDouble = {};
 
-    originals.forEach((origYarn, origIdx) => {
-      const origPrice = origYarn.price_dkk_50g;
+    originals.forEach(origYarn => {
       const origGroup    = getFiberGroup(origYarn);
       const origWoolType = getWoolType(origYarn);
       const origIsBlow   = origYarn.spinType === 'blow';
+      const origNeedleEP  = needleEndpoints(origYarn.gauge.needle_mm);
+      const origNeedleMid = parseNeedle(origYarn.gauge.needle_mm);
 
-      // Manual curation: primary original uses pattern.tiers; secondary originals start empty.
-      // Curated yarns with gauge diff ≥ 6 on the same needle are silently excluded —
-      // same needle + 6-stitch gap means fundamentally different yarn thickness.
-      const rawManual = origIdx === 0
-        ? (pattern.tiers || { budget: [], mid: [], premium: [] })
-        : { budget: [], mid: [], premium: [] };
-
-      const badGaugeNeedle = id => {
-        const y = findYarn(id);
-        if (!y) return false;
-        // Exact stitch match required
-        if (y.gauge.stitches != null && origYarn.gauge.stitches != null) {
-          if (y.gauge.stitches !== origYarn.gauge.stitches) return true;
-        }
-        // Exact needle match required
-        if (y.gauge.needle_mm != null && origYarn.gauge.needle_mm != null) {
-          if (Math.abs(parseNeedle(y.gauge.needle_mm) - parseNeedle(origYarn.gauge.needle_mm)) > 0.001) return true;
-        }
-        return false;
+      // Shared filter: fiber group, wool type, blow, synthetics, sock, halsnært
+      const baseFilter = y => {
+        if (y.id === origYarn.id) return false;
+        if (originalIds.includes(y.id)) return false;
+        if (y.gauge.stitches == null || origYarn.gauge.stitches == null) return false;
+        if (getFiberGroup(y) !== origGroup) return false;
+        const yWT = getWoolType(y);
+        if (origWoolType !== null && origWoolType !== yWT) return false;
+        if (origIsBlow !== (y.spinType === 'blow')) return false;
+        if (y.isSockYarn) return false;
+        if (y.fiber.some(f => SYNTH.some(s => f.name.toLowerCase().includes(s)))) return false;
+        if (isHalsnært && y.fiber.some(f => f.name.toLowerCase().includes('mohair'))) return false;
+        return true;
       };
 
-      const manualTiers = {
-        budget:  (rawManual.budget  || []).filter(id => !badGaugeNeedle(id)),
-        mid:     (rawManual.mid     || []).filter(id => !badGaugeNeedle(id)),
-        premium: (rawManual.premium || []).filter(id => !badGaugeNeedle(id)),
-      };
-
-      const curatedCount = {
-        budget:  (manualTiers.budget  || []).length,
-        mid:     (manualTiers.mid     || []).length,
-        premium: (manualTiers.premium || []).length,
-      };
-
-      const allManual = new Set([
-        ...(manualTiers.budget  || []),
-        ...(manualTiers.mid     || []),
-        ...(manualTiers.premium || []),
-        origYarn.id,
-        ...originalIds, // exclude all PK originals from being auto-alternatives
-      ]);
-      const autoAssigned = new Set();
-
-      const tierResult = {
-        budget:  [...(manualTiers.budget  || [])],
-        mid:     [...(manualTiers.mid     || [])],
-        premium: [...(manualTiers.premium || [])],
-      };
-
-      // Candidate pool: exact gauge stitches + exact needle, same fiber group
-      const candidates = YARNS
+      // ── Exact tier: same stitches + same needle ──
+      const exactYarns = YARNS
         .filter(y => {
-          if (y.id === origYarn.id) return false;
-          if (y.gauge.stitches == null || origYarn.gauge.stitches == null) return false;
+          if (!baseFilter(y)) return false;
           if (y.gauge.stitches !== origYarn.gauge.stitches) return false;
-          if (y.gauge.needle_mm != null && origYarn.gauge.needle_mm != null &&
-              Math.abs(parseNeedle(y.gauge.needle_mm) - parseNeedle(origYarn.gauge.needle_mm)) > 0.001) return false;
-          if (getFiberGroup(y) !== origGroup) return false;
-          const yWT = getWoolType(y);
-          if (origWoolType !== null && origWoolType !== yWT) return false;
-          if (origIsBlow !== (y.spinType === 'blow')) return false;
-          if (y.isSockYarn) return false;
-          if (y.fiber.some(f => SYNTH.some(s => f.name.toLowerCase().includes(s)))) return false;
-          if (isHalsnært && y.fiber.some(f => f.name.toLowerCase().includes('mohair'))) return false;
+          if (y.gauge.needle_mm != null && origNeedleMid != null &&
+              Math.abs(parseNeedle(y.gauge.needle_mm) - origNeedleMid) > 0.001) return false;
           return true;
         })
-        .map(y => ({ yarn: y, gaugeDelta: Math.abs(y.gauge.stitches - origYarn.gauge.stitches) }))
-        .sort((a, b) => a.gaugeDelta - b.gaugeDelta || a.yarn.price_dkk_50g - b.yarn.price_dkk_50g);
+        .sort((a, b) => (a.price_dkk_50g ?? 9999) - (b.price_dkk_50g ?? 9999))
+        .slice(0, MAX_PER_TIER);
 
-      const isBudget  = y => y.price_dkk_50g < origPrice * 0.90;
-      const isMid     = y => y.price_dkk_50g >= origPrice * 0.75 && y.price_dkk_50g <= origPrice * 1.25;
-      const isPremium = y => y.price_dkk_50g > origPrice * 1.10;
+      const exactIds = new Set(exactYarns.map(y => y.id));
 
-      // ── Budget tier ──
-      {
-        const slots = Math.max(0, MAX_PER_TIER - tierResult.budget.length);
-        const auto = candidates
-          .filter(({yarn}) => isBudget(yarn) && !allManual.has(yarn.id) && !autoAssigned.has(yarn.id))
-          .slice(0, slots).map(({yarn}) => yarn.id);
-        auto.forEach(id => autoAssigned.add(id));
-        tierResult.budget = [...tierResult.budget, ...auto];
-      }
+      // ── Close tier: ±1-2 stitches AND needle within ±0.5 mm from original range ──
+      const closeYarns = YARNS
+        .filter(y => {
+          if (!baseFilter(y)) return false;
+          if (exactIds.has(y.id)) return false;
+          const stitchDiff = Math.abs(y.gauge.stitches - origYarn.gauge.stitches);
+          if (stitchDiff === 0 || stitchDiff > 2) return false;
+          if (y.gauge.needle_mm != null && origNeedleEP != null) {
+            const altNeedle = parseNeedle(y.gauge.needle_mm);
+            if (altNeedle == null) return false;
+            if (altNeedle < origNeedleEP[0] - 0.5 || altNeedle > origNeedleEP[1] + 0.5) return false;
+          }
+          return true;
+        })
+        .sort((a, b) =>
+          Math.abs(a.gauge.stitches - origYarn.gauge.stitches) - Math.abs(b.gauge.stitches - origYarn.gauge.stitches) ||
+          (a.price_dkk_50g ?? 9999) - (b.price_dkk_50g ?? 9999)
+        )
+        .slice(0, MAX_PER_TIER);
 
-      // ── Mid tier ──
-      {
-        const slots = Math.max(0, MAX_PER_TIER - tierResult.mid.length);
-        const auto = candidates
-          .filter(({yarn}) => isMid(yarn) && !allManual.has(yarn.id) && !autoAssigned.has(yarn.id))
-          .slice(0, slots).map(({yarn}) => yarn.id);
-        auto.forEach(id => autoAssigned.add(id));
-        tierResult.mid = [...tierResult.mid, ...auto];
-      }
-
-      // ── Premium tier ──
-      {
-        const slots = Math.max(0, MAX_PER_TIER - tierResult.premium.length);
-        const auto = candidates
-          .filter(({yarn}) => isPremium(yarn) && !allManual.has(yarn.id) && !autoAssigned.has(yarn.id))
-          .sort((a, b) => b.yarn.price_dkk_50g - a.yarn.price_dkk_50g)
-          .slice(0, slots).map(({yarn}) => yarn.id);
-        tierResult.premium = [...tierResult.premium, ...auto];
-      }
+      const closeIds = new Set(closeYarns.map(y => y.id));
 
       // ── Held-double candidates (not for blow or lace originals) ──
-      const heldDouble = new Set();
+      const heldExact = new Set();
+      const heldClose = new Set();
+
       if (!origIsBlow && origYarn.weight !== 'lace') {
-        const hdCandidates = YARNS
-          .filter(y => {
-            if (y.id === origYarn.id) return false;
-            if (y.gauge.stitches == null || origYarn.gauge.stitches == null) return false;
-            const hdStitches = Math.round(y.gauge.stitches * 0.72);
-            const hdNeedle   = y.gauge.needle_mm != null ? parseNeedle(y.gauge.needle_mm) * 1.4 : null;
-            if (hdStitches !== origYarn.gauge.stitches) return false;
-            if (hdNeedle != null && origYarn.gauge.needle_mm != null &&
-                Math.abs(hdNeedle - parseNeedle(origYarn.gauge.needle_mm)) > 0.001) return false;
-            if (getFiberGroup(y) !== origGroup) return false;
-            const yWTHd = getWoolType(y);
-            if (origWoolType !== null && origWoolType !== yWTHd) return false;
-            if (y.spinType === 'blow') return false;
-            if (y.isSockYarn) return false;
-            if (y.fiber.some(f => SYNTH.some(s => f.name.toLowerCase().includes(s)))) return false;
-            if (allManual.has(y.id) || autoAssigned.has(y.id)) return false;
-            return true;
-          })
-          .map(y => ({
-            yarn: y,
-            gaugeDelta:     Math.abs(Math.round(y.gauge.stitches * 0.72) - origYarn.gauge.stitches),
-            effectivePrice: y.price_dkk_50g * 2,
-          }))
-          .sort((a, b) => a.gaugeDelta - b.gaugeDelta || a.effectivePrice - b.effectivePrice);
+        YARNS.forEach(y => {
+          if (!baseFilter(y)) return;
+          if (exactIds.has(y.id) || closeIds.has(y.id)) return;
+          if (y.spinType === 'blow' || y.gauge.stitches == null) return;
 
-        const isBudgetHD  = c => c.effectivePrice < origPrice * 0.90;
-        const isMidHD     = c => c.effectivePrice >= origPrice * 0.75 && c.effectivePrice <= origPrice * 1.25;
-        const isPremiumHD = c => c.effectivePrice > origPrice * 1.10;
+          const hdStitches = Math.round(y.gauge.stitches * 0.72);
+          const hdNeedle   = y.gauge.needle_mm != null
+            ? Math.round(parseNeedle(y.gauge.needle_mm) * 1.4 * 4) / 4
+            : null;
 
-        ['budget', 'mid', 'premium'].forEach(tier => {
-          const isPriceTier = tier === 'budget' ? isBudgetHD : tier === 'mid' ? isMidHD : isPremiumHD;
-          const sorted = tier === 'premium'
-            ? [...hdCandidates].sort((a, b) => b.effectivePrice - a.effectivePrice)
-            : hdCandidates;
-          const slots = Math.max(0, MAX_PER_TIER - tierResult[tier].length);
-          const hdIds = sorted
-            .filter(c => isPriceTier(c) && !autoAssigned.has(c.yarn.id))
-            .slice(0, slots).map(c => c.yarn.id);
-          hdIds.forEach(id => { autoAssigned.add(id); heldDouble.add(id); });
-          tierResult[tier] = [...tierResult[tier], ...hdIds];
+          // Exact held-double
+          if (hdStitches === origYarn.gauge.stitches &&
+              hdNeedle != null && origNeedleMid != null &&
+              Math.abs(hdNeedle - origNeedleMid) <= 0.001) {
+            heldExact.add(y.id);
+            return;
+          }
+
+          // Close held-double: ±1-2 effective stitches AND effective needle within ±0.5 mm
+          const stitchDiff = Math.abs(hdStitches - origYarn.gauge.stitches);
+          if (stitchDiff >= 1 && stitchDiff <= 2 &&
+              hdNeedle != null && origNeedleEP != null &&
+              hdNeedle >= origNeedleEP[0] - 0.5 && hdNeedle <= origNeedleEP[1] + 0.5) {
+            heldClose.add(y.id);
+          }
         });
       }
 
-      pattern._allOriginalTiers[origYarn.id]        = tierResult;
-      pattern._allOriginalHeldDouble[origYarn.id]   = heldDouble;
-      pattern._allOriginalCuratedCount[origYarn.id] = curatedCount;
+      pattern._allOriginalTiers[origYarn.id] = {
+        exact: [...exactYarns.map(y => y.id), ...[...heldExact]],
+        close: [...closeYarns.map(y => y.id), ...[...heldClose]],
+      };
+      pattern._allOriginalHeldDouble[origYarn.id] = new Set([...heldExact, ...heldClose]);
     });
 
-    // Backward compat: primary original's data in the old fields
     const primaryOrig = originals[0];
-    pattern.tiers        = pattern._allOriginalTiers[primaryOrig.id];
-    pattern._heldDouble  = pattern._allOriginalHeldDouble[primaryOrig.id];
-    pattern._curatedCount = pattern._allOriginalCuratedCount[primaryOrig.id];
+    pattern.tiers       = pattern._allOriginalTiers[primaryOrig.id];
+    pattern._heldDouble = pattern._allOriginalHeldDouble[primaryOrig.id];
+    pattern._curatedCount = { exact: 0, close: 0 };
   });
 }
 
@@ -665,16 +602,14 @@ function renderOriginalYarnSubheader(pattern, origYarn) {
 }
 
 // ─── Tier Sections ────────────────────────────────────────────────
-function renderTierSections(pattern, origYarn, tiersOverride, hdOverride, curatedCountOverride) {
+function renderTierSections(pattern, origYarn, tiersOverride, hdOverride) {
   const activeTiers = tiersOverride || pattern.tiers;
   const hd          = hdOverride    || pattern._heldDouble || new Set();
-  const curatedCount = curatedCountOverride || pattern._curatedCount || {};
 
-  return ['mid', 'budget', 'premium'].map(tierId => {
+  return ['exact', 'close'].map(tierId => {
     const tier    = TIERS[tierId];
     const yarnIds = (activeTiers[tierId] || []);
     const yarns   = yarnIds.map(findYarn).filter(Boolean);
-    const curatedN = (curatedCount && curatedCount[tierId]) || 0;
 
     if (yarns.length === 0) {
       return `
@@ -686,26 +621,12 @@ function renderTierSections(pattern, origYarn, tiersOverride, hdOverride, curate
               <div class="tier-sublabel">${tier.sublabel}</div>
             </div>
           </div>
-          <p class="tier-empty">Ingen alternativer endnu.</p>
+          <p class="tier-empty">Ingen alternativer fundet.</p>
         </section>`;
     }
 
-    // Split into curated + auto sections
-    const curatedYarns = yarns.slice(0, curatedN);
-    const autoYarns    = yarns.slice(curatedN);
-
     const renderCard = y => renderYarnCard(y, origYarn, pattern, tierId, hd.has(y.id));
-
-    let cardsHtml = '';
-    if (curatedYarns.length > 0) {
-      cardsHtml += `<div class="yarn-cards">${curatedYarns.map(renderCard).join('')}</div>`;
-    }
-    if (autoYarns.length > 0) {
-      const divider = curatedYarns.length > 0
-        ? `<div class="tier-auto-divider"><span>Flere matchende alternativer fra databasen</span></div>`
-        : '';
-      cardsHtml += `${divider}<div class="yarn-cards yarn-cards--auto">${autoYarns.map(renderCard).join('')}</div>`;
-    }
+    const cardsHtml  = `<div class="yarn-cards">${yarns.map(renderCard).join('')}</div>`;
 
     return `
       <section class="tier-section">
@@ -713,7 +634,7 @@ function renderTierSections(pattern, origYarn, tiersOverride, hdOverride, curate
           <span class="tier-emoji">${tier.emoji}</span>
           <div>
             <div class="tier-label" style="color:${tier.color}">${tier.label}</div>
-            <div class="tier-sublabel">${tier.sublabel} · ${yarns.length} alternativer</div>
+            <div class="tier-sublabel">${tier.sublabel} · ${yarns.length} ${yarns.length === 1 ? 'alternativ' : 'alternativer'}</div>
           </div>
         </div>
         ${cardsHtml}
@@ -929,13 +850,12 @@ function buildWhy(yarn, origYarn, tierId, gaugeDiff) {
     }
   }
 
-  // Price
-  const priceDiff = yarn.price_dkk_50g - origYarn.price_dkk_50g;
-  const costEst   = estimateCost(yarn, 1500); // rough baseline
-  if (tierId === 'budget' && priceDiff < -20) {
-    parts.push(`Du sparer ca. ${Math.abs(priceDiff)} kr. pr. nøgle vs. originalen.`);
-  } else if (tierId === 'premium' && priceDiff > 20) {
-    parts.push(`Den højere pris afspejler fiber-kvaliteten og produktionsforhold.`);
+  // Price difference (neutral)
+  const priceDiff = (yarn.price_dkk_50g ?? 0) - (origYarn.price_dkk_50g ?? 0);
+  if (priceDiff < -20) {
+    parts.push(`Ca. ${Math.abs(priceDiff)} kr. billigere pr. 50g end originalen.`);
+  } else if (priceDiff > 20) {
+    parts.push(`Ca. ${priceDiff} kr. dyrere pr. 50g end originalen.`);
   }
 
   // Special props

@@ -104,8 +104,7 @@ function renderCostBreakdown(pattern, yarnId) {
 }
 
 function renderTierComparison(patternId) {
-  const comparison = getTierComparison(patternId);
-  if (!comparison) return '';
+  return ''; // Price-based tier comparison removed — tiers are now gauge-based (exact/close)
 
   const pattern = findPattern(patternId);
   const hasBudget  = pattern && pattern.tiers.budget  && pattern.tiers.budget.length  > 0;

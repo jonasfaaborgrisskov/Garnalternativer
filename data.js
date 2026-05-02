@@ -1,25 +1,18 @@
 // ─── Tier Definitions ─────────────────────────────────────────────
 const TIERS = {
-  mid: {
-    id: 'mid',
-    emoji: '💰',
-    label: 'Godt alternativ',
-    sublabel: 'Lignende kvalitet, anden pris eller fiber',
-    color: '#4a5e3a',
+  exact: {
+    id: 'exact',
+    emoji: '✓',
+    label: 'Bedste match',
+    sublabel: 'Præcis strikkefasthed og pind',
+    color: '#2d6a2d',
   },
-  budget: {
-    id: 'budget',
-    emoji: '✂️',
-    label: 'Billigere alternativ',
-    sublabel: 'Markant billigere — gode resultater',
-    color: '#3a4e6e',
-  },
-  premium: {
-    id: 'premium',
-    emoji: '🏆',
-    label: 'Opgradering',
-    sublabel: 'Mere eksklusivt end originalen',
-    color: '#7a5c2e',
+  close: {
+    id: 'close',
+    emoji: '≈',
+    label: 'Tæt på',
+    sublabel: 'Lav en strikkeprøve',
+    color: '#8a6000',
   },
 };
 
