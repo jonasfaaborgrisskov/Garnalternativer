@@ -230,6 +230,25 @@ function populatePatternTiers() {
     pattern.tiers       = pattern._allOriginalTiers[primaryOrig.id];
     pattern._heldDouble = pattern._allOriginalHeldDouble[primaryOrig.id];
     pattern._curatedCount = { exact: 0, close: 0 };
+
+    // ── Unified pool: union of all originals' tiers, deduplicated ──
+    const seenExact = new Set();
+    const seenClose = new Set();
+    const unifiedExact = [];
+    const unifiedClose = [];
+    const unifiedHeld  = new Set();
+
+    originals.forEach(orig => {
+      const t  = pattern._allOriginalTiers[orig.id];
+      const hd = pattern._allOriginalHeldDouble[orig.id];
+      (t.exact || []).forEach(id => { if (!seenExact.has(id)) { seenExact.add(id); unifiedExact.push(id); } });
+      (t.close || []).forEach(id => { if (!seenExact.has(id) && !seenClose.has(id)) { seenClose.add(id); unifiedClose.push(id); } });
+      hd.forEach(id => unifiedHeld.add(id));
+    });
+
+    pattern._unifiedTiers       = { exact: unifiedExact, close: unifiedClose };
+    pattern._unifiedHeldDouble  = unifiedHeld;
+    pattern._primaryOrigYarn_id = primaryOrig.id;
   });
 }
 
@@ -548,40 +567,16 @@ function renderPatternHeader(pattern) {
 
 // ─── Multi-original rendering ─────────────────────────────────────
 function renderAllOriginalSections(pattern) {
-  if (pattern.unifiedAlternatives) {
-    return renderUnifiedAlternativesSection(pattern);
-  }
-
-  const originalIds = pattern.originalYarns || (pattern.originalYarn_id ? [pattern.originalYarn_id] : []);
-  const originals   = originalIds.map(findYarn).filter(Boolean);
-
-  return originals.map((origYarn, idx) => {
-    const tiers       = pattern._allOriginalTiers?.[origYarn.id]        || pattern.tiers;
-    const heldDouble  = pattern._allOriginalHeldDouble?.[origYarn.id]   || pattern._heldDouble || new Set();
-    const curatedCount = pattern._allOriginalCuratedCount?.[origYarn.id] || pattern._curatedCount || {};
-
-    const headerHtml = originals.length > 1
-      ? renderOriginalYarnSubheader(pattern, origYarn)
-      : '';
-
-    return `
-      <div class="original-alternatives-section${idx > 0 ? ' original-alternatives-section--secondary' : ''}">
-        ${headerHtml}
-        ${renderTierSections(pattern, origYarn, tiers, heldDouble, curatedCount)}
-      </div>`;
-  }).join('');
-}
-
-function renderUnifiedAlternativesSection(pattern) {
-  const originalIds   = pattern.originalYarns || (pattern.originalYarn_id ? [pattern.originalYarn_id] : []);
-  const primaryOrig   = findYarn(originalIds[0]);
+  // Always show one unified pool of alternatives — the union of all original yarns' matches.
+  // Alternatives are not split per original yarn; they're presented as one group.
+  const primaryOrig = findYarn(pattern._primaryOrigYarn_id) ||
+                      findYarn((pattern.originalYarns || [pattern.originalYarn_id])[0]);
   if (!primaryOrig) return '';
 
-  const tiers        = pattern._allOriginalTiers?.[originalIds[0]]        || pattern.tiers;
-  const hd           = pattern._allOriginalHeldDouble?.[originalIds[0]]   || new Set();
-  const curatedCount = pattern._allOriginalCuratedCount?.[originalIds[0]] || {};
+  const tiers = pattern._unifiedTiers || pattern.tiers;
+  const hd    = pattern._unifiedHeldDouble || pattern._heldDouble || new Set();
 
-  return `<div class="original-alternatives-section">${renderTierSections(pattern, primaryOrig, tiers, hd, curatedCount)}</div>`;
+  return `<div class="original-alternatives-section">${renderTierSections(pattern, primaryOrig, tiers, hd)}</div>`;
 }
 
 function renderOriginalYarnSubheader(pattern, origYarn) {
