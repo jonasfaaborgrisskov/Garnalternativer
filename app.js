@@ -181,14 +181,14 @@ function populatePatternTiers() {
         premium: [...(manualTiers.premium || [])],
       };
 
-      // Candidate pool: ±2 gauge stitches, ±1 mm needle, same fiber group
+      // Candidate pool: exact gauge stitches + exact needle, same fiber group
       const candidates = YARNS
         .filter(y => {
           if (y.id === origYarn.id) return false;
           if (y.gauge.stitches == null || origYarn.gauge.stitches == null) return false;
-          if (Math.abs(y.gauge.stitches - origYarn.gauge.stitches) > 2) return false;
+          if (y.gauge.stitches !== origYarn.gauge.stitches) return false;
           if (y.gauge.needle_mm != null && origYarn.gauge.needle_mm != null &&
-              Math.abs(parseNeedle(y.gauge.needle_mm) - parseNeedle(origYarn.gauge.needle_mm)) > 1.0) return false;
+              Math.abs(parseNeedle(y.gauge.needle_mm) - parseNeedle(origYarn.gauge.needle_mm)) > 0.001) return false;
           if (getFiberGroup(y) !== origGroup) return false;
           const yWT = getWoolType(y);
           if (origWoolType !== null && origWoolType !== yWT) return false;
