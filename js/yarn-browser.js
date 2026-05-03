@@ -7,6 +7,8 @@ function findYarn(id) {
 function renderBrowserYarnCard(yarn) {
   const w = WEIGHTS[yarn.weight];
   const isFav = (typeof isFavorited === 'function') ? isFavorited(yarn.id) : false;
+  const skeinG = yarn.packageSize_g || 50;
+  const skeinPrice = Math.round(yarn.price_dkk_50g * skeinG / 50);
   const pricePerMeter = (yarn.price_dkk_50g / yarn.meters_per_50g).toFixed(2);
   const fiberStr = yarn.fiber.map(f => `${f.pct}% ${f.name}`).join(', ');
 
@@ -31,8 +33,8 @@ function renderBrowserYarnCard(yarn) {
           <p class="bc-yarn-brand">${yarn.brand}</p>
         </div>
         <div class="bc-yarn-price-block">
-          <span class="bc-price-main">${yarn.price_dkk_50g} kr</span>
-          <span class="bc-price-sub">${pricePerMeter} kr/m</span>
+          <span class="bc-price-main">${skeinPrice} kr</span>
+          <span class="bc-price-sub">pr. ${skeinG}g · ${pricePerMeter} kr/m</span>
         </div>
       </div>
 

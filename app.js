@@ -673,7 +673,7 @@ function renderYarnCard(yarn, origYarn, pattern, tierId, heldDouble = false) {
   const fiberStr  = yarn.fiber.map(f => `${f.pct}% ${f.name}`).join(', ');
   const origFiber = origYarn.fiber.map(f => `${f.pct}% ${f.name}`).join(', ');
   const priceDiff = effPrice - origYarn.price_dkk_50g;
-  const priceUnitG = pattern.priceUnit_g || 50;
+  const priceUnitG = yarn.packageSize_g || 50;
   const displayEffPrice  = Math.round(effPrice * priceUnitG / 50);
   const displayOrigPrice = Math.round(origYarn.price_dkk_50g * priceUnitG / 50);
   const displayPriceDiff = displayEffPrice - displayOrigPrice;

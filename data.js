@@ -2290,6 +2290,7 @@ const YARNS = [
 
   {
     id: 'rauma-lun-merino',
+  packageSize_g: 25,
     imageUrl: 'https://raumagarn.centracdn.net/client/dynamic/images/64598_a159161a37-lun-merino_25649_1-full.jpg',
     name: 'Lun Merino',
     brand: 'Rauma',
@@ -2311,6 +2312,7 @@ const YARNS = [
 
   {
     id: 'rauma-alpaca-silk',
+  packageSize_g: 25,
     imageUrl: 'https://raumagarn.centracdn.net/client/dynamic/images/64314_75622da2df-alpaca-silk_2851314_lys-beige_1-full.jpg',
     name: 'Alpaca Silk',
     brand: 'Rauma',

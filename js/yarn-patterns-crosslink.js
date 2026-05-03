@@ -26,6 +26,8 @@ function renderYarnWithPatterns(yarnId) {
   const w = WEIGHTS[yarn.weight];
   const t = TIERS[yarn.tier];
   const isFav = (typeof isFavorited === 'function') ? isFavorited(yarnId) : false;
+  const skeinG = yarn.packageSize_g || 50;
+  const skeinPrice = Math.round(yarn.price_dkk_50g * skeinG / 50);
   const pricePerMeter = (yarn.price_dkk_50g / yarn.meters_per_50g).toFixed(2);
 
   let patternsList = '';
@@ -59,8 +61,8 @@ function renderYarnWithPatterns(yarnId) {
         <div class="yarn-detail-content">
           <div class="yarn-detail-header">
             <div class="yarn-detail-price">
-              <div class="yarn-price-main">${yarn.price_dkk_50g} kr.</div>
-              <div class="yarn-price-unit">pr. 50g</div>
+              <div class="yarn-price-main">${skeinPrice} kr.</div>
+              <div class="yarn-price-unit">pr. ${skeinG}g</div>
             </div>
             <div class="yarn-detail-info">
               <h2 class="yarn-detail-name">${yarn.name}</h2>
