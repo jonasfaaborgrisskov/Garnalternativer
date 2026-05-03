@@ -659,12 +659,13 @@ function renderYarnCard(yarn, origYarn, pattern, tierId, heldDouble = false) {
   const effStitches = heldDouble ? Math.round(yarn.gauge.stitches * 0.72) : yarn.gauge.stitches;
   const effNeedleNum = heldDouble ? Math.round(parseNeedle(yarn.gauge.needle_mm) * 1.4 * 4) / 4 : parseNeedle(yarn.gauge.needle_mm);
   const effNeedle    = heldDouble ? effNeedleNum : yarn.gauge.needle_mm;
-  const effPrice    = heldDouble ? yarn.price_dkk_50g * 2 : yarn.price_dkk_50g;
+  // effMeters: en nøgle giver halvt så mange dobbelt-tråd meter (korrekt)
+  // Pris pr. nøgle er uændret — nøglen koster det samme uanset om den bruges dobbelt
   const effMeters   = heldDouble ? Math.round(yarn.meters_per_50g / 2) : yarn.meters_per_50g;
 
   const patternMeters = getPatternMeters(pattern);
   const costEst   = heldDouble
-    ? estimateCost({ ...yarn, meters_per_50g: effMeters, price_dkk_50g: effPrice }, patternMeters)
+    ? estimateCost({ ...yarn, meters_per_50g: effMeters, price_dkk_50g: yarn.price_dkk_50g }, patternMeters)
     : estimateCost(yarn, patternMeters);
   const gaugeDiff = effStitches - origYarn.gauge.stitches;
   const gaugeStatus = gaugeLabel(gaugeDiff);
@@ -672,14 +673,14 @@ function renderYarnCard(yarn, origYarn, pattern, tierId, heldDouble = false) {
   const needleStatus = needleLabel(needleDiff);
   const fiberStr  = yarn.fiber.map(f => `${f.pct}% ${f.name}`).join(', ');
   const origFiber = origYarn.fiber.map(f => `${f.pct}% ${f.name}`).join(', ');
-  const priceDiff = effPrice - origYarn.price_dkk_50g;
   const priceUnitG = yarn.packageSize_g || 50;
-  const displayEffPrice  = Math.round(effPrice * priceUnitG / 50);
+  // Pris vises altid pr. faktisk nøglevægt — aldrig fordoblet for held-double
+  const displayEffPrice  = Math.round(yarn.price_dkk_50g * priceUnitG / 50);
   const displayOrigPrice = Math.round(origYarn.price_dkk_50g * priceUnitG / 50);
   const displayPriceDiff = displayEffPrice - displayOrigPrice;
   const metersPerDisplayUnit = yarn.meters_per_50g * priceUnitG / 50;
-  const displaySkeins = Math.ceil(patternMeters / metersPerDisplayUnit);
-  const displayTotal  = displaySkeins * displayEffPrice;
+  const displaySkeins = heldDouble ? costEst.skeins : Math.ceil(patternMeters / metersPerDisplayUnit);
+  const displayTotal  = heldDouble ? costEst.total  : displaySkeins * displayEffPrice;
   const badges    = buildBadges(yarn, origYarn);
   const why       = buildWhy(yarn, origYarn, tierId, gaugeDiff);
 
@@ -700,7 +701,7 @@ function renderYarnCard(yarn, origYarn, pattern, tierId, heldDouble = false) {
         </div>
         <div class="yarn-card-price">
           <div class="price-main">${displayEffPrice} kr.</div>
-          <div class="price-unit">${heldDouble ? `pr. 2×${priceUnitG}g` : `pr. ${priceUnitG}g`}</div>
+          <div class="price-unit">pr. ${priceUnitG}g</div>
           ${displayPriceDiff !== 0 ? `<div class="price-diff ${displayPriceDiff < 0 ? 'cheaper' : 'pricier'}">${displayPriceDiff < 0 ? '▼' : '▲'} ${Math.abs(displayPriceDiff)} kr.</div>` : '<div class="price-diff same">Samme pris</div>'}
         </div>
       </div>
@@ -757,7 +758,7 @@ function renderYarnCard(yarn, origYarn, pattern, tierId, heldDouble = false) {
 
       <div class="cost-estimate">
         <span class="cost-label">Estimeret projektkost (${getPatternSizeLabel(pattern)}, ~${patternMeters} m)</span>
-        <span class="cost-value">${heldDouble ? `${costEst.skeins} nøgler × ${effPrice} kr. (2×${yarn.price_dkk_50g} kr.)` : `${displaySkeins} nøgler × ${displayEffPrice} kr.`} = <strong>${heldDouble ? costEst.total : displayTotal} kr.</strong></span>
+        <span class="cost-value">${displaySkeins} nøgler × ${displayEffPrice} kr. = <strong>${displayTotal} kr.</strong></span>
       </div>
 
       <div class="why-box">
