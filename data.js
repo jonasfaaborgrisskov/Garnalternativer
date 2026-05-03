@@ -53,6 +53,7 @@ const YARNS = [
 
   {
     id: 'krea-deluxe-organic-cotton',
+    imageUrl: 'https://www.kreadeluxe.com/cdn/shop/files/01_naturhvid_Organic_Cotton_1400x.jpg?v=1774275734',
     name: 'Organic Cotton',
     brand: 'Krea Deluxe',
     origin: 'Unknown',
@@ -136,6 +137,7 @@ const YARNS = [
 
   {
     id: 'krea-deluxe-raw---organic-cotton',
+    imageUrl: 'https://www.kreadeluxe.com/cdn/shop/products/6418_1400x.jpg?v=1649541281',
     name: 'Raw - Organic Cotton',
     brand: 'Krea Deluxe',
     origin: 'Unknown',
@@ -156,6 +158,7 @@ const YARNS = [
 
   {
     id: 'krea-deluxe-raw---organic-wool-1',
+    imageUrl: 'https://www.kreadeluxe.com/cdn/shop/products/6421_1400x.jpg?v=1648589337',
     name: 'Raw - Organic wool 1',
     brand: 'Krea Deluxe',
     origin: 'Unknown',
@@ -197,6 +200,7 @@ const YARNS = [
 
   {
     id: 'bc-garn-brisa',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/9497-012010459-01.jpg?v=1771921653',
     name: 'Brisa',
     brand: 'BC Garn',
     origin: 'Unknown',
@@ -238,6 +242,7 @@ const YARNS = [
 
   {
     id: 'bc-garn-big-bio-balance-gots',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/3924-011010350-01.jpg?v=1763767635',
     name: 'Big bio balance GOTS',
     brand: 'BC Garn',
     origin: 'Unknown',
@@ -342,6 +347,7 @@ const YARNS = [
 
   {
     id: 'bc-garn-loch-lomond-lace-gots',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/3711-011010308-13.jpg?v=1763998645',
     name: 'Loch lomond lace GOTS',
     brand: 'BC Garn',
     origin: 'Unknown',
@@ -362,6 +368,7 @@ const YARNS = [
 
   {
     id: 'bc-garn-lino',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/2032-11010048-30.jpg?v=1775737774',
     name: 'Lino',
     brand: 'BC Garn',
     origin: 'Unknown',
@@ -424,6 +431,7 @@ const YARNS = [
 
   {
     id: 'bc-garn-semilla-silkbloom-gots',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/20281-111010337-001.jpg?v=1763742292',
     name: 'Semilla silkbloom GOTS',
     brand: 'BC Garn',
     origin: 'Unknown',
@@ -444,6 +452,7 @@ const YARNS = [
 
   {
     id: 'bc-garn-allino',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/264-11010002-05.jpg?v=1763745806',
     name: 'Allino',
     brand: 'BC Garn',
     origin: 'Unknown',
@@ -485,6 +494,7 @@ const YARNS = [
 
   {
     id: 'bc-garn-summer-in-kashmir',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/20465-012010283-01.jpg?v=1764868576',
     name: 'Summer in Kashmir',
     brand: 'BC Garn',
     origin: 'Unknown',
@@ -505,6 +515,7 @@ const YARNS = [
 
   {
     id: 'bc-garn-tussah-tweed',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/1165-11010010.jpg?v=1763999118',
     name: 'Tussah tweed',
     brand: 'BC Garn',
     origin: 'Unknown',
@@ -546,6 +557,7 @@ const YARNS = [
 
   {
     id: 'bc-garn-hamelton-tweed-2',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/15049-111010311-002_800x800_9fccafd7-e365-43cb-a388-d95f853b69a9.jpg?v=1776413811',
     name: 'Hamelton tweed 2',
     brand: 'BC Garn',
     origin: 'Unknown',
@@ -566,6 +578,7 @@ const YARNS = [
 
   {
     id: 'bc-garn-semilla-melange-gots',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/2072-11010050-01.jpg?v=1763979587',
     name: 'Semilla Melange GOTS',
     brand: 'BC Garn',
     origin: 'Unknown',
@@ -649,6 +662,7 @@ const YARNS = [
 
   {
     id: 'bc-garn-luxor-mercerised-cotton',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/Bc-Garn-Luxor-3.jpg?v=1772448737',
     name: 'Luxor mercerised cotton',
     brand: 'BC Garn',
     origin: 'Unknown',
@@ -669,6 +683,7 @@ const YARNS = [
 
   {
     id: 'bc-garn-jaipur-silk-fino',
+    imageUrl: 'https://www.laine-et-tricot.com/cdn/shop/products/jaipur-silk-fino-h49-ecru-660343.jpg?v=1690787327',
     name: 'Jaipur silk fino',
     brand: 'BC Garn',
     origin: 'Unknown',
@@ -710,6 +725,7 @@ const YARNS = [
 
   {
     id: 'kremke-the-merry-merino-70-gots',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/10442-011053323-01.jpg?v=1763714181',
     name: 'The merry merino 70 GOTS',
     brand: 'Kremke',
     origin: 'Unknown',
@@ -730,6 +746,7 @@ const YARNS = [
 
   {
     id: 'kremke-the-merry-merino-110-gots',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/5909-011053321-01.jpg?v=1763714831',
     name: 'The merry merino 110 GOTS',
     brand: 'Kremke',
     origin: 'Unknown',
@@ -750,6 +767,7 @@ const YARNS = [
 
   {
     id: 'kremke-the-merry-merino-140-gots',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/5873-011053320-01.jpg?v=1763715622',
     name: 'the merry merino 140 GOTS',
     brand: 'Kremke',
     origin: 'Unknown',
@@ -770,6 +788,7 @@ const YARNS = [
 
   {
     id: 'kremke-the-merry-merino-220',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/10478-011053349-01.jpg?v=1763714488',
     name: 'The merry merino 220',
     brand: 'Kremke',
     origin: 'Unknown',
@@ -811,6 +830,7 @@ const YARNS = [
 
   {
     id: 'erika-knight-big-vintage-wool-gots',
+    imageUrl: 'https://www.soul-wool.com/cdn/shop/files/13900-101039177-300.jpg?v=1763691525',
     name: 'Big vintage wool GOTS',
     brand: 'Erika Knight',
     origin: 'Unknown',
@@ -831,6 +851,7 @@ const YARNS = [
 
   {
     id: 'amano-puno-baby-alpaca-ras',
+    imageUrl: 'https://www.soul-wool.com/cdn/shop/files/6201-012070003-9000.jpg?v=1763985884',
     name: 'Puno baby alpaca RAS',
     brand: 'Amano',
     origin: 'Unknown',
@@ -891,6 +912,7 @@ const YARNS = [
 
   {
     id: 'lane-mondial-bio-lana-fine',
+    imageUrl: 'https://www.lanemondial.it/15657-large_default/bio-lana-fine.jpg',
     name: 'Bio Lana fine',
     brand: 'Lane Mondial',
     origin: 'Unknown',
@@ -911,6 +933,7 @@ const YARNS = [
 
   {
     id: 'lane-mondial-bio-lana',
+    imageUrl: 'https://www.lanemondial.it/15658-large_default/bio-lana.jpg',
     name: 'Bio Lana',
     brand: 'Lane Mondial',
     origin: 'Unknown',
@@ -1016,6 +1039,7 @@ const YARNS = [
 
   {
     id: 'holst-garn-tides',
+    imageUrl: 'https://holstgarn.dk/media/cache/category_thumb/product-images/46/56/pearl1476217199.7458.JPG?1476217199',
     name: 'Tides',
     brand: 'Holst Garn',
     origin: '',
@@ -1036,6 +1060,7 @@ const YARNS = [
 
   {
     id: 'holst-garn-titicaca',
+    imageUrl: 'https://holstgarn.dk/media/cache/category_thumb/product-images/44/03/Ecru1660294297.5857.JPG.jpeg?1660294298',
     name: 'Titicaca',
     brand: 'Holst Garn',
     origin: '',
@@ -1098,6 +1123,7 @@ const YARNS = [
 
   {
     id: 'holst-garn-cielo',
+    imageUrl: 'https://holstgarn.dk/media/cache/category_thumb/product-images/48/70/Winter%20White1601017985.7179.JPG?1601017985',
     name: 'Cielo',
     brand: 'Holst Garn',
     origin: '',
@@ -1204,6 +1230,7 @@ const YARNS = [
 
   {
     id: 'hjelholt-hyrdegarn',
+    imageUrl: 'https://static.wixstatic.com/media/6b5166_d3e033c4ab7c41549c97ec8717c00faf~mv2.jpg',
     name: 'Hyrdegarn',
     brand: 'Hjelholts Uldspinderi',
     origin: 'Danmark',
@@ -1225,6 +1252,7 @@ const YARNS = [
   // ── GARNA ─────────────────────────────────────────────────────────
   {
     id: 'garna-adonia',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/2118/9981/files/SuriAlpaca_GARNA_garn_Adonia_115_Natur_Hvid_0fe29679-63d0-4f17-94ba-b690402df29b.jpg',
     name: 'Adonia',
     brand: 'GARNA',
     origin: 'Peru',
@@ -1245,6 +1273,7 @@ const YARNS = [
 
   {
     id: 'garna-alba',
+    imageUrl: 'https://garna.dk/cdn/shop/files/Babyalpaca_alpaca_GARNA_garn_Alba_110_Natur_hvid.jpg',
     name: 'Alba',
     brand: 'GARNA',
     origin: 'Peru',
@@ -1265,6 +1294,7 @@ const YARNS = [
 
   {
     id: 'garna-cava',
+    imageUrl: 'https://garna.dk/cdn/shop/files/Mohair_silke_GARNA_garn_Cava_107_Natur_Hvid.jpg',
     name: 'Cava',
     brand: 'GARNA',
     origin: '',
@@ -1285,6 +1315,7 @@ const YARNS = [
 
   {
     id: 'garna-cumulus',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/2118/9981/files/Cashmere_silke_GARNA_garn_Cumulus_102_Natur_hvid.jpg?v=1758046060',
     name: 'Cumulus',
     brand: 'GARNA',
     origin: '',
@@ -1306,6 +1337,7 @@ const YARNS = [
 
   {
     id: 'garna-edda',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/2118/9981/files/Cashmere_Garna_garn_Natur_hvid.jpg?v=1699027374',
     name: 'Edda',
     brand: 'GARNA',
     origin: 'Skotland',
@@ -1326,6 +1358,7 @@ const YARNS = [
 
   {
     id: 'garna-meriana',
+    imageUrl: 'https://garna.dk/cdn/shop/files/Cashmere_Garna_Meriana2_garn_Natur_hvid.jpg?v=1703773548',
     name: 'Meriana 2',
     brand: 'GARNA',
     origin: 'Italien',
@@ -1346,6 +1379,7 @@ const YARNS = [
 
   {
     id: 'garna-nobilis',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/2118/9981/files/Lammeuld_GARNA_garn_Nobilis1_211_Cream_hvid.jpg?v=1772016685',
     name: 'Nobilis',
     brand: 'GARNA',
     origin: 'Skotland',
@@ -1366,6 +1400,7 @@ const YARNS = [
 
   {
     id: 'garna-nobilis-2',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/2118/9981/files/Lammeuld_GARNA_garn_Nobilis2_Natur_hvid__undyed.jpg?v=1757353712',
     name: 'Nobilis 2',
     brand: 'GARNA',
     origin: 'Skotland',
@@ -1409,6 +1444,7 @@ const YARNS = [
 
   {
     id: 'filcolana-peruvian-highland-wool',
+    imageUrl: 'https://en.filcolana.dk/media/catalog/product/cache/bc1c5eb688119129441fe5d8670d942e/p/h/ph101.jpg',
     name: 'Peruvian Highland Wool',
     brand: 'Filcolana',
     origin: 'Peru',
@@ -1599,6 +1635,7 @@ const YARNS = [
 
   {
     id: 'isager-alpaca-3',
+    imageUrl: 'https://isagerstrik.dk/wp-content/uploads/Alpaca-3-E0..web_-667x1000.jpg',
     name: 'Alpaca 3',
     brand: 'Isager',
     origin: '',
@@ -1640,6 +1677,7 @@ const YARNS = [
 
   {
     id: 'isager-tvinni',
+    imageUrl: 'https://isagerstrik.dk/wp-content/uploads/Tvinni-0-ny-667x1000.jpg',
     name: 'Tvinni',
     brand: 'Isager',
     origin: 'Danmark (Henrichsels Uldspinderi, Skive)',
@@ -1660,6 +1698,7 @@ const YARNS = [
 
   {
     id: 'isager-highland-wool',
+    imageUrl: 'https://isagerstrik.dk/wp-content/uploads/Highland3-667x1000.jpg',
     name: 'Highland Wool',
     brand: 'Isager',
     origin: 'Peru',
@@ -1680,6 +1719,7 @@ const YARNS = [
 
   {
     id: 'isager-merilin',
+    imageUrl: 'https://isagerstrik.dk/wp-content/uploads/Merilin_lowres-667x1000.jpg',
     name: 'Merilin',
     brand: 'Isager',
     origin: 'Peru',
@@ -1700,6 +1740,7 @@ const YARNS = [
 
   {
     id: 'isager-bomulin',
+    imageUrl: 'https://isagerstrik.dk/wp-content/uploads/Bomulin_0_2025_web.jpg',
     name: 'Bomulin',
     brand: 'Isager',
     origin: 'Italien',
@@ -1741,6 +1782,7 @@ const YARNS = [
 
   {
     id: 'isager-aran-tweed',
+    imageUrl: 'https://isagerstrik.dk/wp-content/uploads/Aran_tweed_lowres.jpg',
     name: 'Aran Tweed',
     brand: 'Isager',
     origin: 'Irland',
@@ -1782,6 +1824,7 @@ const YARNS = [
 
   {
     id: 'isager-palet',
+    imageUrl: 'https://isagerstrik.dk/wp-content/uploads/Palet-White_web-667x1000.jpg',
     name: 'Palet',
     brand: 'Isager',
     origin: 'Italien',
@@ -1802,6 +1845,7 @@ const YARNS = [
 
   {
     id: 'isager-hoer-organic',
+    imageUrl: 'https://isagerstrik.dk/wp-content/uploads/Hoer_Organic_Linen_web.jpg',
     name: 'Hør Organic',
     brand: 'Isager',
     origin: '',
@@ -1822,6 +1866,7 @@ const YARNS = [
 
   {
     id: 'isager-trio-1',
+    imageUrl: 'https://isagerstrik.dk/wp-content/uploads/2020/01/Trio-0_ny-667x1000.jpg',
     name: 'Trio 1',
     brand: 'Isager',
     origin: '',
@@ -1842,6 +1887,7 @@ const YARNS = [
 
   {
     id: 'isager-trio-2',
+    imageUrl: 'https://isagerstrik.dk/wp-content/uploads/Trio_2_white_web-667x1000.jpg',
     name: 'Trio 2',
     brand: 'Isager',
     origin: '',
@@ -1862,6 +1908,7 @@ const YARNS = [
 
   {
     id: 'isager-boucle',
+    imageUrl: 'https://isagerstrik.dk/wp-content/uploads/Boucle_E0_web.jpg',
     name: 'Boucle',
     brand: 'Isager',
     origin: 'Peru',
@@ -1925,6 +1972,7 @@ const YARNS = [
 
   {
     id: 'knitting-for-olive-pure-silk',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0044/2286/0867/files/Pure_Silk_Undyed_1.jpg?v=1724225894',
     name: 'Pure Silk',
     brand: 'Knitting for Olive',
     origin: '',
@@ -1966,6 +2014,7 @@ const YARNS = [
 
   {
     id: 'knitting-for-olive-no-waste-wool',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0044/2286/0867/files/Knitting_for_olive_marts_2024_nowastewool_flode_1031.jpg?v=1713253183',
     name: 'No Waste Wool',
     brand: 'Knitting for Olive',
     origin: 'Italien',
@@ -1987,6 +2036,7 @@ const YARNS = [
   // ── Sandnes Garn ─────────────────────────────────────────────────
   {
     id: 'sandnes-sunday',
+    imageUrl: 'https://www.sandnes-garn.com/media/catalog/product/1/1/11121012_whipped-cream_72dpi_noste.jpg',
     name: 'Sunday',
     brand: 'Sandnes Garn',
     origin: 'Norge',
@@ -2007,6 +2057,7 @@ const YARNS = [
 
   {
     id: 'sandnes-duo',
+    imageUrl: 'https://www.sandnes-garn.com/media/catalog/product/1/1/11141012_whipped-cream_300dpi_noste.jpg',
     name: 'Duo',
     brand: 'Sandnes Garn',
     origin: 'Norge',
@@ -2069,6 +2120,7 @@ const YARNS = [
 
   {
     id: 'sandnes-atlas',
+    imageUrl: 'https://www.laine-et-tricot.com/cdn/shop/files/atlas-1012-natur-sandnes-garn-4315992.jpg?v=1764798211',
     name: 'Atlas',
     brand: 'Sandnes Garn',
     origin: 'Norge',
@@ -2442,6 +2494,7 @@ const YARNS = [
   // ── Walløe ───────────────────────────────────────────────────────
   {
     id: 'walloee-soft-wool',
+    imageUrl: 'https://www.sommerfuglen.dk/images/farvekortbilleder/walloe-softwool/softwool-fam.webp',
     name: 'Soft Wool',
     brand: 'Walløe',
     origin: '',
@@ -2462,6 +2515,7 @@ const YARNS = [
 
   {
     id: 'walloee-fluffy-alpaca',
+    imageUrl: 'https://www.sommerfuglen.dk/images/farvekortbilleder/walloe-fluffyalpaca/FluffyAlpaca-fam-t.webp',
     name: 'Fluffy Alpaca',
     brand: 'Walløe',
     origin: '',
@@ -2483,6 +2537,7 @@ const YARNS = [
   // ── Lang Yarns ───────────────────────────────────────────────────
   {
     id: 'lang-yarns-crealino',
+    imageUrl: 'https://transfer.langyarns.com/Yarn/1089/1089_0009_LANGYARNS_Crealino_800_B.jpg',
     name: 'Crealino',
     brand: 'Lang Yarns',
     origin: '',
@@ -2525,6 +2580,7 @@ const YARNS = [
 
   {
     id: 'lang-yarns-yak',
+    imageUrl: 'https://transfer.langyarns.com/Yarn/1103/1103_0038_LANGYARNS_Yak_800_B.jpg',
     name: 'Yak',
     brand: 'Lang Yarns',
     origin: '',
@@ -2546,6 +2602,7 @@ const YARNS = [
   // ── ITO ──────────────────────────────────────────────────────────
   {
     id: 'ito-kinu',
+    imageUrl: 'https://ito-yarn.com/cdn/shop/files/37803-4255699413549.jpg?v=1765552775',
     name: 'Kinu',
     brand: 'ITO',
     origin: 'Japan',
@@ -2568,6 +2625,7 @@ const YARNS = [
   // ── Kit Couture ───────────────────────────────────────────────────
   {
     id: 'kit-couture-silk-linen',
+    imageUrl: 'https://www.kitcouture.dk/cdn/shop/files/13755_Offwhite_Silklinen.jpg',
     name: 'Silk Linen',
     brand: 'Kit Couture',
     origin: 'Norditalien',
@@ -2588,6 +2646,7 @@ const YARNS = [
 
   {
     id: 'kit-couture-cashmere',
+    imageUrl: 'https://www.kitcouture.dk/cdn/shop/files/2401_Marcipan_cashmere.jpg?v=1749624942',
     name: 'Cashmere',
     brand: 'Kit Couture',
     origin: 'Italien',
@@ -2609,6 +2668,7 @@ const YARNS = [
   // ── Hedgehog Fibres ───────────────────────────────────────────────
   {
     id: 'hedgehog-fibres-sock',
+    imageUrl: 'https://shop.hedgehogfibres.com/cdn/shop/files/Oyster19_17786ef3-1938-4c46-90b2-fa163f96212e_600x600@2x.jpg?v=1687957423',
     name: 'Sock',
     brand: 'Hedgehog Fibres',
     origin: 'Irland',
@@ -2631,6 +2691,7 @@ const YARNS = [
   // ── Froehlich ─────────────────────────────────────────────────────
   {
     id: 'froehlich-stroempegarn',
+    imageUrl: 'https://www.sommerfuglen.dk/images/farvekortbilleder/froehlich-wolle/froelich_familie_2018.webp',
     name: 'Strømpegarn',
     brand: 'Froehlich',
     origin: '',
@@ -2759,6 +2820,7 @@ const YARNS = [
 
   {
     id: 'drops-paris',
+    imageUrl: 'https://images.garnstudio.com/img/shademap/paris/17-2.jpg',
     name: 'Paris',
     brand: 'Drops Design',
     origin: '',
@@ -2780,6 +2842,7 @@ const YARNS = [
 
   {
     id: 'drops-andes',
+    imageUrl: 'https://images.garnstudio.com/img/shademap/andes/0100-2.jpg',
     name: 'Andes',
     brand: 'Drops Design',
     origin: '',
@@ -2842,6 +2905,7 @@ const YARNS = [
 
   {
     id: 'drops-bomull-lin',
+    imageUrl: 'https://images.garnstudio.com/img/shademap/bomull-lin/02-2.jpg',
     name: 'Bomull-Lin',
     brand: 'Drops Design',
     origin: '',
@@ -2883,6 +2947,7 @@ const YARNS = [
 
   {
     id: 'drops-flora',
+    imageUrl: 'https://images.garnstudio.com/img/shademap/flora/01-2.jpg',
     name: 'Flora',
     brand: 'Drops Design',
     origin: '',
@@ -2924,6 +2989,7 @@ const YARNS = [
 
   {
     id: 'drops-muskat',
+    imageUrl: 'https://images.garnstudio.com/img/shademap/muskat/08-2.jpg',
     name: 'Muskat',
     brand: 'Drops Design',
     origin: '',
@@ -2944,6 +3010,7 @@ const YARNS = [
 
   {
     id: 'drops-polaris',
+    imageUrl: 'https://images.garnstudio.com/img/shademap/polaris/01-2.jpg',
     name: 'Polaris',
     brand: 'Drops Design',
     origin: '',
@@ -2964,6 +3031,7 @@ const YARNS = [
 
   {
     id: 'drops-puna',
+    imageUrl: 'https://images.garnstudio.com/img/shademap/puna/01-2.jpg',
     name: 'Puna',
     brand: 'Drops Design',
     origin: '',
@@ -3005,6 +3073,7 @@ const YARNS = [
 
   {
     id: 'drops-snow',
+    imageUrl: 'https://images.garnstudio.com/img/shademap/snow/01-2.jpg',
     name: 'Snow',
     brand: 'Drops Design',
     origin: '',
@@ -3090,6 +3159,7 @@ const YARNS = [
 
   {
     id: 'mohair-by-canard-mohair-boucle',
+    imageUrl: 'https://mohair.dk/wp-content/uploads/2021/07/GarnBoucle1000hvid-1.jpg',
     name: 'Mohair Bouclé',
     brand: 'Mohair by Canard',
     origin: 'Danmark',
@@ -3369,6 +3439,7 @@ const YARNS = [
 
   {
     id: 'gepard-woolia',
+    imageUrl: 'https://gepardgarn.dk/media/cache/attribute_image_thumb/images/variants/Woolia%20101%20Snefnug.JPG?1731674347',
     name: 'Woolia',
     brand: 'Gepard',
     origin: 'Italien',
@@ -3389,6 +3460,7 @@ const YARNS = [
 
   {
     id: 'gepard-pura-lana',
+    imageUrl: 'https://gepardgarn.dk/media/cache/attribute_image_thumb/images/variants/Puralana_101.jpg?1585651445',
     name: 'Pura Lana',
     brand: 'Gepard',
     origin: 'Italien',
@@ -3409,6 +3481,7 @@ const YARNS = [
 
   {
     id: 'gepard-cashmere-klassik',
+    imageUrl: 'https://gepardgarn.dk/media/cache/attribute_image_thumb/images/variants/gepard_cashmere_klassik_101.jpg?1776388265',
     name: 'Cashmere Klassik',
     brand: 'Gepard',
     origin: 'Italien',
@@ -3429,6 +3502,7 @@ const YARNS = [
 
   {
     id: 'gepard-kumula',
+    imageUrl: 'https://gepardgarn.dk/media/cache/attribute_image_thumb/images/variants/Kumula_closeup_101.jpg?1757675996',
     name: 'Kumula',
     brand: 'Gepard',
     origin: 'Italien',
@@ -3453,6 +3527,7 @@ const YARNS = [
 
   {
     id: 'laines-du-nord-luxury-silk',
+    imageUrl: 'https://products.lainesdunord.it/uploads/laines-du-nord-2019-luxury-silk-1-.jpg',
     name: 'Luxury Silk',
     brand: 'Laines du Nord',
     origin: 'Italien',
@@ -3585,6 +3660,7 @@ const YARNS = [
 
   {
     id: 'onion-no3-organic-wool-nettles',
+    imageUrl: 'https://yarnliving.com/media/cache/product_original/product-images/89/4/10%2011011773906041.4368.png.png?1773906041',
     name: 'No.3 Organic Wool+Nettles',
     brand: 'Onion',
     origin: 'Danmark',
@@ -3605,6 +3681,7 @@ const YARNS = [
 
   {
     id: 'onion-no6-organic-wool-nettles',
+    imageUrl: 'https://yarnliving.com/media/cache/product_original/product-images/61/41/10%20770609%20%282%291773646393.7623.png.png?1773646393',
     name: 'No.6 Organic Wool+Nettles',
     brand: 'Onion',
     origin: 'Danmark',
@@ -3625,6 +3702,7 @@ const YARNS = [
 
   {
     id: 'onion-soft-organic-wool-nettles',
+    imageUrl: 'https://yarnliving.com/media/cache/product_original/product-images/62/85/15011655712318.3552.jpg.jpeg?1655712318',
     name: 'Soft Organic Wool+Nettles',
     brand: 'Onion',
     origin: 'Danmark',
@@ -3645,6 +3723,7 @@ const YARNS = [
 
   {
     id: 'onion-alpaca-merino-wool-nettles',
+    imageUrl: 'https://yarnliving.com/media/cache/product_original/product-images/73/20/10%20771201%20%282%291773231152.9996.png.png?1773231153',
     name: 'Alpaca+Merino Wool+Nettles',
     brand: 'Onion',
     origin: 'Danmark',
@@ -3665,6 +3744,7 @@ const YARNS = [
 
   {
     id: 'onion-mohair-wool',
+    imageUrl: 'https://yarnliving.com/media/cache/product_original/product-images/73/27/10%20770301%20%282%291773315519.305.png.png?1773315519',
     name: 'Mohair+Wool',
     brand: 'Onion',
     origin: 'Danmark',
@@ -3685,6 +3765,7 @@ const YARNS = [
 
   {
     id: 'onion-silk-kid-mohair',
+    imageUrl: 'https://yarnliving.com/media/cache/product_original/product-images/66/70/3001_ra__778_hvid1674725791.1781.jpg.jpeg?1674725791',
     name: 'Silk+Kid Mohair',
     brand: 'Onion',
     origin: 'Danmark',
@@ -3747,6 +3828,7 @@ const YARNS = [
 
   {
     id: 'onion-fino-organic-cotton-merino',
+    imageUrl: 'https://yarnliving.com/media/cache/product_original/product-images/62/88/5011655807955.6688.jpg.jpeg?1655807955',
     name: 'Fino Organic Cotton+Merino Wool',
     brand: 'Onion',
     origin: 'Danmark',
@@ -3767,6 +3849,7 @@ const YARNS = [
 
   {
     id: 'onion-hemp-cotton-modal',
+    imageUrl: 'https://yarnliving.com/media/cache/product_original/product-images/80/40/4091708937694.5981.jpg.jpeg?1708937694',
     name: 'Hemp+Cotton+Modal',
     brand: 'Onion',
     origin: 'Danmark',
@@ -3789,6 +3872,7 @@ const YARNS = [
 
   {
     id: 'rowan-felted-tweed-dk',
+    imageUrl: 'https://isv.prod.lovecrafts.co/v1/images/a34a11dc4a52b58b77078bc74463ff89/4ddcb7d6-d1e5-48f3-877a-2778ce7e85fe.jpeg',
     name: 'Felted Tweed DK',
     brand: 'Rowan',
     origin: 'UK',
@@ -3809,6 +3893,7 @@ const YARNS = [
 
   {
     id: 'rowan-alpaca-classic',
+    imageUrl: 'https://isv.prod.lovecrafts.co/v1/images/af0969e4f90d0ac4d6cb14a07f909880/3ecb5433-bfd4-48ba-8f78-abf2ab94c65c.jpg',
     name: 'Alpaca Classic',
     brand: 'Rowan',
     origin: 'UK',
@@ -3829,6 +3914,7 @@ const YARNS = [
 
   {
     id: 'rowan-cashmere-tweed',
+    imageUrl: 'https://d1wtanddiqif0k.cloudfront.net/spree/images/attachments/000/000/355/large/open-uri20210212-3-13j1n8f?1613111170',
     name: 'Cashmere Tweed',
     brand: 'Rowan',
     origin: 'UK',
@@ -3849,6 +3935,7 @@ const YARNS = [
 
   {
     id: 'rowan-handknit-cotton',
+    imageUrl: 'https://isv.prod.lovecrafts.co/v1/images/942bea9e99f305fec32fdb6ea497c734/38182a1d-ab89-4613-b707-960022efdda7.jpg',
     name: 'Handknit Cotton',
     brand: 'Rowan',
     origin: 'UK',
@@ -3869,6 +3956,7 @@ const YARNS = [
 
   {
     id: 'rowan-kid-classic',
+    imageUrl: 'https://isv.prod.lovecrafts.co/v1/images/d721b9e23b77714fb995e47b96afecf8/f46a075d-12b9-45e6-b9d7-0ff9572ea57b.jpg',
     name: 'Kid Classic',
     brand: 'Rowan',
     origin: 'UK',
@@ -3889,6 +3977,7 @@ const YARNS = [
 
   {
     id: 'rowan-summerlite-4ply',
+    imageUrl: 'https://d1wtanddiqif0k.cloudfront.net/spree/images/attachments/000/000/046/large/open-uri20210212-3-x1k4ax?1613109133',
     name: 'Summerlite 4 Ply',
     brand: 'Rowan',
     origin: 'UK',
@@ -3909,6 +3998,7 @@ const YARNS = [
 
   {
     id: 'rowan-island-blend',
+    imageUrl: 'https://d1wtanddiqif0k.cloudfront.net/spree/images/attachments/000/000/635/large/open-uri20210212-3-ca3z3m?1613155327',
     name: 'Island Blend',
     brand: 'Rowan',
     origin: 'UK',
@@ -4065,6 +4155,7 @@ const YARNS = [
 
   {
     id: 'hjelholt-merinogarn-10-2',
+    imageUrl: 'https://static.wixstatic.com/media/6b5166_e0cc6df2a2a3494ba4261d063f923ce9~mv2.jpg',
     name: 'Merinogarn 10/2',
     brand: 'Hjelholt',
     origin: 'Danmark',
@@ -4085,6 +4176,7 @@ const YARNS = [
 
   {
     id: 'hjelholt-dansk-pelsuld',
+    imageUrl: 'https://static.wixstatic.com/media/6b5166_59f5eb8fa50f46d9bf241af471a357ed~mv2.jpg',
     name: 'Dansk Pelsuld 8/2',
     brand: 'Hjelholt',
     origin: 'Danmark',
@@ -4105,6 +4197,7 @@ const YARNS = [
 
   {
     id: 'hjelholt-haandvaerksgarn',
+    imageUrl: 'https://static.wixstatic.com/media/6b5166_afe9a3c9682249bcb9d5446a0c686772~mv2.jpg',
     name: 'Håndværksgarn',
     brand: 'Hjelholt',
     origin: 'Danmark',
@@ -4150,6 +4243,7 @@ const YARNS = [
 
   {
     id: 'camijoknit-silk-mohair',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0495/5203/1897/products/66C9BAF3-91EE-4057-A8EA-6EEA396A060F_1_105_c.jpg?v=1647177969',
     name: 'Silk Mohair',
     brand: 'CamijoKnit',
     origin: 'Danmark',
@@ -4171,6 +4265,7 @@ const YARNS = [
   // ── Hjertegarn ────────────────────────────────────────────────────
   {
     id: 'hjertegarn-lima',
+    imageUrl: 'https://sw16169.smartweb-static.com/upload_dir/shop/14310000li.jpg',
     name: 'Lima Uld',
     brand: 'Hjertegarn',
     origin: '',
@@ -4191,6 +4286,7 @@ const YARNS = [
 
   {
     id: 'hjertegarn-incawool',
+    imageUrl: 'https://sw16169.sfstatic.io/upload_dir/shop/_thumbs/14390100.w610.h610.fill.jpg',
     name: 'Incawool',
     brand: 'Hjertegarn',
     origin: '',
@@ -4211,6 +4307,7 @@ const YARNS = [
 
   {
     id: 'hjertegarn-natur-uld',
+    imageUrl: 'https://sw16169.sfstatic.io/upload_dir/shop/_thumbs/14040100.w610.h610.fill.jpg',
     name: 'Natur Uld',
     brand: 'Hjertegarn',
     origin: '',
@@ -4231,6 +4328,7 @@ const YARNS = [
 
   {
     id: 'hjertegarn-highland-fine-wool',
+    imageUrl: 'https://sw16169.sfstatic.io/upload_dir/pics/14500000(2).jpg',
     name: 'Highland Fine Wool',
     brand: 'Hjertegarn',
     origin: 'Tyrkiet',
@@ -4251,6 +4349,7 @@ const YARNS = [
 
   {
     id: 'hjertegarn-organic-trio',
+    imageUrl: 'https://sw16169.sfstatic.io/upload_dir/shop/_thumbs/14535012.w610.h610.fill.jpg',
     name: 'Organic Trio',
     brand: 'Hjertegarn',
     origin: '',
@@ -4484,6 +4583,7 @@ const YARNS = [
 
   {
     id: 'lana-gatto-misina-tweed',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0893/0535/0474/files/5000-MISINA-TWEED.jpg?v=1752073328',
     name: 'Misina Tweed',
     brand: 'Lana Gatto',
     origin: 'Italien',
@@ -4504,6 +4604,7 @@ const YARNS = [
 
   {
     id: 'lana-gatto-rustica',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0893/0535/0474/files/rustica-90001.jpg?v=1752132855',
     name: 'Rustica',
     brand: 'Lana Gatto',
     origin: 'Italien',
@@ -4524,6 +4625,7 @@ const YARNS = [
 
   {
     id: 'lana-gatto-shetland-wool',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0893/0535/0474/files/SHETLAND-SL168.jpg?v=1752132285',
     name: 'Shetland Wool',
     brand: 'Lana Gatto',
     origin: 'Italien',
@@ -4565,6 +4667,7 @@ const YARNS = [
 
   {
     id: 'lana-gatto-organic-cotton',
+    imageUrl: 'https://www.lanagatto.it/wp-content/uploads/2025/06/LIME_1-31268.jpg',
     name: 'Organic Cotton 100%',
     brand: 'Lana Gatto',
     origin: 'Italien',
@@ -4585,6 +4688,7 @@ const YARNS = [
 
   {
     id: 'lana-gatto-lime',
+    imageUrl: 'https://www.lanagatto.it/wp-content/uploads/2025/06/LIME_1-31268.jpg',
     name: 'Lime',
     brand: 'Lana Gatto',
     origin: 'Italien',
@@ -4605,6 +4709,7 @@ const YARNS = [
 
   {
     id: 'lana-gatto-mango',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0893/0535/0474/files/mango-31264_4.jpg?v=1772701278',
     name: 'Mango',
     brand: 'Lana Gatto',
     origin: 'Italien',
@@ -4625,6 +4730,7 @@ const YARNS = [
 
   {
     id: 'lana-gatto-ananas',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0893/0535/0474/files/ananas-31264_3.jpg?v=1772699262',
     name: 'Ananas',
     brand: 'Lana Gatto',
     origin: 'Italien',
@@ -4645,6 +4751,7 @@ const YARNS = [
 
   {
     id: 'lana-gatto-porto-rico',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0893/0535/0474/files/6028-porto-rico.jpg',
     name: 'Porto Rico',
     brand: 'Lana Gatto',
     origin: 'Italien',
@@ -4665,6 +4772,7 @@ const YARNS = [
 
   {
     id: 'lana-gatto-true-silk',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0893/0535/0474/files/SM01-TRUE-SILK.jpg?v=1752134084',
     name: 'True Silk',
     brand: 'Lana Gatto',
     origin: 'Italien',
@@ -4727,6 +4835,7 @@ const YARNS = [
 
   {
     id: 'lana-gatto-santiago',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0893/0535/0474/files/30917-SANTIAGO.jpg?v=1752133191',
     name: 'Santiago',
     brand: 'Lana Gatto',
     origin: 'Italien',
@@ -4747,6 +4856,7 @@ const YARNS = [
 
   {
     id: 'lana-gatto-chunky-andean',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0893/0535/0474/files/EW001-CAHW.jpg?v=1752131414',
     name: 'Chunky Andean Highland Wool',
     brand: 'Lana Gatto',
     origin: 'Italien',
@@ -4788,6 +4898,7 @@ const YARNS = [
 
   {
     id: 'lana-gatto-naturalpaca',
+    imageUrl: 'https://www.lanagatto.it/wp-content/uploads/2025/01/NATURALPACA-31140.jpg',
     name: 'Naturalpaca',
     brand: 'Lana Gatto',
     origin: 'Italien',
@@ -4898,6 +5009,7 @@ const YARNS = [
 
   {
     id: 'camarose-midnatssol',
+    imageUrl: 'https://www.camarose.dk/images/midnatssol/9500-hvid-midnatssol-ras-rws-t.jpg',
     name: 'Midnatssol',
     brand: 'CaMaRose',
     origin: 'Peru / Kina',
@@ -4918,6 +5030,7 @@ const YARNS = [
 
   {
     id: 'camarose-loevfald',
+    imageUrl: 'https://www.camarose.dk/images/loevfald/1402-natur-loevfald-rws-ras-t.jpg',
     name: 'Løvfald',
     brand: 'CaMaRose',
     origin: 'Peru',
@@ -4938,6 +5051,7 @@ const YARNS = [
 
   {
     id: 'camarose-loevetand',
+    imageUrl: 'https://www.camarose.dk/images/loevetand/402%20natur%20loevetand%201000x1000%20GOTS-t.jpg',
     name: 'Løvetand',
     brand: 'CaMaRose',
     origin: 'Belgien / Italien',
@@ -4958,6 +5072,7 @@ const YARNS = [
 
   {
     id: 'camarose-hoest',
+    imageUrl: 'https://www.camarose.dk/images/hoest/8200%20MARMOR%20HOEST-t.JPG',
     name: 'Høst',
     brand: 'CaMaRose',
     origin: '',
@@ -4978,6 +5093,7 @@ const YARNS = [
 
   {
     id: 'camarose-oeko-pimabomuld',
+    imageUrl: 'https://www.camarose.dk/images/%C3%B8kologisk%20pimabomuld/3700-raahvid-oekologisk-pimabomuld-gots-t.jpg',
     name: 'Økologisk Pimabomuld',
     brand: 'CaMaRose',
     origin: 'Peru',
@@ -4998,6 +5114,7 @@ const YARNS = [
 
   {
     id: 'camarose-oeko-sommeruld',
+    imageUrl: 'https://www.camarose.dk/images/sommeruld/2001-R%C3%A5hvid-oekologisk-sommeruld-gots-t.jpg',
     name: 'Økologisk Sommeruld',
     brand: 'CaMaRose',
     origin: 'Peru / Egypten',
@@ -5018,6 +5135,7 @@ const YARNS = [
 
   {
     id: 'camarose-oeko-hverdagsuld',
+    imageUrl: 'https://www.camarose.dk/images/hverdagsuld/02%20RAAHVID%20HVERDAGSULD-t.jpg',
     name: 'Økologisk Hverdagsuld',
     brand: 'CaMaRose',
     origin: 'Europa',
@@ -5038,6 +5156,7 @@ const YARNS = [
 
   {
     id: 'camarose-tynd-lamauld',
+    imageUrl: 'https://www.camarose.dk/images/tynd%20lamauld%20close%20up/5000-RAAHVID-TYND-LAMAULD-t.jpg',
     name: 'Tynd Lamauld',
     brand: 'CaMaRose',
     origin: 'Peru',
@@ -5058,6 +5177,7 @@ const YARNS = [
 
   {
     id: 'camarose-lamauld',
+    imageUrl: 'https://www.camarose.dk/images/lamauld%20nye/6000%20Raahvid%20Lamauld-t.JPG',
     name: 'Lamauld',
     brand: 'CaMaRose',
     origin: 'Peru',
@@ -5078,6 +5198,7 @@ const YARNS = [
 
   {
     id: 'camarose-lamatweed',
+    imageUrl: 'https://www.camarose.dk/images/6997-raahvid-lamatweed-600x600-t.jpg',
     name: 'Lamatweed',
     brand: 'CaMaRose',
     origin: 'Peru',
@@ -5121,6 +5242,7 @@ const YARNS = [
 
   {
     id: 'sandnes-alpakka-ull',
+    imageUrl: 'https://www.sandnes-garn.com/media/catalog/product/1/1/11712650_beigemelert_300dpi_noste.jpg',
     name: 'Alpakka Ull',
     brand: 'Sandnes Garn',
     origin: 'Peru / Bolivia',
@@ -5210,6 +5332,7 @@ const YARNS = [
 
   {
     id: 'gepard-eco-cashmere-vintage',
+    imageUrl: 'https://gepardgarn.dk/media/cache/attribute_image_thumb/images/variants/eco-casmere_102_oekologisk-strikkegarn.jpeg?1661419254',
     name: 'Eco Cashmere Vintage',
     brand: 'Gepard',
     origin: 'Italien',
@@ -5864,6 +5987,7 @@ const YARNS = [
   // ─── Istex ────────────────────────────────────────────────────────────────
   {
     id: 'istex-lettlopi',
+    imageUrl: 'https://www.nordicstore.com/cdn/shop/products/0085-Lettlopi-crop.jpg',
     name: 'Léttlopi',
     brand: 'Ístex',
     origin: 'Island',
@@ -5881,6 +6005,7 @@ const YARNS = [
   },
   {
     id: 'istex-alafosslopi',
+    imageUrl: 'https://www.nordicstore.com/cdn/shop/products/0085-Alafosslopi-crop.jpg',
     name: 'Álafosslopi',
     brand: 'Ístex',
     origin: 'Island',
@@ -5899,6 +6024,7 @@ const YARNS = [
   },
   {
     id: 'istex-plotulopi',
+    imageUrl: 'https://istex.is/wp-content/uploads/2020/03/0001-2-scaled.jpg',
     name: 'Plötulopi',
     brand: 'Ístex',
     origin: 'Island',
@@ -5919,6 +6045,7 @@ const YARNS = [
   // ─── Aiayu ────────────────────────────────────────────────────────────────
   {
     id: 'aiayu-babyllama',
+    imageUrl: 'https://aiayu.com/cdn/shop/files/HandknitYarn_Albicant.jpg?v=1714657188',
     name: 'Baby Llama Yarn',
     brand: 'Aiayu',
     origin: 'Bolivia',
@@ -5936,6 +6063,7 @@ const YARNS = [
   },
   {
     id: 'aiayu-mechera',
+    imageUrl: 'https://aiayu.com/cdn/shop/files/HandknitYarnMechera_PureNatural2.jpg?v=1714561939',
     name: 'Handknit Mechera',
     brand: 'Aiayu',
     origin: 'Bolivia',
@@ -5974,6 +6102,7 @@ const YARNS = [
   // ─── Biches & Buches ──────────────────────────────────────────────────────
   {
     id: 'biches-le-lambswool',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0563/9025/4644/files/Off_White_Le_Lambswool_b78ea7b8-b0e7-4ebf-986b-291e633bad38.png?v=1771756752',
     name: 'Le Lambswool',
     brand: 'Biches & Buches',
     origin: 'Skotland',
@@ -6029,6 +6158,7 @@ const YARNS = [
   },
   {
     id: 'biches-le-gros-silk-mohair',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0563/9025/4644/files/Off_White_Le_Gros_Silk_Mohair_BB.png?v=1762248035',
     name: 'Le Gros Silk & Mohair',
     brand: 'Biches & Buches',
     origin: 'Italien',
@@ -6046,6 +6176,7 @@ const YARNS = [
   },
   {
     id: 'biches-le-cashmere-lambswool',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0563/9025/4644/files/Off_White_Le_Lambswool_b78ea7b8-b0e7-4ebf-986b-291e633bad38.png?v=1771756752',
     name: 'Le Cashmere & Lambswool',
     brand: 'Biches & Buches',
     origin: 'Skotland',
@@ -6063,6 +6194,7 @@ const YARNS = [
   },
   {
     id: 'biches-le-petit-organic-cotton',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0563/9025/4644/files/Le_Petit_Organic_Cotton_Off_White.png?v=1776778304',
     name: 'Le Petit Organic Cotton',
     brand: 'Biches & Buches',
     origin: 'Italien',
@@ -6081,6 +6213,7 @@ const YARNS = [
   },
   {
     id: 'biches-le-coton-alpaca',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0563/9025/4644/files/Off_White_Le_Coton_Alpaca_Biches_Buches.png?v=1775814292',
     name: 'Le Coton & Alpaca',
     brand: 'Biches & Buches',
     origin: 'Italien',
@@ -6100,6 +6233,7 @@ const YARNS = [
   // ─── Pascuali ─────────────────────────────────────────────────────────────
   {
     id: 'pascuali-suave',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0683/5116/4697/files/Suave4x-96.jpg?v=1773345529',
     name: 'Suave',
     brand: 'Pascuali',
     origin: 'Italien',
@@ -6140,6 +6274,7 @@ const YARNS = [
 
   {
     id: 'pascuali-pinta-hand-dyed',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0683/5116/4697/files/1612042310-PINTA-HANDGEFaeRBT---MERINO--SEIDE--RAMIE-2042310.jpg?v=1753210595',
     name: 'Pinta Hand-Dyed',
     brand: 'Pascuali',
     origin: 'Peru / Argentina / Tyskland',
@@ -6181,6 +6316,7 @@ const YARNS = [
 
   {
     id: 'pascuali-sole',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0683/5116/4697/files/Sole4x-01.jpg?v=1774267109',
     name: 'Sole',
     brand: 'Pascuali',
     origin: 'Peru / Portugal',
@@ -6223,6 +6359,7 @@ const YARNS = [
 
   {
     id: 'pascuali-cumbria',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0683/5116/4697/files/Cumbria4x-301.jpg?v=1772798925',
     name: 'Cumbria',
     brand: 'Pascuali',
     origin: 'Peru / Kina',
@@ -6270,6 +6407,7 @@ const YARNS = [
 
   {
     id: 'pascuali-arctic-pearl',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0683/5116/4697/files/Arctic-Pearl-03.jpg?v=1766354370',
     name: 'Arctic Pearl',
     brand: 'Pascuali',
     origin: 'Østrig / Italien',
@@ -6290,6 +6428,7 @@ const YARNS = [
 
   {
     id: 'pascuali-nepal',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0683/5116/4697/files/Nepal4x-13.jpg?v=1773737937',
     name: 'Nepal',
     brand: 'Pascuali',
     origin: 'Italien / Kina',
@@ -6352,6 +6491,7 @@ const YARNS = [
 
   {
     id: 'pascuali-balayage-hand-dyed',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0683/5116/4697/files/1612041742-BALAYAGE-HANDGEFaeRBT---BABY-ALPAKAWOLLE-und-MERINOWOLLE-2041742_1.jpg?v=1772617091',
     name: 'Balayage Hand-Dyed',
     brand: 'Pascuali',
     origin: 'Peru / Tyskland',
@@ -6372,6 +6512,7 @@ const YARNS = [
 
   {
     id: 'pascuali-puno',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0683/5116/4697/files/1612041526-PUNO---BIO-BAUMWOLLE-und-ALPAKAWOLLE-2041526_1.jpg?v=1753199858',
     name: 'Puno',
     brand: 'Pascuali',
     origin: 'Peru',
@@ -6434,6 +6575,7 @@ const YARNS = [
 
   {
     id: 'pascuali-alpaca-lace',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0683/5116/4697/files/1302101-ALPACA-LACE---100--BABY-ALPAKAWOLLE-302101-0050_2.jpg?v=1757267241',
     name: 'Alpaca Lace',
     brand: 'Pascuali',
     origin: 'Peru',
@@ -6519,6 +6661,7 @@ const YARNS = [
 
   {
     id: 'pascuali-cashmere-charis',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0683/5116/4697/files/CashmereCharis4x-05.jpg?v=1774444146',
     name: 'Cashmere Charis',
     brand: 'Pascuali',
     origin: 'Australien / Mongoliet / Italien',
@@ -6561,6 +6704,7 @@ const YARNS = [
 
   {
     id: 'pascuali-cashmere-delizia',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0683/5116/4697/files/CashmereDelizia4x-54-1612042390-2042390-56324.jpg?v=1775832511',
     name: 'Cashmere Delizia',
     brand: 'Pascuali',
     origin: 'Mongoliet / Italien',
@@ -6582,6 +6726,7 @@ const YARNS = [
 
   {
     id: 'pascuali-linen-bloom',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0683/5116/4697/files/linen-Bloom-01_0789e7b7-b1b0-4292-9c66-4fd5895fb11e.jpg?v=1774858151',
     name: 'Linen Bloom',
     brand: 'Pascuali',
     origin: 'Frankrig / Italien',
@@ -6602,6 +6747,7 @@ const YARNS = [
 
   {
     id: 'pascuali-babyalpaca-los-andes',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0683/5116/4697/files/BabyalpacaLosAndes-10.jpg?v=1777535769',
     name: 'Babyalpaca Los Andes',
     brand: 'Pascuali',
     origin: 'Peru',
@@ -6623,6 +6769,7 @@ const YARNS = [
 
   {
     id: 'pascuali-vicuna',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0683/5116/4697/files/60816-VICU--A---100--VIKUNJAWOLLE-60816-0025-001.jpg?v=1753199750',
     name: 'Vicuña',
     brand: 'Pascuali',
     origin: 'Peru',
@@ -6644,6 +6791,7 @@ const YARNS = [
 
   {
     id: 'pascuali-alaska-2',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0683/5116/4697/files/27-Natural_022d1cd0-8b16-472f-b021-269ebe655c83.jpg',
     name: 'Alaska 2',
     brand: 'Pascuali',
     origin: 'Alaska / Canada',
@@ -6665,6 +6813,7 @@ const YARNS = [
 
   {
     id: 'pascuali-alaska-3',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0683/5116/4697/files/Alaska-3-27-Natur.jpg?v=1773922726',
     name: 'Alaska 3',
     brand: 'Pascuali',
     origin: 'Alaska / Canada',
@@ -7137,6 +7286,7 @@ const YARNS = [
 
   {
     id: 'bypermin-martha',
+    imageUrl: 'https://permin.dk/img/prod/8829.png',
     name: 'Martha',
     brand: 'By Permin',
     origin: '',
@@ -7265,6 +7415,7 @@ const YARNS = [
   },
   {
     id: 'bypermin-solvej',
+    imageUrl: 'https://permin.dk/img/prod/thumb400/885201.jpg',
     name: 'Solvej',
     brand: 'By Permin',
     origin: '',
@@ -7289,6 +7440,7 @@ const YARNS = [
   },
   {
     id: 'bypermin-sonia',
+    imageUrl: 'https://permin.dk/img/prod/thumb400/885115.jpg',
     name: 'Sonia',
     brand: 'By Permin',
     origin: '',
@@ -7313,6 +7465,7 @@ const YARNS = [
   },
   {
     id: 'bypermin-gerda',
+    imageUrl: 'https://permin.dk/img/prod/thumb400/885801.jpg',
     name: 'Gerda',
     brand: 'By Permin',
     origin: 'Uruguay/Argentina',
@@ -7337,6 +7490,7 @@ const YARNS = [
   },
   {
     id: 'bypermin-gurli',
+    imageUrl: 'https://permin.dk/img/prod/thumb400/885701.jpg',
     name: 'Gurli',
     brand: 'By Permin',
     origin: 'Uruguay/Argentina',
@@ -7385,6 +7539,7 @@ const YARNS = [
 
   {
     id: 'kremke-babyalpaka',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/8859-012053016-sfn41m10121.jpg?v=1763762452',
     name: 'Babyalpaka',
     brand: 'Kremke Soul Wool',
     origin: '',
@@ -7405,6 +7560,7 @@ const YARNS = [
 
   {
     id: 'kremke-baby-silk-lace',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/25392-g_011053243-2989.jpg?v=1764923617',
     name: 'Baby Silk Lace',
     brand: 'Kremke Soul Wool',
     origin: '',
@@ -7426,6 +7582,7 @@ const YARNS = [
 
   {
     id: 'kremke-baby-silk-fluffy',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/7633-012053201-21011.jpg?v=1763833683',
     name: 'Baby Silk Fluffy',
     brand: 'Kremke Soul Wool',
     origin: '',
@@ -7446,6 +7603,7 @@ const YARNS = [
 
   {
     id: 'kremke-silky-kid',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/10269-12003005-06_003rms.jpg',
     name: 'Silky Kid',
     brand: 'Kremke Soul Wool',
     origin: 'Sydafrika',
@@ -7467,6 +7625,7 @@ const YARNS = [
 
   {
     id: 'kremke-marled-silky-kid',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/19856-GP01053372-1.jpg?v=1763662010',
     name: 'Marled Silky Kid',
     brand: 'Kremke Soul Wool',
     origin: 'Sydafrika',
@@ -7510,6 +7669,7 @@ const YARNS = [
 
   {
     id: 'kremke-plain-cashmere',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/5698-011053230-21085.jpg?v=1763765442',
     name: 'Plain Cashmere',
     brand: 'Kremke Soul Wool',
     origin: 'Mongoliet / Italien',
@@ -7531,6 +7691,7 @@ const YARNS = [
 
   {
     id: 'kremke-llama-soft',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/8997-012053174-09_9hm02.jpg?v=1763762175',
     name: 'Llama Soft',
     brand: 'Kremke Soul Wool',
     origin: '',
@@ -7552,6 +7713,7 @@ const YARNS = [
 
   {
     id: 'kremke-morning-salutation',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/5225-011053177-01.jpg?v=1763983764',
     name: 'Morning Salutation',
     brand: 'Kremke Soul Wool',
     origin: '',
@@ -7572,6 +7734,7 @@ const YARNS = [
 
   {
     id: 'kremke-morning-salutation-fino',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/5668-011053227-01.jpg?v=1763983999',
     name: 'Morning Salutation Fino',
     brand: 'Kremke Soul Wool',
     origin: '',
@@ -7592,6 +7755,7 @@ const YARNS = [
 
   {
     id: 'kremke-vegan-cashmere',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/5630-011053223-01.jpg?v=1763984060',
     name: 'Vegan Cashmere',
     brand: 'Kremke Soul Wool',
     origin: 'Italien',
@@ -7612,6 +7776,7 @@ const YARNS = [
 
   {
     id: 'kremke-reborn-denim-uni',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/5518-011053199-100.jpg?v=1763832029',
     name: 'Reborn Denim Uni',
     brand: 'Kremke Soul Wool',
     origin: '',
@@ -7632,6 +7797,7 @@ const YARNS = [
 
   {
     id: 'kremke-reborn-denim-colori',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/5543-011053200-5551.jpg?v=1763717110',
     name: 'Reborn Denim Colori',
     brand: 'Kremke Soul Wool',
     origin: '',
@@ -7652,6 +7818,7 @@ const YARNS = [
 
   {
     id: 'kremke-lazy-lion',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/8908-012053158-0001.jpg?v=1763985296',
     name: 'Lazy Lion',
     brand: 'Kremke Soul Wool',
     origin: 'Sydafrika',
@@ -7674,6 +7841,7 @@ const YARNS = [
 
   {
     id: 'kremke-edelweiss-classic',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/5297-011053180-401.jpg?v=1763982351',
     name: 'Edelweiss Classic',
     brand: 'Kremke Soul Wool',
     origin: 'Sydamerika / Italien',
@@ -7696,6 +7864,7 @@ const YARNS = [
 
   {
     id: 'kremke-edelweiss-alpaka-4ply',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/5447-011053193-001.jpg?v=1764344349',
     name: 'Edelweiss Alpaka 4-ply',
     brand: 'Kremke Soul Wool',
     origin: 'Sydamerika',
@@ -7718,6 +7887,7 @@ const YARNS = [
 
   {
     id: 'kremke-edelweiss-alpaka-6ply',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/5816-011053269-001.jpg?v=1763983969',
     name: 'Edelweiss Alpaka 6-ply',
     brand: 'Kremke Soul Wool',
     origin: 'Sydamerika',
@@ -7739,6 +7909,7 @@ const YARNS = [
 
   {
     id: 'kremke-edelweiss-print',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0917/2864/2427/files/10423-011053361-1_02.jpg?v=1763763830',
     name: 'Edelweiss Print',
     brand: 'Kremke Soul Wool',
     origin: '',
