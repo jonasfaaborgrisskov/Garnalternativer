@@ -684,7 +684,7 @@ function renderYarnCard(yarn, origYarn, pattern, tierId, heldDouble = false) {
   const why       = buildWhy(yarn, origYarn, tierId, gaugeDiff);
 
   const photoHtml = yarn.imageUrl
-    ? `<img class="yarn-photo" src="${yarn.imageUrl}" alt="${yarn.name}" loading="lazy" onerror="this.style.display='none'">`
+    ? `<img class="yarn-photo" src="${yarn.imageUrl}" alt="${yarn.name}" onerror="this.style.display='none'">`
     : `<div class="yarn-photo yarn-photo--placeholder">${yarn.name.charAt(0).toUpperCase()}</div>`;
 
   return `

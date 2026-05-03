@@ -3954,6 +3954,7 @@ const YARNS = [
 
   {
     id: 'cardiff-classic',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0635/4210/0188/products/CLASSIC_501_NEVE_0037.jpg?v=1652345106',
     name: 'Classic',
     brand: 'Cardiff Cashmere',
     origin: 'Italien',
@@ -3974,6 +3975,7 @@ const YARNS = [
 
   {
     id: 'cardiff-brushmere',
+    imageUrl: 'https://cdn.shopify.com/s/files/1/0635/4210/0188/products/CLASSIC_501_NEVE_0037.jpg?v=1652345106',
     name: 'Brushmere',
     brand: 'Cardiff Cashmere',
     origin: 'Italien',
