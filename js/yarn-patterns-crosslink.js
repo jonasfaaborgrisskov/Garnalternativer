@@ -54,6 +54,8 @@ function renderYarnWithPatterns(yarnId) {
       <div class="yarn-detail-modal" onclick="event.stopPropagation()">
         <button class="yarn-detail-close" onclick="closeYarnDetail()">✕</button>
 
+        ${yarn.imageUrl ? `<img class="yarn-detail-hero-img" src="${yarn.imageUrl}" alt="${yarn.name}" onerror="this.remove()">` : ''}
+
         <div class="yarn-detail-content">
           <div class="yarn-detail-header">
             <div class="yarn-detail-price">
