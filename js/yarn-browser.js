@@ -16,8 +16,14 @@ function renderBrowserYarnCard(yarn) {
     yarn.mulesing_free? '<span class="bc-badge bc-badge--eco">♻️ Mulesing-frit</span>' : '',
   ].filter(Boolean).join('');
 
+  const photoHtml = yarn.imageUrl
+    ? `<img class="bc-yarn-photo" src="${yarn.imageUrl}" alt="${yarn.name}" onerror="this.style.display='none'">`
+    : `<div class="bc-yarn-photo bc-yarn-photo--placeholder">${yarn.name.charAt(0).toUpperCase()}</div>`;
+
   return `
     <article class="bc-yarn-card" data-yarn-id="${yarn.id}">
+
+      ${photoHtml}
 
       <div class="bc-yarn-top">
         <div class="bc-yarn-identity">
