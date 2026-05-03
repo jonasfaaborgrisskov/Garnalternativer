@@ -74,6 +74,7 @@ const YARNS = [
 
   {
     id: 'krea-deluxe-deluxe-silk-mohair',
+  packageSize_g: 20,
     imageUrl: 'https://www.kreadeluxe.com/cdn/shop/products/01_naturhvid_Deluxe_silk_mohair_1200x.jpg?v=1649412600',
     name: 'Deluxe silk mohair',
     brand: 'Krea Deluxe',
@@ -1294,6 +1295,7 @@ const YARNS = [
 
   {
     id: 'garna-cava',
+  packageSize_g: 25,
     imageUrl: 'https://garna.dk/cdn/shop/files/Mohair_silke_GARNA_garn_Cava_107_Natur_Hvid.jpg',
     name: 'Cava',
     brand: 'GARNA',
@@ -1315,6 +1317,7 @@ const YARNS = [
 
   {
     id: 'garna-cumulus',
+  packageSize_g: 25,
     imageUrl: 'https://cdn.shopify.com/s/files/1/2118/9981/files/Cashmere_silke_GARNA_garn_Cumulus_102_Natur_hvid.jpg?v=1758046060',
     name: 'Cumulus',
     brand: 'GARNA',
@@ -1337,6 +1340,7 @@ const YARNS = [
 
   {
     id: 'garna-edda',
+  packageSize_g: 25,
     imageUrl: 'https://cdn.shopify.com/s/files/1/2118/9981/files/Cashmere_Garna_garn_Natur_hvid.jpg?v=1699027374',
     name: 'Edda',
     brand: 'GARNA',
@@ -1358,6 +1362,7 @@ const YARNS = [
 
   {
     id: 'garna-meriana',
+  packageSize_g: 25,
     imageUrl: 'https://garna.dk/cdn/shop/files/Cashmere_Garna_Meriana2_garn_Natur_hvid.jpg?v=1703773548',
     name: 'Meriana 2',
     brand: 'GARNA',
@@ -3483,6 +3488,7 @@ const YARNS = [
 
   {
     id: 'gepard-cashmere-klassik',
+  packageSize_g: 25,
     imageUrl: 'https://gepardgarn.dk/media/cache/attribute_image_thumb/images/variants/gepard_cashmere_klassik_101.jpg?1776388265',
     name: 'Cashmere Klassik',
     brand: 'Gepard',
@@ -4373,6 +4379,7 @@ const YARNS = [
   // ── KAOS Yarn ─────────────────────────────────────────────────────
   {
     id: 'kaos-yarn-organic-brushed-alpaca',
+  packageSize_g: 25,
     imageUrl: 'https://aurastrik.dk/cdn/shop/products/kaos-yarn-organic-brushed-alpaca-natural-forfra.jpg?v=1655890753',
     name: 'Organic Brushed Alpaca',
     brand: 'KAOS Yarn',
@@ -4438,6 +4445,7 @@ const YARNS = [
 
   {
     id: 'lana-gatto-silk-mohair',
+  packageSize_g: 25,
     imageUrl: 'https://butiksmuksak.dk/cdn/shop/files/SM-A4925_6873def0-5bb4-4531-beeb-2578d2a7cdae.jpg?v=1773145334&width=1000',
     name: 'Silk Mohair',
     brand: 'Lana Gatto',
@@ -5265,6 +5273,7 @@ const YARNS = [
 
   {
     id: 'sandnes-tynn-silk-mohair',
+  packageSize_g: 25,
     imageUrl: 'https://www.sandnesgarn.no/media/catalog/product/1/1/11011001_hvit_300dpi_noste.jpg?quality=90&bg-color=255,255,255&fit=bounds&height=930&width=700',
     name: 'Tynn Silk Mohair',
     brand: 'Sandnes Garn',
@@ -5288,6 +5297,7 @@ const YARNS = [
 
   {
     id: 'knitting-for-olive-soft-silk-mohair',
+  packageSize_g: 25,
     imageUrl: 'https://knittingforolive.dk/cdn/shop/files/Knitting_for_olive_marts_2024_softsilkmohair_snefnug_0859_800x.jpg?v=1713430996',
     name: 'Soft Silk Mohair',
     brand: 'Knitting for Olive',
@@ -5311,6 +5321,7 @@ const YARNS = [
 
   {
     id: 'isager-silk-mohair',
+  packageSize_g: 25,
     imageUrl: 'https://isagerstrik.dk/wp-content/uploads/Silk-Mohair-E0-2-667x1000.jpg',
     name: 'Silk Mohair',
     brand: 'Isager',
@@ -5357,6 +5368,7 @@ const YARNS = [
 
   {
     id: 'cardiff-cashmere-large',
+  packageSize_g: 25,
     imageUrl: 'https://cdn.shopify.com/s/files/1/0635/4210/0188/products/Large_501_neve_43820.jpg?v=1761233712',
     name: 'Cashmere Large',
     brand: 'Cardiff Cashmere',
