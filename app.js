@@ -683,13 +683,20 @@ function renderYarnCard(yarn, origYarn, pattern, tierId, heldDouble = false) {
   const badges    = buildBadges(yarn, origYarn);
   const why       = buildWhy(yarn, origYarn, tierId, gaugeDiff);
 
+  const photoHtml = yarn.imageUrl
+    ? `<img class="yarn-photo" src="${yarn.imageUrl}" alt="${yarn.name}" loading="lazy" onerror="this.style.display='none'">`
+    : `<div class="yarn-photo yarn-photo--placeholder">${yarn.name.charAt(0).toUpperCase()}</div>`;
+
   return `
     <div class="yarn-card" data-yarn-id="${yarn.id}">
       <div class="yarn-card-top">
-        <div>
-          <div class="yarn-card-name">${yarn.name}${heldDouble ? ' <span class="held-double-badge">× 2 tråde</span>' : ''}</div>
-          <div class="yarn-card-brand">${yarn.brand} · ${WEIGHTS[yarn.weight].label}</div>
-          ${badges ? `<div class="yarn-card-badges">${badges}</div>` : ''}
+        <div class="yarn-card-top-left">
+          ${photoHtml}
+          <div>
+            <div class="yarn-card-name">${yarn.name}${heldDouble ? ' <span class="held-double-badge">× 2 tråde</span>' : ''}</div>
+            <div class="yarn-card-brand">${yarn.brand} · ${WEIGHTS[yarn.weight].label}</div>
+            ${badges ? `<div class="yarn-card-badges">${badges}</div>` : ''}
+          </div>
         </div>
         <div class="yarn-card-price">
           <div class="price-main">${displayEffPrice} kr.</div>

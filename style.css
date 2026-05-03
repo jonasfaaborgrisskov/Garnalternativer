@@ -757,6 +757,34 @@ body {
   border-bottom: 1px solid var(--border-light);
 }
 
+.yarn-card-top-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  flex: 1;
+  min-width: 0;
+}
+
+.yarn-photo {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--border-light);
+  background: var(--bg-subtle);
+}
+
+.yarn-photo--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 1.5rem;
+  color: var(--ink-3);
+  background: var(--bg-subtle);
+}
+
 .yarn-card-name {
   font-family: var(--serif);
   font-size: 1.1rem;
